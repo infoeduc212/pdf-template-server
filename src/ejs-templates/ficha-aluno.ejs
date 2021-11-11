@@ -4,72 +4,8 @@
 <head>
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
     <meta charset="utf-8">
+    <%- include("css/ficha.ejs") %>
 </head>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-    }
-
-    .texto-linha {
-        border-bottom: 1px solid;
-        display: inline-block;
-        flex: 1;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-
-    .multicoluna {
-        display: flex;
-        width: 100%;
-    }
-
-    .multicoluna>div {
-        flex-grow: 1;
-        margin-right: 5px;
-    }
-
-    .inline {
-        display: flex;
-    }
-
-    .inline>b {
-        margin-right: 5px;
-    }
-
-    .block {
-        border: 1.5px solid;
-        border-radius: 5px;
-        padding: 3px 3px 7px;
-        line-height: 1.7;
-        font-size: 14px;
-    }
-
-    .title-header {
-        font-size: 15px;
-        font-weight: 700;
-        padding: 7px 0, 0, 0;
-    }
-
-    .flex {
-        display: flex;
-    }
-
-    table,
-    tr,
-    td {
-        border: 1px solid black;
-    }
-
-    #matricula>thead>tr>td {
-        padding: 0 5px 0 0;
-        text-align: center;
-    }
-</style>
-
-
 <body>
     <div style="margin: 0.8em;">
         <%- include("reusable/header.ejs") %>
