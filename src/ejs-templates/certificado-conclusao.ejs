@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #container {
+            margin: 0.8em;
+        }
+
+        .block {
+            line-height: 1.7;
+            border: 1px solid;
+            border-radius: 5px;
+            padding: 5px;
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .multicolumn {
+            display: flex;
+            width: 100%;
+        }
+
+        .multicolumn>.inline {
+            flex-grow: 1;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-line {
+            border-bottom: 1px solid;
+            display: inline-block;
+            flex: 1;
+        }
+
+        .inline {
+            display: flex;
+        }
+
+        .inline>b {
+            margin-right: 5px;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .padding-top {
+            padding-top: 30px;
+        }
+
+        .flex-column {
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .tiny-text {
+            text-align: center;
+            font-size: 8px;
+        }
+
+        .small-text {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .small-gap {
+            flex-grow: 1;
+            gap: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+</head>
+
+<body>
+    <div id="container">
+        <%- include("reusable/header.ejs") %>
+        <div class="block">
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Estabelecimento:</b>
+                    <div class="text-line"><%= certificado.estabelecimento %></div>
+                </div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Endereço:</b>
+                    <div class="text-line"><%= certificado.endereco %></div>
+                </div>
+                <div class="inline">
+                    <b>CEP:</b>
+                    <div class="text-line"><%= certificado.cep %></div>
+                </div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Entidade Mantenedora:</b>
+                    <div class="text-line"><%= certificado.entidade_mantenedora %></div>
+                </div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Ato de Autorização de Funcionamento:</b>
+                    <div class="flex small-gap padding-top">
+                        <div class="flex flex-column">
+                            <div class="text-line text-center"><%= certificado.ato_autorizacao.natureza_numero %></div>
+                            <div class="tiny-text">Natureza e N°</div>
+                        </div>
+                        <div class="flex flex-column">
+                            <div class="text-line text-center"><%= certificado.ato_autorizacao.data %></div>
+                            <div class="tiny-text">Data</div>
+                        </div>
+                        <div class="flex flex-column">
+                            <div class="text-line text-center"><%= certificado.ato_autorizacao.orgao_expedidor %></div>
+                            <div class="tiny-text">Órgão Expedidor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Ato de Reconhecimento:</b>
+                    <div class="flex small-gap padding-top">
+                        <div class="flex flex-column">
+                            <div class="text-line text-center"><%= certificado.ato_reconhecimento.natureza_numero %></div>
+                            <div class="tiny-text">Natureza e N°</div>
+                        </div>
+                        <div class="flex flex-column">
+                            <div class="text-line text-center"><%= certificado.ato_reconhecimento.data %></div>
+                            <div class="tiny-text">Data</div>
+                        </div>
+                        <div class="flex flex-column">
+                            <div class="text-line text-center"><%= certificado.ato_reconhecimento.orgao_expedidor %></div>
+                            <div class="tiny-text">Órgão Expedidor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <% const dataNascimento = new Date(certificado.data_nascimento) %>
+            <div style="text-align: justify;">
+                Certificamos que <u><%= certificado.nome_completo %></u> filho(a) de <u><%= certificado.nome_mae %></u>
+                e de <u><%= certificado.nome_pai %></u> nascido(a) em
+                <u><%= dataNascimento.getDate().toString().padStart(2, "0") %></u>/<u><%= certificado.nome_completo %></u>
+                <u><%= dataNascimento.getMonth().toString().padStart(2, "0") %></u>/<u><%= certificado.nome_completo %></u>
+                <u><%= dataNascimento.getFullYear() %></u>, na cidade de <u><%= certificado.cidade %></u> Estado de <u><%= certificado.cidade %></u> concluiu o curso <u><%= certificado.curso %></u> no ano de <u><%= certificado.ano_finalizado %></u> tendo obtido os resultados constantes neste Histórico Escolar.
+            </div>
+        </div>
+        <div class="block">
+            <b>O(A) aluno(a) (<%= certificado.aluno_iniciou ? "X" : " " %>) iniciou (<%= certificado.aluno_concluiu ? "X" : " " %>) concluiu o curso nos termos das Leis 5692/71 e 7044/82, tendo frequência satisfatória nas disciplinas.</b>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>O NIS do (a) Aluno(a) na frequência escolar:</b>
+                    <div class="text-line"><%= certificado.aluno_nis %> </div>
+                </div>
+            </div>
+        </div>
+        <div class="block" style="padding-bottom: 130px;">
+            <div style="text-align: center;">
+                RESERVADO AO ESTABELECIMENTO
+            </div>
+        </div>
+        <div class="flex padding-top" style="gap: 30px;">
+            <div class="flex flex-column" style="gap: 40px;">
+                <div class="flex flex-column">
+                    <div class="text-line"></div>
+                    <div class="small-text">Localidade</div>
+                </div>
+                <div class="flex flex-column">
+                    <div class="text-line"></div>
+                    <div class="small-text">Assinatura do Secretário(a)</div>
+                </div>
+            </div>
+            <div class="flex flex-column" style="gap: 40px;">
+                <div class="flex flex-column">
+                    <div class="text-line"></div>
+                    <div class="small-text">Data</div>
+                </div>
+                <div class="flex flex-column">
+                    <div class="text-line"></div>
+                    <div class="small-text">Assinatura do Diretor(a)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
