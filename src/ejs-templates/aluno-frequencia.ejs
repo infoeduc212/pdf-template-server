@@ -1,0 +1,312 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+<style>
+    table,
+    tr,
+    td {
+        border: 1px solid;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+    .fixed-width {
+        width: 80px;
+    }
+    .text-line {
+        border-bottom: 1px solid;
+    }
+</style>
+
+<body>
+    <div style="display: flex; margin-bottom: 10px;">
+        <b style="margin-right: 5px">Nome do(a) aluno(a)</b>
+        <div style="flex-grow: 1;" class="text-line">
+            <%= aluno.nome %>
+        </div>
+        <b>N°</b>
+        <div class="text-line" style="width: 50px;">
+
+        </div>
+    </div>
+    <table style="width: 100%;">
+        <thead>
+            <tr>
+                <td>
+                    Meses/Data
+                </td>
+                <td>
+                    1
+                </td>
+                <td>
+                    2
+                </td>
+                <td>
+                    3
+                </td>
+                <td>
+                    4
+                </td>
+                <td>
+                    5
+                </td>
+                <td>
+                    6
+                </td>
+                <td>
+                    7
+                </td>
+                <td>
+                    8
+                </td>
+                <td>
+                    9
+                </td>
+                <td>
+                    10
+                </td>
+                <td>
+                    11
+                </td>
+                <td>
+                    12
+                </td>
+                <td>
+                    13
+                </td>
+                <td>
+                    14
+                </td>
+                <td>
+                    15
+                </td>
+                <td>
+                    16
+                </td>
+                <td>
+                    17
+                </td>
+                <td>
+                    18
+                </td>
+                <td>
+                    19
+                </td>
+                <td>
+                    20
+                </td>
+                <td>
+                    21
+                </td>
+                <td>
+                    22
+                </td>
+                <td>
+                    23
+                </td>
+                <td>
+                    24
+                </td>
+                <td>
+                    25
+                </td>
+                <td>
+                    26
+                </td>
+                <td>
+                    27
+                </td>
+                <td>
+                    28
+                </td>
+                <td>
+                    29
+                </td>
+                <td>
+                    30
+                </td>
+                <td>
+                    31
+                </td>
+                <td>
+                    N° de Faltas
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Janeiro
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Fevereiro
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Março
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Abril
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Maio
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Junho
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Julho
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Agosto
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Setembro
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Outubro
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Novembro
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Dezembro
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Janeiro
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Fevereiro
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Rec. Final
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 style="text-align: center;">Resultado Bimestral</h3>
+    <table style="width: 100%;">
+        <thead>
+            <tr>
+                <td>Unidade/Pontos</td>
+                <td style="text-align: center;">I
+                    <br>(Av. Qualitativa)</td>
+                <td style="text-align: center;">II<br>(Av. Bimestral)</td>
+                <td style="text-align: center;">III<br>(Rec. Paralela)</td>
+                <td style="text-align: center;">Resultado Final Bimestral<br>(I+II ou I+III)</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    1
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    2
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    3
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    4
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <div style="display: flex; gap: 50px">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2" class="text-center">
+                        Resultado Final
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Média Anual
+                    </td>
+                    <td class="fixed-width text-center" id="media-anual">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Total de Faltas
+                    </td>
+                    <td class="fixed-width text-center" id="total-faltas">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Nota de Rec. Final
+                    </td>
+                    <td class="fixed-width text-center" id="nota-rec">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Média Final
+                    </td>
+                    <td class="fixed-width text-center" id="media-final">
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <input id="aprovado" disabled type="checkbox">
+            <label for="aprovado">Aprovado</label>
+            <br>
+            <input id="reprovado" disabled type="checkbox">
+            <label for="reprovado">Reprovado</label>
+            <br>
+            <input id="transferido" disabled type="checkbox">
+            <label for="transferido">Transferido</label>
+            <br>
+            <input id="desistente" disabled type="checkbox">
+            <label for="transferido">Desistente</label>
+        </div>
+    </div>
+</body>
+</html>

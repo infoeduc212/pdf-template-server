@@ -1,0 +1,71 @@
+<html>
+
+<body>
+    <div style="margin: 2em;">
+        <%- include("reusable/header.ejs") %>
+        <h2 style="text-align: center;">Declaração</h2>
+        <p>
+            <p style="text-align: justify; line-height: 1.8;">
+                Declaro para os devidos fins que o (a) aluno(a) <u> &emsp; &emsp; &emsp; &emsp; &emsp;
+                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</u> nascido em
+                <u>&emsp;&emsp;</u>/<u>&emsp;&emsp;</u>/<u>&emsp;&emsp;&emsp;&emsp;</u> filho de <u> &emsp; &emsp;
+                    &emsp;
+                    &emsp; &emsp; &emsp; &emsp;
+                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</u>. Matriculado(a) na
+                <b><%= header.nome_escola %></b>. Encontra-se
+                na seguinte situação:
+            </p>
+            <br>
+            (&emsp;) Aprovado para cursar o <u>&emsp; &emsp;</u> Ano do Ensino Fundamental
+            <br>
+            (&emsp;) Reprovado(a) no <u>&emsp; &emsp;</u> Ano do Ensino Fundamental
+            <br>
+            (&emsp;) Abandonou os estudos no <u>&emsp; &emsp;</u> Ano do Ensino Fundamental
+            <br>
+            (&emsp;) Está cursando o <u>&emsp; &emsp;</u> Ano do Ensino Fundamental
+            <br>
+            (&emsp;) Está cursando a Educação Infantil
+            <br>
+            (&emsp;) Está cursando o Ensino Fundamental
+            <br>
+            (&emsp;) Concluiu a Educação Infantil em <u>&emsp; &emsp; &emsp; &emsp;</u>
+            <br>
+            (&emsp;) Concluiu o Ensino Fundamental
+            <br>
+            (&emsp;) Origem do aluno é do Ensino Fundamental de 8 anos
+            <br>
+            (&emsp;) Desistiu dos estudos no ano <u>&emsp; &emsp;</u> na <u>&emsp; &emsp;</u> série do Ensino
+            Fundamental
+            <br>
+            (&emsp;) Solicitou transferência em <u>&emsp; &emsp; &emsp; &emsp;</u> de <u>&emsp; &emsp; &emsp; &emsp;</u>
+            de <u>&emsp; &emsp; &emsp; &emsp;</u>, será expedida assim que a documentação interna estiver regular.
+            <br>
+            (&emsp;) Aluno beneficiário do Bolsa Família N° do NIS: <u>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                &emsp;</u>
+            <br>
+            <br>
+            Código do INEP: <%= aluno.inep %>
+            <br>
+            <br>
+            <br>
+            Observação: <u>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; </u>
+            <br>
+            <span>Este documento não contém emendas nem rasuras.</span>
+            <div style="text-align: center;">
+                <br>
+                <%= header.municipio %>, <u>&emsp;&emsp;</u> de <u>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</u>
+                <u>&emsp; &emsp; &emsp; &emsp;</u>
+                <br>
+                <br>
+                <br>
+                <u>&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                    &emsp;</u>
+                <br>
+                <span>Assinatura do responsável pelas informações</span>
+            </div>
+        </p>
+    </div>
+</body>
+
+</html>

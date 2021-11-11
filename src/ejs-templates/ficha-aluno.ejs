@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <meta charset="utf-8">
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .texto-linha {
+        border-bottom: 1px solid;
+        display: inline-block;
+        flex: 1;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .multicoluna {
+        display: flex;
+        width: 100%;
+    }
+
+    .multicoluna>div {
+        flex-grow: 1;
+        margin-right: 5px;
+    }
+
+    .inline {
+        display: flex;
+    }
+
+    .inline>b {
+        margin-right: 5px;
+    }
+
+    .block {
+        border: 1.5px solid;
+        border-radius: 5px;
+        padding: 3px 3px 7px;
+        line-height: 1.7;
+        font-size: 14px;
+    }
+
+    .title-header {
+        font-size: 15px;
+        font-weight: 700;
+        padding: 7px 0, 0, 0;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    table,
+    tr,
+    td {
+        border: 1px solid black;
+    }
+
+    #matricula>thead>tr>td {
+        padding: 0 5px 0 0;
+        text-align: center;
+    }
+</style>
+
+
+<body>
+    <div style="margin: 0.8em;">
+        <%- include("reusable/header.ejs") %>
+        <div class="block">
+            <div class="title-header">Dados da Escola</div>
+            <div class="block">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Unidade de ensino:</b>
+                        <div class="texto-linha"><%= escola.unidade_ensino %></div>
+                    </div>
+                    <div class="inline">
+                        <b>Código do INEP:</b>
+                        <div class="texto-linha"><%= escola.inep %></div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Endereço:</b>
+                        <div class="texto-linha"><%= escola.endereco %></div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Cidade:</b>
+                        <div class="texto-linha"><%= escola.cidade %></div>
+                    </div>
+                    <div class="inline">
+                        <b>Estado:</b>
+                        <div class="texto-linha"><%= escola.estado %></div>
+                    </div>
+                    <div class="inline">
+                        <b>CEP:</b>
+                        <div class="texto-linha"><%= escola.cep %></div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-header">Dados Pessoais</div>
+            <div class="block">
+                <div class="flex">
+                    <img width="100" height="100" src="<%= aluno.foto_url %>">
+                    <div style="flex: 1; margin-left: 10px">
+                        <div class="multicoluna inline">
+                            <b>Nome:</b>
+                            <div class="texto-linha inline"><%= aluno.nome %></div>
+                        </div>
+                        <div class="multicoluna inline">
+                            <div class="inline">
+                                <b>Identificação do INEP: </b>
+                                <div class="texto-linha"><%= aluno.inep %></div>
+                            </div>
+                            <div class="inline">
+                                <b>NIS (PBF): </b>
+                                <div class="texto-linha"><%= aluno.nis %></div>
+                            </div>
+                        </div>
+                        <div class="multicoluna inline">
+                            <div class="inline">
+                                <b>Data de nascimento:</b>
+                                <% const dataNascimento = new Date(aluno.data_nascimento) %>
+                                <div class="texto-linha text-center">
+                                    <%= dataNascimento.getDate().toString().padStart(2, "0") %></div>
+                                /
+                                <div class="texto-linha text-center">
+                                    <%= dataNascimento.getMonth().toString().padStart(2, "0") %> </div>
+                                /
+                                <div class="texto-linha text-center"><%= dataNascimento.getFullYear() %></div>
+                            </div>
+                            <div class="inline">
+                                <b>Nacionalidade:</b>
+                                <div class="texto-linha text-center"><%= aluno.nacionalidade %></div>
+                            </div>
+                        </div>
+                        <div class="multicoluna inline">
+                            <div class="inline">
+                                <b>RG:</b>
+                                <div class="texto-linha" style="width: 100px;"><%= aluno.rg %></div>
+                            </div>
+                            <div class="inline">
+                                <b>SSP/RG:</b>
+                                <div class="texto-linha text-center"><%= aluno.ssp_rg %> </div>
+                            </div>
+                            <div class="inline">
+                                <b>CPF:</b>
+                                <div class="texto-linha"><%= aluno.cpf %> </div>
+                            </div>
+                        </div>
+                        <div class="multicoluna inline">
+                            <div class="inline">
+                                <b>Gênero:</b>
+                                (<%= aluno.genero === "Masculino" ? "X" : "  " %>) M
+                                (<%= aluno.genero === "Feminino" ? "X" : " "%>) F
+                            </div>
+                            <div class="inline">
+                                <b>Etnia/Cor:</b>
+                                <div class="texto-linha"><%= aluno.etnia_cor %> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="multicoluna inline">
+                        <div class="inline">
+                            <b>Nome da mãe:</b>
+                            <div class="texto-linha"><%= aluno.nome_mae %></div>
+                        </div>
+                        <div class="inline">
+                            <b>Nome do pai:</b>
+                            <div class="texto-linha"><%= aluno.nome_pai %></div>
+                        </div>
+                    </div>
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Deficiência:</b>
+                            (<%= !aluno.tem_deficiencia ? "X" : " " %>) Não possui
+                            (<%= aluno.tem_deficiencia ? "X" : " " %>) Possui
+                        </div>
+                        <div class="inline">
+                            <b>Especificação da deficiência:</b>
+                            <div class="texto-linha" style="width: 200px;"><%= aluno.especificacao_deficiencia %></div>
+                        </div>
+                    </div>
+                    <div style="font-stretch: semi-condensed; font-size: 14px;">
+                        <div class="multicoluna">
+                            <div class="inline">
+                                <b>Transtorno Global do desenv.:</b>
+                                (<%= aluno.transtorno === "Não possui" ? "X" : " " %>) Não possui
+                                (<%= aluno.transtorno === "Autismo Infantil" ? "X" : " " %>) Autismo Infantil
+                                (<%= aluno.transtorno === "Síndr. de Rett" ? "X" : " " %>) Síndr. de Rett
+                                (<%= aluno.transtorno === "Sindr. de Asper" ? "X" : " " %>) Sindr. de Asperger
+                                (<%= aluno.transtorno === "Transtorno desint. da infância" ? "X" : " " %>) Transtorno desint. da infância
+                            </div>
+                        </div>
+                        <div class="multicoluna">
+                            <div class="inline">
+                                <b>Altas habilidades/superdotação:</b>
+                                (<%= aluno.altas_habilidades === "true" ? "X" : " " %>) Sim
+                                (<%= aluno.altas_habilidades !== "true" ? "X" : " " %>) Não
+                            </div>
+                            <div>
+                                <b>Tipo de certidão civil:</b>
+                                (<%= aluno.certidao_civil === "Nascimento" ? "X" : " " %>) Nascimento
+                                (<%= aluno.certidao_civil === "Casamento" ? "X" : " " %>) Casamento
+                                (<%= aluno.certidao_civil === "Não possui" ? "X" : " " %>) Não possui
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title-header">Modelo Antigo de Certidão Civil</div>
+                <div class="block">
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>N° do termo:</b>
+                            <div class="texto-linha"><%= escola.certidao_antiga.numero_termo %></div>
+                        </div>
+                        <div class="inline">
+                            <b>Folha:</b>
+                            <div class="texto-linha"><%= escola.certidao_antiga.folha %></div>
+                        </div>
+                        <div class="inline">
+                            <b>Livro:</b>
+                            <div class="texto-linha"><%= escola.certidao_antiga.livro %></div>
+                        </div>
+                        <div class="inline">
+                            <b>Data de emissão da certidão</b>
+                            <% const dataCertidao = new Date(escola.certidao_antiga.data) %> 
+                            <div class="texto-linha"><%= dataCertidao.getDate().toString().padStart(2, "0") %></div>
+                            /
+                            <div class="texto-linha"><%= dataCertidao.getMonth().toString().padStart(2, "0") %></div>
+                            /
+                            <div class="texto-linha"><%= dataCertidao.getFullYear() %></div>
+                        </div>
+                    </div>
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Município do cartório:</b>
+                            <div class="texto-linha"><%= escola.certidao_antiga.municipio %></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title-header">Modelo Novo de Certidão Civil</div>
+                <div class="block">
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>N° da matricula (reg. civil):</b>
+                            <div class="texto-linha"><%= escola.certidao_nova.numero_matricula %></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-header">Endereço</div>
+            <div class="block">
+                <div class="multicoluna inline">
+                    <div class="inline">
+                        <b>Zona de residência:</b>
+                        (<%= aluno.dados_endereco.zona_residencia === "Zona Rural" ? "X" : " " %>) Zona Rural
+                        (<%= aluno.dados_endereco.zona_residencia === "Zona Urbana" ? "X" : " " %>) Zona Urbana
+                    </div>
+                    <div class="inline">
+                        <b>CEP:</b>
+                        <div class="texto-linha" style="width: 60px;"><%= aluno.dados_endereco.cep %> </div>
+                    </div>
+                    <div class="inline">
+                        <b>Bairro:</b>
+                        <div class="texto-linha" style="width: 80px;"><%= aluno.dados_endereco.bairro %> </div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Endereço:</b>
+                        <div class="texto-linha" style="width: 500px;"><%= aluno.dados_endereco.endereco %> </div>
+                    </div>
+                    <div class="inline">
+                        <b>N°:</b>
+                        <div class="text-center texto-linha" style="width: 10px;"><%= aluno.dados_endereco.numero %>
+                        </div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Complemento:</b>
+                        <div class="texto-linha" style="width: 270px;"><%= aluno.dados_endereco.complemento %></div>
+                    </div>
+                    <div class="inline">
+                        <b>Município:</b>
+                        <div class="texto-linha" style="min-width: 90px;"><%= aluno.dados_endereco.municipio %></div>
+                    </div>
+                    <div class="inline">
+                        <b>UF:</b>
+                        <div class="texto-linha" style="width: 50px;"><%= aluno.dados_endereco.uf %> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-header">Contato</div>
+            <div class="block">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>E-mail Principal:</b>
+                        <div class="texto-linha"><%= aluno.contato.email_principal %> </div>
+                    </div>
+                    <div class="inline">
+                        <b>E-mail secundário:</b>
+                        <div class="texto-linha"><%= aluno.contato.email_secundario %> </div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Celular:</b>
+                        <div class="texto-linha"><%= aluno.contato.celular %> </div>
+                    </div>
+                    <div class="inline">
+                        <b>WhatsApp:</b>
+                        <div class="texto-linha"><%= aluno.contato.whatsapp %> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-header">Dados Variáveis</div>
+            <div style="font-stretch: 80%; font-size: 14px;" class="block">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Recebe Bolsa Família</b>
+                        (<%= aluno.dados_variaveis.recebe_bolsa_familia ? "X" : " " %>) Sim
+                        (<%= !aluno.dados_variaveis.recebe_bolsa_familia ? "X" : " " %>) Não
+                    </div>
+                    <div class="inline">
+                        <b>Recebe escolarização em outro espaço:</b>
+                        (<%= aluno.dados_variaveis.escolarizacao_outro_espaco === "Hospital" ? "X" : " " %>) Hospital
+                        (<%= aluno.dados_variaveis.escolarizacao_outro_espaco === "Domicílio" ? "X" : " " %>) Domicílio
+                        (<%= aluno.dados_variaveis.escolarizacao_outro_espaco === "Não recebe" ? "X" : " " %>) Não
+                        recebe
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Transporte escolar público:</b>
+                        (<%= aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Utiliza
+                        (<%= !aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Não utiliza
+                    </div>
+                    <div class="inline">
+                        <b>Poder Público responsável pelo transporte escolar</b>
+                        (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Municipal" ? "X" : " " %>)
+                        Municipal
+                        (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Estadual" ? "X" : " " %>)
+                        Estadual
+                    </div>
+                </div>
+            </div>
+            <div class="title-header">Requerimento</div>
+            <div class="block">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Situação da matrícula:</b>
+                        (<%= aluno.matricula.situacao === "Nova" ? "X" : " " %>) Nova
+                        (<%= aluno.matricula.situacao === "Renovada" ? "X" : " " %>) Renovada
+                    </div>
+                </div>
+                <table id="matricula" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
+                    <thead style="font-size: 13px;">
+                        <tr>
+                            <td>Data da Matrícula</td>
+                            <td>Ano</td>
+                            <td>Assinatura do Pai, Mãe ou Responsável</td>
+                            <td>Parecer do responsável pela escola</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="flex">
+                                    <% const matriculaData = new Date(aluno.matricula.data) %> 
+                                    <div class="texto-linha"><%= matriculaData.getDate().toString().padStart(2, "0") %></div>
+                                    /
+                                    <div class="texto-linha"><%= matriculaData.getMonth().toString().padStart(2, "0") %></div>
+                                    /
+                                    <div class="texto-linha"><%= matriculaData.getFullYear() %></div>
+                                </div>
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                <div class="flex" style="padding: 20px 2px 1px 2px;">
+                                    <div class="texto-linha"></div>
+                                </div>
+                            </td>
+                            <td style="font-size: 12px; padding-left: 4px;">
+                                (<%= aluno.matricula.status_parecer === "Deferido" ? "X" : " " %>) Deferido
+                                <br>
+                                <div class="flex">
+                                    (<%= aluno.matricula.status_parecer === "Indeferido" ? "X" : " " %>) Indeferido
+                                    <div class="flex" style="padding-left: 2px; width: 70%; flex-direction: column;">
+                                    <div class="texto-linha"></div>
+                                    <div style="text-align: center; font-size: 6px;">Assinatura do Diretor(a)</div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

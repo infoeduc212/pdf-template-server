@@ -1,0 +1,25 @@
+<html>
+    <style>
+        #container {
+            margin: 2em;
+        }
+        .center {
+            margin: auto;
+        }
+    </style>
+    <body>
+        <div id="container">
+            <div id="center">
+                <img src="<%= disciplina.escola_imagem %>">
+                <br>
+                <%= disciplina.escola_nome %>
+                <br>
+                <%= disciplina.municipio_nome %>
+                <br>
+                CNPJ: <%= disciplina.escola_cnpj %>  
+            </div>
+            <h1>Disciplina</h1>
+            
+        </div>
+    </body>
+</html>
