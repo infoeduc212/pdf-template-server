@@ -7,7 +7,7 @@
     <%- include("css/ficha.ejs") %>
 </head>
 <body>
-    <div style="margin: 0.8em;">
+    <div id="container">
         <%- include("reusable/header.ejs") %>
         <div class="block">
             <div class="title-header">Dados da Escola</div>
@@ -159,19 +159,19 @@
                     <div class="multicoluna">
                         <div class="inline">
                             <b>N° do termo:</b>
-                            <div class="texto-linha"><%= escola.certidao_antiga.numero_termo %></div>
+                            <div class="texto-linha"><%= aluno.certidao_antiga.numero_termo %></div>
                         </div>
                         <div class="inline">
                             <b>Folha:</b>
-                            <div class="texto-linha"><%= escola.certidao_antiga.folha %></div>
+                            <div class="texto-linha"><%= aluno.certidao_antiga.folha %></div>
                         </div>
                         <div class="inline">
                             <b>Livro:</b>
-                            <div class="texto-linha"><%= escola.certidao_antiga.livro %></div>
+                            <div class="texto-linha"><%= aluno.certidao_antiga.livro %></div>
                         </div>
                         <div class="inline">
                             <b>Data de emissão da certidão</b>
-                            <% const dataCertidao = new Date(escola.certidao_antiga.data) %> 
+                            <% const dataCertidao = new Date(aluno.certidao_antiga.data) %> 
                             <div class="texto-linha"><%= dataCertidao.getDate().toString().padStart(2, "0") %></div>
                             /
                             <div class="texto-linha"><%= dataCertidao.getMonth().toString().padStart(2, "0") %></div>
@@ -182,7 +182,7 @@
                     <div class="multicoluna">
                         <div class="inline">
                             <b>Município do cartório:</b>
-                            <div class="texto-linha"><%= escola.certidao_antiga.municipio %></div>
+                            <div class="texto-linha"><%= aluno.certidao_antiga.municipio %></div>
                         </div>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                     <div class="multicoluna">
                         <div class="inline">
                             <b>N° da matricula (reg. civil):</b>
-                            <div class="texto-linha"><%= escola.certidao_nova.numero_matricula %></div>
+                            <div class="texto-linha"><%= aluno.certidao_nova.numero_matricula %></div>
                         </div>
                     </div>
                 </div>
