@@ -129,18 +129,27 @@ export default function createServer(): Promise<any> {
                             args
                         )) as string;
                         if (outputType === "pdf") {
+                            res.setHeader("Content-Type", "application/pdf")
                             const page = await browser.newPage();
                             await page.setContent(render);
                             await page.evaluateHandle("document.fonts.ready");
-                            page.pdf({
+                            const stream = await page.createPDFStream({
                                 format: "a4",
-                                printBackground: true,
-                            }).then((buffer: Buffer) => {
-                                res.setHeader(
-                                    "Content-Type",
-                                    "application/pdf"
-                                ).send(buffer);
-                            });
+                                pageRanges: "1",
+                                footerTemplate: `
+                                <div style="width: 100%; margin-right: 10px; text-align: right; font-size: 8px;">
+                                    PDF gerado pela a Plataforma InfoEduc
+                                </div>
+                                `,
+                                displayHeaderFooter: true,
+                                margin: {
+                                    bottom: "50px"
+                                }
+                            })
+                            stream.pipe(res)
+                            stream.on('end', async () => {
+                                await page.close()
+                            })
                         } else if (outputType === "html") {
                             res.send(render);
                         } else {
