@@ -6,10 +6,12 @@ import path from "path";
 import express from "express";
 const app = express();
 import ejs from "ejs";
-import { createGenericTablePDF } from "./templates/generateUtils";
+import generateAtividadesTable, { createGenericTablePDF } from "./templates/generateUtils";
 import cors from "cors";
 import morgan from "morgan";
 import { JSDOM } from "jsdom";
+import { last, PDFDocument } from "pdf-lib";
+import concatenateStreamIntoBuffer from "./utils/streamutils";
 
 app.use(express.json());
 app.use(cors());
@@ -82,24 +84,35 @@ export default function createServer(): Promise<any> {
                     }
 
                     // gerar o pdf
-                    if (outputType == "pdf") {
-                        const page = await browser.newPage();
-                        await page.setContent(jsdom.serialize());
-                        page.pdf({
-                            format: "a4",
+                    const page = await browser.newPage();
+                    await page.setContent(jsdom.serialize());
+                    page.pdf({
+                        format: "a4",
+                        pageRanges: "1"
+                    }).then(async frequenciaPageBytes => {
+                        // TODO: Reinventar isso daqui de outro jeito. Desta maneira atual está duplicando as páginas e alterando a ordem aleatóriamente
+                        const document = await PDFDocument.create()
+                        const frequenciaDocument = await PDFDocument.load(frequenciaPageBytes)
+                        const generated = generateAtividadesTable(args.atividades, args.data, args.observacao)
+                        generated.end()
+                        const atividadesBuffer = await concatenateStreamIntoBuffer(generated)
+                        const atividadesDocument = await PDFDocument.load(atividadesBuffer)
+                        const firstPage = await document.copyPages(frequenciaDocument, frequenciaDocument.getPageIndices())
+                        let indices = []
+                        const totalPages = atividadesDocument.getPageCount()
+                        for (let i = 0; i < totalPages; i++) {
+                            indices.push(i)
+                        }
+                        const lastPages = await document.copyPages(atividadesDocument, indices)
+                        document.insertPage(0, firstPage[0])
+                        let count = 1
+                        lastPages.forEach(page => {
+                            document.insertPage(count, page)
+                            count++
                         })
-                            .then((buffer) =>
-                                res
-                                    .setHeader(
-                                        "Content-Type",
-                                        "application/pdf"
-                                    )
-                                    .send(buffer)
-                            )
-                            .catch(next);
-                    } else {
-                        res.send(jsdom.serialize());
-                    }
+                        const savedDocument = await document.save()
+                        res.setHeader("Content-Type", "application/pdf").send(Buffer.from(savedDocument))
+                    }).catch(next)
                 } catch (e: any) {
                     next(e);
                 }
