@@ -6,12 +6,10 @@ import path from "path";
 import express from "express";
 const app = express();
 import ejs from "ejs";
-import { generateAtividadesTable, createGenericTablePDF } from "./templates/generateUtils";
+import { createGenericTablePDF } from "./templates/generateUtils";
 import cors from "cors";
 import morgan from "morgan";
 import { JSDOM } from "jsdom";
-import { concatenateStreamIntoBuffer } from "./utils/utils";
-import pdftk from 'node-pdftk'
 
 app.use(express.json());
 app.use(cors());
