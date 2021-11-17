@@ -64,7 +64,7 @@ export async function createGenericTablePDF(
     return document;
 }
 
-export default function generateAtividadesTable(atividades: Array<{
+export function generateAtividadesTable(atividades: Array<{
     numero_aula: number
     data: string
     resumo: string

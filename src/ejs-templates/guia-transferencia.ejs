@@ -23,8 +23,8 @@
             flex-grow: 1;
         }
 
-        .fixed-height {
-            min-width: 150px;
+        .block {
+            font-size: 15px;
         }
 
         .rotated-text {
@@ -39,7 +39,7 @@
 
 <body>
     <div id="container">
-        <%- include("reusable/header.ejs") %>
+        <%- include("reusable/header2.ejs") %>
         <div class="block">
             <div class="multicolumn">
                 <div class="flex small-gap padding-top">
@@ -101,7 +101,8 @@
         </div>
         <div class="block">
             <b>
-                ( ) O (A) Aluno (a) iniciou o curso nos termos da Lei 5692/71 e 7044/88 tendo frequência satisfatória nas disciplinas.
+                (<%= aluno.iniciou_curso == "true" ? "X" : " " %>) O (A) Aluno (a) iniciou o curso nos termos da Lei
+                5692/71 e 7044/88 tendo frequência satisfatória nas disciplinas.
             </b>
             <div class="multicolumn">
                 <div class="inline">
@@ -110,112 +111,98 @@
                 </div>
             </div>
         </div>
-        <div style="border: 1px solid;" class="flex flex-column">
+        <div style="border: 1px solid; padding-bottom: 10px;" class="flex flex-column">
             <div class="flex flex-column">
                 <div class="nota-header">
                     Transferência por Atividade ou Disciplina
                 </div>
                 <div class="flex">
                     <div class="flex flex-column">
-                        <div class="nota-header fixed-height">
-                            Unidades
-                        </div>
-                    </div>
-                    <div class="flex flex-column">
-                        <div class="nota-header">
-                            Rendimento Escolar
-                        </div>
                         <div class="flex">
-                            <div class="nota-header">
-                                Base Nacional Comum
-                            </div>
-                            <div class="nota-header">
-                                Parte Diversificada
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <div class="rotated-text">
-                                Língua
-                                <br>
-                                Portuguesa
-                            </div>
-                            <div class="rotated-text">
-                                Matemática
-                            </div>
-                            <div class="rotated-text">
-                                Ciências
-                            </div>
-                            <div class="rotated-text">
-                                História
-                            </div>
-                            <div class="rotated-text">
-                                Geografia
-                            </div>
-                            <div class="rotated-text">
-                                Educação<br>Física
-                            </div>
-                            <div class="rotated-text">
-                                Artes
-                            </div>
-                            <div class="rotated-text">
-                                Ensino<br>Religioso
-                            </div>
-                            <div class="rotated-text">
-                                Natureza e<br>Socidade
-                            </div>
-                            <div class="rotated-text">
-                                Inglês
-                            </div>
-                            <div class="rotated-text">
-                                Dias Letivos
-                            </div>
-                            <div class="rotated-text">
-                                N° de Faltas
+                            <div class="flex flex-column">
+                                <div class="flex">
+                                    <div class="flex flex-column">
+                                        <div class="flex flex-column">
+                                            <div class="nota-header">
+                                                Unidades
+                                            </div>
+                                            <div class="left-item">
+                                                1° Conceito ou Nota
+                                            </div>
+                                            <div class="left-item">
+                                                2° Conceito ou Nota
+                                            </div>
+                                            <div class="left-item">
+                                                Média Semestral
+                                            </div>
+                                            <div class="left-item">
+                                                Nota de Recup. Semestral
+                                            </div>
+                                            <div class="left-item">
+                                                Média Geral do Semestre
+                                            </div>
+                                            <div class="left-item">
+                                                3° Conceito ou Nota
+                                            </div>
+                                            <div class="left-item">
+                                                4° Conceito ou Nota
+                                            </div>
+                                            <div class="left-item">
+                                                Média Semestral
+                                            </div>
+                                            <div class="left-item">
+                                                Nota de Recup. Semestral
+                                            </div>
+                                            <div class="left-item">
+                                                Média Geral do Semestre
+                                            </div>
+                                            <div class="left-item">
+                                                Total de Aulas Dadas
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-column">
+                                        <div class="nota-header">
+                                            Rendimento Escolar
+                                        </div>
+                                        <div class="flex">
+                                            <div class="nota-header">
+                                                Base Nacional Comum
+                                            </div>
+                                            <div class="nota-header">
+                                                Parte Diversificada
+                                            </div>
+                                        </div>
+                                        <div class="flex">
+                                            <% materias.forEach(materia => { %>
+                                            <div class="rotated-text">
+                                                <%= materia.nome %>
+                                            </div>
+                                            <% }) %>
+                                        </div>
+                                        <div class="flex">
+                                            <% materias.forEach(materia => { %>
+                                            <div class="flex flex-column" style="flex-grow: 1;">
+                                                <% materia.notas.forEach(nota => { %>
+                                                <div
+                                                    style="border: 1px solid; padding: 5px; text-align: center; font-size: 12px;">
+                                                    <%= nota %>
+                                                </div>
+                                                <% }) %>
+                                            </div>
+                                            <% }) %>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="flex">
-
-                <div class="flex flex-column fixed-height">
-                    <div class="left-item">
-                        1° Conceito ou Nota
-                    </div>
-                    <div class="left-item">
-                        2° Conceito ou Nota
-                    </div>
-                    <div class="left-item">
-                        Média Semestral
-                    </div>
-                    <div class="left-item">
-                        Nota de Recup. Semestral
-                    </div>
-                    <div class="left-item">
-                        Média Geral do Semestre
-                    </div>
-                    <div class="left-item">
-                        3° Conceito ou Nota
-                    </div>
-                    <div class="left-item">
-                        4° Conceito ou Nota
-                    </div>
-                    <div class="left-item">
-                        Média Semestral
-                    </div>
-                    <div class="left-item">
-                        Nota de Recup. Semestral
-                    </div>
-                    <div class="left-item">
-                        Média Geral do Semestre
-                    </div>
-                    <div class="left-item">
-                        Total de Aulas Dadas
-                    </div>
-                </div>
-                <div>
-                    
-                </div>
+        </div>
+        <div class="block">
+            <div class="text-center" style="padding-bottom: 80px;">
+                RESERVADO AO ESTABELECIMENTO
             </div>
         </div>
     </div>

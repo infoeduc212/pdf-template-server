@@ -6,12 +6,12 @@ import path from "path";
 import express from "express";
 const app = express();
 import ejs from "ejs";
-import generateAtividadesTable, { createGenericTablePDF } from "./templates/generateUtils";
+import { generateAtividadesTable, createGenericTablePDF } from "./templates/generateUtils";
 import cors from "cors";
 import morgan from "morgan";
 import { JSDOM } from "jsdom";
-import { last, PDFDocument } from "pdf-lib";
-import concatenateStreamIntoBuffer from "./utils/streamutils";
+import { concatenateStreamIntoBuffer } from "./utils/utils";
+import pdftk from 'node-pdftk'
 
 app.use(express.json());
 app.use(cors());
@@ -46,7 +46,6 @@ export default function createServer(): Promise<any> {
         puppeteer.launch().then((browser: Browser) => {
             app.post("/generate_frequencia", async (req, res, next) => {
                 try {
-                    const outputType = req.body.output;
                     const args = req.body.arguments;
                     const rawHtml = fs.readFileSync(
                         path.join(
@@ -83,36 +82,40 @@ export default function createServer(): Promise<any> {
                         }
                     }
 
+                    const atividadesTable = document.getElementById("lista-atividades") as HTMLTableElement
+                    const atividadesBody = atividadesTable.createTBody()
+
+                    for (let i = 0; i < args.atividades.length; i++) {
+                        const atividade = args.atividades[i] as {
+                            numero_aula: number
+                            data: string
+                            resumo: string
+                            rubrica_professor: string
+                        }
+                        const row = atividadesBody.insertRow()
+                        row.insertCell().appendChild(document.createTextNode(atividade.numero_aula.toString()))
+                        row.insertCell().appendChild(document.createTextNode(atividade.data))
+                        row.insertCell().appendChild(document.createTextNode(atividade.resumo))
+                        row.insertCell().appendChild(document.createTextNode(atividade.rubrica_professor))
+                    }
                     // gerar o pdf
                     const page = await browser.newPage();
+                    page.on('console', message => console.log(message))
                     await page.setContent(jsdom.serialize());
-                    page.pdf({
+                    const stream = await page.createPDFStream({
                         format: "a4",
-                        pageRanges: "1"
-                    }).then(async frequenciaPageBytes => {
-                        // TODO: Reinventar isso daqui de outro jeito. Desta maneira atual está duplicando as páginas e alterando a ordem aleatóriamente
-                        const document = await PDFDocument.create()
-                        const frequenciaDocument = await PDFDocument.load(frequenciaPageBytes)
-                        const generated = generateAtividadesTable(args.atividades, args.data, args.observacao)
-                        generated.end()
-                        const atividadesBuffer = await concatenateStreamIntoBuffer(generated)
-                        const atividadesDocument = await PDFDocument.load(atividadesBuffer)
-                        const firstPage = await document.copyPages(frequenciaDocument, frequenciaDocument.getPageIndices())
-                        let indices = []
-                        const totalPages = atividadesDocument.getPageCount()
-                        for (let i = 0; i < totalPages; i++) {
-                            indices.push(i)
+                        margin: {
+                            top: 10,
+                            bottom: 20,
+                            left: 10,
+                            right: 10
                         }
-                        const lastPages = await document.copyPages(atividadesDocument, indices)
-                        document.insertPage(0, firstPage[0])
-                        let count = 1
-                        lastPages.forEach(page => {
-                            document.insertPage(count, page)
-                            count++
-                        })
-                        const savedDocument = await document.save()
-                        res.setHeader("Content-Type", "application/pdf").send(Buffer.from(savedDocument))
-                    }).catch(next)
+                    })
+                    res.setHeader("Content-Type", "application/pdf")
+                    stream.pipe(res)
+                    stream.on('close', async () => {
+                        await page.close()
+                    })
                 } catch (e: any) {
                     next(e);
                 }
@@ -148,16 +151,19 @@ export default function createServer(): Promise<any> {
                             await page.evaluateHandle("document.fonts.ready");
                             const stream = await page.createPDFStream({
                                 format: "a4",
-                                pageRanges: "1",
-                                footerTemplate: `
-                                <div style="width: 100%; margin-right: 10px; text-align: right; font-size: 8px;">
-                                    PDF gerado pela a Plataforma InfoEduc
-                                </div>
-                                `,
-                                displayHeaderFooter: true,
                                 margin: {
-                                    bottom: "50px"
+                                    top: 10,
+                                    bottom: 10
                                 }
+                                // footerTemplate: `
+                                // <div style="width: 100%; margin-right: 10px; text-align: right; font-size: 8px;">
+                                //     PDF gerado pela a Plataforma InfoEduc
+                                // </div>
+                                // `,
+                                // displayHeaderFooter: true,
+                                // margin: {
+                                //     bottom: "50px"
+                                // }
                             })
                             stream.pipe(res)
                             stream.on('end', async () => {
