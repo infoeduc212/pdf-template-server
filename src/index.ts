@@ -14,4 +14,4 @@ dotenv.config();
             `Servidor de assets ouvindo na porta ${process.env.ASSETS_PORT}`
         );
     });
-})()
+})();

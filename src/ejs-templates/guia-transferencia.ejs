@@ -24,6 +24,7 @@
         }
 
         .block {
+            margin-bottom: 5px;
             font-size: 15px;
         }
 
@@ -34,21 +35,25 @@
             border: 1px solid;
             writing-mode: vertical-rl;
         }
+
+        #container {
+            break-inside: avoid-page;
+        }
     </style>
 </head>
 
 <body>
+    <%- include("reusable/header2.ejs") %>
     <div id="container">
-        <%- include("reusable/header2.ejs") %>
         <div class="block">
             <div class="multicolumn">
                 <div class="flex small-gap padding-top">
                     <div class="flex flex-column">
-                        <div class="text-line"><%= transferencia.denominacao_estabelecimento %></div>
+                        <div class="text-line text-center"><%= transferencia.denominacao_estabelecimento %></div>
                         <div class="small-text">Denominação do Estabelecimento</div>
                     </div>
                     <div class="flex flex-column">
-                        <div class="text-line"></div>
+                        <div class="text-line text-center"><%= transferencia.local %></div>
                         <div class="small-text">Local</div>
                     </div>
                 </div>
@@ -56,30 +61,32 @@
             <div class="multicolumn">
                 <div class="flex small-gap">
                     <div class="flex flex-column">
-                        <div class="text-line"></div>
+                        <div class="text-line text-center"><%= transferencia.ato_autorizacao %></div>
                         <div class="small-text">Ato de Autorização</div>
                     </div>
+                    <% const dataAutorizacao = new Date(transferencia.data_ato_autorizacao) %> 
                     <div class="flex flex-column">
                         <div class="flex" style="flex-grow: 1;">
-                            <div class="text-line"></div>
+                            <div class="text-line text-center"><%= dataAutorizacao.getDate().toString().padStart(2, "0") %> </div>
                             /
-                            <div class="text-line"></div>
+                            <div class="text-line text-center"><%= dataAutorizacao.getMonth().toString().padStart(2, "0") %> </div>
                             /
-                            <div class="text-line"></div>
+                            <div class="text-line text-center"><%= dataAutorizacao.getFullYear() %></div>
                         </div>
                         <div class="small-text">Data</div>
                     </div>
                     <div class="flex flex-column">
-                        <div class="text-line"></div>
+                        <div class="text-line"><%= transferencia.ato_reconhecimento %> </div>
                         <div class="small-text">Ato de Reconhecimento</div>
                     </div>
                     <div class="flex flex-column">
+                        <% const dataReconhecimento = new Date(transferencia.data_ato_reconhecimento) %> 
                         <div class="flex" style="flex-grow: 1;">
-                            <div class="text-line"></div>
+                            <div class="text-line text-center"><%= dataReconhecimento.getDate().toString().padStart(2, "0") %></div>
                             /
-                            <div class="text-line"></div>
+                            <div class="text-line text-center"><%= dataReconhecimento.getMonth().toString().padStart(2, "0") %></div>
                             /
-                            <div class="text-line"></div>
+                            <div class="text-line text-center"><%= dataReconhecimento.getFullYear() %> </div>
                         </div>
                         <div class="small-text">Data</div>
                     </div>
@@ -107,11 +114,11 @@
             <div class="multicolumn">
                 <div class="inline">
                     <b>O NIS do(a) Aluno (a) na frequência escolar:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= aluno.nis %></div>
                 </div>
             </div>
         </div>
-        <div style="border: 1px solid; padding-bottom: 10px;" class="flex flex-column">
+        <div style="border: 1px solid; margin-bottom: 5px;" class="flex flex-column">
             <div class="flex flex-column">
                 <div class="nota-header">
                     Transferência por Atividade ou Disciplina

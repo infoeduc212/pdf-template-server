@@ -1,29 +1,29 @@
 @font-face {
-    font-family: 'Liberation Sans';
-    src: url('http://localhost:2000/assets/liberation-fonts/LiberationSans-Regular.ttf');
+    font-family: "Liberation Sans";
+    src: url("http://localhost:2000/assets/liberation-fonts/LiberationSans-Regular.ttf");
 }
 
 @font-face {
-    font-family: 'Liberation Sans';
-    src: url('http://localhost:2000/assets/liberation-fonts/LiberationSans-Bold.ttf');
+    font-family: "Liberation Sans";
+    src: url("http://localhost:2000/assets/liberation-fonts/LiberationSans-Bold.ttf");
     font-weight: bold;
 }
 
 @font-face {
-    font-family: 'Liberation Sans';
-    src: url('http://localhost:2000/assets/liberation-fonts/LiberationSansNarrow-Regular.ttf');
+    font-family: "Liberation Sans";
+    src: url("http://localhost:2000/assets/liberation-fonts/LiberationSansNarrow-Regular.ttf");
     font-stretch: condensed;
 }
 
 @font-face {
-    font-family: 'Liberation Sans';
-    src: url('http://localhost:2000/assets/liberation-fonts/LiberationSansNarrow-Bold.ttf');
+    font-family: "Liberation Sans";
+    src: url("http://localhost:2000/assets/liberation-fonts/LiberationSansNarrow-Bold.ttf");
     font-weight: bold;
     font-stretch: condensed;
 }
 
 body {
-    font-family: 'Liberation Sans';
+    font-family: "Liberation Sans";
     margin: 0;
     padding: 0;
 }
