@@ -106,85 +106,76 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% const filterMonth = (month) => frequencia.filter(record => new Date(record.date).getMonth() === month) %>
-                    <tr>
-                        <td>Janeiro</td>
-                        <% filterMonth(0).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Fevereiro</td>
-                        <% filterMonth(1).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Março</td>
-                        <% filterMonth(2).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Abril</td>
-                        <% filterMonth(3).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Maio</td>
-                        <% filterMonth(4).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Junho</td>
-                        <% filterMonth(5).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Julho</td>
-                        <% filterMonth(6).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Agosto</td>
-                        <% filterMonth(7).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Setembro</td>
-                        <% filterMonth(8).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Outubro</td>
-                        <% filterMonth(9).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Novembro</td>
-                        <% filterMonth(10).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Dezembro</td>
-                        <% filterMonth(11).forEach((freq) => { %> 
-                            <td><%= freq.qtd_presenca %> </td>
-                        <% }) %> 
-                    </tr>
-                    <tr>
-                        <td>Janeiro</td>
-                    </tr>
-                    <tr>
-                        <td>Fevereiro</td>
-                    </tr>
+                    <% const startDate = new Date(periodo_letivo.data_inicio) %>
+                    <% const endDate = new Date(periodo_letivo.data_termino) %> 
+                    <% 
+                        const rangeArray = frequencia.filter(record => {
+                            const date = new Date(record.date)
+                            return date >= startDate && date <= endDate
+                        }).sort((a, b) => new Date(b.date) - new Date(a.date))
+
+                        console.log(rangeArray)
+                        const monthDict = {
+                            0: "Janeiro",
+                            1: "Fevereiro",
+                            2: "Março",
+                            3: "Abril",
+                            4: "Maio",
+                            5: "Junho",
+                            6: "Julho",
+                            7: "Agosto",
+                            8: "Setembro",
+                            9: "Outubro",
+                            10: "Novembro",
+                            11: "Dezembro"
+                        }
+
+                        const years = {}
+
+                        rangeArray.forEach(record => {
+                            const date = new Date(record.date)
+                            const year = date.getFullYear()
+                            if (!years.hasOwnProperty(year)) years[year] = []
+                            const monthsFromYear = years[year]
+                            console.log(date.getMonth())
+                            if (monthsFromYear.indexOf(date.getMonth()) === -1)
+                                years[year].push(date.getMonth())
+                        })
+
+                        console.log(years)
+
+                        const months = [].concat(...Object.values(years))
+                        console.log(months)
+                        %>
+                    <!-- TODO: Também considerar o ano do mês, atualmente o código só se importa com o mês -->
+                    <% months.forEach(month => { %> 
+                        <tr>
+                            <td><%= monthDict[month] %></td>
+                            <% const monthRange = rangeArray.filter(record => new Date(record.date).getMonth() === month) %> 
+                            <% console.log("monthRange:", monthRange) %> 
+                            <!-- Quantidade de presença no dia -->
+                            <% const maxDays = 32 %> 
+                            <% for (let i = 1; i < maxDays; i++) { %>
+                                <% const day = monthRange.filter(record => {
+                                    const date = new Date(record.date)
+                                    console.log(date, date.getDate())
+                                    return date.getDate() === i
+                                }) %>
+                                <% console.log("day:", day) %> 
+                                <% if (day.length > 0) { %>
+                                    <td class="text-center">
+                                        <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %> 
+                                    </td>
+                                <% } else { %>
+                                    <td class="text-center">0</td>
+                                <% } %> 
+                            <% } %> 
+                            <!-- Faltas -->
+                            <td class="text-center">
+                                <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %> 
+                            </td> 
+                        </tr>
+                    <% }) %> 
                     <tr>
                         <td>Rec. Final</td>
                     </tr>
