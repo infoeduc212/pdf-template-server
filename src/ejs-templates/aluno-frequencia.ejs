@@ -60,12 +60,9 @@
         <div id="first-page">
             <div style="display: flex; margin-bottom: 10px">
                 <b style="margin-right: 5px">Nome do(a) aluno(a)</b>
-                <div style="flex-grow: 1; border-bottom: 1px solid;" id="nome_aluno"></div>
+                <div style="flex-grow: 1; border-bottom: 1px solid;"><%= aluno.nome %></div>
                 <b>N°</b>
-                <div
-                    id="ordem_frequencia"
-                    style="width: 50px; border-bottom: 1px solid;"
-                ></div>
+                <div style="width: 50px; border-bottom: 1px solid;"><%= aluno.ordem_frequencia %></div>
             </div>
             <table id="frequencia" class="table">
                 <thead>
@@ -294,16 +291,17 @@
                 <tbody>
                     <% atividades.forEach(atividade => { %>
                         <tr>
-                            <td>
+                            <td class="text-center" style="width: 10%;">
                                 <%= atividade.numero_aula %> 
                             </td>
-                            <td>
-                                <%= atividade.data %> 
+                            <td class="text-center" style="width: 10%">
+                                <% const date = new Date(atividade.data) %>
+                                <%= (date.getDate() + 1) + "/" + (date.getMonth() + 1) %>
                             </td>
                             <td>
                                 <%= atividade.resumo %> 
                             </td>
-                            <td>
+                            <td class="text-center" style="width: 20%;">
                                 <%= atividade.rubrica_professor %> 
                             </td>
                         </tr> 

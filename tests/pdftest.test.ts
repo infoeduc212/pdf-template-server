@@ -4,7 +4,6 @@ import { join } from 'path'
 import { createAssetsServer } from '../src/assetsServer'
 
 function generateHtml(templateName: string, data: object) {
-    console.log(__dirname)
     return ejs.renderFile(join(__dirname, "..", "src", "ejs-templates", `${templateName}.ejs`), data)
 }
 
@@ -48,6 +47,7 @@ describe("Gerar PDFs e verificar quantidade de páginas", () => {
     afterAll(() => {
         server.close()
     })
+
     it("Gerar Ficha de Aluno", () => {
         return expect(extractPdfTemplatePageCount("ficha-aluno", {
             "escola": {
@@ -165,5 +165,38 @@ describe("Gerar PDFs e verificar quantidade de páginas", () => {
                 }
             }
         })).resolves.toBe(1)
+    })
+
+    it("Gerar Frequência do Aluno (duas páginas)", () => {
+        expect(extractPdfTemplatePageCount("aluno-frequencia", {
+            "periodo_letivo": {
+                "data_inicio": "2020",
+                "data_termino": "2021-02-02"
+            },
+            "data": "2021-11-09",
+            "observacao": "Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste Teste",
+            "aluno": {
+                "nome": "Kevin Maicon",
+                "ordem_frequencia": "01"
+            },
+            "frequencia": [
+                {
+                    "qtd_presenca": 7,
+                    "qtd_faltas": 2,
+                    "date": "Jan 01, 2021"
+                },
+                {
+                    "qtd_presenca": 5,
+                    "qtd_faltas": 3,
+                    "date": "Jan 3, 2020"
+                }
+            ],
+            "atividades": [
+                {
+                    "numero_aula": 11,
+                    "data": "2021-11-19"
+                }
+            ]
+        })).resolves.toBe(2)
     })
 })
