@@ -1,6 +1,7 @@
 import ejs from 'ejs';
 import { PDFDocument } from 'pdf-lib'
 import { join } from 'path'
+import { createAssetsServer } from '../src/assetsServer'
 
 function generateHtml(templateName: string, data: object) {
     console.log(__dirname)
@@ -39,10 +40,18 @@ async function extractPdfTemplatePageCount(templateName: string, data: object) {
 }
 
 describe("Gerar PDFs e verificar quantidade de páginas", () => {
+    beforeAll(() => {
+        // Carregar antes o servidor de assets (que contém as fontes customizadas)
+        createAssetsServer().listen(2000)
+    })
     it("Gerar Ficha de Aluno", () => {
         return expect(extractPdfTemplatePageCount("ficha-aluno", {
             "escola": {
-                "unidade_ensino": "Teste"
+                "unidade_ensino": "Teste",
+                "codigo_inep": "1423241325125125",
+                "endereco": "Rua Jatobá",
+                "cidade": "Várzea Grande",
+                "estado": "MT"
             },
             "header": {
                 "logomarca_url": "https://images-na.ssl-images-amazon.com/images/I/71xRZ5189wL.png",
@@ -55,12 +64,12 @@ describe("Gerar PDFs e verificar quantidade de páginas", () => {
                 "nis": "12421421412",
                 "rg": "124124124",
                 "etnia_cor": "Pardo",
-                "cpf": "088.055.555-55",
-                "data_nascimento": "1995-12-17T03:24:00",
-                "nome": "Kevin Maicon Belo Farias",
-                "inep": "554564654",
-                "genero": "Masculino",
-                "tem_deficiencia": false,
+                "cpf": "612.675.919-27",
+                "data_nascimento": "1999-04-02",
+                "nome": "Ayla Marli Betina Novaes",
+                "inep": "5545646543434",
+                "genero": "Feminino",
+                "tem_deficiencia": "false",
                 "especificacao_deficiencia": "Física",
                 "nome_pai": "Teste",
                 "nome_mae": "Teste",
@@ -75,26 +84,82 @@ describe("Gerar PDFs e verificar quantidade de páginas", () => {
                     "bairro": "Belita"  
                 },
                 "contato": {
-                    "email_principal": "kevinmaicon27@gmail.com",
-                    "email_secundario": "qpjdfkwefjwç@gmail.com",
+                    "email_principal": "teste@gmail.com",
+                    "email_secundario": "teste2@gmail.com",
                     "celular": "(79) 99999-9999",
-                    "whatsapp": "132409813049"
+                    "whatsapp": "(79) 99999-9999"
                 },
                 "dados_variaveis": {
-                    "recebe_bolsa_familia": true,
-                    "transporte_escolar_publico": true,
+                    "recebe_bolsa_familia": "true",
+                    "transporte_escolar_publico": "true",
                     "escolarizacao_outro_espaco": "Não recebe"
                 },
                 "certidao_antiga": {
-                    
+                    "numero_termo": "14324125125",
+                    "folha": "41241243",
+                    "livro": "43123",
+                    "data_emissao": "2020-05-05"
                 },
                 "certidao_nova": {
-                    
+                    "numero_matricula": "1294732894781329752"
                 },
                 "matricula": {
+                    "data": "2020-05-05",
                     "situacao": "Nova"
                 }
             }
         })).resolves.toBe(1)
-    }, 10000)
+    })
+
+    it("Gerar Dados do Professor", () => {
+        return expect(extractPdfTemplatePageCount("ficha-professor", {
+            "header": {
+                "logomarca_url": "https://images-na.ssl-images-amazon.com/images/I/71xRZ5189wL.png",
+                "nome": "Escola Milton",
+                "endereco": "Rua Capitão Licínio Guimarares",
+                "municipio": "Simão Dias - SE"
+            },
+            "professor": {
+                "foto_url": "",
+                "nome": "Priscila Teresinha Araújo",
+                "inep": "53532423434",
+                "nis": "23094823904",
+                "nacionalidade": "Brasileira",
+                "data_nascimento": "1970-03-13",
+                "genero": "Feminino",
+                "ssp_rg": "SE",
+                "rg": "30.759.702-7",
+                "etnia_cor": "Branca",
+                "certidao_antiga": {
+                    "numero_termo": "42341342",
+                    "folha": "43242342",
+                    "livro": "134134",
+                    "data_emissao": "1999-03-05",
+                    "municipio": "Simão Dias"
+                },
+                "certidao_nova": {
+                    "numero_matricula": "324324142"
+                },
+                "dados_endereco": {
+                    "endereco": "Rua Capitão Licínio Guimarares",
+                    "numero": "70",
+                    "municipio": "Simão Dias",
+                    "cep": "49480-000",
+                    "uf": "SE",
+                    "complemento": "Perto aqui",
+                    "zona_residencia": "Zona Rural",
+                    "bairro": "Belita"  
+                },
+                "contato": {
+                    "email_principal": "teste@gmail.com",
+                    "email_secundario": "teste2@gmail.com",
+                    "celular": "(79) 99999-9999",
+                    "whatsapp": "(79) 99999-9999",
+                    "link_instagram": "instagram.com",
+                    "link_facebook": "facebook.com",
+                    "link_youtube": "youtube.com"
+                }
+            }
+        })).resolves.toBe(1)
+    })
 })
