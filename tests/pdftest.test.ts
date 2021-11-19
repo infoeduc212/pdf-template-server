@@ -40,9 +40,13 @@ async function extractPdfTemplatePageCount(templateName: string, data: object) {
 }
 
 describe("Gerar PDFs e verificar quantidade de páginas", () => {
+    let server: any;
     beforeAll(() => {
         // Carregar antes o servidor de assets (que contém as fontes customizadas)
-        createAssetsServer().listen(2000)
+        server = createAssetsServer().listen(2000)
+    })
+    afterAll(() => {
+        server.close()
     })
     it("Gerar Ficha de Aluno", () => {
         return expect(extractPdfTemplatePageCount("ficha-aluno", {
