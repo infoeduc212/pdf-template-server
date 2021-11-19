@@ -36,6 +36,10 @@
             writing-mode: vertical-rl;
         }
 
+        .block {
+            font-size: 13px;
+        }
+
         #container {
             break-inside: avoid-page;
         }
@@ -43,8 +47,10 @@
 </head>
 
 <body>
-    <%- include("reusable/header2.ejs") %>
+    
     <div id="container">
+
+        <%- include("reusable/header2.ejs") %>
         <div class="block">
             <div class="multicolumn">
                 <div class="flex small-gap padding-top">
@@ -208,7 +214,7 @@
             </div>
         </div>
         <div class="block">
-            <div class="text-center" style="padding-bottom: 80px;">
+            <div class="text-center" style="padding-bottom: 80px; margin-bottom: 30px;">
                 RESERVADO AO ESTABELECIMENTO
             </div>
         </div>

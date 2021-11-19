@@ -316,11 +316,11 @@
                             <td>
                                 <div class="flex">
                                     <% const matriculaData = new Date(aluno.matricula.data) %> 
-                                    <div class="texto-linha"><%= matriculaData.getDate().toString().padStart(2, "0") %></div>
+                                    <div class="texto-linha text-center"><%= matriculaData.getDate().toString().padStart(2, "0") %></div>
                                     /
-                                    <div class="texto-linha"><%= matriculaData.getMonth().toString().padStart(2, "0") %></div>
+                                    <div class="texto-linha text-center"><%= matriculaData.getMonth().toString().padStart(2, "0") %></div>
                                     /
-                                    <div class="texto-linha"><%= matriculaData.getFullYear() %></div>
+                                    <div class="texto-linha text-center"><%= matriculaData.getFullYear() %></div>
                                 </div>
                             </td>
                             <td>

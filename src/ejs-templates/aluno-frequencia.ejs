@@ -143,39 +143,41 @@
                         })
 
                         console.log(years)
-
-                        const months = [].concat(...Object.values(years))
-                        console.log(months)
                         %>
                     <!-- TODO: Também considerar o ano do mês, atualmente o código só se importa com o mês -->
-                    <% months.forEach(month => { %> 
-                        <tr>
-                            <td><%= monthDict[month] %></td>
-                            <% const monthRange = rangeArray.filter(record => new Date(record.date).getMonth() === month) %> 
-                            <% console.log("monthRange:", monthRange) %> 
-                            <!-- Quantidade de presença no dia -->
-                            <% const maxDays = 32 %> 
-                            <% for (let i = 1; i < maxDays; i++) { %>
-                                <% const day = monthRange.filter(record => {
+                    <% for (year in years) { %>
+                        <% if (!years.hasOwnProperty(year)) continue %> 
+                        <% years[year].forEach(month => { %> 
+                            <tr>
+                                <td><%= monthDict[month] %></td>
+                                <% const monthRange = rangeArray.filter(record => {
                                     const date = new Date(record.date)
-                                    console.log(date, date.getDate())
-                                    return date.getDate() === i
-                                }) %>
-                                <% console.log("day:", day) %> 
-                                <% if (day.length > 0) { %>
-                                    <td class="text-center">
-                                        <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %> 
-                                    </td>
-                                <% } else { %>
-                                    <td class="text-center">0</td>
+                                    return date.getMonth() === month && date.getFullYear() === parseInt(year)
+                                }) %> 
+                                <% console.log("monthRange:", monthRange) %> 
+                                <!-- Quantidade de presença no dia -->
+                                <% const maxDays = 32 %> 
+                                <% for (let i = 1; i < maxDays; i++) { %>
+                                    <% const day = monthRange.filter(record => {
+                                        const date = new Date(record.date)
+                                        return date.getDate() === i
+                                    }) %>
+                                    <% console.log("day:", day) %> 
+                                    <% if (day.length > 0) { %>
+                                        <td class="text-center">
+                                            <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %> 
+                                        </td>
+                                    <% } else { %>
+                                        <td class="text-center">0</td>
+                                    <% } %> 
                                 <% } %> 
-                            <% } %> 
-                            <!-- Faltas -->
-                            <td class="text-center">
-                                <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %> 
-                            </td> 
-                        </tr>
-                    <% }) %> 
+                                <!-- Faltas -->
+                                <td class="text-center">
+                                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %> 
+                                </td> 
+                            </tr>
+                        <% }) %>
+                    <% } %>
                     <tr>
                         <td>Rec. Final</td>
                     </tr>
