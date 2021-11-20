@@ -172,11 +172,11 @@
                         <div class="inline">
                             <b>Data de emissão da certidão</b>
                             <% const dataCertidao = new Date(aluno.certidao_antiga.data) %> 
-                            <div class="texto-linha"><%= dataCertidao.getDate().toString().padStart(2, "0") %></div>
+                            <div class="texto-linha text-center"><%= dataCertidao.getDate().toString().padStart(2, "0") %></div>
                             /
-                            <div class="texto-linha"><%= dataCertidao.getMonth().toString().padStart(2, "0") %></div>
+                            <div class="texto-linha text-center"><%= dataCertidao.getMonth().toString().padStart(2, "0") %></div>
                             /
-                            <div class="texto-linha"><%= dataCertidao.getFullYear() %></div>
+                            <div class="texto-linha text-center"><%= dataCertidao.getFullYear() %></div>
                         </div>
                     </div>
                     <div class="multicoluna">

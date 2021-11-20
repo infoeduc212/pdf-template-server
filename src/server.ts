@@ -83,7 +83,7 @@ export default function createServer(): Promise<any> {
                                 const stream = await page.createPDFStream({
                                     format: "a4",
                                     margin: {
-                                        top: 10,
+                                        top: 15,
                                         bottom: 20,
                                         left: 10,
                                         right: 10,
