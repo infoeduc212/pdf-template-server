@@ -6,7 +6,6 @@ import path from "path";
 import express from "express";
 const app = express();
 import ejs from "ejs";
-import { createGenericTablePDF } from "./templates/generateUtils";
 import cors from "cors";
 import morgan from "morgan";
 
@@ -16,30 +15,6 @@ app.use(morgan("combined"));
 
 export default function createServer(): Promise<any> {
     return new Promise((resolve, _) => {
-        app.post("/generate_table", async (req, res, next) => {
-            try {
-                const body = req.body;
-                const tableDocument = await createGenericTablePDF(
-                    body.page_title,
-                    {
-                        titulo: body.page_header.titulo,
-                        cnpj: body.page_header.cnpj,
-                        logomarcaUrl: body.page_header.logomarca_url,
-                        prefeitura: body.page_header.nome_prefeitura,
-                    },
-                    body.table_header,
-                    body.widths,
-                    body.list,
-                    body.user
-                );
-                tableDocument.end();
-                res.setHeader("Content-Type", "application/pdf");
-                tableDocument.pipe(res);
-            } catch (e: any) {
-                next(e);
-            }
-        });
-
         puppeteer
             .launch()
             .then((browser: Browser) => {

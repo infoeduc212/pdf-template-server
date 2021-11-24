@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <style>
+        .center {
+            margin: auto;
+            width: 50%;
+            text-align: center;
+        }
+        
+        table,
+        td,
+        tr {
+            border: 1px solid;
+            border-spacing: 0;
+        }
+        
+        .star-spacing {
+            width: 1%;
+            white-space: nowrap;
+        }
+    </style>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+</head>
+
+<body>
+    <div>
+        <div style="line-height: 0.5;" class="center">
+            <img src="<%= page_header.logomarca_url %> " width="100" height="100">
+            <h2><%= page_header.titulo %></h2>
+            <h4><%= page_header.nome_prefeitura %></h4>
+            <h4>CNPJ: <%= page_header.cnpj %></h4>
+        </div>
+        <br>
+        <h1 class="center"><%= page_title %></h1>
+        <br>
+        <table style="width: 100%; font-size: 18px;">
+            <thead>
+                <tr>
+                    <% table_header.forEach((item, index) => { %>
+                        <td class="<%= widths[index] === "auto" ? "star-spacing" : " " %>">
+                            <%= item %>
+                        </td>
+                        <% }) %>
+                </tr>
+            </thead>
+            <tbody>
+                <% list.forEach(arr => { %>
+                    <tr>
+                        <% arr.forEach(item => { %>
+                            <td>
+                                <%= item %>
+                            </td>
+                            <% }) %>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <p>
+            <% const padStartNumber = (num) => num.toString().padStart(2, "0") %>
+                <% const date = new Date() %>
+                    Relatório gerado às
+                    <%= `${padStartNumber(date.getHours())}:${padStartNumber(date.getMinutes())}:${padStartNumber(date.getSeconds())}` %>
+                        na data
+                        <%= `${padStartNumber(date.getDate())}/${padStartNumber(date.getMonth())}/${date.getFullYear()}` %> por
+                            <%= user.name %>
+        </p>
+    </div>
+</body>
+
+</html>
