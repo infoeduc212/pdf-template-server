@@ -16,7 +16,9 @@ app.use(morgan("combined"));
 export default function createServer(): Promise<any> {
     return new Promise((resolve, _) => {
         puppeteer
-            .launch()
+            .launch({
+                args: ["--no-sandbox"]
+            })
             .then((browser: Browser) => {
                 app.post("/generate", async (req, res, next) => {
                     const reqTemplate = req.body.templateName;
