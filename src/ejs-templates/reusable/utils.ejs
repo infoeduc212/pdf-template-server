@@ -1,0 +1,13 @@
+<% 
+function isFalsy(value) {
+    if (value == null || value == undefined || isNaN(value) || value === "") {
+        return true
+    }
+    return false
+}
+
+function string(str) {
+    if (isFalsy(str)) return ""
+    return str
+}
+ %> 

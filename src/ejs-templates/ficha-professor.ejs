@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
     <%- include("css/ficha.ejs") %>
+    <%- include("utils.ejs") %> 
 </head>
 
 <body>
@@ -78,30 +79,30 @@
                     <div class="multicoluna">
                         <div class="inline">
                             <b>N° do termo:</b>
-                            <div class="texto-linha"><%= professor.certidao_antiga.numero_termo %></div>
+                            <div class="texto-linha"><%= string(professor.certidao_antiga.numero_termo) %></div>
                         </div>
                         <div class="inline">
                             <b>Folha:</b>
-                            <div class="texto-linha"><%= professor.certidao_antiga.folha %></div>
+                            <div class="texto-linha"><%= string(professor.certidao_antiga.folha) %></div>
                         </div>
                         <div class="inline">
                             <b>Livro:</b>
-                            <div class="texto-linha"><%= professor.certidao_antiga.livro %></div>
+                            <div class="texto-linha"><%= string(professor.certidao_antiga.livro) %></div>
                         </div>
                         <div class="inline">
                             <b>Data de emissão da certidão</b>
                             <% const dataCertidao = new Date(professor.certidao_antiga.data) %>
-                            <div class="texto-linha"><%= dataCertidao.getDate().toString().padStart(2, "0") %></div>
+                            <div class="texto-linha"><%= string(dataCertidao.getDate().toString().padStart(2, "0")) %></div>
                             /
-                            <div class="texto-linha"><%= dataCertidao.getMonth().toString().padStart(2, "0") %></div>
+                            <div class="texto-linha"><%= string(dataCertidao.getMonth().toString().padStart(2, "0")) %></div>
                             /
-                            <div class="texto-linha"><%= dataCertidao.getFullYear() %></div>
+                            <div class="texto-linha"><%= string(dataCertidao.getFullYear()) %></div>
                         </div>
                     </div>
                     <div class="multicoluna">
                         <div class="inline">
                             <b>Município do cartório:</b>
-                            <div class="texto-linha"><%= professor.certidao_antiga.municipio %></div>
+                            <div class="texto-linha"><%= string(professor.certidao_antiga.municipio) %></div>
                         </div>
                     </div>
                 </div>
@@ -110,7 +111,7 @@
                     <div class="multicoluna">
                         <div class="inline">
                             <b>N° da matricula (reg. civil):</b>
-                            <div class="texto-linha"><%= professor.certidao_nova.numero_matricula %></div>
+                            <div class="texto-linha"><%= string(professor.certidao_nova.numero_matricula) %></div>
                         </div>
                     </div>
                 </div>
@@ -174,25 +175,25 @@
                 <div class="multicoluna">
                     <div class="inline">
                         <b>Celular:</b>
-                        <div class="texto-linha"><%= professor.contato.celular %> </div>
+                        <div class="texto-linha"><%= string(professor.contato.celular) %> </div>
                     </div>
                     <div class="inline">
                         <b>WhatsApp:</b>
-                        <div class="texto-linha"><%= professor.contato.whatsapp %> </div>
+                        <div class="texto-linha"><%= string(professor.contato.whatsapp) %> </div>
                     </div>
                 </div>
                 <div class="multicoluna">
                     <div class="inline">
                         <b>Instagram:</b>
-                        <div class="texto-linha"><%= professor.contato.link_instagram %> </div>
+                        <div class="texto-linha"><%= string(professor.contato.link_instagram) %> </div>
                     </div>
                     <div class="inline">
                         <b>Facebook:</b>
-                        <div class="texto-linha"><%= professor.contato.link_facebook %> </div>
+                        <div class="texto-linha"><%= string(professor.contato.link_facebook) %> </div>
                     </div>
                     <div class="inline">
                         <b>YouTube:</b>
-                        <div class="texto-linha"><%= professor.contato.link_youtube %> </div>
+                        <div class="texto-linha"><%= string(professor.contato.link_youtube) %> </div>
                     </div>
                 </div>
             </div>
