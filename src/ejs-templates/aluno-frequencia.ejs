@@ -140,7 +140,6 @@
 
                         console.log(years)
                         %>
-                    <!-- TODO: Também considerar o ano do mês, atualmente o código só se importa com o mês -->
                     <% for (year in years) { %>
                         <% if (!years.hasOwnProperty(year)) continue %> 
                         <% years[year].forEach(month => { %> 

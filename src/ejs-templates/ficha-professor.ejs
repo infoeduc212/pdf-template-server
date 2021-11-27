@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
     <%- include("css/ficha.ejs") %>
-    <% include("reusable/utils.ejs") %> 
+    <% include("reusable/utils.ejs") %>
 </head>
 
 <body>
@@ -18,16 +18,16 @@
                     <div style="flex: 1; margin-left: 10px">
                         <div class="multicoluna inline">
                             <b>Nome:</b>
-                            <div class="texto-linha inline"><%= professor.nome %></div>
+                            <div class="texto-linha inline"><%= string(professor.nome) %></div>
                         </div>
                         <div class="multicoluna inline">
                             <div class="inline">
                                 <b>Identificação do INEP: </b>
-                                <div class="texto-linha"><%= professor.inep %></div>
+                                <div class="texto-linha"><%= string(professor.inep) %></div>
                             </div>
                             <div class="inline">
                                 <b>NIS (PBF): </b>
-                                <div class="texto-linha"><%= professor.nis %></div>
+                                <div class="texto-linha"><%= string(professor.nis) %></div>
                             </div>
                         </div>
                         <div class="multicoluna inline">
@@ -35,30 +35,30 @@
                                 <b>Data de nascimento:</b>
                                 <% const dataNascimento = new Date(professor.data_nascimento) %>
                                 <div class="texto-linha text-center">
-                                    <%= dataNascimento.getDate().toString().padStart(2, "0") %></div>
+                                    <%= number(dataNascimento.getDate().toString().padStart(2, "0")) %></div>
                                 /
                                 <div class="texto-linha text-center">
-                                    <%= dataNascimento.getMonth().toString().padStart(2, "0") %> </div>
+                                    <%= number(dataNascimento.getMonth().toString().padStart(2, "0")) %> </div>
                                 /
-                                <div class="texto-linha text-center"><%= dataNascimento.getFullYear() %></div>
+                                <div class="texto-linha text-center"><%= number(dataNascimento.getFullYear()) %></div>
                             </div>
                             <div class="inline">
                                 <b>Nacionalidade:</b>
-                                <div class="texto-linha text-center"><%= professor.nacionalidade %></div>
+                                <div class="texto-linha text-center"><%= string(professor.nacionalidade) %></div>
                             </div>
                         </div>
                         <div class="multicoluna inline">
                             <div class="inline">
                                 <b>RG:</b>
-                                <div class="texto-linha" style="width: 100px;"><%= professor.rg %></div>
+                                <div class="texto-linha" style="width: 100px;"><%= string(professor.rg) %></div>
                             </div>
                             <div class="inline">
                                 <b>SSP/RG:</b>
-                                <div class="texto-linha text-center"><%= professor.ssp_rg %> </div>
+                                <div class="texto-linha text-center"><%= string(professor.ssp_rg) %> </div>
                             </div>
                             <div class="inline">
                                 <b>CPF:</b>
-                                <div class="texto-linha"><%= professor.cpf %> </div>
+                                <div class="texto-linha"><%= string(professor.cpf) %> </div>
                             </div>
                         </div>
                         <div class="multicoluna inline">
@@ -69,7 +69,7 @@
                             </div>
                             <div class="inline">
                                 <b>Etnia/Cor:</b>
-                                <div class="texto-linha"><%= professor.etnia_cor %> </div>
+                                <div class="texto-linha"><%= string(professor.etnia_cor) %> </div>
                             </div>
                         </div>
                     </div>
@@ -92,11 +92,11 @@
                         <div class="inline">
                             <b>Data de emissão da certidão</b>
                             <% const dataCertidao = new Date(professor.certidao_antiga.data) %>
-                            <div class="texto-linha"><%= string(dataCertidao.getDate().toString().padStart(2, "0")) %></div>
+                            <div class="texto-linha"><%= number(dataCertidao.getDate().toString().padStart(2, "0")) %></div>
                             /
-                            <div class="texto-linha"><%= string(dataCertidao.getMonth().toString().padStart(2, "0")) %></div>
+                            <div class="texto-linha"><%= number(dataCertidao.getMonth().toString().padStart(2, "0")) %></div>
                             /
-                            <div class="texto-linha"><%= string(dataCertidao.getFullYear()) %></div>
+                            <div class="texto-linha"><%= number(dataCertidao.getFullYear()) %></div>
                         </div>
                     </div>
                     <div class="multicoluna">
@@ -126,37 +126,37 @@
                     </div>
                     <div class="inline">
                         <b>CEP:</b>
-                        <div class="texto-linha" style="width: 60px;"><%= professor.dados_endereco.cep %> </div>
+                        <div class="texto-linha" style="width: 60px;"><%= string(professor.dados_endereco.cep) %> </div>
                     </div>
                     <div class="inline">
                         <b>Bairro:</b>
-                        <div class="texto-linha" style="width: 80px;"><%= professor.dados_endereco.bairro %> </div>
+                        <div class="texto-linha" style="width: 80px;"><%= string(professor.dados_endereco.bairro) %> </div>
                     </div>
                 </div>
                 <div class="multicoluna">
                     <div class="inline">
                         <b>Endereço:</b>
-                        <div class="texto-linha" style="width: 500px;"><%= professor.dados_endereco.endereco %> </div>
+                        <div class="texto-linha" style="width: 500px;"><%= string(professor.dados_endereco.endereco) %> </div>
                     </div>
                     <div class="inline">
                         <b>N°:</b>
-                        <div class="text-center texto-linha" style="width: 10px;"><%= professor.dados_endereco.numero %>
+                        <div class="text-center texto-linha" style="width: 10px;"><%= string(professor.dados_endereco.numero) %>
                         </div>
                     </div>
                 </div>
                 <div class="multicoluna">
                     <div class="inline">
                         <b>Complemento:</b>
-                        <div class="texto-linha" style="width: 270px;"><%= professor.dados_endereco.complemento %></div>
+                        <div class="texto-linha" style="width: 270px;"><%= string(professor.dados_endereco.complemento) %></div>
                     </div>
                     <div class="inline">
                         <b>Município:</b>
-                        <div class="texto-linha" style="min-width: 90px;"><%= professor.dados_endereco.municipio %>
+                        <div class="texto-linha" style="min-width: 90px;"><%= string(professor.dados_endereco.municipio) %>
                         </div>
                     </div>
                     <div class="inline">
                         <b>UF:</b>
-                        <div class="texto-linha" style="width: 50px;"><%= professor.dados_endereco.uf %> </div>
+                        <div class="texto-linha" style="width: 50px;"><%= string(professor.dados_endereco.uf) %> </div>
                     </div>
                 </div>
             </div>
@@ -165,11 +165,11 @@
                 <div class="multicoluna">
                     <div class="inline">
                         <b>E-mail Principal:</b>
-                        <div class="texto-linha"><%= professor.email_principal %> </div>
+                        <div class="texto-linha"><%= string(professor.email_principal) %> </div>
                     </div>
                     <div class="inline">
                         <b>E-mail secundário:</b>
-                        <div class="texto-linha"><%= professor.contato.email_secundario %> </div>
+                        <div class="texto-linha"><%= string(professor.contato.email_secundario) %> </div>
                     </div>
                 </div>
                 <div class="multicoluna">

@@ -1,13 +1,18 @@
 <% 
-function isFalsy(value) {
-    if (value == null || value == undefined || isNaN(value) || value === "") {
+isFalsy = function(value) {
+    if (value === "null" || value === null) {
         return true
     }
     return false
 }
 
-function string(str) {
+string = function(str) {
     if (isFalsy(str)) return ""
     return str
+}
+
+number = function(num) {
+    if (isNaN(num)) return ""
+    return num.toString()
 }
  %> 
