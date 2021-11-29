@@ -10,6 +10,7 @@
 <body>
     <div id="container">
         <%- include("reusable/header.ejs") %>
+        <h4 class="bold-center">Ficha Individual do Aluno</h4>
         <div class="block">
             <div class="title-header">Dados da Escola</div>
             <div class="block">
@@ -155,38 +156,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="title-header">Modelo Antigo de Certidão Civil</div>
-                <div class="block">
-                    <div class="multicoluna">
-                        <div class="inline">
-                            <b>N° do termo:</b>
-                            <div class="texto-linha"><%= string(aluno.certidao_antiga.numero_termo) %></div>
-                        </div>
-                        <div class="inline">
-                            <b>Folha:</b>
-                            <div class="texto-linha"><%= string(aluno.certidao_antiga.folha) %></div>
-                        </div>
-                        <div class="inline">
-                            <b>Livro:</b>
-                            <div class="texto-linha"><%= string(aluno.certidao_antiga.livro) %></div>
-                        </div>
-                        <div class="inline">
-                            <b>Data de emissão da certidão</b>
-                            <% const dataCertidao = new Date(aluno.certidao_antiga.data) %> 
-                            <div class="texto-linha text-center"><%= number(dataCertidao.getDate().toString().padStart(2, "0")) %></div>
-                            /
-                            <div class="texto-linha text-center"><%= number(dataCertidao.getMonth().toString().padStart(2, "0")) %></div>
-                            /
-                            <div class="texto-linha text-center"><%= number(dataCertidao.getFullYear()) %></div>
-                        </div>
-                    </div>
-                    <div class="multicoluna">
-                        <div class="inline">
-                            <b>Município do cartório:</b>
-                            <div class="texto-linha"><%= string(aluno.certidao_antiga.municipio) %></div>
-                        </div>
-                    </div>
-                </div>
                 <div class="title-header">Modelo Novo de Certidão Civil</div>
                 <div class="block">
                     <div class="multicoluna">
@@ -308,7 +277,7 @@
                         <tr>
                             <td>Data da Matrícula</td>
                             <td>Ano</td>
-                            <td>Assinatura do Pai, Mãe ou Responsável</td>
+                            <td>Assinatura do Responsável</td>
                             <td>Parecer do responsável pela escola</td>
                         </tr>
                     </thead>
