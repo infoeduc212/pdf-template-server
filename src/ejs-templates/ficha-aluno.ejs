@@ -5,13 +5,14 @@
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
     <meta charset="utf-8">
     <%- include("css/ficha.ejs") %>
-    <% include("reusable/utils.ejs") %> 
+    <% include("reusable/utils.ejs") %>
 </head>
+
 <body>
     <div id="container">
         <%- include("reusable/header.ejs") %>
         <h4 class="bold-center">Ficha Individual do Aluno</h4>
-        <div class="block">
+        <div class="block lineheightsmall">
             <div class="title-header">Dados da Escola</div>
             <div class="block">
                 <div class="multicoluna">
@@ -51,6 +52,10 @@
                     <img width="100" height="100" src="<%= aluno.foto_url %>">
                     <div style="flex: 1; margin-left: 10px">
                         <div class="multicoluna inline">
+                            <b>ID da InfoEduc:</b>
+                            <div class="texto-linha inline"><%= string(aluno.codigo_infoeduc) %> </div>
+                        </div>
+                        <div class="multicoluna inline">
                             <b>Nome:</b>
                             <div class="texto-linha inline"><%= string(aluno.nome) %></div>
                         </div>
@@ -72,7 +77,7 @@
                                     <%= number(dataNascimento.getDate().toString().padStart(2, "0")) %></div>
                                 /
                                 <div class="texto-linha text-center">
-                                    <%= number(dataNascimento.getMonth().toString().padStart(2, "0")) %></div>
+                                    <%= number((dataNascimento.getMonth() + 1).toString().padStart(2, "0")) %></div>
                                 /
                                 <div class="texto-linha text-center"><%= number(dataNascimento.getFullYear()) %></div>
                             </div>
@@ -121,38 +126,23 @@
                     </div>
                     <div class="multicoluna">
                         <div class="inline">
-                            <b>Deficiência:</b>
+                            <b>Necessidade Educativa Especial (NEE):</b>
                             (<%= !aluno.tem_deficiencia ? "X" : " " %>) Não possui
-                            (<%= aluno.tem_deficiencia ? "X" : " " %>) Possui
-                        </div>
-                        <div class="inline">
-                            <b>Especificação da deficiência:</b>
-                            <div class="texto-linha" style="width: 200px;"><%= string(aluno.especificacao_deficiencia) %></div>
+                            (<%= aluno.tem_deficiencia ? "X" : " " %>) Informar:
                         </div>
                     </div>
-                    <div style="font-stretch: semi-condensed; font-size: 14px;">
-                        <div class="multicoluna">
-                            <div class="inline">
-                                <b>Transtorno Global do desenv.:</b>
-                                (<%= aluno.transtorno === "Não possui" ? "X" : " " %>) Não possui
-                                (<%= aluno.transtorno === "Autismo Infantil" ? "X" : " " %>) Autismo Infantil
-                                (<%= aluno.transtorno === "Síndr. de Rett" ? "X" : " " %>) Síndr. de Rett
-                                (<%= aluno.transtorno === "Sindr. de Asper" ? "X" : " " %>) Sindr. de Asperger
-                                (<%= aluno.transtorno === "Transtorno desint. da infância" ? "X" : " " %>) Transtorno desint. da infância
-                            </div>
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Especificação da NEE:</b>
+                            <div class="texto-linha" style="width: 200px;">
+                                <%= string(aluno.especificacao_deficiencia) %></div>
                         </div>
-                        <div class="multicoluna">
-                            <div class="inline">
-                                <b>Altas habilidades/superdotação:</b>
-                                (<%= aluno.altas_habilidades === "true" ? "X" : " " %>) Sim
-                                (<%= aluno.altas_habilidades !== "true" ? "X" : " " %>) Não
-                            </div>
-                            <div>
-                                <b>Tipo de certidão civil:</b>
-                                (<%= aluno.certidao_civil === "Nascimento" ? "X" : " " %>) Nascimento
-                                (<%= aluno.certidao_civil === "Casamento" ? "X" : " " %>) Casamento
-                                (<%= aluno.certidao_civil === "Não possui" ? "X" : " " %>) Não possui
-                            </div>
+                    </div>
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Altas habilidades/superdotação:</b>
+                            (<%= aluno.altas_habilidades === "true" ? "X" : " " %>) Sim
+                            (<%= aluno.altas_habilidades !== "true" ? "X" : " " %>) Não
                         </div>
                     </div>
                 </div>
@@ -186,22 +176,26 @@
                 <div class="multicoluna">
                     <div class="inline">
                         <b>Endereço:</b>
-                        <div class="texto-linha" style="width: 500px;"><%= string(aluno.dados_endereco.endereco) %> </div>
+                        <div class="texto-linha" style="width: 500px;"><%= string(aluno.dados_endereco.endereco) %>
+                        </div>
                     </div>
                     <div class="inline">
                         <b>N°:</b>
-                        <div class="text-center texto-linha" style="width: 10px;"><%= string(aluno.dados_endereco.numero) %>
+                        <div class="text-center texto-linha" style="width: 10px;">
+                            <%= string(aluno.dados_endereco.numero) %>
                         </div>
                     </div>
                 </div>
                 <div class="multicoluna">
                     <div class="inline">
                         <b>Complemento:</b>
-                        <div class="texto-linha" style="width: 270px;"><%= string(aluno.dados_endereco.complemento) %></div>
+                        <div class="texto-linha" style="width: 270px;"><%= string(aluno.dados_endereco.complemento) %>
+                        </div>
                     </div>
                     <div class="inline">
                         <b>Município:</b>
-                        <div class="texto-linha" style="min-width: 90px;"><%= string(aluno.dados_endereco.municipio) %></div>
+                        <div class="texto-linha" style="min-width: 90px;"><%= string(aluno.dados_endereco.municipio) %>
+                        </div>
                     </div>
                     <div class="inline">
                         <b>UF:</b>
@@ -232,8 +226,8 @@
                     </div>
                 </div>
             </div>
-            <div class="title-header">Dados Variáveis</div>
-            <div style="font-stretch: 80%; font-size: 14px;" class="block">
+            <div class="title-header">Outras Informações</div>
+            <div class="block">
                 <div class="multicoluna">
                     <div class="inline">
                         <b>Recebe Bolsa Família</b>
@@ -241,25 +235,44 @@
                         (<%= !aluno.dados_variaveis.recebe_bolsa_familia ? "X" : " " %>) Não
                     </div>
                     <div class="inline">
-                        <b>Recebe escolarização em outro espaço:</b>
-                        (<%= aluno.dados_variaveis.escolarizacao_outro_espaco === "Hospital" ? "X" : " " %>) Hospital
-                        (<%= aluno.dados_variaveis.escolarizacao_outro_espaco === "Domicílio" ? "X" : " " %>) Domicílio
-                        (<%= aluno.dados_variaveis.escolarizacao_outro_espaco === "Não recebe" ? "X" : " " %>) Não
-                        recebe
+                        <b>País de Nascimento:</b>
+                        <div class="texto-linha"><%= string(aluno.dados_variaveis.pais_nascimento) %> </div>
+                    </div>
+                    <div class="inline">
+                        <b>N° do SUS:</b>
+                        <div class="texto-linha"><%= string(aluno.dados_variaveis.numero_sus) %> </div>
                     </div>
                 </div>
-                <div class="multicoluna">
-                    <div class="inline">
-                        <b>Transporte escolar público:</b>
-                        (<%= aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Utiliza
-                        (<%= !aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Não utiliza
+                <div class="streched-text">
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Transporte escolar público:</b>
+                            (<%= aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Utiliza
+                            (<%= !aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Não utiliza
+                        </div>
+                        <div class="inline">
+                            <b>Responsável pelo Transporte:</b>
+                            (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Municipal" ? "X" : " " %>)
+                            Municipal
+                            (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Estadual" ? "X" : " " %>)
+                            Estadual
+                            (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Federal" ? "X" : " " %>)
+                            Federal
+                        </div>
                     </div>
-                    <div class="inline">
-                        <b>Poder Público responsável pelo transporte escolar</b>
-                        (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Municipal" ? "X" : " " %>)
-                        Municipal
-                        (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Estadual" ? "X" : " " %>)
-                        Estadual
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Tipo Sanguíneo:</b>
+                            <div class="texto-linha"><%= string(aluno.dados_variaveis.tipo_sanguineo) %></div>
+                        </div>
+                        <div class="inline">
+                            <b>Município de Nascimento:</b>
+                            <div class="texto-linha"><%= string(aluno.dados_variaveis.municipio_nascimento) %></div>
+                        </div>
+                        <div class="inline">
+                            <b>UF de Nascimento:</b>
+                            <div class="texto-linha"><%= string(aluno.dados_variaveis.uf_nascimento) %></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -285,17 +298,20 @@
                         <tr>
                             <td>
                                 <div class="flex">
-                                    <% const matriculaData = new Date(aluno.matricula.data) %> 
-                                    <div class="texto-linha text-center"><%= number(matriculaData.getDate().toString().padStart(2, "0")) %></div>
+                                    <% const matriculaData = new Date(aluno.matricula.data) %>
+                                    <div class="texto-linha text-center">
+                                        <%= number(matriculaData.getDate().toString().padStart(2, "0")) %></div>
                                     /
-                                    <div class="texto-linha text-center"><%= number((matriculaData.getMonth() + 1).toString().padStart(2, "0")) %></div>
+                                    <div class="texto-linha text-center">
+                                        <%= number((matriculaData.getMonth() + 1).toString().padStart(2, "0")) %></div>
                                     /
-                                    <div class="texto-linha text-center"><%= number(matriculaData.getFullYear()) %></div>
+                                    <div class="texto-linha text-center"><%= number(matriculaData.getFullYear()) %>
+                                    </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="text-center">
-                                    <%= number(aluno.matricula.ano_letivo) %> 
+                                    <%= number(aluno.matricula.ano_letivo) %>
                                 </div>
                             </td>
                             <td>
@@ -309,8 +325,8 @@
                                 <div class="flex">
                                     (<%= aluno.matricula.status_parecer === "Indeferido" ? "X" : " " %>) Indeferido
                                     <div class="flex" style="padding-left: 2px; width: 70%; flex-direction: column;">
-                                    <div class="texto-linha"></div>
-                                    <div style="text-align: center; font-size: 6px;">Assinatura do Diretor(a)</div>
+                                        <div class="texto-linha"></div>
+                                        <div style="text-align: center; font-size: 6px;">Assinatura do Diretor(a)</div>
                                     </div>
                                 </div>
                             </td>
