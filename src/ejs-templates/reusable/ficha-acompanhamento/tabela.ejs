@@ -1,0 +1,55 @@
+<style>
+    #ficha-acompanhamento {
+        border-spacing: 0;
+    }
+
+    table>thead>tr>td,
+    table>tbody>tr>td {
+        border: 1px solid;
+    }
+
+    .border {
+        border-bottom: 1px solid;
+    }
+</style>
+<div>
+    <div style="border: 1px solid; font-size: 20px;">
+        Campo de experiência:
+    </div>
+    <table id="ficha-acompanhamento" style="width: 100%;">
+        <thead>
+            <tr>
+                <td class="text-center">Objetivos de Aprendizagem e<br>Desenvolvimento</td>
+                <td style="width: 450px;">Faixa Etária</td>
+                <td class="text-center">
+                    Alcançado
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <% campo_experiencia.forEach(exp => { %> 
+            <tr>
+                <td>
+                    <%= exp.objeto_aprendizagem %> 
+                </td>
+                <td>
+                    <div>
+                        <div style="padding: 3px;" class="border">
+                            &ensp;
+                        </div>
+                        <div style="padding: 3px;" class="border">
+                            &ensp; 
+                        </div>
+                        <div style="padding: 3px;">
+                            &ensp;
+                        </div>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <%= exp.alcancado === "true" ? "Sim" : "Não" %>
+                </td>
+            </tr>
+            <% }) %> 
+        </tbody>
+    </table>
+</div>
