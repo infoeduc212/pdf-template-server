@@ -1,0 +1,275 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+</head>
+<style>
+    .text-center {
+        text-align: center;
+    }
+
+    .fixed-width {
+        width: 80px;
+    }
+
+    .text-line {
+        border-bottom: 1px solid;
+        flex: 1;
+    }
+
+    #frequencia {
+        table-layout: fixed;
+    }
+
+    #frequencia>tbody>tr>td:first-child {
+        font-stretch: 50%;
+    }
+
+    #frequencia>thead>tr>td {
+        font-stretch: condensed;
+        text-align: center;
+    }
+
+    .page-break {
+        break-after: page;
+    }
+
+    .table {
+        width: 100%;
+        border-spacing: 0;
+    }
+
+    .pad-right {
+        margin-right: 5px;
+    }
+</style>
+
+<body>
+    <div class="page-break" style="margin: 80px;">
+        <div style="width: 6em; margin-left: auto; margin-right: auto;" class="text-center">
+            <img src="<%= capa.imagem_rede %>" width="100" height="100">
+        </div>
+        <h2 class="text-center"><%= capa.nome_rede %></h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 style="font-size: 50px;" class="text-center">Diário de Classe</h1>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="line-height: 1.6; font-size: 16px;">
+            <div class="multicolumn">
+                <div class="pad-right">Estabelecimento de Ensino:</div>
+                <div class="text-line"><%= capa.estabelecimento_ensino %></div>
+            </div>
+            <div class="multicolumn">
+                <div class="pad-right">Endereço:</div>
+                <div class="text-line"><%= capa.endereco %></div>
+            </div>
+            <div class="multicolumn">
+                <div class="pad-right">Professor(a):</div>
+                <div class="text-line"><%= capa.professor %></div>
+            </div>
+            <div class="multicolumn">
+                <div class="pad-right">Etapa de escolaridade:</div>
+                <div class="text-line"><%= capa.etapa_escolaridade %></div>
+            </div>
+            <div class="multicolumn">
+                <div class="pad-right">Turma:</div>
+                <div class="text-line"><%= capa.turma %></div>
+                <div class="pad-right">Turno:</div>
+                <div class="text-line"><%= capa.turno %></div>
+            </div>
+        </div>
+        <div style="margin: 0 250px;">
+            <div class="flex flex-column" style="margin-top: 140px;">
+                <div class="text-line text-center"><%= capa.ano_letivo %></div>
+                <div style="margin-top: 10px;" class="text-center">Ano Letivo</div>
+            </div>
+        </div>
+    </div>
+    <div class="page-break" style="margin-top: 70px;">
+        <div style="margin: 0 80px;">
+            <h1 class="text-center">Orientações</h1>
+            <p style="font-weight: bold; text-indent: 50px;">Prezado professor(a), o senhor (a) é responsável pelo seu diário de classe, portanto observe as orientações a
+                seguir:</p>
+    
+            <div style="display: flex; flex-direction: column; line-height: 1.5;">
+                <% for (let i = 0; i < observacoes.quantidade_linhas; i++) { %>
+                    <div class="flex">
+                        <div>
+                            <%= (i + 1) + "." %>
+                        </div>
+                        <div class="text-line">&ensp;</div>
+                    </div>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+    <style>
+        .item-border {
+            border: 1px solid;
+            padding: 5px;
+        }
+    </style>
+    
+    <div class="page-break" style="margin: 10px;">
+        <div style="display: flex; margin-bottom: 10px">
+            <% if (etapa_escolaridade !== "Infantil") { %> 
+                <b style="margin-right: 5px">Nome do(a) aluno(a)</b>
+                <div style="flex-grow: 1; border-bottom: 1px solid;"><%= aluno.nome %></div>
+                <b>N°</b>
+                <div style="width: 50px; border-bottom: 1px solid;"><%= aluno.ordem_frequencia %></div>
+            <% } else { %>
+                <div class="flex flex-column" style="gap: 5px;">
+                    <div class="multicolumn inline">
+                        <b>Nome:</b>
+                        <div class="text-line"><%= acompanhamento.nome_aluno %></div>
+                    </div>
+                    <div class="multicolumn inline">
+                        <b>Prof (a):</b>
+                        <div class="text-line"><%= acompanhamento.professor %></div>
+                        <b>Turma:</b>
+                        <div class="text-line"><%= acompanhamento.turma %></div>
+                        <b>Ano Letivo:</b>
+                        <div class="text-line"><%= acompanhamento.ano_letivo %> </div>
+                    </div>
+                </div>
+            <% } %> 
+        </div>
+        <%- include("reusable/diario-classe/frequencia.ejs") %>
+        <% if (etapa_escolaridade !== "Infantil") { %> 
+            <h3 style="text-align: center">Resultado Bimestral</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Unidade/Pontos</td>
+                        <td style="text-align: center">
+                            I <br />(Av. Qualitativa)
+                        </td>
+                        <td style="text-align: center">II<br />(Av. Bimestral)</td>
+                        <td style="text-align: center">III<br />(Rec. Paralela)</td>
+                        <td style="text-align: center">
+                            Resultado Final Bimestral<br />(I+II ou I+III)
+                        </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                        </tr>
+                    </tbody>
+            </table>
+        <% } else { %>
+            <div style="margin-top: 15px;">
+                <%- include("reusable/ficha-acompanhamento/tabela.ejs") %>
+            </div>
+        <% } %> 
+        <br />
+        <div style="display: flex; gap: 50px">
+            <% if (etapa_escolaridade !== "Infantil") { %> 
+            <table style="border-spacing: 0; border: 1px solid;">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="text-center">Resultado Final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Média Anual</td>
+                        <td class="fixed-width text-center" id="media_anual"></td>
+                    </tr>
+                    <tr>
+                        <td>Total de Faltas</td>
+                        <td class="fixed-width text-center" id="total_faltas"></td>
+                    </tr>
+                    <tr>
+                        <td>Nota de Rec. Final</td>
+                        <td class="fixed-width text-center" id="nota_rec"></td>
+                    </tr>
+                    <tr>
+                        <td>Média Final</td>
+                        <td class="fixed-width text-center" id="media_final"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <% } %> 
+            <div>
+                <% if (etapa_escolaridade !== "Infantil") { %> 
+                <input id="aprovado" disabled type="checkbox" />
+                <label for="aprovado">Aprovado</label>
+                <br />
+                <input id="reprovado" disabled type="checkbox" />
+                <label for="reprovado">Reprovado</label>
+                <br />
+                <% } %> 
+                <input id="transferido" disabled type="checkbox" />
+                <label for="transferido">Transferido</label>
+                <div style="display: flex; float: right">
+                    <div style="width: 20px" class="text-line"></div>
+                    /
+                    <div style="width: 20px" class="text-line"></div>
+                    /
+                    <div style="width: 30px" class="text-line"></div>
+                </div>
+                <br />
+                <% if (etapa_escolaridade !== "Infantil") { %> 
+                <input id="desistente" disabled type="checkbox" />
+                <label for="transferido">Desistente</label>
+                <div style="display: flex; float: right" id="desistente-data">
+                    <div style="width: 20px" class="text-line"></div>
+                    /
+                    <div style="width: 20px" class="text-line"></div>
+                    /
+                    <div style="width: 30px" class="text-line"></div>
+                </div>
+                <% } %> 
+            </div>
+        </div>
+        <div class="flex padding-top dont-break" style="gap: 10px;">
+            <div class="flex flex-column">
+                <div class="text-line"></div>
+                <div class="small-text">Assinatura do Responsável - Coordenação Pedagógica</div>
+            </div>
+            <div class="flex flex-column">
+                <div class="text-line"></div>
+                <div class="small-text">Assinatura do Diretor(a)</div>
+            </div>
+        </div>
+    </div>
+    <div class="page-break" style="margin: 10px;">
+        <%- include("reusable/diario-classe/lista-objetivo-conhecimento.ejs") %>
+    </div>
+    <div class="page-break">
+        <div>
+            <div style="margin-top: 1000px;" class="text-center">
+                <%= fundo.nome_escola %>
+                <br>
+                <%= fundo.escola_email %>
+                <br>
+                <%= fundo.municipio %> - <%= fundo.uf %>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
