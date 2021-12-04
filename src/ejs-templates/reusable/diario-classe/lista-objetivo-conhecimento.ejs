@@ -1,0 +1,78 @@
+<%- include("../../css/ficha.ejs") %>
+<%- include("../../css/common.ejs") %>
+<style>
+    #lista-atividades {
+        border-spacing: 0;
+    }
+
+    tr, td, tbody, thead {
+        break-inside: avoid;
+    }
+
+    #lista-atividades > tbody > tr > td, #lista-atividades > thead > tr > td {
+        padding: 5px;
+    }
+</style>
+<div style="text-align: center; margin: 20px;">
+    <b>Mês:</b> <i id="data_atividades"></i>
+</div>
+<table class="table" id="lista-atividades">
+    <thead style="display: table-row-group;">
+        <tr>
+            <td class="text-center">N° da Aula</td>
+            <td class="text-center">Data</td>
+            <td class="text-center">Resumo das Atividades</td>
+            <td class="text-center">Rubrica do(a) Professor(a)</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% atividades.forEach(atividade => { %>
+            <tr>
+                <td class="text-center" style="width: 10%;">
+                    <%= atividade.numero_aula %> 
+                </td>
+                <td class="text-center" style="width: 10%">
+                    <% const date = new Date(atividade.data) %>
+                    <%= (date.getDate() + 1) + "/" + (date.getMonth() + 1) %>
+                </td>
+                <td>
+                    <%= atividade.resumo %> 
+                </td>
+                <td class="text-center" style="width: 20%;">
+                    <%= atividade.rubrica_professor %> 
+                </td>
+            </tr> 
+        <% }) %>
+    </tbody>
+</table>
+<style>
+    .flex {
+        display: flex;
+    }
+    .flex-column {
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    .padding-top {
+        padding-top: 90px;
+    }
+    .small-text {
+        text-align: center;
+        font-size: 12px;
+    }
+</style>
+<div style="break-inside: avoid;">
+    <div style="padding-top: 10px;">
+        <b>Observações:</b> <u><%= observacao %></u>
+    </div>
+    <div class="flex padding-top dont-break" style="gap: 10px;">
+        <div class="flex flex-column">
+            <div class="text-line"></div>
+            <div class="small-text">Assinatura do Responsável - Coordenação Pedagógica</div>
+        </div>
+        <div class="flex flex-column">
+            <div class="text-line"></div>
+            <div class="small-text">Assinatura do Diretor(a)</div>
+        </div>
+    </div>
+</div>
