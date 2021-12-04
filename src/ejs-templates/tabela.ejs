@@ -8,10 +8,22 @@
             text-align: center;
         }
         
-        table,
+        thead,
+        tbody,
         td,
         tr {
+            break-inside: avoid;
+            padding: 5px;
+        }
+        td, tr {
             border: 1px solid;
+        }
+
+        thead {
+            font-weight: bold;
+        }
+
+        table {
             border-spacing: 0;
         }
         
@@ -25,12 +37,18 @@
 
 <body>
     <div>
-        <div style="line-height: 0.5;" class="center">
+        <div style="font-size: 20px; line-height: 0.8;" class="center">
             <img src="<%= page_header.logomarca_url %> " width="100" height="100">
-            <h2><%= page_header.titulo %></h2>
-            <h4><%= page_header.nome_prefeitura %></h4>
-            <h4>CNPJ: <%= page_header.cnpj %></h4>
+            <br>
+            <h2>
+                <%= page_header.titulo %>
+            </h2>
+            <%= page_header.nome_prefeitura %>
+            <br>
+            <br>
+            CNPJ: <%= page_header.cnpj %>
         </div>
+        <br>
         <br>
         <h1 class="center"><%= page_title %></h1>
         <br>
@@ -56,15 +74,6 @@
                     <% }) %>
             </tbody>
         </table>
-        <p>
-            <% const padStartNumber = (num) => num.toString().padStart(2, "0") %>
-                <% const date = new Date() %>
-                    Relatório gerado às
-                    <%= `${padStartNumber(date.getHours())}:${padStartNumber(date.getMinutes())}:${padStartNumber(date.getSeconds())}` %>
-                        na data
-                        <%= `${padStartNumber(date.getDate())}/${padStartNumber(date.getMonth())}/${date.getFullYear()}` %> por
-                            <%= user.name %>
-        </p>
     </div>
 </body>
 
