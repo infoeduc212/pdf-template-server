@@ -8,6 +8,7 @@ const app = express();
 import ejs from "ejs";
 import cors from "cors";
 import morgan from "morgan";
+import { padWithZero } from "./utils";
 
 app.use(express.json());
 app.use(cors());
@@ -17,7 +18,7 @@ export default function createServer(): Promise<any> {
     return new Promise((resolve, _) => {
         puppeteer
             .launch({
-                args: ["--no-sandbox"]
+                args: ["--no-sandbox"],
             })
             .then((browser: Browser) => {
                 app.post("/generate", async (req, res, next) => {
@@ -52,25 +53,40 @@ export default function createServer(): Promise<any> {
                                     "Content-Type",
                                     "application/pdf"
                                 );
+
+                                const watermarkExceptions = ["diario-classe"]
+
                                 const page = await browser.newPage();
                                 await page.setContent(render);
                                 await page.evaluateHandle(
                                     "document.fonts.ready"
                                 );
+                                const dateNow = new Date();
                                 const stream = await page.createPDFStream({
                                     format: "a4",
                                     margin: {
                                         top: 15,
-                                        bottom: 20,
+                                        bottom: 30,
                                         left: 10,
                                         right: 10,
                                     },
                                     footerTemplate: `
                                 <div style="width: 100%; margin-right: 10px; text-align: right; font-size: 8px;">
-                                     PDF gerado pela a Plataforma InfoEduc
+                                     PDF gerado pela a Plataforma InfoEduc na data ${padWithZero(
+                                         dateNow.getDate()
+                                     )}/${padWithZero(
+                                        dateNow.getMonth()
+                                    )}/${dateNow.getFullYear()} às ${padWithZero(
+                                        dateNow.getHours()
+                                    )}:${padWithZero(
+                                        dateNow.getMinutes()
+                                    )}:${padWithZero(
+                                        dateNow.getSeconds()
+                                    )}
+
                                 </div>
                                 `,
-                                    displayHeaderFooter: true,
+                                    displayHeaderFooter: watermarkExceptions.indexOf(reqTemplate) !== -1 ? false : true,
                                 });
                                 stream.pipe(res);
                                 stream.on("end", async () => {
