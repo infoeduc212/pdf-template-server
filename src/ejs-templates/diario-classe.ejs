@@ -44,6 +44,15 @@
     .pad-right {
         margin-right: 5px;
     }
+
+    .avoid-break {
+        break-inside: avoid;
+    }
+
+    .item-border {
+        border: 1px solid;
+        padding: 5px;
+    }
 </style>
 
 <body>
@@ -106,28 +115,22 @@
     <div class="page-break" style="margin-top: 70px;">
         <div style="margin: 0 80px;">
             <h1 class="text-center">Orientações</h1>
-            <p style="font-weight: bold; text-indent: 50px;">Prezado professor(a), o senhor (a) é responsável pelo seu diário de classe, portanto observe as orientações a
+            <p style="font-weight: bold; text-indent: 50px;">Prezado professor(a), o senhor (a) é responsável pelo seu
+                diário de classe, portanto observe as orientações a
                 seguir:</p>
-    
+
             <div style="display: flex; flex-direction: column; line-height: 1.5;">
                 <% for (let i = 0; i < observacoes.quantidade_linhas; i++) { %>
-                    <div class="flex">
-                        <div>
-                            <%= (i + 1) + "." %>
-                        </div>
-                        <div class="text-line">&ensp;</div>
+                <div class="flex">
+                    <div>
+                        <%= (i + 1) + "." %>
                     </div>
-                <% } %> 
+                    <div class="text-line">&ensp;</div>
+                </div>
+                <% } %>
             </div>
         </div>
     </div>
-    <style>
-        .item-border {
-            border: 1px solid;
-            padding: 5px;
-        }
-    </style>
-    
     <div class="page-break" style="margin: 10px;">
         <div style="display: flex; margin-bottom: 10px">
             <div class="flex flex-column" style="gap: 5px;">
@@ -256,7 +259,7 @@
                     </tr>
                 </tbody>
             </table>
-            <% } %> 
+            <% } %>
             <div>
                 <% if (tipo_documento !== "Infantil") { %>
                 <input id="aprovado" <%= resultado_final.aprovado ? "checked" : "" %> type="checkbox" />
