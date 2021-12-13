@@ -10,28 +10,35 @@
 </head>
 
 <body>
-    <h2 class="text-center">FICHA DE ACOMPANHAMENTO</h2>
-    <div style="line-height: 1.6;">
-        <div class="multicolumn inline">
-            <b>Nome:</b>
-            <div class="text-line"><%= acompanhamento.nome_aluno %></div>
+    <div id="container">
+        <h2 class="text-center">FICHA DE ACOMPANHAMENTO</h2>
+        <div style="line-height: 1.6;">
+            <div class="multicolumn inline">
+                <b>Nome:</b>
+                <div class="text-line"><%= acompanhamento.nome_aluno %></div>
+            </div>
+            <div class="multicolumn inline">
+                <b>Prof (a):</b>
+                <div class="text-line"><%= acompanhamento.professor %></div>
+                <b>Turma:</b>
+                <div class="text-line"><%= acompanhamento.turma %></div>
+                <b>Ano Letivo:</b>
+                <div style="max-width: 70px;" class="text-line"><%= acompanhamento.ano_letivo %></div>
+            </div>
         </div>
-        <div class="multicolumn inline">
-            <b>Prof (a):</b>
-            <div class="text-line"><%= acompanhamento.professor %></div>
-            <b>Turma:</b>
-            <div class="text-line"><%= acompanhamento.turma %></div>
-            <b>Ano Letivo:</b>
-            <div style="max-width: 70px;" class="text-line"><%= acompanhamento.ano_letivo %></div>
-        </div>
-    </div>
-    <br>
-    <br>
-    <%- include("reusable/ficha-acompanhamento/tabela.ejs") %>
-    <div class="text-center" style="margin-top: 50px;">
-        <u>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</u>
         <br>
-        <b>Responsável da Escola</b>
+        <br>
+        <% if (tipo_relatorio_acompanhamento === "Descritiva") { %>
+            <%- include("reusable/ficha-acompanhamento/lista-relatorio-descritivo.ejs") %>
+        <% } %>
+        <% if (tipo_relatorio_acompanhamento === "Objetiva") { %>
+            <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs") %> 
+        <% } %>
+        <div class="text-center" style="margin-top: 50px;">
+            <u>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</u>
+            <br>
+            <b>Responsável da Escola</b>
+        </div>
     </div>
 </body>
 

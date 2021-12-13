@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("css/common.ejs") %>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <meta charset="UTF-8">
+    <style>
+        .item-border {
+            border: 1px solid;
+            padding: 5px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div style="margin: 10px;">
+        <%- include("reusable/header-escola.ejs") %>
+        <h1 class="text-center" style="margin: 30px;">Relatório Individual</h1>
+        <div class="flex flex-column">
+            <div class="item-border">
+                <b class="pad-right">
+                    INSTITUIÇÃO DE ENSINO:
+                </b>
+                <%= instituicao_ensino %> 
+            </div>
+            <div class="item-border">
+                <b>
+                    PROFESSOR (A):
+                </b>
+                <%= professor %> 
+            </div>
+            <div class="flex">
+                <div class="grow item-border">
+                    <b>
+                        ALUNO (A):
+                    </b>
+                    <%= aluno_nome %> 
+                </div>
+                <div class="item-border">
+                    <b>ID DA INFOEDUC:</b>
+                    <%= aluno_id_infoeduc %> 
+                </div>
+            </div>
+            <div class="flex">
+                <div class="grow item-border">
+                    <b>
+                        TURMA:
+                    </b>
+                    <%= turma %> 
+                </div>
+                <div class="grow item-border">
+                    <b>TURNO:</b>
+                    <%= turno %> 
+                </div>
+            </div>
+            <div class="item-border">
+                <b>NEE:</b>
+                (<%= possui_nee === true ? "X" : " " %>) Sim
+                (<%= possui_nee !== true ? "X" : " " %>) Não
+            </div>
+            <div class="item-border">
+                <b>NEE:</b>
+                <%= especificacao_nee %> 
+            </div>
+            <div class="item-border">
+                <b>ANO LETIVO:</b>
+                <%= ano_letivo %> 
+            </div>
+            <h2 class="text-center">Descrição</h2>
+            <div class="written-text"><%= descricao %></div>
+        </div>
+        <%- include("reusable/campo-assinatura-direcao.ejs") %> 
+    </div>
+</body>
+
+</html>

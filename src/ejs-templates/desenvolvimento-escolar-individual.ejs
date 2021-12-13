@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("css/common.ejs") %> 
+<head>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <style>
+        .flex {
+            display: flex;
+        }
+        .flex-column {
+            flex-direction: column;
+        }
+
+        .item-border {
+            border: 1px solid;
+            padding: 5px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .grow {
+            flex-grow: 1;
+        }
+    </style>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div style="margin: 20px;">
+        <%- include("reusable/header-escola.ejs") %> 
+        <h1 class="text-center">Desenvolvimento Escolar</h1>
+        <div class="flex flex-column" style="gap: 5px;">
+            <div class="multicolumn inline">
+                <b>Instituição Escolar:</b>
+                <div class="text-line"><%= escola_nome %></div>
+            </div>
+            <div class="multicolumn inline">
+                <b>Aluno(a):</b>
+                <div class="text-line"><%= aluno_nome %></div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Turma:</b>
+                    <div class="text-line"><%= turma %></div>
+                </div>
+                <div class="inline">
+                    <b>Turno:</b>
+                    <div class="text-line"><%= turno %></div>
+                </div>
+                <div class="inline">
+                    <b>Ano Letivo:</b>
+                    <div class="text-line"><%= ano_letivo %></div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;" class="flex flex-column">
+            <%
+            const materias = []
+            const unidades = [] 
+            const notasComputadas = []
+
+            notas.forEach(item => {
+                const materia = item.materia
+                const unidade = item.unidade
+                if (materias.indexOf(materia) === -1) materias.push(materia)
+                if (unidades.indexOf(unidade) === -1) unidades.push(unidade)
+            });
+            materias.forEach(materia => {
+                const arr = []
+                unidades.forEach(unidade => {
+                    notas.forEach(registro => {
+                        if (registro.unidade === unidade && registro.materia === materia) {
+                            arr.push(registro.nota)
+                            return
+                        }
+                    });
+                });
+                notasComputadas.push(arr)
+            })
+            %> 
+            <div class="text-center item-border grow">
+                Desenvolvimento Escolar
+            </div>
+            <div class="flex flex-column grow">
+                <div class="flex grow">
+                    <div>
+                        <div class="flex flex-column">
+                            <div class="text-center item-border" style="height: 48px;">
+                                Componentes<br>Curriculares
+                            </div>
+                            <div class="flex flex-column">
+                                <% materias.forEach(materia => { %>
+                                    <div class="item-border">
+                                        <%= materia %> 
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-column grow">
+                        <div class="text-center item-border">
+                            Resultado das Unidades
+                        </div>
+                        <div>
+                            <div class="flex" style="flex-grow: 1;">
+                                <% unidades.forEach(item => { %> 
+                                    <div class="text-center item-border" style="flex-grow: 1;">
+                                        <%= item %> 
+                                    </div>
+                                <% }) %> 
+                            </div>
+                        </div>
+                        <div class="flex flex-column">
+                            <% notasComputadas.forEach(arr => { %>
+                                <div class="flex">
+                                    <% arr.forEach(item => { %>
+                                        <div style="flex: 1;" class="item-border text-center">
+                                            <%= item %>
+                                        </div>
+                                    <% }) %> 
+                                </div>
+                            <% }) %> 
+                        </div>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="grow item-border text-center">
+                        Total de Dias Letivos: <%= desenvolvimento_escolar.dias_letivos %> 
+                    </div>
+                    <div class="grow item-border text-center">
+                        Total de Faltas: <%= desenvolvimento_escolar.total_faltas %> 
+                    </div>
+                    <div class="grow item-border text-center">
+                        Frequência: (<%= desenvolvimento_escolar.percentagem_frequencia %>) %
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin: 20px 0;">
+            (<%= aprovado ? "X" : " " %>) Aprovado
+            <br>
+            (<%= reprovado ? "X" : " " %>) Reprovado
+        </div>
+
+        <%- include("reusable/campo-assinatura-direcao.ejs") %> 
+    </div>
+</body>
+</html>

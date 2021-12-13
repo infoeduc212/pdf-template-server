@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("css/common.ejs") %> 
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+</head>
+<body>
+    <div id="container">
+        <%- include("reusable/header-escola.ejs") %> 
+        <h1 class="text-center">Avaliação Descritiva</h1>
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <b class="pad-right">Aluno (a):</b>
+                <div class="text-line"></div>
+            </div>
+            <div class="multicolumn">
+                <b class="pad-right">NEE:</b>
+                <div class="text-line"></div>
+            </div>
+            <div class="multicolumn">
+                <b class="pad-right">Prof (a):</b>
+                <div class="text-line"></div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Turma:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="inline">
+                    <b>Turno:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="inline">
+                    <b>Período Letivo:</b>
+                    <div class="text-line"></div>
+                </div>
+            </div>
+        </div>
+        <h2 class="text-center"><%= nome_periodo %></h2>
+        <div class="written-text"><%= texto %></div>
+        <%- include("reusable/campo-assinatura-direcao.ejs") %> 
+    </div>
+</body>
+</html>

@@ -6,6 +6,11 @@
     <meta charset="utf-8">
     <%- include("css/ficha.ejs") %>
     <% include("reusable/utils.ejs") %>
+    <style>
+        .lineheightsmall {
+            line-height: 1.4;
+        }
+    </style>
 </head>
 
 <body>
@@ -128,7 +133,7 @@
                         <div class="inline">
                             <b>Necessidade Educativa Especial (NEE):</b>
                             (<%= !aluno.tem_deficiencia ? "X" : " " %>) Não possui
-                            (<%= aluno.tem_deficiencia ? "X" : " " %>) Informar:
+                            (<%= aluno.tem_deficiencia ? "X" : " " %>) Possui:
                         </div>
                     </div>
                     <div class="multicoluna">
@@ -150,12 +155,12 @@
                 </div>
             </div>
             <div class="title-header">Endereço</div>
-            <div class="block">
+            <div class="block lineheightsmall">
                 <div class="multicoluna inline">
                     <div class="inline">
                         <b>Zona de residência:</b>
-                        (<%= aluno.dados_endereco.zona_residencia === "Zona Rural" ? "X" : " " %>) Zona Rural
-                        (<%= aluno.dados_endereco.zona_residencia === "Zona Urbana" ? "X" : " " %>) Zona Urbana
+                        (<%= aluno.dados_endereco.zona_residencia === "Zona Rural" ? "X" : " " %>) Rural
+                        (<%= aluno.dados_endereco.zona_residencia === "Zona Urbana" ? "X" : " " %>) Urbana
                     </div>
                     <div class="inline">
                         <b>CEP:</b>
@@ -197,12 +202,14 @@
                 </div>
             </div>
             <div class="title-header">Contato</div>
-            <div class="block">
+            <div class="block lineheightsmall">
                 <div class="multicoluna">
                     <div class="inline">
                         <b>E-mail Principal:</b>
                         <div class="texto-linha"><%= string(aluno.contato.email_principal) %> </div>
                     </div>
+                </div>
+                <div class="multicoluna">
                     <div class="inline">
                         <b>E-mail secundário:</b>
                         <div class="texto-linha"><%= string(aluno.contato.email_secundario) %> </div>

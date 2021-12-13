@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("css/common.ejs") %> 
+    <meta charset="UTF-8">
+    <style>
+        .item-border {
+            border: 1px solid;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <%- include("reusable/header-escola.ejs") %>
+        <h1 class="text-center">Rendimento Escolar do Fundamental</h1>
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <div class="pad-right">Instituição de Ensino:</div>
+                <div class="text-line"><%= instituicao_ensino %></div>
+            </div>
+            <div class="multicolumn">
+                <div class="pad-right">Aluno(a):</div>
+                <div class="text-line"><%= aluno_nome %></div>
+            </div>
+            <div class="multicolumn">
+                <div class="pad-right">Turma:</div>
+                <div class="text-line"><%= turma %></div>
+                <div class="pad-right">Turno:</div>
+                <div class="text-line"><%= turno %></div>
+                <div class="pad-right">Período Letivo:</div>
+                <div class="text-line"><%= periodo_letivo %></div>
+            </div>
+        </div>
+        <% 
+        const matriz = []
+        const notasHeader = []
+        function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index
+        }
+        const disciplinaMedias = {}
+        const disciplinas = notas.map(nota => nota.disciplina_nome).filter(onlyUnique)
+        const avaliacoesAliases = notas.map(nota => nota.avaliacao_alias).filter(onlyUnique)
+        console.log("avaliacoesAlaises:", avaliacoesAliases)
+
+        avaliacoesAliases.forEach(alias => {
+            const array = []
+            const arrayRec = []
+            
+            disciplinas.forEach(disciplina => {
+                const scope = {}
+                const notasDisciplina = notas.filter(nota => nota.disciplina_nome === disciplina)
+                const notasAvaliacao = notasDisciplina.filter(nota => nota.avaliacao_alias === alias)
+                if (notasAvaliacao.length <= 0) {
+                    // Preencher com zero caso não tenha notas
+                    array.push(0)
+                    arrayRec.push(0)
+                }
+                notasAvaliacao.forEach(notaAv => {
+                    array.push(notaAv.nota_avaliacao)
+                    if (notaAv.recuperacao) {
+                        arrayRec.push(notaAv.recuperacao.nota_recuperacao)
+                    } else {
+                        arrayRec.push(0)
+                    }
+                    console.log("notasDisciplina:", notasDisciplina)
+                })
+                notasDisciplina.forEach(nota => {
+                    if (nota.recuperacao) {
+                        if (nota.recuperacao.nota_recuperacao_soma) {
+                            scope[nota.avaliacao_alias] = nota.nota_avaliacao + nota.recuperacao.nota_recuperacao
+                        }
+                        if (nota.recuperacao.nota_recuperacao_substitue) {
+                            if (nota.recuperacao.nota_recuperacao > nota.nota_avaliacao) {
+                                scope[nota.avaliacao_alias] = nota.recuperacao.nota_recuperacao
+                            } else {
+                                scope[nota.avaliacao_alias] = nota.nota_avaliacao
+                            }
+                        }
+                    } else {
+                        scope[nota.avaliacao_alias] = nota.nota_avaliacao
+                    }
+                })
+                console.log("scope:", scope)
+                disciplinaMedias[disciplina] = math.evaluate(criterio_avaliacao.media_formula, scope)
+            })
+            matriz.push([alias].concat(array))
+            if (arrayRec.filter(value => value !== 0).length > 0) 
+                matriz.push(["Rec."].concat(arrayRec))
+        })
+         %> 
+        <div class="flex flex-column" style="margin-top: 20px;">
+            <div class="item-border text-center">
+                Base Nacional Comum
+            </div>
+            <div class="flex">
+                <div style="border: 1px solid; padding: 20px;" class="vertical-text">
+                    Período
+                </div>
+                <div class="flex grow">
+                    <div class="grow flex flex-column">
+                        <div class="grow text-center item-border">
+                            Avaliação/Componente Curricular
+                        </div>
+                        <% disciplinas.forEach(disciplina => { %>
+                            <div class="grow item-border">
+                                <%= disciplina %> 
+                            </div>
+                        <% }) %>
+                    </div>
+                    <div class="flex grow">
+                        <% matriz.forEach(array => { %>
+                            <div class="flex flex-column">
+                                <% array.forEach(item => { %>
+                                    <div class="grow text-center item-border">
+                                        <%= item %> 
+                                    </div>
+                                <% }) %>
+                            </div>
+                        <% }) %>
+                        <div class="grow flex flex-column">
+                            <div class="grow text-center item-border">
+                                Média
+                            </div>
+                            <% disciplinas.forEach(disciplina => { %>
+                                <div class="grow text-center item-border">
+                                    <%= disciplinaMedias[disciplina] %> 
+                                </div>
+                            <% }) %>
+                        </div>
+                        <div class="grow flex flex-column">
+                            <div class="grow text-center item-border">
+                                Situação
+                            </div>
+                            <% disciplinas.forEach(disciplina => { %>
+                                <div class="grow text-center item-border">
+                                    <%= disciplinaMedias[disciplina] >= criterio_avaliacao.media_aprovacao ? "Aprovado" : "Reprovado" %> 
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

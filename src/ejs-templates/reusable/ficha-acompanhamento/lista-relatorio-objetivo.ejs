@@ -1,0 +1,31 @@
+<%- include("../../css/ficha.ejs") %>
+<%- include("../../css/common.ejs") %>
+
+<div class="flex flex-column">
+    <div style="border: 1px solid; font-weight: bold;">
+        CAMPOS DE EXPERIÊNCIA: <%= relatorio_experiencia.campos_experiencia %>
+    </div>
+    <div style="border: 1px solid; padding: 5px 0;">
+        Faixa Etária: <%= relatorio_experiencia.faixa_etaria %>
+    </div>
+    <div style="border: 1px solid; padding: 5px 0; font-size: 18px;" class="text-center">
+        Objetivo de Aprendizagem e Desenvolvimento
+    </div>
+    <table style="table-layout: fixed; border-spacing: 0;">
+        <tbody>
+            <% relatorio_experiencia.lista.forEach(item => { %>
+                <tr>
+                    <td>
+                        <%= item.descricao %>
+                    </td>
+                    <td style="width: 50px; height: 60px; line-height: 1.8;" class="text-center">
+                        <div class="text-center" style="font-size: 14px;">
+                            Alcançado
+                        </div>
+                        <%= item.alcancado ? "Sim" : "Não" %>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

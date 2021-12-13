@@ -1,5 +1,6 @@
 <html>
 
+<% include("reusable/utils.ejs") %> 
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
@@ -69,7 +70,7 @@
         <br>
         <div style="line-height: 1.6; font-size: 16px;">
             <div class="multicolumn">
-                <div class="pad-right">Estabelecimento de Ensino:</div>
+                <div class="pad-right">Instituição de Ensino:</div>
                 <div class="text-line"><%= capa.estabelecimento_ensino %></div>
             </div>
             <div class="multicolumn">
@@ -77,12 +78,16 @@
                 <div class="text-line"><%= capa.endereco %></div>
             </div>
             <div class="multicolumn">
+                <div class="pad-right">Etapa de escolaridade:</div>
+                <div class="text-line"><%= capa.etapa_escolaridade %></div>
+            </div>
+            <div class="multicolumn">
                 <div class="pad-right">Professor(a):</div>
                 <div class="text-line"><%= capa.professor %></div>
             </div>
             <div class="multicolumn">
-                <div class="pad-right">Etapa de escolaridade:</div>
-                <div class="text-line"><%= capa.etapa_escolaridade %></div>
+                <div class="pad-right">Componente Curricular:</div>
+                <div class="text-line"><%= capa.componente_curricular %></div>
             </div>
             <div class="multicolumn">
                 <div class="pad-right">Turma:</div>
@@ -125,7 +130,7 @@
     
     <div class="page-break" style="margin: 10px;">
         <div style="display: flex; margin-bottom: 10px">
-            <% if (etapa_escolaridade !== "Infantil") { %> 
+            <% if (tipo_documento !== "Infantil") { %> 
                 <b style="margin-right: 5px">Nome do(a) aluno(a)</b>
                 <div style="flex-grow: 1; border-bottom: 1px solid;"><%= aluno.nome %></div>
                 <b>N°</b>
@@ -190,74 +195,101 @@
             <table style="border-spacing: 0; border: 1px solid;">
                 <thead>
                     <tr>
-                        <th colspan="2" class="text-center">Resultado Final</th>
+                        <th style="border: 1px solid;" colspan="2" class="text-center">Resultado Final</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Média Anual</td>
-                        <td class="fixed-width text-center" id="media_anual"></td>
+                        <td class="fixed-width text-center"><%= 
+                            notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length
+                         %></td>
                     </tr>
                     <tr>
                         <td>Total de Faltas</td>
-                        <td class="fixed-width text-center" id="total_faltas"></td>
+                        <td class="fixed-width text-center"><%= resultado_final.total_faltas %></td>
                     </tr>
                     <tr>
                         <td>Nota de Rec. Final</td>
-                        <td class="fixed-width text-center" id="nota_rec"></td>
+                        <td class="fixed-width text-center" id="nota_rec"><%= resultado_final.rec_final %></td>
                     </tr>
                     <tr>
                         <td>Média Final</td>
-                        <td class="fixed-width text-center" id="media_final"></td>
+                        <td class="fixed-width text-center" id="media_final"><%= resultado_final.media_final %></td>
                     </tr>
                 </tbody>
             </table>
             <% } %> 
             <div>
-                <% if (etapa_escolaridade !== "Infantil") { %> 
-                <input id="aprovado" disabled type="checkbox" />
+                <% if (tipo_documento !== "Infantil") { %>
+                <input id="aprovado" <%= resultado_final.aprovado ? "checked" : "" %> type="checkbox" />
                 <label for="aprovado">Aprovado</label>
                 <br />
-                <input id="reprovado" disabled type="checkbox" />
+                <input id="reprovado" <%= resultado_final.reprovado ? "checked" : "" %> type="checkbox" />
                 <label for="reprovado">Reprovado</label>
                 <br />
-                <% } %> 
-                <input id="transferido" disabled type="checkbox" />
-                <label for="transferido">Transferido</label>
-                <div style="display: flex; float: right">
-                    <div style="width: 20px" class="text-line"></div>
-                    /
-                    <div style="width: 20px" class="text-line"></div>
-                    /
-                    <div style="width: 30px" class="text-line"></div>
+                <% } %>
+                <div class="flex" style="gap: 30px;">
+                    <div>
+                        <input id="transferido" <%= resultado_final.transferido ? "checked" : "" %> type="checkbox" />
+                        <label for="transferido">Transferido</label>
+                        <div style="margin-left: 5px; display: flex; float: right">
+                            <% 
+                            const transferido = resultado_final.transferido
+                            let dataTransferido
+                            if (transferido === true)
+                                dataTransferido = new Date(resultado_final.transferido_data) %> 
+                            <div style="min-width: 30px" class="text-line text-center">
+                                <%= transferido ? padWithZero(dataTransferido.getDate()) : "" %> 
+                            </div>
+                            /
+                            <div style="min-width: 30px" class="text-line text-center">
+                                <%= transferido ? padWithZero(dataTransferido.getMonth() + 1) : "" %> 
+                            </div>
+                            /
+                            <div style="min-width: 50px" class="text-line text-center">
+                                <%= transferido ? dataTransferido.getFullYear() : "" %> 
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input id="transferido" <%= resultado_final.desistente ? "checked" : "" %> type="checkbox" />
+                        <label for="transferido">Desistente</label>
+                        <div style="margin-left: 5px; display: flex; float: right">
+                            <% 
+                            const desistente = resultado_final.desistente
+                            let desistenteData
+                            if (desistente === true)
+                            desistenteData = new Date(resultado_final.desistente_data) %> 
+                            <div style="min-width: 30px" class="text-line text-center">
+                                <%= desistente ? padWithZero(desistenteData.getDate()) : "" %> 
+                            </div>
+                            /
+                            <div style="min-width: 30px" class="text-line text-center">
+                                <%= desistente ? padWithZero(desistenteData.getMonth() + 1) : "" %> 
+                            </div>
+                            /
+                            <div style="min-width: 50px" class="text-line text-center">
+                                <%= desistente ? desistenteData.getFullYear() : "" %> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <br />
-                <% if (etapa_escolaridade !== "Infantil") { %> 
-                <input id="desistente" disabled type="checkbox" />
-                <label for="transferido">Desistente</label>
-                <div style="display: flex; float: right" id="desistente-data">
-                    <div style="width: 20px" class="text-line"></div>
-                    /
-                    <div style="width: 20px" class="text-line"></div>
-                    /
-                    <div style="width: 30px" class="text-line"></div>
-                </div>
-                <% } %> 
             </div>
         </div>
-        <div class="flex padding-top dont-break" style="gap: 10px;">
-            <div class="flex flex-column">
-                <div class="text-line"></div>
-                <div class="small-text">Assinatura do Responsável - Coordenação Pedagógica</div>
-            </div>
-            <div class="flex flex-column">
-                <div class="text-line"></div>
-                <div class="small-text">Assinatura do Diretor(a)</div>
-            </div>
+        <div class="flex flex-column" style="margin-top: 10px;">
+            <% for (let i = 0; i < descricao_linhas; i++) { %>
+                <div class="flex">
+                    <% if (i === 0) { %>
+                        <b>Descrição:</b>
+                    <% } %> 
+                    <div style="flex-grow: 1;" class="text-line">&ensp;</div>
+                </div>
+            <% } %>
         </div>
     </div>
     <div class="page-break" style="margin: 10px;">
-        <%- include("reusable/diario-classe/lista-objetivo-conhecimento.ejs") %>
+        <%- include("reusable/diario-classe/lista-registro-aula.ejs") %>
     </div>
     <div class="page-break">
         <div>

@@ -87,7 +87,7 @@
                     <div class="inline">
                         <b>Necessidade Educativa Especial (NEE):</b>
                         (<%= !professor.tem_deficiencia ? "X" : " " %>) Não possui
-                        (<%= professor.tem_deficiencia ? "X" : " " %>) Informar:
+                        (<%= professor.tem_deficiencia ? "X" : " " %>) Possui:
                     </div>
                 </div>
                 <div class="multicoluna">
@@ -143,8 +143,8 @@
                 <div class="multicoluna inline">
                     <div class="inline">
                         <b>Zona de residência:</b>
-                        (<%= professor.dados_endereco.zona_residencia === "Zona Rural" ? "X" : " " %>) Zona Rural
-                        (<%= professor.dados_endereco.zona_residencia === "Zona Urbana" ? "X" : " " %>) Zona Urbana
+                        (<%= professor.dados_endereco.zona_residencia === "Zona Rural" ? "X" : " " %>) Rural
+                        (<%= professor.dados_endereco.zona_residencia === "Zona Urbana" ? "X" : " " %>) Urbana
                     </div>
                     <div class="inline">
                         <b>CEP:</b>
@@ -189,6 +189,8 @@
                         <b>E-mail Principal:</b>
                         <div class="texto-linha"><%= string(professor.email_principal) %> </div>
                     </div>
+                </div>
+                <div class="multicoluna">
                     <div class="inline">
                         <b>E-mail secundário:</b>
                         <div class="texto-linha"><%= string(professor.contato.email_secundario) %> </div>

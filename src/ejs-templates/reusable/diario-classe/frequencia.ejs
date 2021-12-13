@@ -1,0 +1,139 @@
+<style>
+    #frequencia {
+        table-layout: fixed;
+        font-size: 12px;
+    }
+
+    #frequencia>tbody>tr>td:first-child {
+        font-stretch: 50%;
+    }
+
+    #frequencia>thead>tr>td {
+        font-stretch: condensed;
+        text-align: center;
+    }
+
+    .table {
+        width: 100%;
+        border-spacing: 0;
+    }
+
+    .table>thead>tr>td,
+    .table>tbody>tr>td {
+        border: 1px solid;
+    }
+
+    .text-line {
+        border-bottom: 1px solid;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
+<table id="frequencia" class="table">
+    <thead>
+        <tr>
+            <td style="width: 60px">Meses/<br />Data</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td class="text-center" style="width: 50px">Faltas</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% 
+            const rangeArray = frequencia.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+            const monthDict = {
+                0: "Janeiro",
+                1: "Fevereiro",
+                2: "Março",
+                3: "Abril",
+                4: "Maio",
+                5: "Junho",
+                6: "Julho",
+                7: "Agosto",
+                8: "Setembro",
+                9: "Outubro",
+                10: "Novembro",
+                11: "Dezembro"
+            }
+
+            const years = {}
+
+            rangeArray.forEach(record => {
+                const date = new Date(record.data_lancamento)
+                const year = date.getFullYear()
+                if (!years.hasOwnProperty(year)) years[year] = []
+                const monthsFromYear = years[year]
+                console.log(date.getMonth())
+                if (monthsFromYear.indexOf(date.getMonth()) === -1)
+                    years[year].push(date.getMonth())
+            })
+
+            console.log(years)
+            %>
+        <% for (year in years) { %>
+        <% if (!years.hasOwnProperty(year)) continue %>
+        <% years[year].forEach(month => { %>
+        <tr>
+            <td><%= monthDict[month] %></td>
+            <% const monthRange = rangeArray.filter(record => {
+                        const date = new Date(record.date)
+                        return date.getMonth() === month && date.getFullYear() === parseInt(year)
+                    }) %>
+            <% console.log("monthRange:", monthRange) %>
+            <!-- Quantidade de presença no dia -->
+            <% const maxDays = 32 %>
+            <% for (let i = 1; i < maxDays; i++) { %>
+            <% const day = monthRange.filter(record => {
+                            const date = new Date(record.date)
+                            return date.getDate() === i
+                        }) %>
+            <% console.log("day:", day) %>
+            <% if (day.length > 0) { %>
+            <td class="text-center">
+                <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
+            </td>
+            <% } else { %>
+            <td class="text-center">0</td>
+            <% } %>
+            <% } %>
+            <!-- Faltas -->
+            <td class="text-center">
+                <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %>
+            </td>
+        </tr>
+        <% }) %>
+        <% } %>
+    </tbody>
+</table>

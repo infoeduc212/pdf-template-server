@@ -18,15 +18,15 @@
             <b style="margin-right: 5px">Nome do(a) aluno(a)</b>
             <div style="flex-grow: 1;" class="text-line"><%= aluno.nome %></div>
             <b>Série:</b>
-            <div style="max-width: 70px;" class="text-line"></div>
+            <div style="max-width: 70px;" class="text-line"><%= aluno.serie %></div>
         </div>
         <div style="display: flex; margin-bottom: 10px">
             <b>Código do INEP:</b>
             <div style="flex-grow: 1;" class="text-line"><%= aluno.codigo_inep %></div>
             <b>ID da InfoEduc:</b>
             <div style="flex-grow: 1" class="text-line"><%= aluno.codigo_infoeduc %></div>
-            <b>Período Letivo:</b>
-            <div style="flex-grow: 1; max-width: 50px;" class="text-line text-center"><%= periodo_letivo.ano %></div>
+            <b>Ano Letivo:</b>
+            <div style="flex-grow: 1; max-width: 50px;" class="text-line text-center"><%= ano_letivo %></div>
         </div>
         <br>
         <br>
