@@ -11,6 +11,7 @@ import morgan from "morgan";
 import { padWithZero } from "./utils";
 import { evaluate } from 'mathjs';
 import { inspect } from 'util';
+import { DateTime } from 'luxon'
 
 app.use(express.json());
 app.use(cors());
@@ -51,7 +52,7 @@ export default function createServer(): Promise<any> {
                                 templatePath,
                                 {...args, math: {
                                     evaluate
-                                }}
+                                }, DateTime}
                             )) as string;
                             if (outputType === "pdf") {
                                 res.setHeader(
@@ -66,7 +67,7 @@ export default function createServer(): Promise<any> {
                                 await page.evaluateHandle(
                                     "document.fonts.ready"
                                 );
-                                const dateNow = new Date();
+                                const dateNow = DateTime.now().setZone("America/Sao_Paulo")
                                 const stream = await page.createPDFStream({
                                     format: "a4",
                                     margin: {
@@ -77,17 +78,7 @@ export default function createServer(): Promise<any> {
                                     },
                                     footerTemplate: `
                                 <div style="width: 100%; margin-right: 10px; text-align: right; font-size: 8px;">
-                                     PDF gerado pela a Plataforma InfoEduc na data ${padWithZero(
-                                         dateNow.getDate()
-                                     )}/${padWithZero(
-                                        dateNow.getMonth()
-                                    )}/${dateNow.getFullYear()} às ${padWithZero(
-                                        dateNow.getHours()
-                                    )}:${padWithZero(
-                                        dateNow.getMinutes()
-                                    )}:${padWithZero(
-                                        dateNow.getSeconds()
-                                    )}
+                                     PDF gerado pela a Plataforma InfoEduc na data ${dateNow.toFormat("dd/MM/yyyy")} às ${dateNow.toFormat("HH:mm:ss")}
 
                                 </div>
                                 `,
