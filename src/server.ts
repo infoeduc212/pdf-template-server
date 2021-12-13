@@ -9,6 +9,8 @@ import ejs from "ejs";
 import cors from "cors";
 import morgan from "morgan";
 import { padWithZero } from "./utils";
+import { evaluate } from 'mathjs';
+import { inspect } from 'util';
 
 app.use(express.json());
 app.use(cors());
@@ -44,9 +46,12 @@ export default function createServer(): Promise<any> {
 
                     try {
                         if (fs.existsSync(templatePath)) {
+                            console.debug(inspect(args, {showHidden: false, depth: null, colors: true}))
                             const render = (await ejs.renderFile(
                                 templatePath,
-                                args
+                                {...args, math: {
+                                    evaluate
+                                }}
                             )) as string;
                             if (outputType === "pdf") {
                                 res.setHeader(
@@ -54,7 +59,7 @@ export default function createServer(): Promise<any> {
                                     "application/pdf"
                                 );
 
-                                const watermarkExceptions = ["diario-classe"]
+                                const watermarkExceptions = ["diario-classe", "tabela"]
 
                                 const page = await browser.newPage();
                                 await page.setContent(render);
