@@ -130,70 +130,107 @@
     
     <div class="page-break" style="margin: 10px;">
         <div style="display: flex; margin-bottom: 10px">
-            <% if (tipo_documento !== "Infantil") { %> 
-                <b style="margin-right: 5px">Nome do(a) aluno(a)</b>
-                <div style="flex-grow: 1; border-bottom: 1px solid;"><%= aluno.nome %></div>
-                <b>N°</b>
-                <div style="width: 50px; border-bottom: 1px solid;"><%= aluno.ordem_frequencia %></div>
-            <% } else { %>
-                <div class="flex flex-column" style="gap: 5px;">
-                    <div class="multicolumn inline">
-                        <b>Nome:</b>
-                        <div class="text-line"><%= acompanhamento.nome_aluno %></div>
-                    </div>
-                    <div class="multicolumn inline">
-                        <b>Prof (a):</b>
-                        <div class="text-line"><%= acompanhamento.professor %></div>
-                        <b>Turma:</b>
-                        <div class="text-line"><%= acompanhamento.turma %></div>
-                        <b>Ano Letivo:</b>
-                        <div class="text-line"><%= acompanhamento.ano_letivo %> </div>
-                    </div>
+            <div class="flex flex-column" style="gap: 5px;">
+                <div class="multicolumn inline">
+                    <b>Aluno (a):</b>
+                    <div class="text-line"><%= acompanhamento.nome_aluno %></div>
+                    <b>N°</b>
+                    <div class="text-line text-center" style="max-width: 50px;"><%= acompanhamento.ordem_frequencia %></div>
+                    <% if (tipo_documento === "Infantil") { %>
+                        <% if (infantil_possui_nee === true) { %>
+                        <b>NEE:</b>
+                        <div class="text-line"><%= aluno.especificacao_nee %></div>
+                        <% } %>
+                    <% } %>
                 </div>
-            <% } %> 
+                <div class="multicolumn inline">
+                    <b>Prof (a):</b>
+                    <div class="text-line"><%= acompanhamento.professor %></div>
+                    <b>Turma:</b>
+                    <div class="text-line"><%= acompanhamento.turma %></div>
+                    <b>Ano Letivo:</b>
+                    <div style="max-width: 60px;" class="text-center text-line"><%= acompanhamento.ano_letivo %> </div>
+                </div>
+            </div>
         </div>
         <%- include("reusable/diario-classe/frequencia.ejs") %>
-        <% if (etapa_escolaridade !== "Infantil") { %> 
-            <h3 style="text-align: center">Resultado Bimestral</h3>
+        <% if (tipo_documento === "Fundamental") { %>
+        <h3 style="text-align: center">Resultado Bimestral</h3>
+        <% 
+        const headElemList = []
+        const notaResList = []
+        const notaMapping = {}
+        for (let i = 0; i < periodo_notas.length; i++) {
+            const nota = periodo_notas[i]
+            headElemList.push(nota.avaliacao.alias)
+            notaResList.push(nota.nota_avaliacao)
+            if (nota.recuperacao) {
+                headElemList.push("Rec.")
+                notaResList.push(nota.recuperacao.nota_recuperacao)
+            }
+            notaMapping[nota.avaliacao.alias] = nota.nota_avaliacao
+        }
+        const resultadoMedia = math.evaluate(bimestral_formula_media, notaMapping)
+         %>
+        <div style="margin: 0 50px;">
             <table class="table">
                 <thead>
                     <tr>
-                        <td>Unidade/Pontos</td>
-                        <td style="text-align: center">
-                            I <br />(Av. Qualitativa)
+                        <% headElemList.forEach(elem => { %>
+                            <td class="text-center">
+                                <%= elem %>
+                            </td>
+                        <% }) %>
+                        <td class="text-center">
+                            Média do<br>Período
                         </td>
-                        <td style="text-align: center">II<br />(Av. Bimestral)</td>
-                        <td style="text-align: center">III<br />(Rec. Paralela)</td>
-                        <td style="text-align: center">
-                            Resultado Final Bimestral<br />(I+II ou I+III)
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <% notaResList.forEach(res => { %>
+                            <td class="text-center">
+                                <%= res %> 
+                            </td>
+                        <% }) %>
+                        <td class="text-center">
+                           <%= resultadoMedia %>  
                         </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                        </tr>
-                    </tbody>
+                    </tr>
+                </tbody>
             </table>
-        <% } else { %>
-            <div style="margin-top: 15px;">
-                <%- include("reusable/ficha-acompanhamento/tabela.ejs") %>
-            </div>
+        </div>
         <% } %> 
+        <% if (tipo_documento === "Infantil") { %>
+            <div style="margin-top: 15px;">
+                <% if (infantil_possui_nee !== true) { %>
+                    <div>
+                        <% if (tipo_relatorio_acompanhamento === "Descritivo") { %>
+                        <%- include("reusable/ficha-acompanhamento/lista-relatorio-descritivo.ejs") %>
+                        <% } %>
+                        <% if (tipo_relatorio_acompanhamento === "Objetivo") { %>
+                        <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs") %>
+                        <% } %>
+                    </div>
+                <% } else { %>
+                    <div class="flex flex-column" style="margin: 0 70px;">
+                        <div class="text-center" style="border: 1px solid; font-weight: bold; font-size: 18px;">
+                            Avaliação Descritiva
+                        </div>
+                        <div class="text-center" style="border: 1px solid; font-size: 18px;">
+                            <%= periodo_letivo.nome_periodo %> 
+                        </div>
+                        <div class="written-text" style="border: 1px solid;">
+                        </div>
+                    </div>
+                <% } %> 
+            </div>
+        <% } %>
         <br />
-        <div style="display: flex; gap: 50px">
-            <% if (etapa_escolaridade !== "Infantil") { %> 
-            <table style="border-spacing: 0; border: 1px solid;">
-                <thead>
+        <div class="avoid-break" style="display: flex; gap: 50px">
+            <% if (tipo_documento !== "Infantil") { %>
+            <table style="border-spacing: 0;">
+                <thead >
                     <tr>
                         <th style="border: 1px solid;" colspan="2" class="text-center">Resultado Final</th>
                     </tr>
