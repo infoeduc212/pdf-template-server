@@ -1,14 +1,15 @@
 <html>
 
 <head>
-    <%- include("css/common.ejs") %> 
+    <%- include("css/common.ejs") %>
+    <%- include("reusable/utils.ejs") %>
     <style>
         .center {
             margin: auto;
             width: 50%;
             text-align: center;
         }
-        
+
         thead,
         tbody,
         td,
@@ -17,7 +18,9 @@
             padding: 5px;
             font-size: 16px;
         }
-        td, tr {
+
+        td,
+        tr {
             border: 1px solid;
         }
 
@@ -28,7 +31,7 @@
         table {
             border-spacing: 0;
         }
-        
+
         .star-spacing {
             width: 1%;
             white-space: nowrap;
@@ -58,24 +61,28 @@
             <thead>
                 <tr>
                     <% table_header.forEach((item, index) => { %>
-                        <td style="white-space: nowrap;">
-                            <%= item %>
-                        </td>
-                        <% }) %>
+                    <td style="white-space: nowrap;">
+                        <%= item %>
+                    </td>
+                    <% }) %>
                 </tr>
             </thead>
             <tbody>
                 <% list.forEach(arr => { %>
-                    <tr>
-                        <% arr.forEach((item, index) => { %>
-                            <td class="<%= widths[index] === "auto" ? "star-spacing" : " " %>">
-                                <%= item %>
-                            </td>
-                            <% }) %>
-                    </tr>
+                <tr>
+                    <% arr.forEach((item, index) => { %>
+                    <td class="<%= widths[index] === "auto" ? "star-spacing" : " " %>">
+                        <%= item %>
+                    </td>
                     <% }) %>
+                </tr>
+                <% }) %>
             </tbody>
         </table>
+        <% const dateNow = new Date() %>
+        <p style="font-size: 13px;">Relatório gerado pela Plataforma InfoEduc na data
+            <%= `${padWithZero(dateNow.getDate())}/${padWithZero(dateNow.getMonth())}/${dateNow.getFullYear()}` %> às <%= `${dateNow.getHours()}:${dateNow.getMinutes()}:${dateNow.getSeconds()}` %> por <%= user.name %> 
+        </p>
     </div>
 </body>
 
