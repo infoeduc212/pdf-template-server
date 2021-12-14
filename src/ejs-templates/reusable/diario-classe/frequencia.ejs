@@ -71,6 +71,10 @@
     </thead>
     <tbody>
         <% 
+            const parseDate = (date) => {
+                return DateTime.fromJSDate(new Date(date), { zone: "America/Sao_Paulo" })
+            }
+
             const rangeArray = frequencia.sort((a, b) => new Date(b.date) - new Date(a.date))
 
             const monthDict = {
@@ -91,13 +95,12 @@
             const years = {}
 
             rangeArray.forEach(record => {
-                const date = new Date(record.data_lancamento)
-                const year = date.getFullYear()
+                const date = parseDate(record.data_lancamento)
+                const year = date.year
                 if (!years.hasOwnProperty(year)) years[year] = []
                 const monthsFromYear = years[year]
-                console.log(date.getMonth())
-                if (monthsFromYear.indexOf(date.getMonth()) === -1)
-                    years[year].push(date.getMonth())
+                if (monthsFromYear.indexOf(date.month) === -1)
+                    years[year].push(date.month)
             })
 
             console.log(years)
@@ -108,16 +111,16 @@
         <tr>
             <td><%= monthDict[month] %></td>
             <% const monthRange = rangeArray.filter(record => {
-                        const date = new Date(record.date)
-                        return date.getMonth() === month && date.getFullYear() === parseInt(year)
+                        const date = parseDate(record.data_lancamento)
+                        return date.month === month && date.year === parseInt(year)
                     }) %>
             <% console.log("monthRange:", monthRange) %>
             <!-- Quantidade de presença no dia -->
             <% const maxDays = 32 %>
             <% for (let i = 1; i < maxDays; i++) { %>
             <% const day = monthRange.filter(record => {
-                            const date = new Date(record.date)
-                            return date.getDate() === i
+                            const date = parseDate(record.data_lancamento)
+                            return date.day === i
                         }) %>
             <% console.log("day:", day) %>
             <% if (day.length > 0) { %>
