@@ -73,13 +73,11 @@
             </div>
         </div>
         <div class="block">
-            <% const dataNascimento = new Date(certificado.data_nascimento) %>
+            <% const dataNascimento = DateTime.fromJSDate(new Date(certificado.data_nascimento), { zone: "America/Sao_Paulo" }) %>
             <div style="text-align: justify;">
                 Certificamos que <u><%= certificado.nome_completo %></u> filho(a) de <u><%= certificado.nome_mae %></u>
                 e de <u><%= certificado.nome_pai %></u> nascido(a) em
-                <u><%= dataNascimento.getDate().toString().padStart(2, "0") %></u>/<u><%= certificado.nome_completo %></u>
-                <u><%= dataNascimento.getMonth().toString().padStart(2, "0") %></u>/<u><%= certificado.nome_completo %></u>
-                <u><%= dataNascimento.getFullYear() %></u>, na cidade de <u><%= certificado.cidade %></u> Estado de <u><%= certificado.cidade %></u> concluiu o curso <u><%= certificado.curso %></u> no ano de <u><%= certificado.ano_finalizado %></u> tendo obtido os resultados constantes neste Histórico Escolar.
+                <u><%= dataNascimento.toFormat("dd/MM/yyyy") %></u>, na cidade de <u><%= certificado.cidade %></u> Estado de <u><%= certificado.estado %></u> concluiu o curso <u><%= certificado.curso %></u> no ano de <u><%= certificado.ano_finalizado %></u> tendo obtido os resultados constantes neste Histórico Escolar.
             </div>
         </div>
         <div class="block">
