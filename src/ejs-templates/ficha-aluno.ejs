@@ -307,7 +307,7 @@
                             <b>Situação da matrícula:</b>
                             (<%= aluno.matricula.situacao === "Nova" ? "X" : " " %>) Nova
                             (<%= aluno.matricula.situacao === "Renovada" ? "X" : " " %>) Renovada
-                            (<%= aluno.matricula.situacao === "Encerrada" ? "X" : " " %>) Encerrada
+                            (<%= aluno.matricula.situacao === "Transferido" || aluno.matricula.situacao === "Desistente" || aluno.matricula.situacao === "Trancado" ? "X" : " " %>) Encerrada
                         </div>
                     </div>
                     <div class="multicoluna inline">
