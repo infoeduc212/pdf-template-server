@@ -10,6 +10,12 @@
         .lineheightsmall {
             line-height: 1.4;
         }
+        .grow {
+            flex-grow: 1;
+        }
+        .flex-column {
+            flex-direction: column;
+        }
     </style>
 </head>
 
@@ -26,7 +32,7 @@
                         <div class="texto-linha"><%= string(escola.unidade_ensino) %></div>
                     </div>
                     <div class="inline">
-                        <b>Código do INEP:</b>
+                        <b>ID do INEP:</b>
                         <div class="texto-linha"><%= string(escola.inep) %></div>
                     </div>
                 </div>
@@ -56,21 +62,27 @@
                 <div class="flex">
                     <img width="100" height="100" src="<%= aluno.foto_url %>">
                     <div style="flex: 1; margin-left: 10px">
-                        <div class="multicoluna inline">
-                            <b>ID da InfoEduc:</b>
-                            <div class="texto-linha inline"><%= string(aluno.codigo_infoeduc) %> </div>
+                        <div class="flex">
+                            <div class="multicoluna inline">
+                                <b>ID da InfoEduc:</b>
+                                <div class="texto-linha inline"><%= string(aluno.codigo_infoeduc) %> </div>
+                            </div>
+                            <div class="multicoluna inline">
+                                <b>ID do INEP: </b>
+                                <div class="texto-linha"><%= string(aluno.inep) %></div>
+                            </div>
                         </div>
                         <div class="multicoluna inline">
                             <b>Nome:</b>
                             <div class="texto-linha inline"><%= string(aluno.nome) %></div>
                         </div>
-                        <div class="multicoluna inline">
-                            <div class="inline">
-                                <b>Identificação do INEP: </b>
-                                <div class="texto-linha"><%= string(aluno.inep) %></div>
+                        <div class="flex">
+                            <div class="multicoluna inline">
+                                <b>N° de SUS:</b>
+                                <div class="texto-linha"><%= string(aluno.dados_variaveis.numero_sus) %></div>
                             </div>
-                            <div class="inline">
-                                <b>NIS (PBF): </b>
+                            <div class="multicoluna inline">
+                                <b>N° de NIS:</b>
                                 <div class="texto-linha"><%= string(aluno.nis) %></div>
                             </div>
                         </div>
@@ -228,68 +240,85 @@
             </div>
             <div class="title-header">Outras Informações</div>
             <div class="block">
-                <div class="multicoluna">
-                    <div class="inline">
-                        <b>Recebe Bolsa Família</b>
-                        (<%= aluno.dados_variaveis.recebe_bolsa_familia ? "X" : " " %>) Sim
-                        (<%= !aluno.dados_variaveis.recebe_bolsa_familia ? "X" : " " %>) Não
-                    </div>
-                    <div class="inline">
-                        <b>País de Nascimento:</b>
-                        <div class="texto-linha"><%= string(aluno.dados_variaveis.pais_nascimento) %> </div>
-                    </div>
-                    <div class="inline">
-                        <b>N° do SUS:</b>
-                        <div class="texto-linha"><%= string(aluno.dados_variaveis.numero_sus) %> </div>
-                    </div>
-                </div>
-                <div class="streched-text">
-                    <div class="multicoluna">
-                        <div class="inline">
-                            <b>Transporte escolar público:</b>
-                            (<%= aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Utiliza
-                            (<%= !aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Não utiliza
+                <div class="flex flex-column">
+                    <div class="flex grow">
+                        <div class="flex flex-column grow">
+                            <div class="multicoluna">
+                                <div class="inline">
+                                    <b>Recebe Bolsa Família</b>
+                                    (<%= aluno.dados_variaveis.recebe_bolsa_familia ? "X" : " " %>) Sim
+                                    (<%= !aluno.dados_variaveis.recebe_bolsa_familia ? "X" : " " %>) Não
+                                </div>
+                            </div>
+                            <div class="multicoluna">
+                                <div class="inline">
+                                    <b>Transporte escolar público:</b>
+                                    (<%= aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Utiliza
+                                    (<%= !aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Não utiliza
+                                </div>
+                            </div>
                         </div>
-                        <div class="inline">
-                            <b>Responsável pelo Transporte:</b>
-                            (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Municipal" ? "X" : " " %>)
-                            Municipal
-                            (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Estadual" ? "X" : " " %>)
-                            Estadual
-                            (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Federal" ? "X" : " " %>)
-                            Federal
+                        <div class="flex flex-column grow">
+                            <div class="multicoluna">
+                                <div class="inline">
+                                    <b>País de Nascimento:</b>
+                                    <div class="texto-linha"><%= string(aluno.dados_variaveis.pais_nascimento) %> </div>
+                                </div>
+                            </div>
+                            <div class="multicoluna" style="font-size: 12px;">
+                                <div class="inline">
+                                    
+                                    <b>Responsável pelo Transporte:</b>
+                                    <div class="streched-text">
+                                        (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Municipal" ? "X" : " " %>)
+                                        Municipal
+                                        (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Estadual" ? "X" : " " %>)
+                                        Estadual
+                                        (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Federal" ? "X" : " " %>)
+                                        Federal
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="multicoluna">
-                        <div class="inline">
-                            <b>Tipo Sanguíneo:</b>
-                            <div class="texto-linha"><%= string(aluno.dados_variaveis.tipo_sanguineo) %></div>
-                        </div>
-                        <div class="inline">
-                            <b>Município de Nascimento:</b>
-                            <div class="texto-linha"><%= string(aluno.dados_variaveis.municipio_nascimento) %></div>
-                        </div>
-                        <div class="inline">
-                            <b>UF de Nascimento:</b>
-                            <div class="texto-linha"><%= string(aluno.dados_variaveis.uf_nascimento) %></div>
+                    <div class="flex">
+                        <div class="multicoluna">
+                            <div class="inline">
+                                <b>Tipo Sanguíneo:</b>
+                                <div class="texto-linha"><%= string(aluno.dados_variaveis.tipo_sanguineo) %></div>
+                            </div>
+                            <div class="inline">
+                                <b>Município de Nascimento:</b>
+                                <div class="texto-linha"><%= string(aluno.dados_variaveis.municipio_nascimento) %></div>
+                            </div>
+                            <div class="inline">
+                                <b>UF de Nascimento:</b>
+                                <div class="texto-linha"><%= string(aluno.dados_variaveis.uf_nascimento) %></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="title-header">Requerimento</div>
             <div class="block">
-                <div class="multicoluna">
-                    <div class="inline">
-                        <b>Situação da matrícula:</b>
-                        (<%= aluno.matricula.situacao === "Nova" ? "X" : " " %>) Nova
-                        (<%= aluno.matricula.situacao === "Renovada" ? "X" : " " %>) Renovada
+                <div class="flex streched-text">
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Situação da matrícula:</b>
+                            (<%= aluno.matricula.situacao === "Nova" ? "X" : " " %>) Nova
+                            (<%= aluno.matricula.situacao === "Renovada" ? "X" : " " %>) Renovada
+                            (<%= aluno.matricula.situacao === "Encerrada" ? "X" : " " %>) Encerrada
+                        </div>
+                    </div>
+                    <div class="multicoluna inline">
+                        <b>Motivo:</b>
+                        <div class="texto-linha" style="margin-bottom: 5px;"></div>
                     </div>
                 </div>
                 <table id="matricula" style="width: 100%; border-spacing: 0; border-collapse: collapse;">
                     <thead style="font-size: 13px;">
                         <tr>
                             <td>Data da Matrícula</td>
-                            <td>Ano</td>
                             <td>Assinatura do Responsável</td>
                             <td>Parecer do responsável pela escola</td>
                         </tr>
@@ -307,11 +336,6 @@
                                     /
                                     <div class="texto-linha text-center"><%= number(matriculaData.getFullYear()) %>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="text-center">
-                                    <%= number(aluno.matricula.ano_letivo) %>
                                 </div>
                             </td>
                             <td>
