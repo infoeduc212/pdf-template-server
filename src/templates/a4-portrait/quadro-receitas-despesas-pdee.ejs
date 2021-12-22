@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .padding {
+            padding: 5px;
+        }
+
+        .border {
+            border: 1px solid;
+        }
+
+        .small-text {
+            font-size: 12px;
+        }
+
+        .small-title-text {
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .left-side-text {
+            text-align: left;
+            font-size: 8px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-column {
+            flex-direction: column;
+        }
+
+        .grow {
+            flex-grow: 1;
+        }
+
+        .gray-bg {
+            background-color: rgb(235, 235, 235);
+        }
+    </style>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+</head>
+
+<body>
+    <div id="container">
+        <div class="flex flex-column" style="gap: 10px;">
+
+            <div class="flex flex-column">
+                <div class="border small-title-text gray-bg">
+                    BLOCO 1 - IDENTIFICAÇÃO
+                </div>
+                <div class="flex grow">
+                    <div class="border padding grow">
+                        <div class="left-side-text">
+                            01 - Programa e Ação
+                        </div>
+                        <div class="text-center">
+                            PDDE Federal
+                        </div>
+                    </div>
+                    <div class="border padding">
+                        <div class="left-side-text">
+                            02 - Exercício
+                        </div>
+                    </div>
+                </div>
+                <div class="flex grow">
+                    <div class="border padding grow">
+                        <div class="left-side-text">
+                            03 - Nome
+                        </div>
+                    </div>
+                    <div class="border padding">
+                        <div class="left-side-text">
+                            04 - Número de CNPJ
+                        </div>
+                    </div>
+                </div>
+                <div class="flex grow">
+                    <div class="border padding grow">
+                        <div class="left-side-text">
+                            05 - Endereço
+                        </div>
+                    </div>
+                    <div class="border padding grow">
+                        <div class="left-side-text">
+                            06 - Município
+                        </div>
+                    </div>
+                    <div class="border padding">
+                        <div class="left-side-text">
+                            07 - UF
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-column">
+                <div class="border small-title-text gray-bg">
+                    BLOCO 2 - SINTESE DA EXECUÇÃO DA RECEITA E DA DESPESA
+                </div>
+                <div class="flex flex-column">
+
+                    <div class="flex grow">
+                        <div class="flex flex-column grow">
+                            <div class="border left-side-text">
+                                08 - Saldo Reprogramado do Exercício Anterior
+                            </div>
+                            <div class="flex grow">
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Custeio
+                                    </div>
+                                </div>
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Capital
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-column grow">
+                            <div class="left-side-text border">
+                                09 - Valor Creditado pelo FNDE no Exercício
+                            </div>
+                            <div class="flex grow">
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Custeio
+                                    </div>
+                                </div>
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Capital
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-column grow">
+                            <div class="left-side-text border">
+                                10 - Recursos Próprios
+                            </div>
+                            <div class="flex grow">
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Custeio
+                                    </div>
+                                </div>
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Capital
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-column grow">
+                            <div class="left-side-text border">
+                                11 - Rendimento de Aplicação Financeira
+                            </div>
+                            <div class="flex grow">
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Custeio
+                                    </div>
+                                </div>
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Capital
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-column grow">
+                            <div class="left-side-text border">
+                                12 - Devolução de Recursos ao FNDE
+                            </div>
+                            <div class="flex grow">
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Custeio
+                                    </div>
+                                </div>
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Capital
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="grow">
+                            <div class="border padding left-side-text">
+                                13 - Valor Geral da Receita
+                            </div>
+                            <div class="flex grow">
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Custeio
+                                    </div>
+                                </div>
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Capital
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grow">
+                            <div class="border padding left-side-text">
+                                14 - Valor da Despesa Realizada
+                            </div>
+                            <div class="flex grow">
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Custeio
+                                    </div>
+                                </div>
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Capital
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grow">
+                            <div class="border padding left-side-text">
+                                15 - Saldo para Reprogramar para o Exercício Seguinte
+                            </div>
+                            <div class="flex grow">
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Custeio
+                                    </div>
+                                </div>
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Capital
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grow">
+                            <div class="border padding left-side-text">
+                                16 - Saldo Devolvido
+                            </div>
+                            <div class="flex grow">
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Custeio
+                                    </div>
+                                </div>
+                                <div class="flex flex-column grow">
+                                    <div class="small-text border text-center">
+                                        Capital
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grow">
+                            <div class="border padding left-side-text">
+                                17 - Período de Execução
+                            </div>
+                            <div class="border" style="padding: 20px;">
+                                Teste
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-column">
+                <div class="border small-title-text gray-bg">
+                    BLOCO 3 - PAGAMENTOS EFETUADOS
+                </div>
+                <div class="flex grow">
+                    <div class="grow flex flex-column">
+                        <div class="padding border left-side-text">
+                            19 - Item
+                        </div>
+                    </div>
+                    <div class="grow flex flex-column">
+                        <div class="padding border left-side-text">
+                            20 - Nome do Favorecido
+                        </div>
+                    </div>
+                    <div class="grow flex flex-column">
+                        <div class="padding border left-side-text">
+                            21 - CNPJ e CPF
+                        </div>
+                    </div>
+                    <div class="grow flex flex-column">
+                        <div class="padding border left-side-text">
+                            22 - Tipo de Bens e Materiais Adquiridos
+                        </div>
+                    </div>
+                    <div class="grow flex flex-column">
+                        <div class="padding border left-side-text">
+                            23 - Origem R$
+                        </div>
+                    </div>
+                    <div class="grow flex flex-column">
+                        <div class="padding border">
+                            24 - Nat. Desp
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+[
+    {
+        "path": "a4-landscape",
+        "format": "A4",
+        "landscape": true
+    },
+    {
+        "path": "a4-portrait",
+        "format": "A4",
+        "landscape": false,
+        "watermark_exceptions": ["diario-classe", "tabela"]
+    }
+]

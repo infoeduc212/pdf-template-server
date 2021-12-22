@@ -1,4 +1,4 @@
-import { Browser } from "puppeteer";
+import { Browser, PaperFormat } from "puppeteer";
 
 import puppeteer from "puppeteer";
 import fs from "fs";
@@ -18,6 +18,33 @@ app.use(cors());
 app.use(morgan("combined"));
 
 export default function createServer(): Promise<any> {
+    const avaliableTemplates = new Map<string, { format: string; landscape: boolean; noWatermark: boolean; path: string; }>()
+    const pathList = JSON.parse(fs.readFileSync(path.join(__dirname, "./templates/config.json"), { encoding: "utf8" })) as Array<{
+        path: string,
+        format: string
+        landscape: boolean
+        watermark_exceptions: Array<string>
+    }>
+    pathList.forEach(cfg => {
+        const templatesPath = path.join(__dirname, "templates", cfg.path)
+        const templates = fs.readdirSync(templatesPath)
+        templates.forEach(template => {
+            const joinedPath = path.join(templatesPath, template)
+            const stat = fs.statSync(joinedPath)
+            if (stat.isFile()) {
+                const templateName = path.basename(template).replace(".ejs", "")
+
+                avaliableTemplates.set(templateName, {
+                    format: cfg.format.toLowerCase(),
+                    landscape: cfg.landscape,
+                    noWatermark: cfg.watermark_exceptions.indexOf(templateName) !== -1,
+                    path: path.join(templatesPath, template)
+                })
+            }
+        })
+    });
+    console.log(avaliableTemplates)
+
     return new Promise((resolve, _) => {
         puppeteer
             .launch({
@@ -32,24 +59,18 @@ export default function createServer(): Promise<any> {
                         ? req.body.output
                         : "pdf";
                     if (typeof reqTemplate !== "string")
-                        return res.status(400).send("Invalid template name");
+                        return res.status(400).send("Invalid template name (not a string)");
                     if (typeof args !== "object")
                         return res
                             .status(400)
                             .send("No arguments object provided");
 
-                    const filename = reqTemplate + ".ejs";
-                    const templatePath = path.join(
-                        __dirname,
-                        "ejs-templates",
-                        filename
-                    );
-
                     try {
-                        if (fs.existsSync(templatePath)) {
+                        const template = avaliableTemplates.get(reqTemplate)
+                        if (template) {
                             console.debug(inspect(args, {showHidden: false, depth: null, colors: true}))
                             const render = (await ejs.renderFile(
-                                templatePath,
+                                template.path,
                                 {...args, math: {
                                     evaluate
                                 }, DateTime}
@@ -60,8 +81,6 @@ export default function createServer(): Promise<any> {
                                     "application/pdf"
                                 );
 
-                                const watermarkExceptions = ["diario-classe", "tabela"]
-
                                 const page = await browser.newPage();
                                 await page.setContent(render);
                                 await page.evaluateHandle(
@@ -69,20 +88,22 @@ export default function createServer(): Promise<any> {
                                 );
                                 const dateNow = DateTime.now().setZone("America/Sao_Paulo")
                                 const stream = await page.createPDFStream({
-                                    format: "a4",
+                                    format: template.format as PaperFormat,
+                                    landscape: template.landscape,
                                     margin: {
                                         top: 15,
                                         bottom: 30,
                                         left: 10,
                                         right: 10,
                                     },
+                                    printBackground: true,
                                     footerTemplate: `
                                 <div style="width: 100%; margin-right: 10px; text-align: right; font-size: 8px;">
                                      PDF gerado pela a Plataforma InfoEduc na data ${dateNow.toFormat("dd/MM/yyyy")} às ${dateNow.toFormat("HH:mm:ss")}
 
                                 </div>
                                 `,
-                                    displayHeaderFooter: watermarkExceptions.indexOf(reqTemplate) !== -1 ? false : true,
+                                    displayHeaderFooter: !template.noWatermark,
                                 });
                                 stream.pipe(res);
                                 stream.on("end", async () => {
