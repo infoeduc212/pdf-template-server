@@ -84,6 +84,7 @@ export default function createServer(): Promise<any> {
                                 );
 
                                 const page = await browser.newPage();
+                                await page.setViewport({ width: 2480, height: 3508 })
                                 await page.setContent(render);
                                 await page.evaluateHandle(
                                     "document.fonts.ready"
