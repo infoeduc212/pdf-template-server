@@ -38,7 +38,7 @@ export default function createServer(): Promise<any> {
                     avaliableTemplates.set(templateName, {
                         format: cfg.format.toLowerCase(),
                         landscape: cfg.landscape,
-                        noWatermark: cfg.watermark_exceptions.indexOf(templateName) !== -1,
+                        noWatermark: cfg.watermark_exceptions && cfg.watermark_exceptions.indexOf(templateName) !== -1,
                         path: path.join(templatesPath, template)
                     })
                 }
