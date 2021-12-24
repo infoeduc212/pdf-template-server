@@ -28,22 +28,22 @@ export default function createServer(): Promise<any> {
     pathList.forEach(cfg => {
         const templatesPath = path.join(__dirname, "templates", cfg.path)
         if (fs.existsSync(templatesPath)) {
-        const templates = fs.readdirSync(templatesPath)
-        templates.forEach(template => {
-            const joinedPath = path.join(templatesPath, template)
-            const stat = fs.statSync(joinedPath)
-            if (stat.isFile()) {
-                const templateName = path.basename(template).replace(".ejs", "")
-
-                avaliableTemplates.set(templateName, {
-                    format: cfg.format.toLowerCase(),
-                    landscape: cfg.landscape,
-                    noWatermark: cfg.watermark_exceptions.indexOf(templateName) !== -1,
-                    path: path.join(templatesPath, template)
-                })
-            }
-        })
-    }
+            const templates = fs.readdirSync(templatesPath)
+            templates.forEach(template => {
+                const joinedPath = path.join(templatesPath, template)
+                const stat = fs.statSync(joinedPath)
+                if (stat.isFile()) {
+                    const templateName = path.basename(template).replace(".ejs", "")
+                    
+                    avaliableTemplates.set(templateName, {
+                        format: cfg.format.toLowerCase(),
+                        landscape: cfg.landscape,
+                        noWatermark: cfg.watermark_exceptions.indexOf(templateName) !== -1,
+                        path: path.join(templatesPath, template)
+                    })
+                }
+            })
+        }
     });
     console.log(avaliableTemplates)
 
