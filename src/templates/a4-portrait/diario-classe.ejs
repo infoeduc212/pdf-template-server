@@ -142,7 +142,7 @@
                         <b>Aluno (a):</b>
                         <div class="text-line"><%= aluno.nome_aluno %></div>
                         <% if (tipo_documento === "Infantil") { %>
-                        <% if (infantil_possui_nee === true) { %>
+                        <% if (aluno.possui_nee === true) { %>
                         <b>NEE:</b>
                         <div class="text-line"><%= aluno.especificacao_nee %></div>
                         <% } %>
