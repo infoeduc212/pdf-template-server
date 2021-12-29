@@ -158,8 +158,9 @@
                     </div>
                 </div>
             </div>
-            <% const frequencia = aluno.frequencia %> 
-            <%- include("reusable/diario-classe/frequencia.ejs") %>
+            <% if (aluno.frequencia) { %>
+                <%- include("reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia }) %>
+            <% } %>
             <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
             <h3 style="text-align: center">Resultado Bimestral</h3>
             <% 
