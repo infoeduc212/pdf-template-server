@@ -209,17 +209,9 @@
             </div>
             <% } %>
             <% if (tipo_documento === "Infantil") { %>
-            <div style="margin-top: 15px;">
-                <% if (aluno.possui_nee === true) { %>
-                <div>
-                    <% if (tipo_relatorio_acompanhamento === "Descritivo") { %>
-                    <%- include("reusable/ficha-acompanhamento/lista-relatorio-descritivo.ejs") %>
-                    <% } %>
-                    <% if (tipo_relatorio_acompanhamento === "Objetivo") { %>
-                    <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs") %>
-                    <% } %>
-                </div>
-                <% } %>
+            <div class="page-break">
+                <%# TODO: Relatório Descritivo %> 
+                <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { objetivos_aprendizagem: aluno.objetivos_aprendizagem }) %>
             </div>
             <% } %>
             <% if (tipo_documento === "Fundamental") { %>
