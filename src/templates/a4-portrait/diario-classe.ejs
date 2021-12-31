@@ -210,8 +210,10 @@
             <% } %>
             <% if (tipo_documento === "Infantil") { %>
             <div class="page-break">
-                <%# TODO: Relatório Descritivo %> 
-                <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
+                <%# TODO: Relatório Descritivo %>
+                <% if (aluno.relatorio_experiencia) { %>
+                    <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
+                <% } %>
             </div>
             <% } %>
             <% if (tipo_documento === "Fundamental") { %>
