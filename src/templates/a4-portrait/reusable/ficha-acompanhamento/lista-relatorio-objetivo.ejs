@@ -11,21 +11,23 @@
     <div style="border: 1px solid; padding: 5px 0; font-size: 18px;" class="text-center">
         Objetivo de Aprendizagem e Desenvolvimento
     </div>
-    <table style="table-layout: fixed; border-spacing: 0;">
-        <tbody>
-            <% relatorio_experiencia.lista.forEach(item => { %>
-                <tr>
-                    <td>
-                        <%= item.descricao %>
-                    </td>
-                    <td style="width: 50px; height: 60px; line-height: 1.8;" class="text-center">
-                        <div class="text-center" style="font-size: 14px;">
-                            Alcançado
-                        </div>
-                        <%= item.alcancado ? "Sim" : "Não" %>
-                    </td>
-                </tr>
-            <% }) %>
-        </tbody>
-    </table>
+    <% if (relatorio_experiencia.lista) { %>
+        <table style="table-layout: fixed; border-spacing: 0;">
+            <tbody>
+                <% relatorio_experiencia.lista.forEach(item => { %>
+                    <tr>
+                        <td>
+                            <%= item.descricao %>
+                        </td>
+                        <td style="width: 50px; height: 60px; line-height: 1.8;" class="text-center">
+                            <div class="text-center" style="font-size: 14px;">
+                                Alcançado
+                            </div>
+                            <%= item.alcancado ? "Sim" : "Não" %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
 </div>
