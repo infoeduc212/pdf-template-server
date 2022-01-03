@@ -111,6 +111,13 @@
             <% const monthRange = rangeArray.filter(record => {
                         const date = parseDate(record.data_lancamento)
                         return date.month === month && date.year === parseInt(year)
+                    }).filter((elem, i, array) => {
+                        const parsed = parseDate(elem.data_lancamento)
+                        for (let i = 0; i < array.length; i++) {
+                            const element = array[i];
+                            const nowParsed = parseDate(element.data_lancamento)
+                            return nowParsed.day !== parsed.day
+                        }
                     }) %>
                     <% console.log(monthRange) %>
             <!-- Quantidade de presença no dia -->
