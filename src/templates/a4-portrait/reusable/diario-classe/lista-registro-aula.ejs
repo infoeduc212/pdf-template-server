@@ -22,7 +22,7 @@
         <tr>
             <td class="text-center">Data</td>
             <td class="text-center">Resumo das Atividades</td>
-            <td class="text-center">Rubrica do(a) Professor(a)</td>
+            <td class="text-center" style="width: 20%;">Rubrica do(a) Professor(a)</td>
         </tr>
     </thead>
     <tbody>
@@ -30,10 +30,10 @@
             <tr>
                 <td class="text-center" style="width: 10%">
                     <% const date = new Date(atividade.data) %>
-                    <%= padWithZero(date.getDate() + 1) + "/" + padWithZero(date.getMonth() + 1) %>
+                    <%= padWithZero(date.getDate() + "/" + padWithZero(date.getMonth() + 1) %>
                 </td>
                 <td>
-                    <%= atividade.resumo %> 
+                    <%= atividade.resumo %>
                 </td>
                 <td class="text-center" style="width: 20%;">
                     

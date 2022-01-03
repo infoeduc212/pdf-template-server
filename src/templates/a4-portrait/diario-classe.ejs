@@ -209,7 +209,7 @@
             </div>
             <% } %>
             <% if (tipo_documento === "Infantil") { %>
-            <div class="page-break">
+            <div style="margin-top: 10px;">
                 <%# TODO: Relatório Descritivo %>
                 <% if (aluno.relatorio_experiencia) { %>
                     <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
