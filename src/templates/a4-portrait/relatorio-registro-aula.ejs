@@ -4,7 +4,33 @@
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
     <meta charset="UTF-8">
 </head>
+<%- include("css/common.ejs") %> 
 <body>
-    <%- include("reusable/diario-classe/lista-registro-aula.ejs") %>
+    <div id="container">
+        <%- include("reusable/header-escola.ejs") %>
+        <div class="flex flex-column small-gap" style="gap: 10px; margin-bottom: 20px;">
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Estabelecimento de Ensino:</b>
+                    <div class="text-line"><%= escola_nome %> </div>
+                </div>
+                <div class="inline pad-right">
+                    <b>Turma:</b>
+                    <div class="text-line"><%= nome_turma %></div>
+                </div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline pad-right">
+                    <b>Prof (a):</b>
+                    <div class="text-line"><%= nome_professor %></div>
+                </div>
+                <div class="inline">
+                    <b>Período Letivo:</b>
+                    <div class="text-line"><%= periodo_letivo %></div>
+                </div>
+            </div>
+        </div>
+        <%- include("reusable/diario-classe/lista-registro-aula.ejs") %>
+    </div>
 </body>
 </html>

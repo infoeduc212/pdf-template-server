@@ -281,7 +281,7 @@
                             <label for="transferido">Transferido</label>
                             <div style="margin-left: 5px; display: flex; float: right">
                                 <% 
-                                const transferido = aluno.transferido
+                                const transferido = aluno.status === "Transferido"
                                 let dataTransferido
                                 if (transferido === true)
                                     dataTransferido = new Date(aluno.transferido_data) %>
@@ -303,7 +303,7 @@
                             <label for="transferido">Desistente</label>
                             <div style="margin-left: 5px; display: flex; float: right">
                                 <% 
-                                const desistente = aluno.desistente
+                                const desistente = aluno.status === "Desistente"
                                 let desistenteData
                                 if (desistente === true)
                                 desistenteData = new Date(aluno.desistente_data) %>
@@ -336,6 +336,28 @@
         </div>
     <% }) %>
     <div class="page-break" style="margin: 10px;">
+        <% const sortedDateArray = registros_aulas.sort((a, b) => {
+            return new Date(a.data) - new Date(b.data)
+        }) 
+        const monthDict = {
+            0: "Janeiro",
+            1: "Fevereiro",
+            2: "Março",
+            3: "Abril",
+            4: "Maio",
+            5: "Junho",
+            6: "Julho",
+            7: "Agosto",
+            8: "Setembro",
+            9: "Outubro",
+            10: "Novembro",
+            11: "Dezembro"
+        }
+        %> 
+        
+        <div style="text-align: center; margin: 20px;">
+            <b>Mês: <%= monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b> 
+        </div>
         <%- include("reusable/diario-classe/lista-registro-aula.ejs") %>
     </div>
     <div class="page-break">
