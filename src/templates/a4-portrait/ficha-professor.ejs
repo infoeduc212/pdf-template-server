@@ -86,14 +86,18 @@
                 <div class="multicoluna">
                     <div class="inline">
                         <b>Necessidade Educativa Especial (NEE):</b>
-                        (<%= !professor.tem_deficiencia ? "X" : " " %>) Não possui
-                        (<%= professor.tem_deficiencia ? "X" : " " %>) Possui:
+                        (<%= professor.tem_deficiencia !== "true" ? "X" : " " %>) Não possui
+                        (<%= professor.tem_deficiencia === "true" ? "X" : " " %>) Possui:
                     </div>
                 </div>
                 <div class="multicoluna">
                     <div class="inline">
                         <b>Especificação da NEE:</b>
-                        <div class="texto-linha"><%= string(professor.especificacao_deficiencia) %></div>
+                        <div class="texto-linha">
+                            <% if (professor.tem_deficiencia === "true") { %>
+                                <%= string(professor.especificacao_deficiencia) %>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
                 <div class="title-header">Modelo Antigo de Certidão Civil</div>
