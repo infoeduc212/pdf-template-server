@@ -13,24 +13,58 @@
 <body style="margin: 30px;">
     <%- include("reusable/header-escola.ejs") %>
     <%- include("css/common.ejs") %>
-    <h3 style="text-align: center; padding: 10px;">Mapa Individual de Frequência</h3>
     <div>
-        <div style="display: flex; margin-bottom: 10px">
-            <b class="pad-right" style="margin-right: 5px">Nome do(a) aluno(a)</b>
-            <div style="flex-grow: 1;" class="text-line"><%= aluno.nome %></div>
-            <b class="pad-right">Série:</b>
-            <div style="max-width: 70px;" class="text-line"><%= aluno.serie %></div>
-        </div>
-        <div style="display: flex; margin-bottom: 10px">
-            <b class="pad-right">Código do INEP:</b>
-            <div style="flex-grow: 1;" class="text-line"><%= aluno.codigo_inep %></div>
-            <b class="pad-right">ID da InfoEduc:</b>
-            <div style="flex-grow: 1" class="text-line"><%= aluno.codigo_infoeduc %></div>
-            <b class="pad-right">Ano Letivo:</b>
-            <div style="flex-grow: 1; max-width: 50px;" class="text-line text-center"><%= ano_letivo %></div>
+        <div class="flex flex-column" style="gap: 10px;">
+            <div class="flex grow">
+                <div class="flex grow">
+                    <b class="pad-right" style="margin-right: 5px">Instituição do Ensino:</b>
+                    <div class="text-line"><%= nome_escola %></div>
+                </div>
+                <div style="max-width: 160px;" class="flex grow">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line text-center"><%= nome_ano_letivo %></div>
+                </div>
+            </div>
+            <div class="flex grow">
+                <div class="flex grow">
+                    <b class="pad-right">Prof (a):</b>
+                    <div class="text-line"><%= nome_professor %></div>
+                </div>
+                <div style="max-width: 250px;" class="flex grow">
+                    <b class="pad-right">Período Letivo:</b>
+                    <div class="text-line text-center"><%= nome_periodo_letivo %></div>
+                </div>
+            </div>
+            <div class="flex grow">
+                <div class="flex grow">
+                    <b class="pad-right">Aluno(a):</b>
+                    <div class="text-line"><%= aluno.nome %></div>
+                </div>
+                <div style="max-width: 190px;" class="flex grow">
+                    <b class="pad-right">Turma:</b>
+                    <div class="grow text-line"><%= nome_turma %></div>
+                </div>
+            </div>
+            <% if (tipo_documento !== "Infantil") { %>
+                <div class="flex grow">
+                    <div class="flex grow">
+                        <b class="pad-right">Componente Curricular:</b>
+                        <div class="text-line"><%= nome_disciplina %></div>
+                    </div>
+                </div>
+            <% } %>
         </div>
         <br>
-        <%- include("reusable/diario-classe/frequencia.ejs") %> 
+        <h3 class="text-center">Mapa Individual de Frequência</h3>
+        <br>
+        <% 
+           const startDate = new Date(periodo_letivo_date_range[0])
+           const endDate = new Date(periodo_letivo_date_range[1])
+         %> 
+        <%- include("reusable/diario-classe/frequencia.ejs", { frequencia: frequencia.filter(item => {
+            const date = new Date(item.data_lancamento)
+            return (date >= startDate && date <= endDate)
+        }) }) %> 
     </div>
 </body>
 </html>
