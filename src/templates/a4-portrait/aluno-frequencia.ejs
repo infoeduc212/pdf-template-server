@@ -17,7 +17,7 @@
         <div class="flex flex-column" style="gap: 10px;">
             <div class="flex grow">
                 <div class="flex grow">
-                    <b class="pad-right" style="margin-right: 5px">Instituição do Ensino:</b>
+                    <b class="pad-right" style="margin-right: 5px">Instituição de Ensino:</b>
                     <div class="text-line"><%= nome_escola %></div>
                 </div>
                 <div style="max-width: 160px;" class="flex grow">
@@ -55,8 +55,9 @@
             <% } %>
         </div>
         <br>
-        <h3 class="text-center">Mapa Individual de Frequência</h3>
-        <br>
+        <h3 class="text-center">
+            <u>Frequência Individual</u>
+        </h3>
         <% 
            const startDate = new Date(periodo_letivo_date_range[0])
            const endDate = new Date(periodo_letivo_date_range[1])
