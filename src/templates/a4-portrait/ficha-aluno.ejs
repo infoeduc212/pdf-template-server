@@ -248,15 +248,15 @@
                             <div class="multicoluna">
                                 <div class="inline">
                                     <b>Recebe Bolsa Família</b>
-                                    (<%= aluno.dados_variaveis.recebe_bolsa_familia ? "X" : " " %>) Sim
-                                    (<%= !aluno.dados_variaveis.recebe_bolsa_familia ? "X" : " " %>) Não
+                                    (<%= aluno.dados_variaveis.recebe_bolsa_familia === "true" ? "X" : " " %>) Sim
+                                    (<%= aluno.dados_variaveis.recebe_bolsa_familia !== "true" ? "X" : " " %>) Não
                                 </div>
                             </div>
                             <div class="multicoluna">
                                 <div class="inline">
                                     <b>Transporte escolar público:</b>
-                                    (<%= aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Utiliza
-                                    (<%= !aluno.dados_variaveis.transporte_escolar_publico ? "X" : " " %>) Não utiliza
+                                    (<%= aluno.dados_variaveis.transporte_escolar_publico === "true" ? "X" : " " %>) Utiliza
+                                    (<%= aluno.dados_variaveis.transporte_escolar_publico !== "true" ? "X" : " " %>) Não utiliza
                                 </div>
                             </div>
                         </div>
