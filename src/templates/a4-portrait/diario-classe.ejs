@@ -161,57 +161,59 @@
             <% if (aluno.frequencia) { %>
                 <%- include("reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia }) %>
             <% } %>
+            <% if (aluno.notas) { %>
             <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
             <h3 style="text-align: center">Resultado Bimestral</h3>
-            <% 
-            const headElemList = []
-            const notaResList = []
-            const notaMapping = {}
-            for (let i = 0; i < aluno.notas.length; i++) {
-                const nota = aluno.notas[i]
-                headElemList.push(nota.avaliacao.alias)
-                notaResList.push(nota.nota_avaliacao)
-                if (nota.recuperacao) {
-                    headElemList.push("Rec.")
-                    notaResList.push(nota.recuperacao.nota_recuperacao)
+                <% 
+                const headElemList = []
+                const notaResList = []
+                const notaMapping = {}
+                for (let i = 0; i < aluno.notas.length; i++) {
+                    const nota = aluno.notas[i]
+                    headElemList.push(nota.avaliacao.alias)
+                    notaResList.push(nota.nota_avaliacao)
+                    if (nota.recuperacao) {
+                        headElemList.push("Rec.")
+                        notaResList.push(nota.recuperacao.nota_recuperacao)
+                    }
+                    notaMapping[nota.avaliacao.alias] = nota.nota_avaliacao
                 }
-                notaMapping[nota.avaliacao.alias] = nota.nota_avaliacao
-            }
-            const resultadoMedia = math.evaluate(formula_media, notaMapping)
-             %>
-            <div style="margin: 0 50px;">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <% headElemList.forEach(elem => { %>
-                            <td class="text-center">
-                                <%= elem %>
-                            </td>
-                            <% }) %>
-                            <td class="text-center">
-                                Média do<br>Período
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <% notaResList.forEach(res => { %>
-                            <td class="text-center">
-                                <%= res %>
-                            </td>
-                            <% }) %>
-                            <td class="text-center">
-                                <%= resultadoMedia %>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <% } %>
+                const resultadoMedia = math.evaluate(formula_media, notaMapping)
+                 %>
+                <div style="margin: 0 50px;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <% headElemList.forEach(elem => { %>
+                                <td class="text-center">
+                                    <%= elem %>
+                                </td>
+                                <% }) %>
+                                <td class="text-center">
+                                    Média do<br>Período
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <% notaResList.forEach(res => { %>
+                                <td class="text-center">
+                                    <%= res %>
+                                </td>
+                                <% }) %>
+                                <td class="text-center">
+                                    <%= resultadoMedia %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <% } %>
             <% if (tipo_documento === "Infantil") { %>
             <div style="margin-top: 10px;">
                 <%# TODO: Relatório Descritivo %>
                 <% if (aluno.relatorio_experiencia) { %>
+                    <h3 class="text-center"><u>AVALIAÇÃO</u></h3>
                     <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
                 <% } %>
             </div>
@@ -246,7 +248,7 @@
                         <tr>
                             <td>Média Anual</td>
                             <td class="fixed-width text-center"><%= 
-                                notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length
+                                aluno.notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length
                              %></td>
                         </tr>
                         <tr>
@@ -323,6 +325,7 @@
                     </div>
                 </div>
             </div>
+            <% } %>
             <div class="flex flex-column" style="margin-top: 10px;">
                 <% for (let i = 0; i < descricao_linhas; i++) { %>
                 <div class="flex">
