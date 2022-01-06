@@ -173,17 +173,19 @@
             <% } %> 
             <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
             <h3 style="text-align: center">Resultado Bimestral</h3>
-            <% 
-            const headElemList = []
-            const notaResList = []
-            const notaMapping = {}
-            for (let i = 0; i < aluno.notas.length; i++) {
-                const nota = aluno.notas[i]
-                headElemList.push(nota.avaliacao.alias)
-                notaResList.push(nota.nota_avaliacao)
-                if (nota.recuperacao) {
-                    headElemList.push("Rec.")
-                    notaResList.push(nota.recuperacao.nota_recuperacao)
+                <% 
+                const headElemList = []
+                const notaResList = []
+                const notaMapping = {}
+                for (let i = 0; i < aluno.notas.length; i++) {
+                    const nota = aluno.notas[i]
+                    headElemList.push(nota.avaliacao.alias)
+                    notaResList.push(nota.nota_avaliacao)
+                    if (nota.recuperacao) {
+                        headElemList.push("Rec.")
+                        notaResList.push(nota.recuperacao.nota_recuperacao)
+                    }
+                    notaMapping[nota.avaliacao.alias] = nota.nota_avaliacao
                 }
                 notaMapping[nota.avaliacao.alias] = nota.nota_avaliacao
             }
