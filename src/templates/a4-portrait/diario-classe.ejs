@@ -54,14 +54,25 @@
         border: 1px solid;
         padding: 5px;
     }
+
+    .bold {
+        font-weight: bold;
+    }
 </style>
 
 <body>
+    <% if (diario.usar_foto_capa) { %>
+        <div style="width: 100%;">
+            <img src="<%= diario.imagem_rede %>">
+        </div> 
+    <% } %>
     <div class="page-break" style="margin: 80px;">
-        <div style="width: 6em; margin-left: auto; margin-right: auto;" class="text-center">
-            <img src="<%= diario.imagem_rede %>" width="100" height="100">
-        </div>
-        <h2 class="text-center"><%= diario.nome_rede %></h2>
+        <% if (!diario.usar_foto_capa) { %>
+            <div style="width: 6em; margin-left: auto; margin-right: auto;">
+                <img src="<%= diario.imagem_rede %>" width="100" height="100">
+            </div>
+            <h2 class="text-center"><%= diario.nome_rede %></h2>
+        <% } %>
         <br>
         <br>
         <br>
@@ -80,32 +91,34 @@
         <br>
         <div style="line-height: 1.6; font-size: 16px;">
             <div class="multicolumn">
-                <div class="pad-right">Instituição de Ensino:</div>
+                <div class="pad-right bold">Instituição de Ensino:</div>
                 <div class="text-line"><%= diario.estabelecimento_ensino %></div>
             </div>
             <div class="multicolumn">
-                <div class="pad-right">Endereço:</div>
+                <div class="pad-right bold">Endereço:</div>
                 <div class="text-line"><%= diario.endereco %></div>
             </div>
             <div class="multicolumn">
-                <div class="pad-right">Etapa de escolaridade:</div>
+                <div class="pad-right bold">Etapa de escolaridade:</div>
                 <div class="text-line"><%= diario.etapa_escolaridade %></div>
             </div>
             <div class="multicolumn">
-                <div class="pad-right">Professor(a):</div>
+                <div class="pad-right bold">Professor(a):</div>
                 <div class="text-line"><%= diario.nome_professor %></div>
             </div>
             <% if (tipo_documento === "Fundamental") { %>
             <div class="multicolumn">
-                <div class="pad-right">Componente Curricular:</div>
+                <div class="pad-right bold">Componente Curricular:</div>
                 <div class="text-line"><%= diario.componente_curricular %></div>
             </div>
             <% } %>
             <div class="multicolumn">
-                <div class="pad-right">Turma:</div>
+                <div class="pad-right bold">Turma:</div>
                 <div class="text-line"><%= diario.turma %></div>
-                <div class="pad-right">Turno:</div>
+                <div class="pad-right bold">Turno:</div>
                 <div class="text-line"><%= diario.turno %></div>
+                <div class="pad-right bold">Período Letivo:</div>
+                <div class="text-line"><%= diario.periodo_letivo %></div>
             </div>
         </div>
         <div style="margin: 0 250px;">
@@ -118,19 +131,16 @@
     <div class="page-break" style="margin-top: 70px;">
         <div style="margin: 0 80px;">
             <h1 class="text-center">Orientações</h1>
-            <p style="font-weight: bold; text-indent: 50px;">Prezado professor(a), o senhor (a) é responsável pelo seu
+            <p style="font-weight: bold; text-indent: 50px; text-align: justify;">Prezado professor(a), o senhor (a) é responsável pelo seu
                 diário de classe, portanto observe as orientações a
                 seguir:</p>
-
-            <div style="display: flex; flex-direction: column; line-height: 1.5;">
-                <% for (let i = 0; i < orientacoes.quantidade_linhas; i++) { %>
-                <div class="flex">
-                    <div>
-                        <%= (i + 1) + "." %>
+                <br>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <% orientacoes.forEach((orientacao, index) => { %>
+                    <div style="text-indent: 50px; text-align: justify; line-height: 1.5;">
+                        <%= (index + 1) + "°." %>  <%= orientacao %>
                     </div>
-                    <div class="text-line">&ensp;</div>
-                </div>
-                <% } %>
+                <% }) %>
             </div>
         </div>
     </div>
@@ -163,7 +173,9 @@
             <% } %>
             <% if (aluno.notas) { %>
             <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
-            <h3 style="text-align: center">Resultado Bimestral</h3>
+            <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
+                Resultado Bimestral
+            </h3>
                 <% 
                 const headElemList = []
                 const notaResList = []
@@ -190,7 +202,13 @@
                                 </td>
                                 <% }) %>
                                 <td class="text-center">
-                                    Média do<br>Período
+                                    Média
+                                </td>
+                                <td class="text-center">
+                                    Rec.
+                                </td>
+                                <td class="text-center">
+                                    Méd.<br>Final
                                 </td>
                             </tr>
                         </thead>
@@ -326,16 +344,6 @@
                 </div>
             </div>
             <% } %>
-            <div class="flex flex-column" style="margin-top: 10px;">
-                <% for (let i = 0; i < descricao_linhas; i++) { %>
-                <div class="flex">
-                    <% if (i === 0) { %>
-                    <b>Descrição:</b>
-                    <% } %>
-                    <div style="flex-grow: 1;" class="text-line">&ensp;</div>
-                </div>
-                <% } %>
-            </div>
         </div>
     <% }) %>
     <div class="page-break" style="margin: 10px;">
@@ -356,8 +364,9 @@
             10: "Novembro",
             11: "Dezembro"
         }
-        %> 
-        
+        %>
+
+        <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
         <div style="text-align: center; margin: 20px;">
             <b>Mês: <%= monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b> 
         </div>
