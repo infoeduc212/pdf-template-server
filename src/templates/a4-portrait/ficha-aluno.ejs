@@ -254,9 +254,10 @@
                             </div>
                             <div class="multicoluna">
                                 <div class="inline">
+                                    <% const usaTransporte = aluno.dados_variaveis.transporte_escolar_publico === "true" %> 
                                     <b>Transporte escolar público:</b>
-                                    (<%= aluno.dados_variaveis.transporte_escolar_publico === "true" ? "X" : " " %>) Utiliza
-                                    (<%= aluno.dados_variaveis.transporte_escolar_publico !== "true" ? "X" : " " %>) Não utiliza
+                                    (<%= usaTransporte ? "X" : " " %>) Utiliza
+                                    (<%= !usaTransporte ? "X" : " " %>) Não utiliza
                                 </div>
                             </div>
                         </div>
@@ -272,11 +273,11 @@
                                     
                                     <b>Responsável pelo Transporte:</b>
                                     <div class="streched-text">
-                                        (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Municipal" ? "X" : " " %>)
+                                        (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "Municipal" ? "X" : " " %>)
                                         Municipal
-                                        (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Estadual" ? "X" : " " %>)
+                                        (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "Estadual" ? "X" : " " %>)
                                         Estadual
-                                        (<%= aluno.dados_variaveis.responsavel_transporte_escolar === "Federal" ? "X" : " " %>)
+                                        (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "Federal" ? "X" : " " %>)
                                         Federal
                                     </div>
                                 </div>
