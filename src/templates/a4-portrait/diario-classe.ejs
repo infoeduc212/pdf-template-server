@@ -169,23 +169,13 @@
                 </div>
             </div>
             <% if (aluno.frequencia) { %>
-<<<<<<< HEAD
-                <%- include("reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia }) %>
-=======
                 <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia }) %>
->>>>>>> development
             <% } %>
             <% if (aluno.notas) { %>
             <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
             <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
                 Resultado Bimestral
             </h3>
-<<<<<<< HEAD
-                <% 
-                
-                 %>
-=======
->>>>>>> development
                 <div style="margin: 0 50px;">
                     <table class="table">
                         <thead>
@@ -222,10 +212,14 @@
                 <% if (aluno.relatorio_experiencia) { %>
                     <h3 class="text-center"><u>AVALIAÇÃO</u></h3>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
 =======
                     <%- include("../reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
 >>>>>>> development
+=======
+                    <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
+>>>>>>> 39f2702 (Squashed commit of the following:)
                 <% } %>
             </div>
             <% } %>
@@ -364,6 +358,9 @@
             <b>Mês: <%= monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b> 
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 39f2702 (Squashed commit of the following:)
         <%- include("reusable/diario-classe/lista-registro-aula.ejs") %>
 =======
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>

@@ -24,7 +24,7 @@
         <%- include("../reusable/header.ejs") %>
         <h4 class="bold-center">Ficha Individual do Aluno</h4>
         <div class="block">
-        <div class="lineheightsmall">
+            <div class="lineheightsmall">
                 <div class="title-header">Dados da Escola</div>
                 <div class="block">
                     <div class="multicoluna">
@@ -37,6 +37,145 @@
                             <div class="texto-linha"><%= string(escola.inep) %></div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="title-header">Endereço</div>
+            <div class="block lineheightsmall">
+                <div class="multicoluna inline">
+                    <div class="inline">
+                        <b>Zona de residência:</b>
+                        (<%= aluno.dados_endereco.zona_residencia === "Zona Rural" ? "X" : " " %>) Rural
+                        (<%= aluno.dados_endereco.zona_residencia === "Zona Urbana" ? "X" : " " %>) Urbana
+                    </div>
+                    <div class="inline">
+                        <b>CEP:</b>
+                        <div class="texto-linha" style="width: 60px;"><%= string(aluno.dados_endereco.cep) %> </div>
+                    </div>
+                    <div class="inline">
+                        <b>Bairro:</b>
+                        <div class="texto-linha" style="width: 80px;"><%= string(aluno.dados_endereco.bairro) %> </div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Endereço:</b>
+                        <div class="texto-linha" style="width: 500px;"><%= string(aluno.dados_endereco.endereco) %>
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <b>N°:</b>
+                        <div class="text-center texto-linha" style="width: 10px;">
+                            <%= string(aluno.dados_endereco.numero) %>
+                        </div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Complemento:</b>
+                        <div class="texto-linha" style="width: 270px;"><%= string(aluno.dados_endereco.complemento) %>
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <b>Município:</b>
+                        <div class="texto-linha" style="min-width: 90px;"><%= string(aluno.dados_endereco.municipio) %>
+                        </div>
+                    </div>
+                    <div class="inline">
+                        <b>UF:</b>
+                        <div class="texto-linha" style="width: 50px;"><%= string(aluno.dados_endereco.uf) %> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-header">Contato</div>
+            <div class="block lineheightsmall">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>E-mail Principal:</b>
+                        <div class="texto-linha"><%= string(aluno.contato.email_principal) %> </div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>E-mail secundário:</b>
+                        <div class="texto-linha"><%= string(aluno.contato.email_secundario) %> </div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Celular:</b>
+                        <div class="texto-linha"><%= string(aluno.contato.celular) %> </div>
+                    </div>
+                    <div class="inline">
+                        <b>WhatsApp:</b>
+                        <div class="texto-linha"><%= string(aluno.contato.whatsapp) %> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-header">Outras Informações</div>
+            <div class="block">
+                <div class="flex flex-column">
+                    <div class="flex grow">
+                        <div class="flex flex-column grow">
+                            <div class="multicoluna">
+                                <div class="inline">
+                                    <b>Recebe Bolsa Família</b>
+                                    (<%= aluno.dados_variaveis.recebe_bolsa_familia === "true" ? "X" : " " %>) Sim
+                                    (<%= aluno.dados_variaveis.recebe_bolsa_familia !== "true" ? "X" : " " %>) Não
+                                </div>
+                            </div>
+                            <div class="multicoluna">
+                                <div class="inline">
+                                    <% const usaTransporte = aluno.dados_variaveis.transporte_escolar_publico === "true" %> 
+                                    <b>Transporte escolar público:</b>
+                                    (<%= usaTransporte ? "X" : " " %>) Utiliza
+                                    (<%= !usaTransporte ? "X" : " " %>) Não utiliza
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-column grow">
+                            <div class="multicoluna">
+                                <div class="inline">
+                                    <b>País de Nascimento:</b>
+                                    <div class="texto-linha"><%= string(aluno.dados_variaveis.pais_nascimento) %> </div>
+                                </div>
+                            </div>
+                            <div class="multicoluna">
+                                <div class="inline">
+                                    
+                                    <b>Responsável pelo Transporte:</b>
+                                    <div class="streched-text">
+                                        (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "Municipal" ? "X" : " " %>)
+                                        Municipal
+                                        (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "Estadual" ? "X" : " " %>)
+                                        Estadual
+                                        (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "Federal" ? "X" : " " %>)
+                                        Federal
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="multicoluna">
+                            <div class="inline">
+                                <b>Tipo Sanguíneo:</b>
+                                <div class="texto-linha"><%= string(aluno.dados_variaveis.tipo_sanguineo) %></div>
+                            </div>
+                            <div class="inline">
+                                <b>Município de Nascimento:</b>
+                                <div class="texto-linha"><%= string(aluno.dados_variaveis.municipio_nascimento) %></div>
+                            </div>
+                            <div class="inline">
+                                <b>UF de Nascimento:</b>
+                                <div class="texto-linha"><%= string(aluno.dados_variaveis.uf_nascimento) %></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-header">Requerimento</div>
+            <div class="block">
+                <div class="flex streched-text">
                     <div class="multicoluna">
                         <div class="inline">
                             <b>Endereço:</b>
