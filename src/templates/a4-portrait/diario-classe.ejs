@@ -1,6 +1,6 @@
 <html>
 
-<% include("reusable/utils.ejs") %>
+<% include("../reusable/utils.ejs") %>
 
 <head>
     <meta charset="utf-8" />
@@ -169,16 +169,13 @@
                 </div>
             </div>
             <% if (aluno.frequencia) { %>
-                <%- include("reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia }) %>
+                <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia }) %>
             <% } %>
             <% if (aluno.notas) { %>
             <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
             <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
                 Resultado Bimestral
             </h3>
-                <% 
-                
-                 %>
                 <div style="margin: 0 50px;">
                     <table class="table">
                         <thead>
@@ -214,7 +211,7 @@
                 <%# TODO: Relatório Descritivo %>
                 <% if (aluno.relatorio_experiencia) { %>
                     <h3 class="text-center"><u>AVALIAÇÃO</u></h3>
-                    <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
+                    <%- include("../reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
                 <% } %>
             </div>
             <% } %>
@@ -352,7 +349,7 @@
         <div style="text-align: center; margin: 20px;">
             <b>Mês: <%= monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b> 
         </div>
-        <%- include("reusable/diario-classe/lista-registro-aula.ejs") %>
+        <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
     </div>
     <div class="page-break">
         <div>

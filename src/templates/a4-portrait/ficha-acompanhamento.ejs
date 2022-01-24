@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
-    <%- include("css/ficha.ejs") %>
-    <%- include("css/common.ejs") %>
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %>
 </head>
 
 <body>
@@ -36,10 +36,10 @@
         <br>
         <br>
         <% if (tipo_relatorio_acompanhamento === "Descritiva") { %>
-            <%- include("reusable/ficha-acompanhamento/lista-relatorio-descritivo.ejs") %>
+            <%- include("../reusable/ficha-acompanhamento/lista-relatorio-descritivo.ejs") %>
         <% } %>
         <% if (tipo_relatorio_acompanhamento === "Objetiva") { %>
-            <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs") %> 
+            <%- include("../reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs") %> 
         <% } %>
         <div class="flex flex-column" style="margin-top: 10px;">
                 <% for (let i = 0; i < 5; i++) { %>
@@ -51,7 +51,7 @@
                 </div>
                 <% } %>
         </div>
-        <%- include("reusable/campo-assinatura-direcao.ejs") %> 
+        <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
     </div>
 </body>
 

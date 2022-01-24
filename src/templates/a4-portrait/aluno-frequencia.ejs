@@ -11,8 +11,8 @@
     </style>
 </head>
 <body style="margin: 30px;">
-    <%- include("reusable/header-escola.ejs") %>
-    <%- include("css/common.ejs") %>
+    <%- include("../reusable/header-escola.ejs") %>
+    <%- include("../css/common.ejs") %>
     <div>
         <div class="flex flex-column" style="gap: 10px;">
             <div class="flex grow">
@@ -62,7 +62,7 @@
            const startDate = new Date(periodo_letivo_date_range[0])
            const endDate = new Date(periodo_letivo_date_range[1])
          %> 
-        <%- include("reusable/diario-classe/frequencia.ejs", { frequencia: frequencia.filter(item => {
+        <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: frequencia.filter(item => {
             const date = new Date(item.data_lancamento)
             return (date >= startDate && date <= endDate)
         }) }) %> 

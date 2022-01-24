@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "ts-node src/index.ts",
+        "bbcode": "ts-node src/bbcode/parser.ts",
         "dev": "cross-env DEBUG=* nodemon --watch ./src --exec ts-node src/index.ts",
         "test": "jest --detectOpenHandles",
         "prettier": "npx prettier --write .",
