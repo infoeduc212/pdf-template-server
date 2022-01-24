@@ -79,60 +79,60 @@
                 notasComputadas.push(arr)
             })
             %> 
-            <div class="text-center item-border grow">
-                Desenvolvimento Escolar
-            </div>
             <div class="flex flex-column grow">
-                <div class="flex grow">
-                    <div>
-                        <div class="flex flex-column">
-                            <div class="text-center item-border" style="height: 48px;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th rowspan="0">
                                 Componentes<br>Curriculares
-                            </div>
-                            <div class="flex flex-column">
-                                <% materias.forEach(materia => { %>
-                                    <div class="item-border">
-                                        <%= materia %> 
-                                    </div>
-                                <% }) %>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-column grow">
-                        <div class="text-center item-border">
-                            Resultado das Unidades
-                        </div>
-                        <div>
-                            <div class="flex" style="flex-grow: 1;">
-                                <% unidades.forEach(item => { %> 
-                                    <div class="text-center item-border" style="flex-grow: 1;">
-                                        <%= item %> 
-                                    </div>
-                                <% }) %> 
-                            </div>
-                        </div>
-                        <div class="flex flex-column">
-                            <% notasComputadas.forEach(arr => { %>
-                                <div class="flex">
-                                    <% arr.forEach(item => { %>
-                                        <div style="flex: 1;" class="item-border text-center">
-                                            <%= item %>
-                                        </div>
-                                    <% }) %> 
-                                </div>
-                            <% }) %> 
-                        </div>
-                    </div>
-                </div>
+                            </th>
+                            <th colspan="<%= periodos_letivos.length %>">
+                                Resultado das Unidades
+                            </th>
+                        </tr>
+                        <tr>
+                            <% periodos_letivos.forEach(periodo => { %>
+                                <th><%= periodo %></th>
+                            <% }) %>
+                        </tr>
+                    </thead>
+                    <% 
+                    function groupByProperty(array, property) {
+                        const map = new Map()
+                        for (let i = 0; i < array.length; i++) {
+                            const element = array[i];
+                            const propValue = element[property]
+                            if (!map.has(propValue)) {
+                                map.set(propValue, [])
+                            }
+                            const arrayItem = map.get(propValue)
+                            arrayItem.push(element)
+                            map.set(propValue, arrayItem)
+                        }
+                        return map
+                    }
+                    const grupoDisciplinas = groupByProperty(notas, "grupo_disciplina")
+                     %> 
+                    <tbody>
+                        <tr>
+                            <% const keys = grupoDisciplinas.keys() %>  
+                            <% while(true) { %>
+                                <% const next = keys.next() %>
+                                <% if (next.done) break %> 
+                                
+                            <% } %> 
+                        </tr>
+                    </tbody>
+                </table>
                 <div class="flex">
                     <div class="grow item-border text-center">
-                        Total de Dias Letivos: <%= desenvolvimento_escolar.dias_letivos %> 
+                        Total de Dias Letivos: <%=  %> 
                     </div>
                     <div class="grow item-border text-center">
-                        Total de Faltas: <%= desenvolvimento_escolar.total_faltas %> 
+                        Total de Faltas: <%=  %> 
                     </div>
                     <div class="grow item-border text-center">
-                        Frequência: (<%= desenvolvimento_escolar.percentagem_frequencia %>) %
+                        Frequência: () %
                     </div>
                 </div>
             </div>

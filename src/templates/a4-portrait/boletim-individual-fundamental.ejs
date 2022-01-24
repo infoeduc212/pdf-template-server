@@ -1,189 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
     <%- include("css/common.ejs") %>
-    <style>
-        .item-border {
-            border: 1px solid;
-            padding: 5px;
-        }
-
-        .grow {
-            flex-grow: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
 </head>
-
 <body>
     <%- include("reusable/header-escola.ejs") %>
-    <div style="margin: 20px;">
-
-        <h1 class="text-center">Boletim Escolar</h1>
-        <div class="flex flex-column" style="gap: 10px;">
-            <div class="multicolumn inline">
-                <b>Aluno:</b>
-                <div class="text-line"><%= aluno.nome %></div>
+    <div class="flex flex-column small-gap">
+        <div class="multicolumn">
+            <b class="pad-right">Instituição de Ensino:</b>
+            <div class="text-line"><%= nome_escola %></div>
+        </div>
+        <div class="multicolumn">
+            <b class="pad-right">Aluno (a):</b>
+            <div class="text-line"><%- aluno.nome %></div>
+        </div>
+        <div class="flex" style="gap: 10px;">
+            <div class="multicolumn">
+                <b class="pad-right">ID da InfoEduc:</b>
+                <div class="text-line"><%= aluno.id_infoeduc %></div>
             </div>
             <div class="multicolumn">
-
-                <b>Turma:</b>
-                <div class="text-line"><%= aluno.turma %></div>
-
-                <b>Turno:</b>
-                <div class="text-line"><%= aluno.turno %></div>
-
-                <b>Ano Letivo:</b>
-                <div style="max-width: 50px;" class="text-center text-line"><%= ano_letivo_nome %></div>
-
+                <b class="pad-right">Turma:</b>
+                <div class="text-line"><%= nome_turma %></div>
+            </div>  
+            <div class="multicolumn">
+                <b class="pad-right">Turno:</b>
+                <div class="text-line"><%= nome_turno %></div>
+            </div>
+            <div class="multicolumn">
+                <b class="pad-right">Ano Letivo:</b>
+                <div class="text-line"><%= nome_ano_letivo %> </div>
             </div>
         </div>
-
-        <div style="margin-top: 20px;" class="flex flex-column">
-            <% 
-                // Agrupado por períodos
-                const periodosNotas = {}
-                const periodoFaltas = {}
-                // Agrupado por disciplina
-                const somaMedias = {}
-                const totalFaltas = {}
-
-                periodos_letivos.forEach(periodo => {
-                    nomes_disciplinas.forEach(disciplina => {
-                        // Contar faltas
-                        const frequencia = aluno.frequencia
-                            .filter(item => item.periodo_letivo.nome_periodo === periodo &&
-                                    item.disciplina.nome_disciplina === disciplina)
-                        
-
-                        console.log("frequencia:", frequencia)
-                        let faltasCount = 0
-
-                        frequencia.forEach(item => {
-                            console.log("faltas:", item.qtd_faltas)
-                            faltasCount += item.qtd_faltas
-                        })
-
-                        if (!periodoFaltas[periodo]) periodoFaltas[periodo] = []
-
-                        periodoFaltas[periodo].push(faltasCount)
-
-                        if (!totalFaltas[disciplina]) totalFaltas[disciplina] = 0
-                        totalFaltas[disciplina] += faltasCount
-
-                        // Notas
-                        const notasPeriodo = aluno.notas
-                            .filter(item => item.periodo_letivo.nome_periodo === periodo &&
-                                    item.disciplina.nome_disciplina === disciplina)
-
-                        console.log("periodo:", periodo)
-                        console.log("disciplina:", disciplina)
-                        console.log(notasPeriodo)
-                        
-                        // Calcular média do período
-                        const scope = {}
-
-                        notasPeriodo.forEach(notaPeriodo => {
-                            const alias = notaPeriodo.atividade_avaliativa.alias
-                            scope[alias] = notaPeriodo.nota_avaliacao
-                        })
-
-                        console.log(scope)
-
-                        if (!periodosNotas[periodo]) periodosNotas[periodo] = []
-
-                        const evaluatedExp = math.evaluate(formula_media, scope)
-
-                        // somando a média
-                        if (!somaMedias[disciplina]) somaMedias[disciplina] = 0
-                        somaMedias[disciplina] += evaluatedExp
-
-                        periodosNotas[periodo].push(evaluatedExp)
-                    })
-                });
-                console.log("periodosNotas:", periodosNotas)
-                 %>
-            <div class="flex">
-                <div class="flex flex-column">
-                    <div class="grow text-center item-border">
-                        Componentes Curriculares
-                    </div>
-                    <% nomes_disciplinas.forEach(element => { %>
-                    <div class="text-center item-border">
-                        <%= element %>
-                    </div>
-                    <% }) %>
-                </div>
-                <div class="flex grow">
-                    <div style="width: 100px;" class="flex grow flex-column">
-                        <div class="text-center item-border">
-                            Notas
-                        </div>
-                        <div class="flex">
-                            <% Object.keys(periodosNotas).forEach(periodo => { %>
-                            <div class="flex flex-column">
-                                <div class="text-center grow item-border">
-                                    <%= periodo %>
-                                </div>
-                                <% const array = periodosNotas[periodo] %>
-                                <% array.forEach(idx => { %>
-                                <div class="text-center grow item-border">
-                                    <%= idx %>
-                                </div>
-                                <% }) %>
-                            </div>
-                            <% }) %>
-                        </div>
-                    </div>
-                    <div style="width: 100px;" class="flex flex-column">
-                        <div class="text-center item-border">
-                            Faltas
-                        </div>
-                        <div class="flex">
-                            <% Object.keys(periodoFaltas).forEach(periodo => { %>
-                            <div class="flex flex-column">
-                                <div class="text-center grow item-border">
-                                    <%= periodo %>
-                                </div>
-                                <% const array = periodoFaltas[periodo] %>
-                                <% array.forEach(idx => { %>
-                                <div class="text-center grow item-border">
-                                    <%= idx %>
-                                </div>
-                                <% }) %>
-                            </div>
-                            <% }) %>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex">
-                    <div class="flex flex-column">
-                        <div style="height: 48px;" class="text-center item-border">
-                            Soma das médias
-                        </div>
-                        <% Object.values(somaMedias).forEach(value => { %>
-                        <div class="text-center item-border">
-                            <%= value %>
-                        </div>
-                        <% }) %>
-                    </div>
-                    <div class="flex flex-column">
-                        <div style="height: 48px;" class="text-center item-border">
-                            Total de faltas
-                        </div>
-                        <% Object.values(totalFaltas).forEach(value => { %>
-                        <div class="text-center item-border">
-                            <%= value %>
-                        </div>
-                        <% }) %>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%- include("reusable/campo-assinatura-direcao.ejs") %> 
     </div>
-</body>
+    <% 
+    function groupByProperty(array, property) {
+        const map = new Map()
+        for (let i = 0; i < array.length; i++) {
+            const element = array[i];
+            const propValue = element[property]
+            if (!map.has(propValue)) {
+                map.set(propValue, [])
+            }
+            const arrayItem = map.get(propValue)
+            arrayItem.push(element)
+            map.set(propValue, arrayItem)
+        }
+        return map
+    }
 
+    const notasGroup = groupByProperty(aluno.notas, "grupo_disciplina")
+    const frequenciaGroup = groupByProperty(aluno.frequencia, "grupo_disciplina")
+    %> 
+    <h3 class="page-title">BOLETIM ESCOLAR</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="2" rowspan="5">
+                    Componentes
+                    <br>
+                    Curriculares
+                </th>
+                <th colspan="<%= periodos_letivos.length %>">Notas</th>
+                <th colspan="<%= periodos_letivos.length %>">Faltas</th>
+                <th rowspan="0">Soma das Médias</th>
+                <th rowspan="0">Total de Faltas</th>
+            </tr>
+            <tr>
+                <% periodos_letivos.forEach(periodo => { %>
+                    <th><%= periodo %></th>
+                <% }) %>
+                <% periodos_letivos.forEach(periodo => { %>
+                    <th><%= periodo %></th>
+                <% }) %>
+            </tr>
+        </thead>
+        <tbody>
+            <% const keys = notasGroup.keys() %> 
+            <% while(true) { %>
+                <% const next = keys.next() %>
+                <% if (next.done) break %>
+                <% const grupoDisciplina = next.value %>
+                <% const notas = notasGroup.get(grupoDisciplina) %> 
+                <tr>
+                    <% const disciplinas = groupByProperty(notas, "nome_disciplina") %>
+                    <td class="vertical-text" rowspan="<%= disciplinas.size %>">
+                        <div>
+                            <%= grupoDisciplina %> 
+                        </div>
+                    </td>
+                    <% const disciplinasKeys = disciplinas.keys() %>
+                    <% let count = 0 %> 
+                    <% while(true) { %>
+                        <% const next = disciplinasKeys.next() %>
+                        <% console.log("next:", next) %> 
+                        <% if (next.done) break %>
+                        <% const nomeDisciplina = next.value %>
+                        <% console.log(disciplinas) %> 
+                        <%# Prevenir margem desnecessária %> 
+                        <% if (count !== 0) { %>
+                        </tr>
+                        <tr>
+                        <% } %>
+
+                        <% let totalFaltasDisciplina = 0 %> 
+                        <% let somaMedia = 0 %> 
+                        <%# Nome da disciplina %> 
+                        <td><%= nomeDisciplina %></td>
+                        <% periodos_letivos.forEach(periodo => { %>
+                            <% const notas = disciplinas.get(nomeDisciplina)
+                                .filter(nota => nota.nome_periodo_letivo === periodo) %>
+                            
+                            <% const scope = {} %>
+                            <% console.log("notas:", notas) %>
+                            <% notas.forEach(nota => { %>
+                                <% const alias = nota.alias_avaliacao %>
+                                <% scope[alias] = nota.nota_avaliacao %>
+                            <% }) %>
+                            <% console.log("scope:", scope) %>
+                            <% try { %>
+                                <% console.log("calculando média....") %> 
+                                <% const evaluated = math.evaluate(formula_media, scope) %>
+                                <% somaMedia += evaluated %>
+                                <td class="text-center"><%= evaluated %></td>
+                            <% } catch(e) { %>
+                                <% console.error(`Falha ao calcular média da disciplina ${periodo}`, e) %> 
+                                <td class="text-center">-</td>
+                            <% } %>
+                        <% }) %>
+                        <% periodos_letivos.forEach(periodo => { %>
+                            <% const frequenciaPeriodo = frequenciaGroup.get(grupoDisciplina)
+                                .filter(freq => freq.nome_periodo_letivo === periodo && freq.nome_disciplina === nomeDisciplina) %>
+                            
+                            <% let totalFaltas = 0 %> 
+
+                            <% frequenciaPeriodo.map(freq => freq.qtd_faltas).forEach(falta => { %>
+                                <% totalFaltas += falta %>
+                                <% totalFaltasDisciplina += falta %> 
+                            <% }) %>
+                            <td class="text-center">
+                                <%= totalFaltas %> 
+                            </td>
+                        <% }) %>
+                        <td class="text-center"><%= somaMedia %></td>
+                        <% console.log("totalFaltasDisciplina:", totalFaltasDisciplina) %> 
+                        <td class="text-center"><%= totalFaltasDisciplina %></td>
+                        
+                        <% count++ %> 
+                    <% } %> 
+                </tr>
+            <% } %> 
+        </tbody>
+    </table>
+</body>
 </html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include("css/common.ejs") %>
+    <%- include("css/tabela.ejs") %> 
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+</head>
+<body>
+    <% include("reusable/header-escola.ejs") %> 
+    <div class="campos">
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <b class="pad-right">Instituição de Ensino:</b>
+                <div class="text-line"></div>
+            </div>
+            <div class="multicolumn">
+                <b class="pad-right">Prof. (a):</b>
+                <div class="text-line"></div>
+            </div>
+            <div class="flex" style="gap: 5px;">
+                <div class="multicolumn">
+                    <b class="pad-right">Etapa de Escolaridade:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Ano/Turma:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"></div>
+                </div>
+            </div>
+            <div class="flex" style="gap: 5px;">
+                <div class="multicolumn">
+                    <b class="pad-right">Área do Conhecimento:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Componente Curricular:</b>
+                    <div class="text-line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="page-title">PLANEJAMENTO ANUAL</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <td class="bg-color item-padding">OBJETIVOS/HABILIDADES</td>
+                <td class="bg-color item-padding">TEMAS/CONTEÚDOS</td>
+            </tr>
+        </thead>
+    </table>
+    <div class="page-break">
+        <div class="flex flex-column">
+            <div class="flex flex-column">
+                <div class="bg-color text-center item-border item-padding">PRODECIMENTO DIDÁTICO/METODOLOGICAS</div>
+                <div class="item-border item-padding">
+
+                </div>
+            </div>
+            <div class="flex flex-column">
+                <div class="bg-color text-center item-border item-padding">RECURSOS MATERIAIS</div>
+                <div class="item-border item-padding">
+
+                </div>
+            </div>
+            <div class="flex flex-column">
+                <div class="bg-color text-center item-border item-padding">AVALIAÇÃO</div>
+                <div class="item-border item-padding">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

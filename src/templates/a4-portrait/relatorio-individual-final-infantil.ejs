@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("css/common.ejs") %>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <meta charset="UTF-8">
+    <style>
+        .item-border {
+            border: 1px solid;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <%- include("reusable/header-escola.ejs") %>
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <b class="pad-right">Instituição de Ensino:</b>
+                <div class="text-line"><%= nome_escola %></div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b class="pad-right">Prof (a):</b>
+                    <div class="text-line"><%= nome_professor %></div>
+                </div>
+                <div class="multicolumn" style="width: 300px;">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"><%= nome_ano_letivo %></div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b class="pad-right">Aluno (a):</b>
+                    <div class="text-line"><%= nome_aluno %></div>
+                </div>
+                <div class="multicolumn" style="width: 250px;">
+                    <b class="pad-right">Turma:</b>
+                    <div class="text-line"><%= nome_turma %></div>
+                </div>
+                <div class="multicolumn" style="width: 200px;">
+                    <b>Turno:</b>
+                    <div class="text-line"><%= nome_turno %></div>
+                </div>
+            </div>
+        </div>
+        <h1 class="page-title">RELATÓRIO INDIVIDUAL</h1>
+        <h3 class="text-center">DESCRIÇÃO</h3>
+        <div class="flex flex-column" style="gap: 30px;">
+            <% const lines = 10 %>
+            <% for (let index = 0; index < lines; index++) { %>
+                <div class="text-line">
+
+                </div>
+            <% } %>
+        </div>
+        <%- include("reusable/campo-assinatura-direcao.ejs") %> 
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include("css/common.ejs") %>
+    <%- include("css/tabela.ejs") %> 
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+</head>
+<body>
+    <%- include("reusable/header-escola.ejs") %>
+    <div class="campos">
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <b class="pad-right">Instituição de Ensino:</b>
+                <div class="text-line"></div>
+            </div>
+            <div class="multicolumn">
+                <b class="pad-right">Prof (a):</b>
+                <div class="text-line"></div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b class="pad-right">Etapa de Escolaridade:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="inline">
+                    <b class="pad-right">Ano/Turma:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="inline">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"></div>
+                </div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Área de Conhecimento:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="inline">
+                    <b>Componente Curricular:</b>
+                    <div class="text-line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% 
+    function groupByProperty(array, property) {
+        const map = new Map()
+        for (let i = 0; i < array.length; i++) {
+            const element = array[i];
+            const propValue = element[property]
+            if (!map.has(propValue)) {
+                map.set(propValue, [])
+            }
+            const arrayItem = map.get(propValue)
+            arrayItem.push(element)
+            map.set(propValue, arrayItem)
+        }
+        return map
+    }
+    const exiosGrupo = groupByProperty(planejamento_anual, "exios")
+    console.log("exiosGrupo:", exiosGrupo)
+    %> 
+    <div class="margin-top page-title">
+        <b>PLANEJAMENTO ANUAL</b>
+    </div>
+    <div class="margin-top" style="width: 100%;">
+        <% const keys = exiosGrupo.keys() %>
+        <% while(true) { %>
+            <% const next = keys.next() %> 
+            <% if (next.done) break %>
+            <% const key = next.value %>
+            
+            <table class="table">
+                <caption style="text-align: left;" class="bg-color item-padding">
+                    <b>
+                        EIXOS: <%= key %> 
+                    </b>
+                </caption>
+                <thead>
+                    <tr>
+                        <th class="bg-color">UNIDADE TEMÁTICA</th>
+                        <th class="bg-color">OBJETIVOS DE<br>CONHECIMENTO</th>
+                        <th class="bg-color">HABILIDADES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% const array = exiosGrupo.get(key) %>
+                    <% array.forEach(item => { %>
+                        <tr>
+                            <td><%= item.unidade_tematica %></td>
+                            <td><%= item.objetivos_conhecimento %></td>
+                            <td><%= item.habilidades %> </td>
+                        </tr>
+                    <% }) %> 
+                </tbody>
+            </table>
+        <% } %> 
+    </div>
+    <div class="page-break">
+        <div class="flex flex-column">
+            <div class="bg-color text-center item-padding">
+                10 (DEZ) COMPETÊNCIAS GERIAS
+            </div>
+            <div class="item-padding item-border">
+                <b>1.</b> Valorizar e utilizar os conhecimentos historicamente construídos sobre o mundo físico, social, cultural e digital para entender e explicar a realidade, continuar aprendendo e colaborar para a construção de uma sociedade justa, democrática e inclusiva.
+                <br>
+                <b>2.</b> Exercitar a curiosidade intelectual e recorrer à abordagem própria das ciências, incluindo a investigação, a reflexão, a análise crítica, a imaginação e a criatividade, para investigar causas, elaborar e testar hipóteses, formular
+                e resolver problemas e criar soluções (inclusive tecnológicas) com base nos conhecimentos das diferentes áreas.
+                <br>
+                <b>3.</b> Valorizar e fruir as diversas manifestações artísticas e culturais, das locais às mundiais, e também participar
+                de práticas diversificadas da produção artístico-cultural.
+                <br>
+                <b>4.</b> Utilizar diferentes linguagens – verbal (oral ou visual-motora, como Libras, e escrita), corporal, visual, sonora e digital –, bem como conhecimentos das linguagens
+                artística, matemática e científica, para se expressar e partilhar informações, experiências, ideias e sentimentos em diferentes contextos, além de produzir sentidos que levem ao entendimento mútuo.
+                <br>
+                <b>5.</b> Compreender, utilizar e criar tecnologias digitais de informação e comunicação de forma crítica, significativa, reflexiva e ética nas diversas práticas sociais (incluindo as escolares) para se comunicar, acessar e disseminar informações, produzir conhecimentos,
+                resolver problemas e exercer protagonismo e autoria na vida pessoal e coletiva.
+                <br>
+                <b>6.</b> Valorizar a diversidade de saberes e vivências culturais, apropriar-se de conhecimentos e experiências que lhe possibilitem entender as relações
+                próprias do mundo do trabalho e fazer escolhas alinhadas ao exercício da cidadania e ao seu projeto de vida, com liberdade, autonomia, consciência crítica e responsabilidade.
+                <br>
+                <b>7.</b> Argumentar com base em fatos, dados e informações confiáveis, para formular, negociar e defender ideias, pontos de vista e decisões comuns que respeitem e promovam os direitos humanos, a consciência socioambiental e o consumo responsável em âmbito local, regional e global, com
+                posicionamento ético em relação ao cuidado de si mesmo, dos outros e do planeta.
+                <br>
+                <b>8.</b> Conhecer-se, apreciar-se e cuidar de sua saúde física e emocional, compreendendo- se na diversidade humana e reconhecendo suas emoções e as dos
+                outros, com autocrítica e capacidade para lidar com elas.
+                <br>
+                <b>9.</b> Exercitar a empatia, o diálogo, a resolução de conflitos e a cooperação, fazendo-se respeitar e promovendo o respeito ao outro e aos direitos humanos, com acolhimento
+                e valorização da diversidade de indivíduos e de grupos sociais, seus saberes, suas identidades, suas culturas e suas potencialidades, sem preconceitos de qualquer natureza. 10. Agir pessoal e coletivamente com autonomia, responsabilidade,
+                flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários.
+            </div>
+        </div>
+    </div>
+    <div class="page-break">
+        <div class="bg-color text-center item-padding">
+            COMPETÊNCIAS ESPECÍFICAS DA ÁREA DE CONHECIMENTO
+        </div>
+        <div class="item-padding item-border">
+            <%= competencias_especificas_area_conhecimento %> 
+        </div>
+        <div class="bg-color text-center item-padding">
+            COMPETÊNCIAS ESPECÍFICAS DO COMPONENTE CURRICULAR
+        </div>
+        <div class="item-padding item-border">
+            <%= competencias_especificas_componente_curricular %> 
+        </div>
+        <div class="bg-color text-center item-border">
+            METODOLOGIAS
+        </div>
+        <div class="item-padding item-border">
+            <%= metodoslogias %> 
+        </div>
+        <div class="bg-color text-center item-border">
+            RECURSOS MATERIAIS
+        </div>
+        <div class="item-padding item-border">
+            <%= recursos_materiais %> 
+        </div>
+        <div class="bg-color text-center item-padding item-border">
+            AVALIAÇÃO
+        </div>
+        <div class="item-padding item-border">
+            <%= avaliacao %> 
+        </div>
+    </div>
+</div>
+</body>
+</html>

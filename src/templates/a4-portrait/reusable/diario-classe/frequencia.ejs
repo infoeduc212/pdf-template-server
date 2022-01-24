@@ -102,30 +102,31 @@
                 if (monthsFromYear.indexOf(date.month) === -1)
                     years[year].push(date.month)
             })
-
-            console.log(years)
             %>
         <% for (year in years) { %>
         <% if (!years.hasOwnProperty(year)) continue %>
         <% years[year].forEach(month => { %>
         <tr>
-            <td><%= monthDict[month] %></td>
+            <td><%= monthDict[month - 1] %></td>
             <% const monthRange = rangeArray.filter(record => {
                         const date = parseDate(record.data_lancamento)
                         return date.month === month && date.year === parseInt(year)
                     }) %>
-            <% console.log("monthRange:", monthRange) %>
+                    <% console.log(monthRange) %>
             <!-- Quantidade de presença no dia -->
             <% const maxDays = 32 %>
             <% for (let i = 1; i < maxDays; i++) { %>
             <% const day = monthRange.filter(record => {
-                            const date = parseDate(record.data_lancamento)
-                            return date.day === i
-                        }) %>
-            <% console.log("day:", day) %>
+                const date = parseDate(record.data_lancamento)
+                return date.day === i
+            }) %>
             <% if (day.length > 0) { %>
             <td class="text-center">
+                <% if (day.qtd_presenca > 0) { %>
                 <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
+                <% } else { %>
+                <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
+                <% } %>
             </td>
             <% } else { %>
             <td class="text-center">0</td>

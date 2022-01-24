@@ -54,14 +54,25 @@
         border: 1px solid;
         padding: 5px;
     }
+
+    .bold {
+        font-weight: bold;
+    }
 </style>
 
 <body>
+    <% if (diario.usar_foto_capa) { %>
+        <div style="width: 100%;">
+            <img src="<%= diario.imagem_rede %>">
+        </div> 
+    <% } %>
     <div class="page-break" style="margin: 80px;">
-        <div style="width: 6em; margin-left: auto; margin-right: auto;" class="text-center">
-            <img src="<%= diario.imagem_rede %>" width="100" height="100">
-        </div>
-        <h2 class="text-center"><%= diario.nome_rede %></h2>
+        <% if (!diario.usar_foto_capa) { %>
+            <div style="width: 6em; margin-left: auto; margin-right: auto;">
+                <img src="<%= diario.imagem_rede %>" width="100" height="100">
+            </div>
+            <h2 class="text-center"><%= diario.nome_rede %></h2>
+        <% } %>
         <br>
         <br>
         <br>
@@ -80,32 +91,34 @@
         <br>
         <div style="line-height: 1.6; font-size: 16px;">
             <div class="multicolumn">
-                <div class="pad-right">Instituição de Ensino:</div>
+                <div class="pad-right bold">Instituição de Ensino:</div>
                 <div class="text-line"><%= diario.estabelecimento_ensino %></div>
             </div>
             <div class="multicolumn">
-                <div class="pad-right">Endereço:</div>
+                <div class="pad-right bold">Endereço:</div>
                 <div class="text-line"><%= diario.endereco %></div>
             </div>
             <div class="multicolumn">
-                <div class="pad-right">Etapa de escolaridade:</div>
+                <div class="pad-right bold">Etapa de escolaridade:</div>
                 <div class="text-line"><%= diario.etapa_escolaridade %></div>
             </div>
             <div class="multicolumn">
-                <div class="pad-right">Professor(a):</div>
+                <div class="pad-right bold">Professor(a):</div>
                 <div class="text-line"><%= diario.nome_professor %></div>
             </div>
             <% if (tipo_documento === "Fundamental") { %>
             <div class="multicolumn">
-                <div class="pad-right">Componente Curricular:</div>
+                <div class="pad-right bold">Componente Curricular:</div>
                 <div class="text-line"><%= diario.componente_curricular %></div>
             </div>
             <% } %>
             <div class="multicolumn">
-                <div class="pad-right">Turma:</div>
+                <div class="pad-right bold">Turma:</div>
                 <div class="text-line"><%= diario.turma %></div>
-                <div class="pad-right">Turno:</div>
+                <div class="pad-right bold">Turno:</div>
                 <div class="text-line"><%= diario.turno %></div>
+                <div class="pad-right bold">Período Letivo:</div>
+                <div class="text-line"><%= diario.periodo_letivo %></div>
             </div>
         </div>
         <div style="margin: 0 250px;">
@@ -118,19 +131,16 @@
     <div class="page-break" style="margin-top: 70px;">
         <div style="margin: 0 80px;">
             <h1 class="text-center">Orientações</h1>
-            <p style="font-weight: bold; text-indent: 50px;">Prezado professor(a), o senhor (a) é responsável pelo seu
+            <p style="font-weight: bold; text-indent: 50px; text-align: justify;">Prezado professor(a), o senhor (a) é responsável pelo seu
                 diário de classe, portanto observe as orientações a
                 seguir:</p>
-
-            <div style="display: flex; flex-direction: column; line-height: 1.5;">
-                <% for (let i = 0; i < orientacoes.quantidade_linhas; i++) { %>
-                <div class="flex">
-                    <div>
-                        <%= (i + 1) + "." %>
+                <br>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <% orientacoes.forEach((orientacao, index) => { %>
+                    <div style="text-indent: 50px; text-align: justify; line-height: 1.5;">
+                        <%= (index + 1) + "°." %>  <%= orientacao %>
                     </div>
-                    <div class="text-line">&ensp;</div>
-                </div>
-                <% } %>
+                <% }) %>
             </div>
         </div>
     </div>
@@ -142,7 +152,7 @@
                         <b>Aluno (a):</b>
                         <div class="text-line"><%= aluno.nome_aluno %></div>
                         <% if (tipo_documento === "Infantil") { %>
-                        <% if (infantil_possui_nee === true) { %>
+                        <% if (aluno.possui_nee === true) { %>
                         <b>NEE:</b>
                         <div class="text-line"><%= aluno.especificacao_nee %></div>
                         <% } %>
@@ -150,73 +160,61 @@
                     </div>
                     <div class="multicolumn inline">
                         <b>Prof (a):</b>
-                        <div class="text-line"><%= capa.nome_professor %></div>
+                        <div class="text-line"><%= diario.nome_professor %></div>
                         <b>Turma:</b>
-                        <div class="text-line"><%= capa.turma %></div>
+                        <div class="text-line"><%= diario.turma %></div>
                         <b>Ano Letivo:</b>
-                        <div style="max-width: 60px;" class="text-center text-line"><%= capa.ano_letivo %></div>
+                        <div style="max-width: 60px;" class="text-center text-line"><%= diario.ano_letivo %></div>
                     </div>
                 </div>
             </div>
-            <%- include("reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia }) %>
-            <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
-            <h3 style="text-align: center">Resultado Bimestral</h3>
-            <% 
-            const headElemList = []
-            const notaResList = []
-            const notaMapping = {}
-            for (let i = 0; i < aluno.notas.length; i++) {
-                const nota = aluno.notas[i]
-                headElemList.push(nota.avaliacao.alias)
-                notaResList.push(nota.nota_avaliacao)
-                if (nota.recuperacao) {
-                    headElemList.push("Rec.")
-                    notaResList.push(nota.recuperacao.nota_recuperacao)
-                }
-                notaMapping[nota.avaliacao.alias] = nota.nota_avaliacao
-            }
-            const resultadoMedia = math.evaluate(formula_media, notaMapping)
-             %>
-            <div style="margin: 0 50px;">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <% headElemList.forEach(elem => { %>
-                            <td class="text-center">
-                                <%= elem %>
-                            </td>
-                            <% }) %>
-                            <td class="text-center">
-                                Média do<br>Período
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <% notaResList.forEach(res => { %>
-                            <td class="text-center">
-                                <%= res %>
-                            </td>
-                            <% }) %>
-                            <td class="text-center">
-                                <%= resultadoMedia %>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <% if (aluno.frequencia) { %>
+                <%- include("reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia }) %>
             <% } %>
-            <% if (tipo_documento === "Infantil") { %>
-            <div style="margin-top: 15px;">
-                <% if (aluno.possui_nee === true) { %>
-                <div>
-                    <% if (tipo_relatorio_acompanhamento === "Descritivo") { %>
-                    <%- include("reusable/ficha-acompanhamento/lista-relatorio-descritivo.ejs") %>
-                    <% } %>
-                    <% if (tipo_relatorio_acompanhamento === "Objetivo") { %>
-                    <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs") %>
-                    <% } %>
+            <% if (aluno.notas) { %>
+            <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
+            <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
+                Resultado Bimestral
+            </h3>
+                <% 
+                
+                 %>
+                <div style="margin: 0 50px;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td class="text-center">
+                                    Média
+                                </td>
+                                <td class="text-center">
+                                    Rec.
+                                </td>
+                                <td class="text-center">
+                                    Méd.<br>Final
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <% notaResList.forEach(res => { %>
+                                <td class="text-center">
+                                    <%= res %>
+                                </td>
+                                <% }) %>
+                                <td class="text-center">
+                                    <%= resultadoMedia %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+                <% } %>
+            <% if (tipo_documento === "Infantil") { %>
+            <div style="margin-top: 10px;">
+                <%# TODO: Relatório Descritivo %>
+                <% if (aluno.relatorio_experiencia) { %>
+                    <h3 class="text-center"><u>AVALIAÇÃO</u></h3>
+                    <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
                 <% } %>
             </div>
             <% } %>
@@ -249,9 +247,9 @@
                     <tbody>
                         <tr>
                             <td>Média Anual</td>
-                            <td class="fixed-width text-center"><%= 
-                                notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length
-                             %></td>
+                            <td class="fixed-width text-center">
+                                <%= aluno.notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length %>
+                            </td>
                         </tr>
                         <tr>
                             <td>Total de Faltas</td>
@@ -285,7 +283,7 @@
                             <label for="transferido">Transferido</label>
                             <div style="margin-left: 5px; display: flex; float: right">
                                 <% 
-                                const transferido = aluno.transferido
+                                const transferido = aluno.status === "Transferido"
                                 let dataTransferido
                                 if (transferido === true)
                                     dataTransferido = new Date(aluno.transferido_data) %>
@@ -307,7 +305,7 @@
                             <label for="transferido">Desistente</label>
                             <div style="margin-left: 5px; display: flex; float: right">
                                 <% 
-                                const desistente = aluno.desistente
+                                const desistente = aluno.status === "Desistente"
                                 let desistenteData
                                 if (desistente === true)
                                 desistenteData = new Date(aluno.desistente_data) %>
@@ -327,19 +325,33 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-column" style="margin-top: 10px;">
-                <% for (let i = 0; i < descricao_linhas; i++) { %>
-                <div class="flex">
-                    <% if (i === 0) { %>
-                    <b>Descrição:</b>
-                    <% } %>
-                    <div style="flex-grow: 1;" class="text-line">&ensp;</div>
-                </div>
-                <% } %>
-            </div>
+            <% } %>
         </div>
     <% }) %>
     <div class="page-break" style="margin: 10px;">
+        <% const sortedDateArray = registros_aulas.sort((a, b) => {
+            return new Date(a.data) - new Date(b.data)
+        }) 
+        const monthDict = {
+            0: "Janeiro",
+            1: "Fevereiro",
+            2: "Março",
+            3: "Abril",
+            4: "Maio",
+            5: "Junho",
+            6: "Julho",
+            7: "Agosto",
+            8: "Setembro",
+            9: "Outubro",
+            10: "Novembro",
+            11: "Dezembro"
+        }
+        %>
+
+        <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
+        <div style="text-align: center; margin: 20px;">
+            <b>Mês: <%= monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b> 
+        </div>
         <%- include("reusable/diario-classe/lista-registro-aula.ejs") %>
     </div>
     <div class="page-break">
