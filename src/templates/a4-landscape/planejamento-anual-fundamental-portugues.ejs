@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("css/common.ejs") %>
+        <%- include("css/tabela.ejs") %>
+</head>
+
+<body>
+    <%- include("reusable/header-escola.ejs") %>
+        <div class="campos">
+            <div class="flex flex-column small-gap">
+                <div class="multicolumn">
+                    <b class="pad-right">Instituição de Ensino:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Prof (a):</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="multicolumn">
+                    <div class="inline">
+                        <b class="pad-right">Etapa de Escolaridade:</b>
+                        <div class="text-line"></div>
+                    </div>
+                    <div class="inline">
+                        <b class="pad-right">Ano/Turma:</b>
+                        <div class="text-line"></div>
+                    </div>
+                    <div class="inline">
+                        <b class="pad-right">Ano Letivo:</b>
+                        <div class="text-line"></div>
+                    </div>
+                </div>
+                <div class="multicolumn">
+                    <div class="inline">
+                        <b>Área de Conhecimento:</b>
+                        <div class="text-line"></div>
+                    </div>
+                    <div class="inline">
+                        <b>Componente Curricular:</b>
+                        <div class="text-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%
+        function groupByProperty(array, property) {
+            const map = new Map()
+            for (let i = 0; i < array.length; i++) {
+                const element = array[i];
+                const propValue = element[property]
+                if (!map.has(propValue)) {
+                    map.set(propValue, [])
+                }
+                const arrayItem = map.get(propValue)
+                arrayItem.push(element)
+                map.set(propValue, arrayItem)
+            }
+            return map
+        }
+
+        const campoAtuacaoGrupo = groupByProperty(planejamento_anual, "campo_atuacao")
+
+        %> 
+        <div class="page-title">PLANEJAMENTO ANUAL</div>
+        <div class="margin-top">
+            <% const keys = campoAtuacaoGrupo.keys() %>
+            <% while(true) { %>
+                <% const next = keys.next() %>
+                <% if (next.done) break %>
+                <% const key = next.value %>
+
+                <table class="table">
+                    <caption class="table-caption bg-color">
+                        <b>
+                            CAMPO DE ATUAÇÃO: <%= key %> 
+                        </b>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th class="bg-color">UNIDADE TÉMATICA</th>
+                            <th class="bg-color">OBJETIVOS DE<br>CONHECIMENTO</th>
+                            <th class="bg-color">HABILIDADES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% const array = campoAtuacaoGrupo.get(key) %>
+                        <% array.forEach(item => { %>
+                            <tr>
+                                <td><%= item.unidade_tematica %></td>
+                                <td><%= item.objetivos_conhecimento %></td>
+                                <td><%= item.habilidades %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } %> 
+        </div>
+        <div class="page-break">
+            <div class="flex flex-column">
+                <div class="bg-color text-center item-padding">
+                    10 (DEZ) COMPETÊNCIAS GERIAS
+                </div>
+                <div class="item-padding item-border">
+                    <b>1.</b> Valorizar e utilizar os conhecimentos historicamente construídos sobre o mundo físico, social, cultural e digital para entender e explicar a realidade, continuar aprendendo e colaborar para a construção de uma sociedade justa, democrática e inclusiva.
+                    <br>
+                    <b>2.</b> Exercitar a curiosidade intelectual e recorrer à abordagem própria das ciências, incluindo a investigação, a reflexão, a análise crítica, a imaginação e a criatividade, para investigar causas, elaborar e testar hipóteses, formular
+                    e resolver problemas e criar soluções (inclusive tecnológicas) com base nos conhecimentos das diferentes áreas.
+                    <br>
+                    <b>3.</b> Valorizar e fruir as diversas manifestações artísticas e culturais, das locais às mundiais, e também participar
+                    de práticas diversificadas da produção artístico-cultural.
+                    <br>
+                    <b>4.</b> Utilizar diferentes linguagens – verbal (oral ou visual-motora, como Libras, e escrita), corporal, visual, sonora e digital –, bem como conhecimentos das linguagens
+                    artística, matemática e científica, para se expressar e partilhar informações, experiências, ideias e sentimentos em diferentes contextos, além de produzir sentidos que levem ao entendimento mútuo.
+                    <br>
+                    <b>5.</b> Compreender, utilizar e criar tecnologias digitais de informação e comunicação de forma crítica, significativa, reflexiva e ética nas diversas práticas sociais (incluindo as escolares) para se comunicar, acessar e disseminar informações, produzir conhecimentos,
+                    resolver problemas e exercer protagonismo e autoria na vida pessoal e coletiva.
+                    <br>
+                    <b>6.</b> Valorizar a diversidade de saberes e vivências culturais, apropriar-se de conhecimentos e experiências que lhe possibilitem entender as relações
+                    próprias do mundo do trabalho e fazer escolhas alinhadas ao exercício da cidadania e ao seu projeto de vida, com liberdade, autonomia, consciência crítica e responsabilidade.
+                    <br>
+                    <b>7.</b> Argumentar com base em fatos, dados e informações confiáveis, para formular, negociar e defender ideias, pontos de vista e decisões comuns que respeitem e promovam os direitos humanos, a consciência socioambiental e o consumo responsável em âmbito local, regional e global, com
+                    posicionamento ético em relação ao cuidado de si mesmo, dos outros e do planeta.
+                    <br>
+                    <b>8.</b> Conhecer-se, apreciar-se e cuidar de sua saúde física e emocional, compreendendo- se na diversidade humana e reconhecendo suas emoções e as dos
+                    outros, com autocrítica e capacidade para lidar com elas.
+                    <br>
+                    <b>9.</b> Exercitar a empatia, o diálogo, a resolução de conflitos e a cooperação, fazendo-se respeitar e promovendo o respeito ao outro e aos direitos humanos, com acolhimento
+                    e valorização da diversidade de indivíduos e de grupos sociais, seus saberes, suas identidades, suas culturas e suas potencialidades, sem preconceitos de qualquer natureza. 10. Agir pessoal e coletivamente com autonomia, responsabilidade,
+                    flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários.
+                </div>
+            </div>
+        </div>
+        <div class="page-break">
+            <div class="flex flex-column">
+                <div class="bg-color text-center">
+                    COMPETÊNCIAS ESPECÍFICAS DA ÁREA DE CONHECIMENTO
+                </div>
+                <div class="item-padding">
+                    <b>1.</b> Compreender as linguagens como construção humana, histórica, social e cultural, de natureza dinâmica, reconhecendo-as e valorizando-as como formas de significação da realidade e expressão de subjetividades e identidades sociais e culturais.
+                    <br>
+                    <b>2.</b> Conhecer e explorar diversas práticas de linguagem (artísticas, corporais e linguísticas) em diferentes campos da atividade humana para continuar aprendendo, ampliar suas possibilidades de participação na vida social e colaborar para a construção de uma sociedade mais justa, democrática e inclusiva.
+                    <br>
+                    <b>3.</b> Utilizar diferentes linguagens – verbal (oral ou visual-motora, como Libras, e escrita), corporal, visual, sonora e digital –, para se expressar e partilhar informações, experiências, ideias e sentimentos em diferentes contextos e produzir sentidos que levem ao diálogo, à resolução de conflitos e à cooperação.
+                    <br>
+                    <b>4.</b> Utilizar diferentes linguagens para defender pontos de vista que respeitem o outro e promovam os direitos humanos, a consciência socioambiental e o consumo responsável em âmbito local, regional   e global, atuando criticamente frente a questões do mundo contemporâneo.
+                    <br>
+                    <b>5.</b> Desenvolver o senso estético para reconhecer, fruir e respeitar as diversas manifestações artísticas e culturais, das locais às mundiais, inclusive aquelas pertencentes ao patrimônio cultural da humanidade, bem como participar de práticas diversificadas, individuais e coletivas, da produção artístico-cultural, com respeito à diversidade de saberes, identidades e culturas.
+                    <br>
+                    <b>6.</b> Compreender e utilizar tecnologias digitais de informação e comunicação de forma crítica, significativa, reflexiva e ética nas diversas práticas sociais (incluindo as escolares), para se comunicar por meio das diferentes linguagens e mídias, produzir conhecimentos, resolver problemas e desenvolver projetos autorais e coletivos.
+                </div>
+            </div>
+            <div class="flex flex-column">
+                <div class="bg-color text-center">
+                    COMPETÊNCIAS ESPECÍFICAS DO COMPONENTE CURRICULAR
+                </div>
+                <div class="item-padding">
+                    <b>1.</b> Compreender a língua como fenômeno cultural, histórico, social, variável, heterogêneo e sensível aos contextos de uso, reconhecendo-a como meio de construção de identidades de seus usuários e da comunidade a que pertencem.
+                    <br>
+                    <b>2.</b> Apropriar-se da linguagem escrita, reconhecendo-a como forma de interação nos diferentes campos de atuação da vida social e utilizando-a para ampliar suas possibilidades de participar da cultura letrada, de construir conhecimentos (inclusive escolares) e de se envolver com maior autonomia e protagonismo na vida social.
+                    <br>
+                    <b>3.</b> Ler, escutar e produzir textos orais, escritos e multissemióticos que circulam em diferentes campos de atuação e mídias, com compreensão, autonomia, fluência e criticidade, de modo a se expressar e partilhar informações, experiências, ideias e sentimentos, e continuar aprendendo.
+                    <br>
+                    <b>4.</b> Compreender o fenômeno da variação linguística, demonstrando atitude respeitosa diante de variedades linguísticas e rejeitando preconceitos linguísticos.
+                    <br>
+                    <b>5.</b> Empregar, nas interações sociais, a variedade e o estilo de linguagem adequados à situação comunicativa, ao(s) interlocutor(es) e ao gênero do discurso/gênero textual.
+                    <br>
+                    <b>6.</b> Analisar informações, argumentos e opiniões manifestados em interações sociais e nos meios de comunicação, posicionando-se ética e criticamente em relação a conteúdos discriminatórios que ferem direitos humanos e ambientais.
+                    <br>
+                    <b>7.</b> Reconhecer o texto como lugar de manifestação e negociação de sentidos, valores e ideologias.
+                    <br>
+                    <b>8.</b> Selecionar textos e livros para leitura integral, de acordo com objetivos, interesses e projetos pessoais (estudo, formação pessoal, entretenimento, pesquisa, trabalho etc.).
+                    <br>
+                    <b>9.</b> Envolver-se em práticas de leitura literária que possibilitem o desenvolvimento do senso estético para fruição, valorizando a literatura e outras manifestações artístico-culturais como formas de acesso às dimensões lúdicas, de imaginário e encantamento, reconhecendo o potencial transformador e humanizador da experiência com a literatura.
+                    <br>
+                    <b>10.</b> Mobilizar práticas da cultura digital, diferentes linguagens, mídias e ferramentas digitais para expandir as formas de produzir sentidos (nos processos de compreensão e produção), aprender e refletir sobre o mundo e realizar diferentes projetos autorais.
+                </div>
+            </div>
+        </div>
+        <div class="page-break">
+            <div class="bg-color text-center item-padding">
+                COMPETÊNCIAS ESPECÍFICAS DA ÁREA DE CONHECIMENTO
+            </div>
+            <div class="item-padding item-border">
+                <%= competencias_especificas_area_conhecimento %> 
+            </div>
+            <div class="bg-color text-center item-padding">
+                COMPETÊNCIAS ESPECÍFICAS DO COMPONENTE CURRICULAR
+            </div>
+            <div class="item-padding item-border">
+                <%= competencias_especificas_componente_curricular %> 
+            </div>
+            <div class="bg-color text-center item-border">
+                METODOLOGIAS
+            </div>
+            <div class="item-padding item-border">
+                <%= metodoslogias %> 
+            </div>
+            <div class="bg-color text-center item-border">
+                RECURSOS MATERIAIS
+            </div>
+            <div class="item-padding item-border">
+                <%= recursos_materiais %> 
+            </div>
+            <div class="bg-color text-center item-padding item-border">
+                AVALIAÇÃO
+            </div>
+            <div class="item-padding item-border">
+                <%= avaliacao %> 
+            </div>
+        </div>
+</body>
+
+</html>

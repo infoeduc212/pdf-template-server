@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include("css/common.ejs") %>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+</head>
+<body>
+    <%- include("reusable/header-escola.ejs") %>
+    <div id="container">
+        <%# TODO: Preencher campos com os dados enviados %> 
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <b class="pad-right">Instituição de Ensino:</b>
+                <div class="text-line"></div>
+            </div>
+            <div class="multicolumn">
+                <b class="pad-right">Prof (a):</b>
+                <div class="text-line"></div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b>Turma:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="multicolumn">
+                    <b>ID da InfoEduc:</b>
+                    <div class="text-line"></div>
+                </div>
+                <div class="multicolumn">
+                    <b>Ano Letivo:</b>
+                    <div class="text-line"></div>
+                </div>
+            </div>
+        </div>
+        <h3 class="page-title">DISTRIBUIÇÃO DO NÚMERO DE AULAS</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td class="text-center">MESES</td>
+                    <td class="text-center">AULAS PREVISTAS</td>
+                    <td class="text-center">AULAS MINISTRADAS</td>
+                    <td class="text-center">AULAS REPOSTAS</td>
+                </tr>
+            </thead>
+            <tbody>
+                <%# TODO: Ver como isso está modelado no banco de dados, se isso é uma lista ou é algo que o template tem que computar... %> 
+            </tbody>
+        </table>
+        <%- include("reusable/campo-assinatura-direcao.ejs") %> 
+    </div>
+</body>
+</html>

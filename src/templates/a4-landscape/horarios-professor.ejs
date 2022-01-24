@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include("css/common.ejs") %>
+    <%- include("css/tabela.ejs") %> 
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <style>
+        .item-border {
+            padding: 5px;
+            border: 1px solid;
+        }
+        .grow {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <%- include("reusable/header-escola.ejs") %>
+    <div class="flex flex-column">
+        <div class="text-center item-border">
+            <b>
+                <%= nome_escola %>
+            </b>
+        </div>
+        <div class="flex grow">
+            <div class="item-border grow">
+                <b>
+                    PROF. (A):
+                </b>
+                <%= nome_professor %> 
+            </div>
+            <div class="item-border">
+                <%= nome_turno %> 
+            </div>
+            <div class="item-border">
+                <%= ano_letivo %> 
+            </div>
+        </div>
+        <div class="item-border">
+            <%= etapa_escolaridade %> 
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    Horários
+                </td>
+                <td>
+                    2º Feira
+                </td>
+                <td>
+                    3º Feira
+                </td>
+                <td>
+                    4º Feira
+                </td>
+                <td>
+                    5º Feira
+                </td>
+                <td>
+                    6º Feira
+                </td>
+            </tr>
+        </thead> 
+    </table>
+</body>
+</html>

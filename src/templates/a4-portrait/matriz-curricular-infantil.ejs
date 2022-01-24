@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("css/common.ejs") %>
+    <style>
+        .item-border {
+            border: 1px solid;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <%- include("reusable/header-escola.ejs") %>
+    <div class="flex">
+        <div class="multicolumn">
+            <b class="pad-right">Instituição de Ensino:</b>
+            <div class="text-line"></div>
+        </div>
+        <div style="width: 250px;" class="multicolumn">
+            <b>Ano Letivo:</b>
+            <div class="text-line text-center"></div>
+        </div>
+    </div>
+    <br>
+
+    <div class="flex flex-column">
+
+        <table class="table">
+            <caption>
+                <div class="flex flex-column">
+                    <div class="item-border grow">
+                        <b>
+                            MATRIZ CURRICULAR <%= nome_ano_letivo %>
+                        </b>
+                    </div>
+                    <div class="item-border grow">
+                        <b>
+                            ENSINO INFANTIL
+                        </b>
+                    </div>
+                </div>
+            </caption>
+            <thead>
+                <tr>
+                    <th>
+                        <b>EIXOS</b>
+                    </th>
+                    <th>
+                        <b>
+                            DIREITOS DE APRENDIZAGEM
+                        </b>
+                    </th>
+                    <th>
+                        <b>
+                            CAMPOS DE EXPERIÊNCIA
+                        </b>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">
+                        Brincadeiras e Interações
+                    </td>
+                    <td>
+                        Brincar
+                        <br>
+                        <br>
+                        Conhecer-se
+                        <br>
+                        <br>
+                        Conviver
+                        <br>
+                        <br>
+                        Expressar
+                        <br>
+                        <br>
+                        Explorar
+                        <br>
+                        <br>
+                        Participar
+                    </td>
+                    <td>
+                        O eu, o outro e o nós
+                        <br>
+                        <br>
+                        Corpo, gestos e movimentos
+                        <br>
+                        <br>
+                        Escuta, fala, pensamento e imaginação
+                        <br>
+                        <br>
+                        Traços, sons, cores e formas
+                        <br>
+                        <br>
+                        Espaços, tempos, quantidades, relações e transformações
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="flex flex-column">
+            <div class="flex grow">
+                <div class="item-border grow">
+                    Total de Carga Horária Semanal:
+                </div>
+                <div class="item-border" style="width: 200px;">
+                    <%= total_carga_horaria_semanal %> 
+                </div>
+            </div>
+            <div class="flex">
+                <div class="item-border grow">
+                    Total de Carga Horária Anual:
+                </div>
+                <div class="item-border" style="width: 200px;">
+                    <%= total_carga_horaria_anual %> 
+                </div>
+            </div>
+            <div class="item-border">
+                N° de Dias Letivos: <%= numero_dias_letivos %> 
+                <br>
+                N° de aulas/turno: <%= numero_aulas_turno %>
+                <br>
+                Duração de cada aula: <%= duracao_cada_aula %>
+                <div class="flex" style="gap: 20px;">
+                    <div>
+                        Início da aula:
+                        <%= inicio_aula %> 
+                    </div>
+                    <div>
+                        Término da aula:
+                        <%= termino_aula %> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

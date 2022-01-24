@@ -177,30 +177,12 @@
                 Resultado Bimestral
             </h3>
                 <% 
-                const headElemList = []
-                const notaResList = []
-                const notaMapping = {}
-                for (let i = 0; i < aluno.notas.length; i++) {
-                    const nota = aluno.notas[i]
-                    headElemList.push(nota.avaliacao.alias)
-                    notaResList.push(nota.nota_avaliacao)
-                    if (nota.recuperacao) {
-                        headElemList.push("Rec.")
-                        notaResList.push(nota.recuperacao.nota_recuperacao)
-                    }
-                    notaMapping[nota.avaliacao.alias] = nota.nota_avaliacao
-                }
-                const resultadoMedia = math.evaluate(formula_media, notaMapping)
+                
                  %>
                 <div style="margin: 0 50px;">
                     <table class="table">
                         <thead>
                             <tr>
-                                <% headElemList.forEach(elem => { %>
-                                <td class="text-center">
-                                    <%= elem %>
-                                </td>
-                                <% }) %>
                                 <td class="text-center">
                                     Média
                                 </td>
@@ -265,9 +247,9 @@
                     <tbody>
                         <tr>
                             <td>Média Anual</td>
-                            <td class="fixed-width text-center"><%= 
-                                aluno.notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length
-                             %></td>
+                            <td class="fixed-width text-center">
+                                <%= aluno.notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length %>
+                            </td>
                         </tr>
                         <tr>
                             <td>Total de Faltas</td>

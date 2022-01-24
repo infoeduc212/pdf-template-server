@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include("css/common.ejs") %>
+    <%- include("css/tabela.ejs") %>
+    <style>
+        .item-border {
+            padding: 5px;
+            border: 1px solid;
+        }
+    </style>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+</head>
+<body>
+    <div class="flex flex-column">
+        <div class="item-border">
+            <%= nome_escola %> 
+        </div>
+        <div class="flex">
+            <div class="item-border grow text-center">
+                <%= etapa_escolaridade %> 
+            </div>
+            <div class="item-border">
+                <div style="padding: 0 50px;">
+                    <%= turno %> 
+                </div>
+            </div>
+            <div class="item-border">
+                <div style="padding: 0 20px;">
+                    <%= nome_ano_letivo %> 
+                </div>
+            </div>
+        </div>
+        <% horarios.forEach(element => { %>
+            <div class="item-border" style="background-color: rgb(211, 211, 211); height: 15px;">
+
+            </div>
+            <div class="flex">
+                <div class="vertical-text item-border">
+                    <%= element.turma %>
+                </div>
+                <table class="table">
+                    <thead>
+                        <thead>
+                            <tr>
+                                <td>2ª Feira</td>
+                                <td>3ª Feira</td>
+                                <td>4ª Feira</td>
+                                <td>5ª Feira</td>
+                                <td>6ª Feira</td>
+                                <td>Sábado</td>
+                            </tr>
+                        </thead>
+                    </thead>
+                </table>
+            </div>
+        <% }) %>
+    </div>
+    
+</body>
+</html>

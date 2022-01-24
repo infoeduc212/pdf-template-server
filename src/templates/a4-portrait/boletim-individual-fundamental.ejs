@@ -106,20 +106,29 @@
                         <% } %>
 
                         <% let totalFaltasDisciplina = 0 %> 
-
-                        <% const scope = {} %>
+                        <% let somaMedia = 0 %> 
                         <%# Nome da disciplina %> 
                         <td><%= nomeDisciplina %></td>
                         <% periodos_letivos.forEach(periodo => { %>
-                            <% const nota = disciplinas.get(nomeDisciplina)
-                                .find(nota => nota.nome_periodo_letivo === periodo) %>
+                            <% const notas = disciplinas.get(nomeDisciplina)
+                                .filter(nota => nota.nome_periodo_letivo === periodo) %>
                             
-                            <% console.log("nota:", nota) %> 
-                            <% const alias = nota.alias_avaliacao %>
-                            <% scope[alias] = nota.nota_avaliacao %>
-                            <td class="text-center">
-                                <%= nota.nota_avaliacao %> 
-                            </td>
+                            <% const scope = {} %>
+                            <% console.log("notas:", notas) %>
+                            <% notas.forEach(nota => { %>
+                                <% const alias = nota.alias_avaliacao %>
+                                <% scope[alias] = nota.nota_avaliacao %>
+                            <% }) %>
+                            <% console.log("scope:", scope) %>
+                            <% try { %>
+                                <% console.log("calculando média....") %> 
+                                <% const evaluated = math.evaluate(formula_media, scope) %>
+                                <% somaMedia += evaluated %>
+                                <td class="text-center"><%= evaluated %></td>
+                            <% } catch(e) { %>
+                                <% console.error(`Falha ao calcular média da disciplina ${periodo}`, e) %> 
+                                <td class="text-center">-</td>
+                            <% } %>
                         <% }) %>
                         <% periodos_letivos.forEach(periodo => { %>
                             <% const frequenciaPeriodo = frequenciaGroup.get(grupoDisciplina)
@@ -135,15 +144,7 @@
                                 <%= totalFaltas %> 
                             </td>
                         <% }) %>
-                        <% console.log("scope:", scope) %>
-                        <% try { %>
-                            <% console.log("calculando média....") %> 
-                            <% const evaluated = math.evaluate(formula_media, scope) %> 
-                            <td class="text-center"><%= evaluated %></td>
-                        <% } catch(e) { %>
-                            <% console.error(`Falha ao calcular média da disciplina ${periodo}`, e) %> 
-                            <td class="text-center">-</td>
-                        <% } %>
+                        <td class="text-center"><%= somaMedia %></td>
                         <% console.log("totalFaltasDisciplina:", totalFaltasDisciplina) %> 
                         <td class="text-center"><%= totalFaltasDisciplina %></td>
                         
