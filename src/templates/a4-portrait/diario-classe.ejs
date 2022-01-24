@@ -211,15 +211,7 @@
                 <%# TODO: Relatório Descritivo %>
                 <% if (aluno.relatorio_experiencia) { %>
                     <h3 class="text-center"><u>AVALIAÇÃO</u></h3>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
-=======
                     <%- include("../reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
->>>>>>> development
-=======
-                    <%- include("reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
->>>>>>> 39f2702 (Squashed commit of the following:)
                 <% } %>
             </div>
             <% } %>
@@ -357,14 +349,7 @@
         <div style="text-align: center; margin: 20px;">
             <b>Mês: <%= monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b> 
         </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 39f2702 (Squashed commit of the following:)
-        <%- include("reusable/diario-classe/lista-registro-aula.ejs") %>
-=======
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
->>>>>>> development
     </div>
     <div class="page-break">
         <div>
