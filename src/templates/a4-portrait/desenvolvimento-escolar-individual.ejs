@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("css/common.ejs") %> 
+<%- include("../css/common.ejs") %> 
 <head>
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
     <style>
@@ -28,7 +28,7 @@
 </head>
 <body>
     <div style="margin: 20px;">
-        <%- include("reusable/header-escola.ejs") %> 
+        <%- include("../reusable/header-escola.ejs") %> 
         <h1 class="text-center">Desenvolvimento Escolar</h1>
         <div class="flex flex-column" style="gap: 5px;">
             <div class="multicolumn inline">
@@ -144,7 +144,7 @@
             (<%= reprovado ? "X" : " " %>) Reprovado
         </div>
 
-        <%- include("reusable/campo-assinatura-direcao.ejs") %> 
+        <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
     </div>
 </body>
 </html>

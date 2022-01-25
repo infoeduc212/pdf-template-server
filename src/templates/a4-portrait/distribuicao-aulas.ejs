@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <%- include("css/common.ejs") %>
+    <%- include("../css/common.ejs") %>
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
 </head>
 <body>
-    <%- include("reusable/header-escola.ejs") %>
+    <%- include("../reusable/header-escola.ejs") %>
     <div id="container">
         <%# TODO: Preencher campos com os dados enviados %> 
         <div class="flex flex-column small-gap">
@@ -47,7 +47,7 @@
                 <%# TODO: Ver como isso está modelado no banco de dados, se isso é uma lista ou é algo que o template tem que computar... %> 
             </tbody>
         </table>
-        <%- include("reusable/campo-assinatura-direcao.ejs") %> 
+        <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
     </div>
 </body>
 </html>
