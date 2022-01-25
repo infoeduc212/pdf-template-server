@@ -168,59 +168,8 @@
                     </div>
                 </div>
             </div>
-            <% if (aluno.frequencia) { %>
+            <% if (aluno.frequencia) { %> 
                 <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia }) %>
-            <% } %> 
-            <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
-            <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
-                Resultado Bimestral
-            </h3>
-                <% 
-                const headElemList = []
-                const notaResList = []
-                const notaMapping = {}
-                for (let i = 0; i < aluno.notas.length; i++) {
-                    const nota = aluno.notas[i]
-                    headElemList.push(nota.avaliacao.alias)
-                    notaResList.push(nota.nota_avaliacao)
-                    if (nota.recuperacao) {
-                        headElemList.push("Rec.")
-                        notaResList.push(nota.recuperacao.nota_recuperacao)
-                    }
-                    notaMapping[nota.avaliacao.alias] = nota.nota_avaliacao
-                }
-                notaMapping[nota.avaliacao.alias] = nota.nota_avaliacao
-            }
-            const resultadoMedia = math.evaluate(formula_media, notaMapping)
-             %>
-            <div style="margin: 0 50px;">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <% headElemList.forEach(elem => { %>
-                            <td class="text-center">
-                                <%= elem %>
-                            </td>
-                            <% }) %>
-                            <td class="text-center">
-                                Média do<br>Período
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <% notaResList.forEach(res => { %>
-                            <td class="text-center">
-                                <%= res %>
-                            </td>
-                            <% }) %>
-                            <td class="text-center">
-                                <%= resultadoMedia %>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
             <% } %>
             <% if (aluno.notas) { %>
             <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
