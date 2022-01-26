@@ -11,7 +11,7 @@ import morgan from "morgan";
 import { padWithZero } from "./utils";
 import { evaluate } from 'mathjs';
 import { inspect } from 'util';
-import { DateTime } from 'luxon'
+import { DateTime, Duration } from 'luxon'
 
 app.use(express.json());
 app.use(cors());
@@ -75,7 +75,7 @@ export default function createServer(): Promise<any> {
                                 template.path,
                                 {...args, math: {
                                     evaluate
-                                }, DateTime}
+                                }, DateTime, Duration}
                             )) as string;
                             if (outputType === "pdf") {
                                 res.setHeader(
