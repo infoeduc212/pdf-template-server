@@ -169,7 +169,7 @@
                 </div>
             </div>
             <% if (aluno.frequencia) { %>
-                <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia, periodo_letivo }) %>
+                <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia, ano_letivo }) %>
             <% } %>
             <% if (aluno.notas) { %>
             <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
