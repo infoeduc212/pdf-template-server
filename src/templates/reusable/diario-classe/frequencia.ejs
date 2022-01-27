@@ -81,7 +81,7 @@
 
             function isNotNullOrUndefined(value) {
                 console.log("checking nullablity:", value)
-                return value != null
+                return typeof value !== "undefined" || value !== null
             }
 
             if (isNotNullOrUndefined(periodo_letivo)) {
