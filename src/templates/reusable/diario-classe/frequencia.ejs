@@ -79,20 +79,20 @@
 
             let dateRange = null
 
-            if (periodo_letivo) {
+            if (periodo_letivo !== undefined || periodo_letivo !== null) {
                 dateRange = {
                     start: parseDate(periodo_letivo.data_inicio),
                     end: parseDate(periodo_letivo.data_termino)
                 }
             } else {
-                if (ano_letivo) {
+                if (ano_letivo !== undefined || ano_letivo !== null) {
                     dateRange = {
                         start: parseDate(ano_letivo.data_inicio),
                         end: parseDate(ano_letivo.data_termino)
                     }
                 }
             }
-            console.log(dateRange)
+            console.log("dateRange:", dateRange)
 
             const monthDict = {
                 0: "Janeiro",
