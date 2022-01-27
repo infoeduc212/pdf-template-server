@@ -79,19 +79,14 @@
 
             let dateRange = null
 
-            function isNotNullOrUndefined(value) {
-                console.log("checking nullablity:", value)
-                return typeof value !== "undefined" || value !== null
-            }
-
-            if (isNotNullOrUndefined(periodo_letivo)) {
+            if (periodo_letivo != null) {
                 console.log("periodo_letivo:", periodo_letivo)
                 dateRange = {
                     start: parseDate(periodo_letivo.data_inicio),
                     end: parseDate(periodo_letivo.data_termino)
                 }
             } else {
-                if (isNotNullOrUndefined(ano_letivo)) {
+                if (ano_letivo != null) {
                     console.log("ano_letivo:", ano_letivo)
                     dateRange = {
                         start: parseDate(ano_letivo.data_inicio),
