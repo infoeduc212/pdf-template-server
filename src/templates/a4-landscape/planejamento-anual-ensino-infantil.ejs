@@ -12,29 +12,29 @@
         <div class="flex flex-column small-gap">
             <div class="multicolumn">
                 <b class="pad-right">Instituição de Ensino:</b>
-                <div class="text-line"></div>
+                <div class="text-line"><%= nome_escola %></div>
             </div>
             <div class="multicolumn">
                 <b class="pad-right">Prof. (a):</b>
-                <div class="text-line"></div>
+                <div class="text-line"><%= nome_professor %></div>
             </div>
             <div class="flex">
                 <div class="multicolumn">
                     <b class="pad-right">Etapa de Escolaridade:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= etapa_escolaridade %></div>
                 </div>
                 <div class="multicolumn">
                     <b class="pad-right">Ano/Turma:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= ano_turma %></div>
                 </div>
                 <div class="multicolumn">
                     <b class="pad-right">Ano Letivo:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= ano_letivo %></div>
                 </div>
             </div>
             <div class="multicolumn">
                 <b class="pad-right">Faixa Etária:</b>
-                <div class="text-line"></div>
+                <div class="text-line"><%= faixa_etaria %></div>
             </div>
         </div>
     </div>
@@ -51,10 +51,24 @@
         <tbody>
             <% planejamento_anual.forEach(item => { %>
                 <tr>
-                    <td class="item-padding"><%= item.campo_experiencias %> </td>
-                    <td class="item-padding"><%= item.objetivos_aprendizagem %></td>
-                    <td class="item-padding"><%= item.eixos_tematica %></td>
-                    <td class="item-padding"><%= item.prodecimentos_atividades %></td>
+                    <td class="item-padding">
+                        <% planejamento_anual.map(i => i.campo_experiencias).forEach(campo => { %> 
+                            <%= campo.join(";\n") %>
+                        <% }) %> 
+                    </td>
+                    <td class="item-padding">
+                        <% planejamento_anual.map(i => i.objetivos_aprendizagem).forEach(objetivos => { %> 
+                            <%= objetivos.join(";\n") %>
+                        <% }) %> 
+                    </td>
+                    <td class="item-padding">
+                        <% planejamento_anual.map(i => i.eixos_tematica).forEach(eixo => { %> 
+                            <%= item.eixos_tematica %>
+                        <% }) %> 
+                    </td>
+                    <td class="item-padding">
+                        <%= prodecimentos_atividades %>
+                    </td>
                 </tr>
             <% }) %>
         </tbody>
@@ -123,13 +137,13 @@
             RECURSOS MATERIAIS
         </div>
         <div class="item-padding item-border">
-
+            <%= recursos_materiais %> 
         </div>
         <div class="bg-color item-padding text-center">
             AVALIAÇÃO
         </div>
         <div class="item-padding item-padding">
-
+            <%= avaliacao %> 
         </div>
     </div>
 </body>
