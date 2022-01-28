@@ -273,7 +273,7 @@
             </table>
             <% } %>
             <div>
-                <% if (tipo_documento !== "Infantil" && possui_nee !== true) { %>
+                <% if (tipo_documento !== "Infantil" && aluno.possui_nee !== true) { %>
                 <input id="aprovado" <%= aluno.aprovado ? "checked" : "" %> type="checkbox" />
                 <label for="aprovado">Aprovado</label>
                 <br />
@@ -287,10 +287,10 @@
                         <label for="transferido">Transferido</label>
                         <div style="margin-left: 5px; display: flex; float: right">
                             <% 
-                                    const transferido = aluno.status === "Transferido"
-                                    let dataTransferido
-                                    if (transferido === true)
-                                        dataTransferido = new Date(aluno.transferido_data) %>
+                            const transferido = aluno.status === "Transferido"
+                            let dataTransferido
+                            if (transferido === true)
+                                dataTransferido = new Date(aluno.transferido_data) %>
                             <div style="min-width: 30px" class="text-line text-center">
                                 <%= transferido ? padWithZero(dataTransferido.getDate()) : "" %>
                             </div>
