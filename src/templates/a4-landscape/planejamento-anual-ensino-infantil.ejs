@@ -1,150 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
     <%- include("../css/tabela.ejs") %>
-    <%- include("../css/common.ejs") %> 
+        <%- include("../css/common.ejs") %>
 </head>
+
 <body>
     <%- include("../reusable/header-escola.ejs") %>
-    <div class="campos">
-        <div class="flex flex-column small-gap">
-            <div class="multicolumn">
-                <b class="pad-right">Instituição de Ensino:</b>
-                <div class="text-line"><%= nome_escola %></div>
-            </div>
-            <div class="multicolumn">
-                <b class="pad-right">Prof. (a):</b>
-                <div class="text-line"><%= nome_professor %></div>
-            </div>
-            <div class="flex">
+        <div class="campos">
+            <div class="flex flex-column small-gap">
                 <div class="multicolumn">
-                    <b class="pad-right">Etapa de Escolaridade:</b>
-                    <div class="text-line"><%= etapa_escolaridade %></div>
+                    <b class="pad-right">Instituição de Ensino:</b>
+                    <div class="text-line">
+                        <%= nome_escola %>
+                    </div>
                 </div>
                 <div class="multicolumn">
-                    <b class="pad-right">Ano/Turma:</b>
-                    <div class="text-line"><%= ano_turma %></div>
+                    <b class="pad-right">Prof. (a):</b>
+                    <div class="text-line">
+                        <%= nome_professor %>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="multicolumn">
+                        <b class="pad-right">Etapa de Escolaridade:</b>
+                        <div class="text-line">
+                            <%= etapa_escolaridade %>
+                        </div>
+                    </div>
+                    <div class="multicolumn">
+                        <b class="pad-right">Ano/Turma:</b>
+                        <div class="text-line">
+                            <%= ano_turma %>
+                        </div>
+                    </div>
+                    <div class="multicolumn">
+                        <b class="pad-right">Ano Letivo:</b>
+                        <div class="text-line">
+                            <%= ano_letivo %>
+                        </div>
+                    </div>
                 </div>
                 <div class="multicolumn">
-                    <b class="pad-right">Ano Letivo:</b>
-                    <div class="text-line"><%= ano_letivo %></div>
+                    <b class="pad-right">Faixa Etária:</b>
+                    <div class="text-line">
+                        <%= faixa_etaria %>
+                    </div>
                 </div>
-            </div>
-            <div class="multicolumn">
-                <b class="pad-right">Faixa Etária:</b>
-                <div class="text-line"><%= faixa_etaria %></div>
             </div>
         </div>
-    </div>
-    <h2 class="page-title">PLANEJAMENTO ANUAL</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <td class="bg-color item-padding">CAMPOS DE EXPERIÊNCIAS</td>
-                <td class="bg-color item-padding">OBJETIVOS DE APRENDIZAGEM</td>
-                <td class="bg-color item-padding">EIXOS TÉMATICA/CONCLUÍDOS</td>
-                <td class="bg-color item-padding">PRODECIMENTOS/ATIVIDADES</td>
-            </tr>
-        </thead>
-        <tbody>
-            <% planejamento_anual.forEach(item => { %>
+        <h2 class="page-title">PLANEJAMENTO ANUAL</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td class="bg-color item-padding">CAMPOS DE EXPERIÊNCIAS</td>
+                    <td class="bg-color item-padding">OBJETIVOS DE APRENDIZAGEM</td>
+                    <td class="bg-color item-padding">EIXOS TÉMATICA/CONCLUÍDOS</td>
+                    <td class="bg-color item-padding">PRODECIMENTOS/ATIVIDADES</td>
+                </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td class="item-padding">
-                        <% planejamento_anual.map(i => i.campo_experiencias).forEach(campo => { %> 
-                            <%= campo.join(";\n") %>
-                        <% }) %> 
+                        <%= campo_experiencias %>
                     </td>
                     <td class="item-padding">
-                        <% planejamento_anual.map(i => i.objetivos_aprendizagem).forEach(objetivos => { %> 
-                            <%= objetivos.join(";\n") %>
-                        <% }) %> 
+                        <%= objetivos_aprendizagem %>
                     </td>
                     <td class="item-padding">
-                        <% planejamento_anual.map(i => i.eixos_tematica).forEach(eixo => { %> 
-                            <%= item.eixos_tematica %>
-                        <% }) %> 
+                        <%= eixos_tematica %>
                     </td>
                     <td class="item-padding">
-                        <%= prodecimentos_atividades %>
+                        <%= procedimentos_atividades %>
                     </td>
                 </tr>
-            <% }) %>
-        </tbody>
-    </table>
-    <div class="page-break">
-        <div class="flex flex-column">
-            <div class="bg-color text-center item-padding">
-                10 (DEZ) COMPETÊNCIAS GERIAS
+
+            </tbody>
+        </table>
+        <div class="page-break">
+            <div class="flex flex-column">
+                <div class="bg-color text-center item-padding">
+                    10 (DEZ) COMPETÊNCIAS GERIAS
+                </div>
+                <div class="item-padding item-border">
+                    <b>1.</b> Valorizar e utilizar os conhecimentos historicamente construídos sobre o mundo físico, social, cultural e digital para entender e explicar a realidade, continuar aprendendo e colaborar para a construção de uma sociedade justa,
+                    democrática e inclusiva.
+                    <br>
+                    <b>2.</b> Exercitar a curiosidade intelectual e recorrer à abordagem própria das ciências, incluindo a investigação, a reflexão, a análise crítica, a imaginação e a criatividade, para investigar causas, elaborar e testar hipóteses,
+                    formular e resolver problemas e criar soluções (inclusive tecnológicas) com base nos conhecimentos das diferentes áreas.
+                    <br>
+                    <b>3.</b> Valorizar e fruir as diversas manifestações artísticas e culturais, das locais às mundiais, e também participar de práticas diversificadas da produção artístico-cultural.
+                    <br>
+                    <b>4.</b> Utilizar diferentes linguagens – verbal (oral ou visual-motora, como Libras, e escrita), corporal, visual, sonora e digital –, bem como conhecimentos das linguagens artística, matemática e científica, para se expressar e
+                    partilhar informações, experiências, ideias e sentimentos em diferentes contextos, além de produzir sentidos que levem ao entendimento mútuo.
+                    <br>
+                    <b>5.</b> Compreender, utilizar e criar tecnologias digitais de informação e comunicação de forma crítica, significativa, reflexiva e ética nas diversas práticas sociais (incluindo as escolares) para se comunicar, acessar e disseminar
+                    informações, produzir conhecimentos, resolver problemas e exercer protagonismo e autoria na vida pessoal e coletiva.
+                    <br>
+                    <b>6.</b> Valorizar a diversidade de saberes e vivências culturais, apropriar-se de conhecimentos e experiências que lhe possibilitem entender as relações próprias do mundo do trabalho e fazer escolhas alinhadas ao exercício da cidadania
+                    e ao seu projeto de vida, com liberdade, autonomia, consciência crítica e responsabilidade.
+                    <br>
+                    <b>7.</b> Argumentar com base em fatos, dados e informações confiáveis, para formular, negociar e defender ideias, pontos de vista e decisões comuns que respeitem e promovam os direitos humanos, a consciência socioambiental e o consumo
+                    responsável em âmbito local, regional e global, com posicionamento ético em relação ao cuidado de si mesmo, dos outros e do planeta.
+                    <br>
+                    <b>8.</b> Conhecer-se, apreciar-se e cuidar de sua saúde física e emocional, compreendendo- se na diversidade humana e reconhecendo suas emoções e as dos outros, com autocrítica e capacidade para lidar com elas.
+                    <br>
+                    <b>9.</b> Exercitar a empatia, o diálogo, a resolução de conflitos e a cooperação, fazendo-se respeitar e promovendo o respeito ao outro e aos direitos humanos, com acolhimento e valorização da diversidade de indivíduos e de grupos
+                    sociais, seus saberes, suas identidades, suas culturas e suas potencialidades, sem preconceitos de qualquer natureza.
+                    <br>
+                    <b>10.</b> Agir pessoal e coletivamente com autonomia, responsabilidade, flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários.
+                </div>
+            </div>
+        </div>
+        <style>
+            .big-text {
+                padding: 20px; 
+                font-size: 20px; 
+                font-weight: bold;
+            }
+        </style>
+        <div class="page-break">
+            <div class="bg-color item-padding text-center">
+                EIXOS ESTRUTURANTES
+            </div>
+            <div class="item-border text-center big-text">
+                Interagir e Brincar
+            </div>
+            <div class="bg-color item-padding text-center">
+                DIREITOS DE APRENDIZAGEM E DESENVOLVIMENTO NA EDUCAÇÃO INFANTIL
             </div>
             <div class="item-padding item-border">
-                <b>1.</b> Valorizar e utilizar os conhecimentos historicamente construídos sobre o mundo físico, social, cultural e digital para entender e explicar a realidade, continuar aprendendo e colaborar para a construção de uma sociedade justa, democrática e inclusiva.
-                <br>
-                <b>2.</b> Exercitar a curiosidade intelectual e recorrer à abordagem própria das ciências, incluindo a investigação, a reflexão, a análise crítica, a imaginação e a criatividade, para investigar causas, elaborar e testar hipóteses, formular
-                e resolver problemas e criar soluções (inclusive tecnológicas) com base nos conhecimentos das diferentes áreas.
-                <br>
-                <b>3.</b> Valorizar e fruir as diversas manifestações artísticas e culturais, das locais às mundiais, e também participar
-                de práticas diversificadas da produção artístico-cultural.
-                <br>
-                <b>4.</b> Utilizar diferentes linguagens – verbal (oral ou visual-motora, como Libras, e escrita), corporal, visual, sonora e digital –, bem como conhecimentos das linguagens
-                artística, matemática e científica, para se expressar e partilhar informações, experiências, ideias e sentimentos em diferentes contextos, além de produzir sentidos que levem ao entendimento mútuo.
-                <br>
-                <b>5.</b> Compreender, utilizar e criar tecnologias digitais de informação e comunicação de forma crítica, significativa, reflexiva e ética nas diversas práticas sociais (incluindo as escolares) para se comunicar, acessar e disseminar informações, produzir conhecimentos,
-                resolver problemas e exercer protagonismo e autoria na vida pessoal e coletiva.
-                <br>
-                <b>6.</b> Valorizar a diversidade de saberes e vivências culturais, apropriar-se de conhecimentos e experiências que lhe possibilitem entender as relações
-                próprias do mundo do trabalho e fazer escolhas alinhadas ao exercício da cidadania e ao seu projeto de vida, com liberdade, autonomia, consciência crítica e responsabilidade.
-                <br>
-                <b>7.</b> Argumentar com base em fatos, dados e informações confiáveis, para formular, negociar e defender ideias, pontos de vista e decisões comuns que respeitem e promovam os direitos humanos, a consciência socioambiental e o consumo responsável em âmbito local, regional e global, com
-                posicionamento ético em relação ao cuidado de si mesmo, dos outros e do planeta.
-                <br>
-                <b>8.</b> Conhecer-se, apreciar-se e cuidar de sua saúde física e emocional, compreendendo- se na diversidade humana e reconhecendo suas emoções e as dos
-                outros, com autocrítica e capacidade para lidar com elas.
-                <br>
-                <b>9.</b> Exercitar a empatia, o diálogo, a resolução de conflitos e a cooperação, fazendo-se respeitar e promovendo o respeito ao outro e aos direitos humanos, com acolhimento
-                e valorização da diversidade de indivíduos e de grupos sociais, seus saberes, suas identidades, suas culturas e suas potencialidades, sem preconceitos de qualquer natureza.
-                <br>
-                <b>10.</b> Agir pessoal e coletivamente com autonomia, responsabilidade,
-                flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários.
+                ➢ <b>CONVIVER</b> com outras crianças e adultos, em pequenos e grandes grupos, utilizando diferentes linguagens, ampliando o conhecimento de si e do outro, o respeito em relação à cultura e às diferenças entre as pessoas.
+                <br> ➢ <b>BRINCAR</b> cotidianamente de diversas formas, em diferentes espaços e tempos, com diferentes parceiros (crianças e adultos), ampliando e diversificando seu acesso a produções culturais, seus conhecimentos, sua imaginação, sua
+                criatividade, suas experiências emocionais, corporais, sensoriais, expressivas, cognitivas, sociais e relacionais.
+                <br> ➢ <b>PARTICIPAR</b> ativamente, com adultos e outras crianças, tanto do planejamento da gestão da escola e das atividades propostas pelo educador quanto da realização das atividades da vida cotidiana, tais como a escolha das brincadeiras,
+                dos materiais e dos ambientes, desenvolvendo diferentes linguagens e elaborando conhecimentos, decidindo e se posicionando.
+                <br> ➢ <b>EXPLORAR</b> movimentos, gestos, sons, formas, texturas, cores, palavras, emoções, transformações, relacionamentos, histórias, objetos, elementos da natureza, na escola e fora dela, ampliando seus saberes sobre a cultura, em
+                suas diversas modalidades: as artes, a escrita, a ciência e a tecnologia.
+                <br> ➢ <b>EXPRESSAR</b>, como sujeito dialógico, criativo e sensível, suas necessidades, emoções, sentimentos, dúvidas, hipóteses, descobertas, opiniões, questionamentos, por meio de diferentes linguagens.
+                <br> ➢ <b>CONHECER-SE</b> e construir sua identidade pessoal, social e cultural, constituindo uma imagem positiva de si e de seus grupos de pertencimento, nas diversas experiências de cuidados, interações, brincadeiras e linguagens vivenciadas
+                na instituição escolar e em seu contexto familiar e comunitário
+            </div>
+            <div class="bg-color item-padding text-center">
+                RECURSOS MATERIAIS
+            </div>
+            <div class="item-padding item-border big-text">
+                <%= recursos_materiais %>
+            </div>
+            <div class="bg-color item-padding text-center">
+                AVALIAÇÃO
+            </div>
+            <div class="item-padding item-border big-text">
+                <%= avaliacao %>
             </div>
         </div>
-    </div>
-    <div class="page-break">
-        <div class="bg-color item-padding text-center">
-            EIXOS ESTRUTURANTES
-        </div>
-        <div class="item-border text-center" style="padding: 20px; font-size: 20px; font-weight: bold;">
-            Teste
-        </div>
-        <div class="bg-color item-padding text-center">
-            DIREITOS DE APRENDIZAGEM E DESENVOLVIMENTO NA EDUCAÇÃO INFANTIL
-        </div>
-        <div class="item-padding item-border">
-            ➢ <b>CONVIVER</b> com outras crianças e adultos, em pequenos e grandes grupos, utilizando diferentes linguagens, ampliando o conhecimento de si e do outro, o respeito em relação à cultura e às diferenças entre as pessoas.
-            <br>
-            ➢ <b>BRINCAR</b> cotidianamente de diversas formas, em diferentes espaços e tempos, com diferentes parceiros (crianças e adultos), ampliando e diversificando seu acesso a produções culturais, seus conhecimentos, sua imaginação, sua criatividade, suas experiências emocionais, corporais, sensoriais, expressivas, cognitivas, sociais e relacionais.
-            <br>
-            ➢ <b>PARTICIPAR</b> ativamente, com adultos e outras crianças, tanto do planejamento da gestão da escola e das atividades propostas pelo educador quanto da realização das atividades da vida cotidiana, tais como a escolha das brincadeiras, dos materiais e dos ambientes, desenvolvendo diferentes linguagens e elaborando conhecimentos, decidindo e se posicionando.
-            <br>
-            ➢ <b>EXPLORAR</b> movimentos, gestos, sons, formas, texturas, cores, palavras, emoções, transformações, relacionamentos, histórias, objetos, elementos da natureza, na escola e fora dela, ampliando seus saberes sobre a cultura, em suas diversas modalidades: as artes, a escrita, a ciência e a tecnologia.
-            <br>
-            ➢ <b>EXPRESSAR</b>, como sujeito dialógico, criativo e sensível, suas necessidades, emoções, sentimentos, dúvidas, hipóteses, descobertas, opiniões, questionamentos, por meio de diferentes linguagens.
-            <br>
-            ➢ <b>CONHECER-SE</b> e construir sua identidade pessoal, social e cultural, constituindo uma imagem positiva de si e de seus grupos de pertencimento, nas diversas experiências de cuidados, interações, brincadeiras e linguagens vivenciadas na instituição escolar e em seu contexto familiar e comunitário
-        </div>
-        <div class="bg-color item-padding text-center">
-            RECURSOS MATERIAIS
-        </div>
-        <div class="item-padding item-border">
-            <%= recursos_materiais %> 
-        </div>
-        <div class="bg-color item-padding text-center">
-            AVALIAÇÃO
-        </div>
-        <div class="item-padding item-padding">
-            <%= avaliacao %> 
-        </div>
-    </div>
 </body>
+
 </html>
