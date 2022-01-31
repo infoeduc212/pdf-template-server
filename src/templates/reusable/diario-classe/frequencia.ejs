@@ -166,7 +166,7 @@
             <td class="text-center">
                 <% if (day.qtd_presenca > 0) { %>
                 <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
-                <% } else { %>
+                <% } else if (day.qtd_faltas > 0) { %>
                 <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
                 <% } %>
             </td>
