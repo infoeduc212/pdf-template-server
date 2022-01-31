@@ -166,7 +166,7 @@
             <td class="text-center">
                 <% if (day.qtd_presenca > 0) { %>
                 <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
-                <% } else if (day.qtd_faltas > 0) { %>
+                <% } else { %>
                 <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
                 <% } %>
             </td>
@@ -177,7 +177,10 @@
             <% } %>
             <!-- Faltas -->
             <td class="text-center">
-                <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %>
+                <% const existiuFalta = monthRange.some(({ qtd_faltas }) => qtd_faltas !== null) %>
+                <% if (existiuFalta) { %>
+                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %>
+                <% } %>
             </td>
         </tr>
         <% }) %>
