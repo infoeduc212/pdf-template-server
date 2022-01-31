@@ -8,8 +8,7 @@ const app = express();
 import ejs from "ejs";
 import cors from "cors";
 import morgan from "morgan";
-import { padWithZero } from "./utils";
-import { evaluate } from 'mathjs';
+import { compile, evaluate } from 'mathjs';
 import { inspect } from 'util';
 import { DateTime, Duration } from 'luxon'
 
@@ -74,6 +73,7 @@ export default function createServer(): Promise<any> {
                             const render = (await ejs.renderFile(
                                 template.path,
                                 {...args, math: {
+                                    compile,
                                     evaluate
                                 }, DateTime, Duration}
                             )) as string;
