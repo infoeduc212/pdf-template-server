@@ -75,44 +75,86 @@
                 return DateTime.fromJSDate(new Date(date), { zone: "America/Sao_Paulo" })
             }
 
-            const rangeArray = frequencia.sort((a, b) => new Date(b.date) - new Date(a.date))
+            const listaDate = frequencia.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+            let dateRange = null
+
+            if (periodo_letivo != null) {
+                console.log("periodo_letivo:", periodo_letivo)
+                dateRange = {
+                    start: parseDate(periodo_letivo.data_inicio),
+                    end: parseDate(periodo_letivo.data_termino)
+                }
+            } else {
+                if (ano_letivo != null) {
+                    console.log("ano_letivo:", ano_letivo)
+                    dateRange = {
+                        start: parseDate(ano_letivo.data_inicio),
+                        end: parseDate(ano_letivo.data_termino)
+                    }
+                }
+            }
+            console.log("dateRange:", dateRange)
 
             const monthDict = {
-                0: "Janeiro",
-                1: "Fevereiro",
-                2: "Março",
-                3: "Abril",
-                4: "Maio",
-                5: "Junho",
-                6: "Julho",
-                7: "Agosto",
-                8: "Setembro",
-                9: "Outubro",
-                10: "Novembro",
-                11: "Dezembro"
+                1: "Janeiro",
+                2: "Fevereiro",
+                3: "Março",
+                4: "Abril",
+                5: "Maio",
+                6: "Junho",
+                7: "Julho",
+                8: "Agosto",
+                9: "Setembro",
+                10: "Outubro",
+                11: "Novembro",
+                12: "Dezembro"
             }
 
             const years = {}
 
-            rangeArray.forEach(record => {
+            if (dateRange) {
+                const startDate = dateRange.start
+                const endDate = dateRange.end
+
+                let currentDate = startDate
+                
+                while (endDate.toMillis() > currentDate.toMillis()) {
+                    if (!years[currentDate.year]) {
+                        years[currentDate.year] = []
+                    }
+                    if (years[currentDate.year].indexOf(currentDate.month) === -1) {
+                        years[currentDate.year].push(currentDate.month)
+                    }
+                    currentDate = currentDate.plus(Duration.fromObject({
+                        months: 1
+                    }))
+                }
+            }
+            console.log(years)
+
+            listaDate.forEach(record => {
                 const date = parseDate(record.data_lancamento)
                 const year = date.year
                 if (!years.hasOwnProperty(year)) years[year] = []
                 const monthsFromYear = years[year]
-                if (monthsFromYear.indexOf(date.month) === -1)
+                if (monthsFromYear.indexOf(date.month) === -1) {
                     years[year].push(date.month)
+                }
+                console.log(monthsFromYear)
             })
             %>
         <% for (year in years) { %>
         <% if (!years.hasOwnProperty(year)) continue %>
         <% years[year].forEach(month => { %>
         <tr>
-            <td><%= monthDict[month - 1] %></td>
-            <% const monthRange = rangeArray.filter(record => {
-                        const date = parseDate(record.data_lancamento)
-                        return date.month === month && date.year === parseInt(year)
-                    }) %>
-                    <% console.log(monthRange) %>
+            <% console.log(monthDict[month], month) %> 
+            <td><%= monthDict[month] %></td>
+            <% const monthRange = listaDate.filter(record => {
+                const date = parseDate(record.data_lancamento)
+                return date.month === month && date.year === parseInt(year)
+            }) %>
+            <% console.log(monthRange) %>
             <!-- Quantidade de presença no dia -->
             <% const maxDays = 32 %>
             <% for (let i = 1; i < maxDays; i++) { %>
@@ -129,12 +171,16 @@
                 <% } %>
             </td>
             <% } else { %>
-            <td class="text-center">0</td>
+            <!-- Vazio, sem falta ou frequencia -->
+            <td class="text-center"></td>
             <% } %>
             <% } %>
             <!-- Faltas -->
             <td class="text-center">
-                <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %>
+                <% const existiuFalta = monthRange.some(({ qtd_faltas }) => qtd_faltas !== null) %>
+                <% if (existiuFalta) { %>
+                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %>
+                <% } %>
             </td>
         </tr>
         <% }) %>
