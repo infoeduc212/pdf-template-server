@@ -145,7 +145,7 @@
             </div>
         </div>
     </div>
-    <% lista_alunos.sort((a, b) => a.localeCompare(b)).forEach(aluno => { %>
+    <% lista_alunos.sort((a, b) => a.nome_aluno.localeCompare(b.nome_aluno)).forEach(aluno => { %>
     <div class="page-break" style="margin: 10px;">
         <div style="display: flex; margin-bottom: 10px">
             <div class="flex flex-column" style="gap: 5px;">
