@@ -41,7 +41,11 @@
             }
             %>
             <div class="multicolumn">
+<<<<<<< HEAD
                 <% if (!isBlank(str)) { %>
+=======
+                <% if (typeof nome_disciplina === "string" && nome_disciplina.trim() !== "") { %>
+>>>>>>> ae741ed (Verificar se o nome da disciplina está em branco)
                     <div class="inline pad-right">
                         <b>Componente Curricular:</b>
                         <div class="text-line"><%= nome_disciplina %></div>
