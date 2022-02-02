@@ -12,34 +12,34 @@
         <div class="flex flex-column small-gap">
             <div class="multicolumn">
                 <b class="pad-right">Instituição de Ensino:</b>
-                <div class="text-line"></div>
+                <div class="text-line"><%= nome_escola %></div>
             </div>
             <div class="multicolumn">
                 <b class="pad-right">Prof (a):</b>
-                <div class="text-line"></div>
+                <div class="text-line"><%= nome_professor %></div>
             </div>
             <div class="multicolumn">
                 <div class="inline">
                     <b class="pad-right">Etapa de Escolaridade:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= etapa_escolaridade %></div>
                 </div>
                 <div class="inline">
                     <b class="pad-right">Ano/Turma:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= ano_turma %></div>
                 </div>
                 <div class="inline">
                     <b class="pad-right">Ano Letivo:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= ano_letivo %></div>
                 </div>
             </div>
             <div class="multicolumn">
                 <div class="inline">
                     <b>Área de Conhecimento:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= area_conhecimento %></div>
                 </div>
                 <div class="inline">
                     <b>Componente Curricular:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= componente_curricular %></div>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
     <div class="page-break">
         <div class="flex flex-column">
             <div class="bg-color text-center item-padding">
-                10 (DEZ) COMPETÊNCIAS GERIAS
+                10 (DEZ) COMPETÊNCIAS GERAIS
             </div>
             <div class="item-padding item-border">
                 <b>1.</b> Valorizar e utilizar os conhecimentos historicamente construídos sobre o mundo físico, social, cultural e digital para entender e explicar a realidade, continuar aprendendo e colaborar para a construção de uma sociedade justa, democrática e inclusiva.
@@ -138,19 +138,73 @@
             COMPETÊNCIAS ESPECÍFICAS DA ÁREA DE CONHECIMENTO
         </div>
         <div class="item-padding item-border">
-            <%= competencias_especificas_area_conhecimento %> 
+            <b>1.</b> Compreender as linguagens como construção humana, histórica, social e cultural,
+            de natureza dinâmica, reconhecendo-as e valorizando-as como formas de
+            significação da realidade e expressão de subjetividades e identidades sociais e
+            culturais.
+            <br>
+            <b>2.</b> Conhecer e explorar diversas práticas de linguagem (artísticas, corporais e
+            linguísticas) em diferentes campos da atividade humana para continuar
+            aprendendo, ampliar suas possibilidades de participação na vida social e
+            colaborar para a construção de uma sociedade mais justa, democrática e
+            inclusiva.
+            <br>
+            <b>3.</b> Utilizar diferentes linguagens – verbal (oral ou visual-motora, como Libras, e
+            escrita), corporal, visual, sonora e digital –, para se expressar e partilhar
+            informações, experiências, ideias e sentimentos em diferentes contextos e produzir
+            sentidos que levem ao diálogo, à resolução de conflitos e à cooperação.
+            <br>
+            <b>4.</b> Utilizar diferentes linguagens para defender pontos de vista que respeitem o outro
+            e promovam os direitos humanos, a consciência socioambiental e o consumo
+            responsável em âmbito local, regional e global, atuando criticamente frente a
+            questões do mundo contemporâneo.
+            <br>
+            <b>5.</b> Desenvolver o senso estético para reconhecer, fruir e respeitar as diversas
+            manifestações artísticas e culturais, das locais às mundiais, inclusive aquelas
+            pertencentes ao patrimônio cultural da humanidade, bem como participar de
+            práticas diversificadas, individuais e coletivas, da produção artístico-cultural, com
+            respeito à diversidade de saberes, identidades e culturas.
+            <br>
+            <b>6.</b> Compreender e utilizar tecnologias digitais de informação e comunicação de forma
+            crítica, significativa, reflexiva e ética nas diversas práticas sociais (incluindo as
+            escolares), para se comunicar por meio das diferentes linguagens e mídias,
+            produzir conhecimentos, resolver problemas e desenvolver projetos autorais e coletivos.
         </div>
         <div class="bg-color text-center item-padding">
             COMPETÊNCIAS ESPECÍFICAS DO COMPONENTE CURRICULAR
         </div>
         <div class="item-padding item-border">
-            <%= competencias_especificas_componente_curricular %> 
+            <b>1.</b> Identificar o lugar de si e o do outro em um mundo plurilíngue e multicultural, refletindo
+            criticamente, sobre como a aprendizagem da língua inglesa contribui para a inserção
+            dos sujeitos no mundo globalizado, inclusive no que concerne ao mundo do trabalho.
+            <br>
+            <b>2.</b> Comunicar-se na língua inglesa, por meio do uso variado de linguagens em mídias
+            impressas ou digitais, reconhecendo-a como ferramenta de acesso ao conhecimento, de
+            ampliação das perspectivas e de possibilidades para a compreensão dos valores e
+            interesses de outras culturas e para o exercício do protagonismo social.
+            <br>
+            <b>3.</b> Identificar similaridades e diferenças entre a língua inglesa e a língua materna/outras
+            línguas, articulando-as a aspectos sociais, culturais e identitários, em uma relação
+            intrínseca entre língua, cultura e identidade.
+            <br>
+            <b>4.</b> Elaborar repertórios linguístico-discursivos da língua inglesa, usados em diferentes
+            países e por grupos sociais distintos dentro de um mesmo país, de modo a reconhecer
+            a diversidade linguística como direito e valorizar os usos heterogêneos, híbridos e
+            multimodais emergentes nas sociedades contemporâneas.
+            <br>
+            <b>5.</b> Utilizar novas tecnologias, com novas linguagens e modos de interação, para pesquisar,
+            selecionar, compartilhar, posicionar-se e produzir sentidos em práticas de letramento na
+            língua inglesa, de forma ética, crítica e responsável.
+            <br>
+            <b>6.</b> Conhecer diferentes patrimônios culturais, materiais e imateriais, difundidos na língua
+            inglesa, com vistas ao exercício da fruição e da ampliação de perspectivas no contato
+            com diferentes manifestações artístico-culturais.
         </div>
         <div class="bg-color text-center item-border">
             METODOLOGIAS
         </div>
         <div class="item-padding item-border">
-            <%= metodoslogias %> 
+            <%= metodologias %> 
         </div>
         <div class="bg-color text-center item-border">
             RECURSOS MATERIAIS
