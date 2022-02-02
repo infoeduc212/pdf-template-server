@@ -12,34 +12,34 @@
         <div class="flex flex-column small-gap">
             <div class="multicolumn">
                 <b class="pad-right">Instituição de Ensino:</b>
-                <div class="text-line"></div>
+                <div class="text-line"><%= nome_escola %></div>
             </div>
             <div class="multicolumn">
                 <b class="pad-right">Prof. (a):</b>
-                <div class="text-line"></div>
+                <div class="text-line"><%= nome_professor %></div>
             </div>
             <div class="flex" style="gap: 5px;">
                 <div class="multicolumn">
                     <b class="pad-right">Etapa de Escolaridade:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= etapa_escolaridade %></div>
                 </div>
                 <div class="multicolumn">
                     <b class="pad-right">Ano/Turma:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= ano_turma %></div>
                 </div>
                 <div class="multicolumn">
                     <b class="pad-right">Ano Letivo:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= ano_letivo %></div>
                 </div>
             </div>
             <div class="flex" style="gap: 5px;">
                 <div class="multicolumn">
                     <b class="pad-right">Área do Conhecimento:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= area_conhecimento %></div>
                 </div>
                 <div class="multicolumn">
                     <b class="pad-right">Componente Curricular:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= componente_curricular %></div>
                 </div>
             </div>
         </div>
@@ -52,25 +52,31 @@
                 <td class="bg-color item-padding">TEMAS/CONTEÚDOS</td>
             </tr>
         </thead>
+        <tbody>
+            <tr>
+                <td><%= objetivos_habilidades %></td>
+                <td><%= temas_conteudos %></td>
+            </tr>
+        </tbody>
     </table>
     <div class="page-break">
         <div class="flex flex-column">
             <div class="flex flex-column">
                 <div class="bg-color text-center item-border item-padding">PRODECIMENTO DIDÁTICO/METODOLOGICAS</div>
                 <div class="item-border item-padding">
-
+                    <%= prodecimento_didatico %>
                 </div>
             </div>
             <div class="flex flex-column">
                 <div class="bg-color text-center item-border item-padding">RECURSOS MATERIAIS</div>
                 <div class="item-border item-padding">
-
+                    <%= recursos_materiais %>
                 </div>
             </div>
             <div class="flex flex-column">
                 <div class="bg-color text-center item-border item-padding">AVALIAÇÃO</div>
                 <div class="item-border item-padding">
-
+                    <%= avaliacao %>
                 </div>
             </div>
         </div>
