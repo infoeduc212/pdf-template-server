@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="multicolumn">
-                <% if (nome_disciplina) { %>
+                <% if (typeof nome_disciplina === "string" && nome_disciplina.trim() !== "") { %>
                     <div class="inline pad-right">
                         <b>Componente Curricular:</b>
                         <div class="text-line"><%= nome_disciplina %></div>

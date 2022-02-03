@@ -409,11 +409,14 @@
                             </td>
                         </tr>
                     <% } %>
-                    <tr>
-                        <td>Total de Faltas</td>
-                        <td class="fixed-width text-center">
-                            <%= aluno.frequencia.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %></td>
-                    </tr>
+                    <% if (aluno.frequencia) { %>
+                        <tr>
+                            <td>Total de Faltas</td>
+                            <td class="fixed-width text-center">
+                                <%= aluno.frequencia.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
+                            </td>
+                        </tr>
+                    <% } %>
                     <tr>
                         <%# TODO: ? %>
                         <td>Nota de Rec. Final</td>
@@ -489,10 +492,6 @@
     
     <div class="page-break" style="margin: 10px;">
         <%
-        const sortedDateArray = registros_aulas.sort((a, b) => {
-            return new Date(a.data) - new Date(b.data)
-        }) 
-        
         const monthDict = {
             0: "Janeiro",
             1: "Fevereiro",
@@ -507,12 +506,18 @@
             10: "Novembro",
             11: "Dezembro"
         }
+        
+        const sortedDateArray = registros_aulas.sort((a, b) => {
+            return new Date(a.data) - new Date(b.data)
+        }) 
         %>
 
         <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
-        <div style="text-align: center; margin: 20px;">
-            <b>Mês: <%= monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b>
-        </div>
+        <% if (sortedDateArray.length > 0) { %>
+            <div style="text-align: center; margin: 20px;">
+                <b>Mês: <%= monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b>
+            </div>
+        <% } %>
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
     </div>
     <div class="page-break">

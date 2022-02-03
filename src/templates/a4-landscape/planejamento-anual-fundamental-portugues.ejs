@@ -14,34 +14,34 @@
             <div class="flex flex-column small-gap">
                 <div class="multicolumn">
                     <b class="pad-right">Instituição de Ensino:</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= nome_escola %></div>
                 </div>
                 <div class="multicolumn">
                     <b class="pad-right">Prof (a):</b>
-                    <div class="text-line"></div>
+                    <div class="text-line"><%= nome_professor %></div>
                 </div>
                 <div class="multicolumn">
                     <div class="inline">
                         <b class="pad-right">Etapa de Escolaridade:</b>
-                        <div class="text-line"></div>
+                        <div class="text-line"><%= etapa_escolaridade %></div>
                     </div>
                     <div class="inline">
                         <b class="pad-right">Ano/Turma:</b>
-                        <div class="text-line"></div>
+                        <div class="text-line"><%= ano_turma %></div>
                     </div>
                     <div class="inline">
                         <b class="pad-right">Ano Letivo:</b>
-                        <div class="text-line"></div>
+                        <div class="text-line"><%= ano_letivo %></div>
                     </div>
                 </div>
                 <div class="multicolumn">
                     <div class="inline">
                         <b>Área de Conhecimento:</b>
-                        <div class="text-line"></div>
+                        <div class="text-line"><%= area_conhecimento %></div>
                     </div>
                     <div class="inline">
                         <b>Componente Curricular:</b>
-                        <div class="text-line"></div>
+                        <div class="text-line"><%= componente_curricular %></div>
                     </div>
                 </div>
             </div>
@@ -102,7 +102,7 @@
         <div class="page-break">
             <div class="flex flex-column">
                 <div class="bg-color text-center item-padding">
-                    10 (DEZ) COMPETÊNCIAS GERIAS
+                    10 (DEZ) COMPETÊNCIAS GERAIS
                 </div>
                 <div class="item-padding item-border">
                     <b>1.</b> Valorizar e utilizar os conhecimentos historicamente construídos sobre o mundo físico, social, cultural e digital para entender e explicar a realidade, continuar aprendendo e colaborar para a construção de uma sociedade justa, democrática e inclusiva.
@@ -181,23 +181,11 @@
             </div>
         </div>
         <div class="page-break">
-            <div class="bg-color text-center item-padding">
-                COMPETÊNCIAS ESPECÍFICAS DA ÁREA DE CONHECIMENTO
-            </div>
-            <div class="item-padding item-border">
-                <%= competencias_especificas_area_conhecimento %> 
-            </div>
-            <div class="bg-color text-center item-padding">
-                COMPETÊNCIAS ESPECÍFICAS DO COMPONENTE CURRICULAR
-            </div>
-            <div class="item-padding item-border">
-                <%= competencias_especificas_componente_curricular %> 
-            </div>
             <div class="bg-color text-center item-border">
                 METODOLOGIAS
             </div>
             <div class="item-padding item-border">
-                <%= metodoslogias %> 
+                <%= metodologias %> 
             </div>
             <div class="bg-color text-center item-border">
                 RECURSOS MATERIAIS
