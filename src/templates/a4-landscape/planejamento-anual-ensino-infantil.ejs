@@ -53,7 +53,7 @@
             </div>
         </div>
         <style>
-            .no-warp {
+            .no-wrap {
                 white-space: nowrap;
             }
         </style>
@@ -63,32 +63,35 @@
                 <tr>
                     <td class="bg-color item-padding">CAMPOS DE EXPERIÊNCIAS</td>
                     <td class="bg-color item-padding">OBJETIVOS DE APRENDIZAGEM E DESENVOLVIMENTO</td>
-                    <td class="bg-color item-padding no-warp">EIXOS TÉMATICOS</td>
-                    <td class="bg-color item-padding">PRODECIMENTOS/METODOLOGIAS</td>
+                    <td class="bg-color item-padding no-wrap">EIXOS TÉMATICOS</td>
                 </tr>
             </thead>
             <tbody style="font-size: 11px; text-align: justify;">
-                <tr>
-                    <td class="item-padding">
-                        <%= campo_experiencias %>
-                    </td>
-                    <td class="item-padding">
-                        <% objetivos_aprendizagem.forEach(objetivo => { %>
-                            <%= objetivo %><br> 
-                        <% }) %>
-                    </td>
-                    <td class="item-padding">
-                        <%= eixos_tematica %>
-                    </td>
-                    <td class="item-padding">
-                        <% procedimentos_atividades.split("\n").forEach(text => { %>
-                            <%= text %><br>
-                        <% }) %> 
-                    </td>
-                </tr>
-
+                <% planejamentos_infantil.forEach(item => { %>
+                    <tr>
+                        <td class="item-padding">
+                            <%= item.campo_experiencias %>
+                        </td>
+                        <td class="item-padding">
+                            <% objetivos_aprendizagem.forEach(objetivo => { %>
+                                <%= item.objetivo %><br> 
+                            <% }) %>
+                        </td>
+                        <td class="item-padding">
+                            <%= item.eixos_tematica %>
+                        </td>
+                    </tr>
+                <% }) %>
             </tbody>
         </table>
+        <div class="bg-color item-padding text-center">
+            PRODECIMENTOS/METODOLOGIAS
+        </div>
+        <div class="item-border item-padding">
+            <% item.procedimentos_atividades.split("\n").forEach(text => { %>
+                <%= text %><br>
+            <% }) %> 
+        </div>
         <div class="page-break">
             <div class="flex flex-column">
                 <div class="bg-color text-center item-padding">
