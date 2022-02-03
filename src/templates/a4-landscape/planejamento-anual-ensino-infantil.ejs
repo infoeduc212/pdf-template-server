@@ -61,14 +61,17 @@
         <table class="table">
             <thead>
                 <tr>
+                    <td class="bg-color item-padding no-wrap">EIXOS TÉMATICOS</td>
                     <td class="bg-color item-padding">CAMPOS DE EXPERIÊNCIAS</td>
                     <td class="bg-color item-padding">OBJETIVOS DE APRENDIZAGEM E DESENVOLVIMENTO</td>
-                    <td class="bg-color item-padding no-wrap">EIXOS TÉMATICOS</td>
                 </tr>
             </thead>
-            <tbody style="font-size: 11px; text-align: justify;">
+            <tbody style="font-size: 13px; text-align: justify;">
                 <% planejamentos.forEach(item => { %>
                     <tr>
+                        <td class="item-padding">
+                            <%= item.eixo_tematico %>
+                        </td>
                         <td class="item-padding">
                             <%= item.campo_experiencias %>
                         </td>
@@ -76,9 +79,6 @@
                             <% item.objetivos_aprendizagem.forEach(objetivo => { %>
                                 <%= objetivo %><br> 
                             <% }) %>
-                        </td>
-                        <td class="item-padding">
-                            <%= item.eixo_tematico %>
                         </td>
                     </tr>
                 <% }) %>
