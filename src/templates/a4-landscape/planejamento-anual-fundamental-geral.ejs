@@ -116,7 +116,7 @@
                     COMPETÊNCIAS ESPECÍFICAS DA ÁREA DE CONHECIMENTO
                 </div>
                 <div class="item-padding item-border">
-                    <% if (area_conhecimento === "Linguagens") { %>
+                    <% if (area_conhecimento.trim().toLowerCase() === "linguagens") { %>
                         <b>1.</b> Compreender as linguagens como construção humana, histórica, social e cultural, de natureza dinâmica, reconhecendo-as e valorizando-as como formas de significação da realidade e expressão de subjetividades e identidades sociais e
                         culturais.
                         <b>2.</b> Conhecer e explorar diversas práticas de linguagem (artísticas, corporais e
@@ -143,7 +143,7 @@
                         produzir conhecimentos, resolver problemas e desenvolver projetos autorais e
                         coletivos.
                     <% } %>
-                    <% if (area_conhecimento === "Ciências Humanas") { %>
+                    <% if (area_conhecimento.trim().toLowerCase() === "ciências humanas") { %>
                         <b>1.</b> Compreender a si e ao outro como identidades diferentes, de forma a exercitar o respeito
                         à diferença em uma sociedade plural e promover os direitos humanos.
                         <br>
@@ -183,7 +183,7 @@
                     COMPETÊNCIAS ESPECÍFICAS DO COMPONENTE CURRICULAR
                 </div>
                 <div class="item-padding item-border">
-                    <% if (componente_curricular === "Arte") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "arte") { %>
                         <b>1.</b> Explorar, conhecer, fruir e analisar criticamente práticas e produções artísticas e
                         culturais do seu entorno social, dos povos indígenas, das comunidades tradicionais
                         brasileiras e de diversas sociedades, em distintos tempos e espaços, para reconhecer
@@ -219,7 +219,7 @@
                         <b>9.</b> Analisar e valorizar o patrimônio artístico nacional e internacional, material e imaterial,
                         com suas histórias e diferentes visões de mundo.
                     <% } %>
-                    <% if (componente_curricular === "Educação Física") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "educação física") { %>
                         <b>1.</b> Compreender a origem da cultura corporal de movimento e seus vínculos com a
                         organização da vida coletiva e individual.
                         <br>
@@ -254,7 +254,7 @@
                         ginásticas, esportes, lutas e práticas corporais de aventura, valorizando o trabalho coletivo
                         e o protagonismo.
                     <% } %>
-                    <% if (componente_curricular === "Matemática") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "matemática") { %>
                         <b>1.</b> Reconhecer que a Matemática é uma ciência humana, fruto das necessidades e
                         preocupações de diferentes culturas, em diferentes momentos históricos, e é uma ciência
                         viva, que contribui para solucionar problemas científicos e tecnológicos e para
@@ -295,7 +295,7 @@
                         não na discussão de uma determinada questão, respeitando o modo de pensar dos
                         colegas e aprendendo com eles.
                     <% } %>
-                    <% if (componente_curricular === "Ciências da Natureza") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "ciências da natureza") { %>
                         <b>1.</b> Compreender as Ciências da Natureza como empreendimento humano, e o
                         conhecimento científico como provisório, cultural e histórico.
                         <br>
