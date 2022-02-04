@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/common.ejs") %>
+    <style>
+        .small-text {
+            font-size: 12px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <%- include("../reusable/header-escola.ejs") %>
     <div class="campos">
-        <div class="flex flex-column">
+        <div class="flex flex-column small-gap">
             <div class="multicolumn">
                 <b class="pad-right">Instituição de Ensino:</b>
                 <div class="text-line"><%= instituicao_ensino %></div>
@@ -43,8 +51,31 @@
             </div>
         </div>
     </div>
+    <h3 class="page-title">PLANEJAMENTO DE AULA</h3>
 
-    
-
+    <div class="bg-color item-padding text-center">
+        OBJETIVOS/HABILIDADES
+    </div>
+    <div class="item-border">
+        <%= objetivos_habilidades %> 
+    </div>
+    <div class="bg-color item-padding text-center">
+        TEMA/CONTEÚDO
+    </div>
+    <div class="item-border">
+        <%= tema_conteudo %> 
+    </div>
+    <div class="bg-color item-padding text-center">
+        RECURSOS/MATERIAIS
+    </div>
+    <div class="item-border">
+        <%= recursos_materiais %> 
+    </div>
+    <div class="bg-color item-padding text-center">
+        AVALIAÇÃO
+    </div>
+    <div class="item-border">
+        <%= avaliacao %> 
+    </div>
 </body>
 </html>
