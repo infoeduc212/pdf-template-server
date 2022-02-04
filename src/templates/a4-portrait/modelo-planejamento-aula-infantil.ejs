@@ -134,7 +134,7 @@
                 REFERÊNCIAS BIBLIOGRÁFICAS
             </div>
             <div class="item-padding item-border small-text">
-                <% referencias_bibliograficas.forEach(texto => { %>
+                <% referencias_bibliograficas.split("\n").forEach(texto => { %>
                     <%= texto %> 
                 <% }) %>
             </div>
