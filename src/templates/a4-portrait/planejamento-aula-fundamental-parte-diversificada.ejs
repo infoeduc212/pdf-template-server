@@ -57,25 +57,33 @@
         OBJETIVOS/HABILIDADES
     </div>
     <div class="item-border">
-        <%= objetivos_habilidades %> 
+        <% objetivos_habilidades.split("\n").forEach(texto => { %>
+            <%= texto %><br>
+        <% }) %> 
     </div>
     <div class="bg-color item-padding text-center">
         TEMA/CONTEÚDO
     </div>
     <div class="item-border">
-        <%= tema_conteudo %> 
+        <% tema_conteudo.split("\n").forEach(texto => { %>
+            <%= texto %><br>
+        <% }) %> 
     </div>
     <div class="bg-color item-padding text-center">
         RECURSOS/MATERIAIS
     </div>
     <div class="item-border">
-        <%= recursos_materiais %> 
+        <% recursos_materiais.split("\n").forEach(texto => { %>
+            <%= texto %><br> 
+        <% }) %> 
     </div>
     <div class="bg-color item-padding text-center">
         AVALIAÇÃO
     </div>
     <div class="item-border">
-        <%= avaliacao %> 
+        <% avaliacao.split("\n").forEach(texto => { %>
+            <%= texto %><br> 
+        <% }) %>
     </div>
 </body>
 </html>
