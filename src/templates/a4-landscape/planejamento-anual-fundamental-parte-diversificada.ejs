@@ -54,8 +54,16 @@
         </thead>
         <tbody>
             <tr>
-                <td><%= objetivos_habilidades %></td>
-                <td><%= temas_conteudos %></td>
+                <td>
+                    <% objetivos_habilidades.split("\n").forEach(text => { %>
+                        <%= text %><br>
+                    <% }) %> 
+                    </td>
+                <td>
+                    <% temas_conteudos.split("\n").forEach(text => { %>
+                        <%= text %><br>
+                    <% }) %>
+                </td>
             </tr>
         </tbody>
     </table>
