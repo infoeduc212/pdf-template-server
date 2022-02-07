@@ -91,8 +91,16 @@
                         <% array.forEach(item => { %>
                             <tr>
                                 <td><%= item.campo_atuacao %></td>
-                                <td><%= item.objetivos_conhecimento.join("\n") %></td>
-                                <td><%= item.habilidades.join("\n") %></td>
+                                <td>
+                                    <% item.objetivos_conhecimento.forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </td>
+                                <td>
+                                    <% item.habilidades.forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </td>
                             </tr>
                         <% }) %>
                     </tbody>

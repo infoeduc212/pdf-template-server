@@ -90,8 +90,16 @@
                     <% array.forEach(item => { %>
                         <tr>
                             <td><%= item.unidade_tematica %></td>
-                            <td><%= item.objetivos_conhecimento %></td>
-                            <td><%= item.habilidades %> </td>
+                            <td>
+                                <% item.objetivos_conhecimento.forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            </td>
+                            <td>
+                                <% item.habilidades.forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            </td>
                         </tr>
                     <% }) %> 
                 </tbody>
