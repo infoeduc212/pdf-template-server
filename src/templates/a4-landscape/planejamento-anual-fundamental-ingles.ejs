@@ -59,14 +59,14 @@
         }
         return map
     }
-    const exiosGrupo = groupByProperty(planejamento_anual, "exios")
-    console.log("exiosGrupo:", exiosGrupo)
+    const eixosGrupo = groupByProperty(planejamento_anual, "eixos")
+    console.log("eixosGrupo:", eixosGrupo)
     %> 
     <div class="margin-top page-title">
         <b>PLANEJAMENTO ANUAL</b>
     </div>
     <div class="margin-top" style="width: 100%;">
-        <% const keys = exiosGrupo.keys() %>
+        <% const keys = eixosGrupo.keys() %>
         <% while(true) { %>
             <% const next = keys.next() %> 
             <% if (next.done) break %>
@@ -86,7 +86,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% const array = exiosGrupo.get(key) %>
+                    <% const array = eixosGrupo.get(key) %>
                     <% array.forEach(item => { %>
                         <tr>
                             <td><%= item.unidade_tematica %></td>
