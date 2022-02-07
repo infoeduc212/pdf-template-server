@@ -67,24 +67,82 @@
     </div>
     <h3 class="page-title">PLANEJAMENTO DE AULA</h3>
     <div class="flex flex-column">
-        <div class="flex">
-            <div class="flex flex-column">
-                <div class="text-center bg-color item-padding">
-                    UNIDADES TÉMATICAS
+        <% if (tipo_componente_curricular === "Português") { %>
+            <div class="flex">
+                <div class="flex flex-column">
+                    <div class="text-center bg-color item-padding">
+                        CAMPO DE ATUAÇÃO
+                    </div>
+                    <div class="item-padding item-border small-text">
+                        <%= campo_atuacao %> 
+                    </div>
                 </div>
-                <div class="item-padding item-border small-text">
-                    <%= unidades_tematicas %>
+                <div class="flex flex-column">
+                    <div class="text-center bg-color item-padding">
+                        PRÁTICAS DE LINGUAGEM
+                    </div>
+                    <div class="item-padding item-border small-text">
+                        <%= praticas_linguagem %> 
+                    </div>
+                </div>
+                <div class="flex flex-column">
+                    <div class="text-center bg-color item-padding">
+                        OBJETOS DE CONHECIMENTO
+                    </div>
+                    <div class="item-padding item-border small-text">
+                        <%= objetos_conhecimento %> 
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-column">
-                <div class="text-center bg-color item-padding">
-                    OBJETIVOS DE CONHECIMENTO
+        <% } %>
+        <% if (tipo_componente_curricular === "Inglês") { %>
+            <div class="flex">
+                <div class="flex flex-column">
+                    <div class="text-center bg-color item-padding">
+                        EIXO
+                    </div>
+                    <div class="item-padding item-border small-text">
+                        <%= eixo %> 
+                    </div>
                 </div>
-                <div class="item-padding item-border small-text">
-                    <%= objetivos_conhecimento %>
+                <div class="flex flex-column">
+                    <div class="text-center bg-color item-padding">
+                        UNIDADES TEMÁTICAS
+                    </div>
+                    <div class="item-padding item-border small-text">
+                        <%= unidades_tematicas %> 
+                    </div>
+                </div>
+                <div class="flex flex-column">
+                    <div class="text-center bg-color item-padding">
+                        OBJETOS DE CONHECIMENTO
+                    </div>
+                    <div class="item-padding item-border small-text">
+                        <%= objetos_conhecimento %> 
+                    </div>
                 </div>
             </div>
-        </div>
+        <% } %>
+        <% if (tipo_componente_curricular === null) { %>
+            <div class="flex">
+                <div class="flex flex-column">
+                    <div class="text-center bg-color item-padding">
+                        UNIDADES TÉMATICAS
+                    </div>
+                    <div class="item-padding item-border small-text">
+                        <%= unidades_tematicas %>
+                    </div>
+                </div>
+                <div class="flex flex-column">
+                    <div class="text-center bg-color item-padding">
+                        OBJETIVOS DE CONHECIMENTO
+                    </div>
+                    <div class="item-padding item-border small-text">
+                        <%= objetivos_conhecimento %>
+                    </div>
+                </div>
+            </div>
+        <% } %>
         <div class="flex flex-column">
             <div class="text-center bg-color item-padding">
                 HABILIDADES 
