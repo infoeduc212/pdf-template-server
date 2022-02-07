@@ -62,17 +62,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <%= unidade_tematica %>
-                            </td>
-                            <td>
-                                <%= objetivos_conhecimento %>
-                            </td>
-                            <td>
-                                <%= habilidades %>
-                            </td>
-                        </tr>
+                        <% planejamentos.forEach(item => { %>
+                            <tr>
+                                <td>
+                                    <%= item.unidade_tematica %>
+                                </td>
+                                <td>
+                                    <% item.objetivos_conhecimento.forEach(text => { %>
+                                        <%= text %> <br>
+                                    <% }) %> 
+                                </td>
+                                <td>
+                                    <% item.habilidades.forEach(text => { %>
+                                        <%= text %> <br>
+                                    <% }) %> 
+                                </td>
+                            </tr>
+                        <% }) %>
                     </tbody>
                 </table>
             </div>
