@@ -65,7 +65,7 @@
         const campoAtuacaoGrupo = groupByProperty(planejamento_anual, "campo_atuacao")
 
         %> 
-        <div class="page-title">PLANEJAMENTO ANUAL</div>
+        <h3 class="page-title">PLANEJAMENTO ANUAL</h3>
         <div class="margin-top">
             <% const keys = campoAtuacaoGrupo.keys() %>
             <% while(true) { %>
@@ -91,8 +91,8 @@
                         <% array.forEach(item => { %>
                             <tr>
                                 <td><%= item.campo_atuacao %></td>
-                                <td><%= item.objetivos_conhecimento %></td>
-                                <td><%= item.habilidades %></td>
+                                <td><%= item.objetivos_conhecimento.join("\n") %></td>
+                                <td><%= item.habilidades.join("\n") %></td>
                             </tr>
                         <% }) %>
                     </tbody>
