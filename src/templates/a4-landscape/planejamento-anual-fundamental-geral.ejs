@@ -125,24 +125,29 @@
                     <% if (area_conhecimento.trim().toLowerCase() === "linguagens") { %>
                         <b>1.</b> Compreender as linguagens como construção humana, histórica, social e cultural, de natureza dinâmica, reconhecendo-as e valorizando-as como formas de significação da realidade e expressão de subjetividades e identidades sociais e
                         culturais.
+                        <br>
                         <b>2.</b> Conhecer e explorar diversas práticas de linguagem (artísticas, corporais e
                         linguísticas) em diferentes campos da atividade humana para continuar
                         aprendendo, ampliar suas possibilidades de participação na vida social e
                         colaborar para a construção de uma sociedade mais justa, democrática e
                         inclusiva.
+                        <br>
                         <b>3.</b> Utilizar diferentes linguagens – verbal (oral ou visual-motora, como Libras, e
                         escrita), corporal, visual, sonora e digital –, para se expressar e partilhar
                         informações, experiências, ideias e sentimentos em diferentes contextos e produzir
                         sentidos que levem ao diálogo, à resolução de conflitos e à cooperação.
+                        <br>
                         <b>4.</b> Utilizar diferentes linguagens para defender pontos de vista que respeitem o outro
                         e promovam os direitos humanos, a consciência socioambiental e o consumo
                         responsável em âmbito local, regional e global, atuando criticamente frente a
                         questões do mundo contemporâneo.
+                        <br>
                         <b>5.</b> Desenvolver o senso estético para reconhecer, fruir e respeitar as diversas
                         manifestações artísticas e culturais, das locais às mundiais, inclusive aquelas
                         pertencentes ao patrimônio cultural da humanidade, bem como participar de
                         práticas diversificadas, individuais e coletivas, da produção artístico-cultural, com
                         respeito à diversidade de saberes, identidades e culturas.
+                        <br>
                         <b>6.</b> Compreender e utilizar tecnologias digitais de informação e comunicação de forma
                         crítica, significativa, reflexiva e ética nas diversas práticas sociais (incluindo as
                         escolares), para se comunicar por meio das diferentes linguagens e mídias,
@@ -345,19 +350,25 @@
                     METODOLOGIAS
                 </div>
                 <div class="item-padding item-border">
-                    <%= metodologias %> 
+                    <% metodologias.split("\n").forEach(text => { %>
+                        <%= text %>
+                    <% }) %> 
                 </div>
                 <div class="bg-color text-center item-border">
                     RECURSOS MATERIAIS
                 </div>
                 <div class="item-padding item-border">
-                    <%= recursos_materiais %> 
+                    <% recursos_materiais.split("\n").forEach(text => { %>
+                        <%= text %>
+                    <% }) %> 
                 </div>
                 <div class="bg-color text-center item-padding item-border">
                     AVALIAÇÃO
                 </div>
                 <div class="item-padding item-border">
-                    <%= avaliacao %> 
+                    <% avaliacao.split("\n").forEach(text => { %>
+                        <%= text %>
+                    <% }) %>  
                 </div>
             </div>
         </div>
