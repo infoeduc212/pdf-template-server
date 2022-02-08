@@ -172,7 +172,9 @@
                 REFERÊNCIAS
             </div>
             <div class="item-padding item-border">
-                <%= referencias %> 
+                <% referencias.split("\n").forEach(texto => { %>
+                    <%= texto %> 
+                <% }) %> 
             </div>
         </div>
 </body>

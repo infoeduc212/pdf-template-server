@@ -371,6 +371,14 @@
                         <%= text %>
                     <% }) %>  
                 </div>
+                <div class="bg-color item-padding text-center item-border">
+                    REFERÊNCIAS
+                </div>
+                <div class="item-border item-padding">
+                    <% referencias.split("\n").forEach(texto => { %>
+                        <%= texto %><br>
+                    <% }) %>
+                </div>
             </div>
         </div>
 </body>

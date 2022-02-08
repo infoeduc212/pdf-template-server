@@ -226,6 +226,14 @@
         <div class="item-padding item-border">
             <%= avaliacao %> 
         </div>
+        <div class="bg-color item-padding text-center">
+            REFERÊNCIAS
+        </div>
+        <div class="item-border item-padding">
+            <% referencias.split("\n").forEach(texto => { %>
+                <%= texto %><br>
+            <% }) %>
+        </div>
     </div>
 </div>
 </body>

@@ -87,6 +87,16 @@
                     <%= avaliacao %>
                 </div>
             </div>
+            <div class="flex flex-column">
+                <div class="bg-color item-padding item-border text-center">
+                    REFERÊNCIAS
+                </div>
+                <div class="item-border item-padding">
+                    <% referencias.split("\n").forEach(texto => { %>
+                        <%= texto %><br>
+                    <% }) %>
+                </div>
+            </div>
         </div>
     </div>
 </body>
