@@ -48,21 +48,21 @@
     <table class="table">
         <thead>
             <tr>
-                <td class="bg-color item-padding">OBJETIVOS/HABILIDADES</td>
                 <td class="bg-color item-padding">TEMAS/CONTEÚDOS</td>
+                <td class="bg-color item-padding">OBJETIVOS/HABILIDADES</td>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>
-                    <% objetivos_habilidades.split("\n").forEach(text => { %>
-                        <%= text %><br>
-                    <% }) %> 
-                    </td>
-                <td>
                     <% temas_conteudos.split("\n").forEach(text => { %>
                         <%= text %><br>
                     <% }) %>
+                </td>
+                <td>
+                    <% objetivos_habilidades.split("\n").forEach(text => { %>
+                        <%= text %><br>
+                    <% }) %> 
                 </td>
             </tr>
         </tbody>
