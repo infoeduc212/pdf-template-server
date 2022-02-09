@@ -366,6 +366,10 @@
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
     </div>
     <div class="page-break">
+        <h3 class="text-center"><u>REGISTRO DE REPOSIÇÃO DE AULA</u></h3>
+        <%- include("../reusable/diario-classe/lista-registro-aula.ejs", { registros_aulas: reposicao_aulas }) %>
+    </div>
+    <div class="page-break">
         <div>
             <div style="margin-top: 1000px;" class="text-center">
                 <%= fundo.nome_escola %>
