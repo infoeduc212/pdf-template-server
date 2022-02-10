@@ -32,8 +32,8 @@ app.use((req, res, next) => {
 
     logFormat({
         message: "Incoming request",
-        "heroku-request-id": requestId,
-        "template-name": req.body["templateName"],
+        heroku_request_id: requestId,
+        template_name: req.body["templateName"],
         method: req.method,
         ua: req.headers["user-agent"],
         ip: getIp(req),
@@ -147,6 +147,10 @@ export default function createServer(): Promise<any> {
                 });
             }
         });
+        logFormat({
+            message: "Finished mapping template files",
+            map_size: avaliableTemplates.size
+        })
     }
 
     return new Promise((resolve, _) => {
