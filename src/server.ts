@@ -206,6 +206,8 @@ export default function createServer(): Promise<any> {
                                 );
 
                                 const page = await browser.newPage();
+                                page.setJavaScriptEnabled(false);
+
                                 await page.setViewport({
                                     width: 2480,
                                     height: 3508,
@@ -267,7 +269,7 @@ export default function createServer(): Promise<any> {
                         }
 
                         res.status(500).send("Erro ao processar pedido.");
-                        
+
                         logFormat({
                             heroku_request_id: requestId,
                             message: "Failed to process request",
