@@ -3,17 +3,16 @@ import { Browser, PaperFormat } from "puppeteer";
 import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
-import express from "express";
+import express, { Request, Response } from "express";
 const app = express();
 import ejs from "ejs";
-import cors from "cors";
 import morgan from "morgan";
 import { compile, evaluate } from 'mathjs';
 import { inspect } from 'util';
 import { DateTime, Duration } from 'luxon'
 
+
 app.use(express.json());
-app.use(cors());
 app.use(morgan("combined"));
 
 export default function createServer(): Promise<any> {
@@ -46,9 +45,14 @@ export default function createServer(): Promise<any> {
     });
     console.log(avaliableTemplates)
 
+    app.get("/error", (req, res, next) => {
+        next(new Error("erro"))
+    })
+
     return new Promise((resolve, _) => {
         puppeteer
             .launch({
+                // Necessário para rodar no Heroku
                 args: ["--no-sandbox"],
             })
             .then((browser: Browser) => {
@@ -60,8 +64,10 @@ export default function createServer(): Promise<any> {
                         ? req.body.output
                         : "pdf";
                     if (typeof reqTemplate !== "string")
-                        return res.status(400).send("Invalid template name (not a string)");
-                    if (typeof args !== "object")
+                        return res.status(400)
+                        .send("Invalid template name (not a string)");
+                    
+                        if (typeof args !== "object")
                         return res
                             .status(400)
                             .send("No arguments object provided");
@@ -102,8 +108,7 @@ export default function createServer(): Promise<any> {
                                     printBackground: true,
                                     footerTemplate: `
                                 <div style="width: 100%; margin-right: 10px; text-align: right; font-size: 8px;">
-                                     PDF gerado pela a Plataforma InfoEduc na data ${dateNow.toFormat("dd/MM/yyyy")} às ${dateNow.toFormat("HH:mm:ss")}
-
+                                PDF gerado pela a Plataforma InfoEduc na data ${dateNow.toFormat("dd/MM/yyyy")} às ${dateNow.toFormat("HH:mm:ss")}
                                 </div>
                                 `,
                                     displayHeaderFooter: !template.noWatermark,
@@ -124,6 +129,23 @@ export default function createServer(): Promise<any> {
                         next(e);
                     }
                 });
+                app.use((err: Error, req: Request, res: Response, next: any) => {
+                    console.log(`Env: ${process.env.NODE_ENV}`)
+
+                    console.error(err)
+                    const requestId = req.headers["x-request-id"]
+
+                    if (process.env.NODE_ENV !== "production") {
+                        res.status(500).send("<p>" + err.stack + "</p>")
+                        return
+                    }
+                    if (requestId) {
+                        res.status(500).send(`Erro ao processar pedido. Request ID: ${requestId}`)
+                        return
+                    }
+
+                    res.status(500).send("Erro ao processar pedido.")
+                })
             })
             .then(() => resolve(app));
     });
