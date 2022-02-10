@@ -211,9 +211,7 @@
         <% if (tipo_documento === "Infantil") { %>
         <div style="margin-top: 10px;">
             <%# TODO: Relatório Descritivo %>
-            <% console.log("Tipo do documento é Infantil") %>
             <% if (aluno.relatorio_experiencia) { %>
-                <% console.log("Aluno tem relatório de experiência") %> 
             <h3 class="text-center"><u>AVALIAÇÃO</u></h3>
             <%- include("../reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
             <% } %>

@@ -42,7 +42,6 @@
         const disciplinaMedias = {}
         const disciplinas = notas.map(nota => nota.disciplina_nome).filter(onlyUnique)
         const avaliacoesAliases = notas.map(nota => nota.avaliacao_alias).filter(onlyUnique)
-        console.log("avaliacoesAlaises:", avaliacoesAliases)
 
         avaliacoesAliases.forEach(alias => {
             const array = []
@@ -64,7 +63,6 @@
                     } else {
                         arrayRec.push(0)
                     }
-                    console.log("notasDisciplina:", notasDisciplina)
                 })
                 notasDisciplina.forEach(nota => {
                     if (nota.recuperacao) {
@@ -82,7 +80,6 @@
                         scope[nota.avaliacao_alias] = nota.nota_avaliacao
                     }
                 })
-                console.log("scope:", scope)
                 disciplinaMedias[disciplina] = math.evaluate(criterio_avaliacao.media_formula, scope)
             })
             matriz.push([alias].concat(array))

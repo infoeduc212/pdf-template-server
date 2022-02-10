@@ -253,9 +253,6 @@ export default function createServer(): Promise<any> {
                 });
                 app.use(
                     (err: Error, req: Request, res: Response, next: any) => {
-                        console.log(`Env: ${process.env.NODE_ENV}`);
-
-                        console.error(err);
                         const requestId = req.headers["x-request-id"];
 
                         if (process.env.NODE_ENV !== "production") {
@@ -270,6 +267,14 @@ export default function createServer(): Promise<any> {
                         }
 
                         res.status(500).send("Erro ao processar pedido.");
+                        
+                        logFormat({
+                            heroku_request_id: requestId,
+                            message: "Failed to process request",
+                            template_name: req.body["templateName"],
+                            error_message: err.message
+                        })
+                        console.error(err);
                     }
                 );
             })

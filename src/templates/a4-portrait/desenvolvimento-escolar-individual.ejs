@@ -121,7 +121,6 @@
                         <% const next = keys.next() %>
                         <% if (next.done) break %>
                         <% const disciplinas = groupByProperty(grupoDisciplinas.get(next.value), "nome_disciplina") %>
-                        <%= console.log(disciplinas) %>
                         <tr>
                             <td class="vertical-text" rowspan="<%= disciplinas.size %>">
                                 <div>
@@ -148,7 +147,6 @@
                                     <% notas.forEach(nota => { %>
                                         <% scope[nota.avaliacao_alias] = nota.nota_prova + nota.nota_atividades %>
                                     <% }) %>
-                                    <% console.log(scope) %>
                                     <% const compiled = math.compile(calculoFormula.formula) %>
                                     <td><%= compiled.evaluate(scope) %></td>
                                 <% }) %>
