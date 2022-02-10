@@ -1,7 +1,7 @@
 import createServer from "./server";
 import * as dotenv from "dotenv";
 import { createAssetsServer } from "./assetsServer";
-import http from 'http'
+import http from "http";
 dotenv.config();
 
 (async () => {
@@ -11,5 +11,5 @@ dotenv.config();
         console.log(`Ouvindo na porta ${process.env.PORT}`)
     );
     // Apenas ouvir no localhost
-    http.createServer(assetsServer).listen(2000, "localhost")
+    http.createServer(assetsServer).listen(2000, "localhost");
 })();
