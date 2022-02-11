@@ -3,7 +3,7 @@ import { Browser, PaperFormat } from "puppeteer";
 import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
-import express, { Request, Response } from "express";
+import express, { Request } from "express";
 const app = express();
 import ejs from "ejs";
 import { compile, evaluate } from "mathjs";
@@ -78,7 +78,7 @@ export default function createServer(): Promise<any> {
                         const templateName = path
                             .basename(filepath)
                             .replace(".ejs", "");
-    
+
                         if (!avaliableTemplates.has(templateName)) {
                             avaliableTemplates.set(templateName, {
                                 format: config.format.toLowerCase(),
@@ -91,12 +91,12 @@ export default function createServer(): Promise<any> {
                                 path: filepath,
                             });
                         }
-    
+
                         logFormat({
                             message: "Added new template file",
-                            config_path: joinedPath, 
-                            filepath: filepath
-                        })
+                            config_path: joinedPath,
+                            filepath: filepath,
+                        });
                     }
                 })
                 .on("unlink", (filepath) => {
@@ -104,22 +104,23 @@ export default function createServer(): Promise<any> {
                         const templateName = path
                             .basename(filepath)
                             .replace(".ejs", "");
-    
-                        const hasDeleted = avaliableTemplates.delete(templateName);
-    
+
+                        const hasDeleted =
+                            avaliableTemplates.delete(templateName);
+
                         logFormat({
                             message: "File has been removed",
                             path: filepath,
                             removed_from_map: hasDeleted,
-                        })
+                        });
                     }
                 });
         });
     } else {
         logFormat({
             env: "production",
-            message: "Mapping template files"
-        })
+            message: "Mapping template files",
+        });
 
         pathList.forEach((cfg) => {
             const templatesPath = path.join(__dirname, "templates", cfg.path);
@@ -149,8 +150,8 @@ export default function createServer(): Promise<any> {
         });
         logFormat({
             message: "Finished mapping template files",
-            map_size: avaliableTemplates.size
-        })
+            map_size: avaliableTemplates.size,
+        });
     }
 
     return new Promise((resolve, _) => {
@@ -253,32 +254,6 @@ export default function createServer(): Promise<any> {
                         next(e);
                     }
                 });
-                app.use(
-                    (err: Error, req: Request, res: Response, next: any) => {
-                        const requestId = req.headers["x-request-id"];
-
-                        if (process.env.NODE_ENV !== "production") {
-                            res.status(500).send("<p>" + err.stack + "</p>");
-                            return;
-                        }
-                        if (requestId) {
-                            res.status(500).send(
-                                `Erro ao processar pedido. Request ID: ${requestId}`
-                            );
-                            return;
-                        }
-
-                        res.status(500).send("Erro ao processar pedido.");
-
-                        logFormat({
-                            heroku_request_id: requestId,
-                            message: "Failed to process request",
-                            template_name: req.body["templateName"],
-                            error_message: err.message
-                        })
-                        console.error(err);
-                    }
-                );
             })
             .then(() => resolve(app));
     });
