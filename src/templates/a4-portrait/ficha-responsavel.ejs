@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <% include("../reusable/utils.ejs") %> 
+</head>
+<body>
+    <div id="container">
+        <%- include("../reusable/header.ejs") %> 
+        <h4 class="bold-center">Ficha do Responsável</h4>
+        <div class="block">
+            <div class="block">
+                <div class="flex">
+                    <img src="" width="100" height="100">
+                    <div style="flex: 1; margin-left: 10px;">
+                        <div class="multicoluna">
+                            <div class="inline">
+                                <b>ID da InfoEduc:</b>
+                                <div class="texto-linha"><%= id_infoeduc %></div>
+                            </div>
+                        </div>
+                        <div class="multicoluna">
+                            <div class="inline">
+                                <b>Nome:</b>
+                                <div class="texto-linha"><%= responsavel_nome %></div>
+                            </div>
+                        </div>
+                        <div class="multicoluna inline">
+                            <div class="inline">
+                                <b>Data de Nascimento:</b>
+                                <% const dataNascimento = new Date(data_nascimento) %> 
+                                <div class="texto-linha text-center">
+                                    <%= padWithZero(dataNascimento.getDate().toString()) %> 
+                                </div>
+                                /
+                                <div class="texto-linha text-center">
+                                    <%= padWithZero((dataNascimento.getMonth() + 1).toString()) %> 
+                                </div>
+                                /
+                                <div class="texto-linha text-center">
+                                    <%= dataNascimento.getFullYear() %> 
+                                </div>
+                            </div>
+                            <div class="inline">
+                                <b>Nacionalidade:</b>
+                                <div class="texto-linha">
+                                    <%= responsavel_nacionalidade %> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="multicoluna inline">
+                            <div class="inline">
+                                <b>RG:</b>
+                                <div class="texto-linha"><%= responsavel_rg %></div>
+                            </div>
+                            <div class="inline">
+                                <b>SSP/RG:</b>
+                                <div class="texto-linha"><%= responsavel_ssp_rg %> </div>
+                            </div>
+                            <div class="inline">
+                                <b>CPF:</b>
+                                <div class="texto-linha"><%= responsavel_cpf %> </div>
+                            </div>
+                        </div>
+                        <div class="multicoluna inline">
+                            <div class="inline">
+                                <b>Gênero:</b>
+                                <div class="texto-linha"><%= responsavel_genero %> </div>
+                            </div>
+                            <div class="inline">
+                                <b>NIS:</b>
+                                <div class="texto-linha"><%= responsavel_nis %></div>
+                            </div>
+                            <div class="inline">
+                                <b>Etnia/Cor:</b>
+                                <div class="texto-linha"><%= responsavel_etnia_cor %> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="multicoluna inline">
+                    <b>Necessidade Educativa Especial (NEE):</b>
+                    (<%= possui_nee ? "X" : "" %>) Não possui (<%= !possui_nee ? "X" : "" %>) Possui
+                </div>
+                <div class="multicoluna inline">
+                    <b>Especificação da NEE:</b>
+                    <div class="texto-linha"><%= especificacao_nee %></div>
+                </div>
+                <div class="title-header">Modelo Antigo de Certidão Civil</div>
+                <div class="block">
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>N° do termo:</b>
+                            <div class="texto-linha"><%= certidao_antiga.numero_termo %></div>
+                        </div>
+                        <div class="inline">
+                            <b>Folha:</b>
+                            <div class="texto-linha"><%= certidao_antiga.folha %></div>
+                        </div>
+                        <div class="inline">
+                            <b>Livro:</b>
+                            <div class="texto-linha"><%= certidao_antiga.livro %></div>
+                        </div>
+                        <div class="inline">
+                            <b>Data de emissão da certidão</b>
+                            <% const dataEmissao = new Date(certidao_antiga.data_emissao) %> 
+                            <div class="texto-linha text-center">
+                                <%= padWithZero(dataEmissao.getDate().toString()) %> 
+                            </div>
+                            /
+                            <div class="texto-linha text-center">
+                                <%= padWithZero((dataEmissao.getMonth() + 1).toString()) %> 
+                            </div>
+                            /
+                            <div class="texto-linha text-center">
+                                <%= dataEmissao.getFullYear() %> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Município do Cartório:</b>
+                            <div class="texto-linha"><%= certidao_antiga.municipio_cartorio %> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title-header">Modelo Novo do Certidão Civil</div>
+                <div class="block">
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>N° da matricula (reg. civil)</b>
+                            <div class="texto-linha"><%= certidao_nova.numero_matricula %></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="title-header">Outras informações</div>
+            <div class="block">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Profissão:</b>
+                        <div class="texto-linha"><%= profissao %></div>
+                    </div>
+                    <div class="inline">
+                        <b>Parentesco:</b>
+                        <div class="texto-linha"><%= parentesco %></div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Nível de Escolaridade:</b>
+                        <div class="texto-linha"><%= nivel_escolaridade %> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-header">Lista de dependentes</div>
+            <div class="block">
+                <% lista_dependentes.forEach(dependente => { %>
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>ID da InfoEduc:</b>
+                            <div class="texto-linha"><%= dependente.id_infoeduc %></div>
+                        </div>
+                        <div class="inline">
+                            <b>Nome do dependente:</b>
+                            <div class="texto-linha"><%= dependente.nome_completo %></div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="title-header">Endereço</div>
+            <div class="block">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Zona de Residência</b>
+                        (<%= endereco.zona_residencia === "Rural" ? "X" : "" %>) Rural
+                        (<%= endereco.zona_residencia === "Urbana" ? "X" : "" %>) Urbana
+                    </div>
+                    <div class="inline">
+                        <b>CEP:</b>
+                        <div class="texto-linha"><%= endereco.cep %> </div>
+                    </div>
+                    <div class="inline">
+                        <b>Bairro:</b>
+                        <div class="texto-linha"><%= endereco.bairro %> </div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Endereço:</b>
+                        <div class="texto-linha"><%= endereco.endereco %> </div>
+                    </div>
+                    <div class="inline">
+                        <b>N°:</b>
+                        <div class="texto-linha"><%= endereco.numero_endereco %></div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Complemento:</b>
+                        <div class="texto-linha"><%= endereco.complemento %></div>
+                    </div>
+                    <div class="inline">
+                        <b>Município:</b>
+                        <div class="texto-linha"><%= endereco.municipio %></div>
+                    </div>
+                    <div class="inline">
+                        <b>UF:</b>
+                        <div class="texto-linha"><%= endereco.uf %> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-header">Contato</div>
+            <div class="block">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>E-mail Principal:</b>
+                        <div class="texto-linha"><%= contato.email_principal %></div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>E-mail Secundário:</b>
+                        <div class="texto-linha"><%= contato.email_secundario %></div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Celular:</b>
+                        <div class="texto-linha"><%= contato.celular %></div>
+                    </div>
+                    <div class="inline">
+                        <b>WhatsApp:</b>
+                        <div class="texto-linha"><%= contato.whatsapp %></div>
+                    </div>
+                </div>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Instagram:</b>
+                        <div class="texto-linha"><%= contato.instagram %></div>
+                    </div>
+                    <div class="inline">
+                        <b>Facebook:</b>
+                        <div class="texto-linha"><%= contato.facebook %></div>
+                    </div>
+                    <div class="inline">
+                        <b>YouTube:</b>
+                        <div class="texto-linha"><%= contato.youtube %> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
