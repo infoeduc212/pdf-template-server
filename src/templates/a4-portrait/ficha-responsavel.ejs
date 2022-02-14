@@ -82,7 +82,7 @@
                 </div>
                 <div class="multicoluna inline">
                     <b>Necessidade Educativa Especial (NEE):</b>
-                    (<%= possui_nee ? "X" : "" %>) Não possui (<%= !possui_nee ? "X" : "" %>) Possui
+                    (<%= !possui_nee ? "X" : "" %>) Não possui (<%= possui_nee ? "X" : "" %>) Possui
                 </div>
                 <div class="multicoluna inline">
                     <b>Especificação da NEE:</b>
@@ -174,8 +174,8 @@
                 <div class="multicoluna">
                     <div class="inline">
                         <b>Zona de Residência</b>
-                        (<%= endereco.zona_residencia === "Rural" ? "X" : "" %>) Rural
-                        (<%= endereco.zona_residencia === "Urbana" ? "X" : "" %>) Urbana
+                        (<%= endereco.zona_residencia === "Zona Rural" ? "X" : "" %>) Rural
+                        (<%= endereco.zona_residencia === "Zona Urbana" ? "X" : "" %>) Urbana
                     </div>
                     <div class="inline">
                         <b>CEP:</b>
