@@ -93,36 +93,34 @@
                     <div class="multicoluna">
                         <div class="inline">
                             <b>N° do termo:</b>
-                            <div class="texto-linha"><%= certidao_antiga.numero_termo %></div>
+                            <div class="texto-linha"></div>
                         </div>
                         <div class="inline">
                             <b>Folha:</b>
-                            <div class="texto-linha"><%= certidao_antiga.folha %></div>
+                            <div class="texto-linha"></div>
                         </div>
                         <div class="inline">
                             <b>Livro:</b>
-                            <div class="texto-linha"><%= certidao_antiga.livro %></div>
+                            <div class="texto-linha"></div>
                         </div>
                         <div class="inline">
                             <b>Data de emissão da certidão</b>
-                            <% const dataEmissao = new Date(certidao_antiga.data_emissao) %> 
                             <div class="texto-linha text-center">
-                                <%= padWithZero(dataEmissao.getDate().toString()) %> 
+
                             </div>
                             /
                             <div class="texto-linha text-center">
-                                <%= padWithZero((dataEmissao.getMonth() + 1).toString()) %> 
                             </div>
                             /
                             <div class="texto-linha text-center">
-                                <%= dataEmissao.getFullYear() %> 
+                                
                             </div>
                         </div>
                     </div>
                     <div class="multicoluna">
                         <div class="inline">
                             <b>Município do Cartório:</b>
-                            <div class="texto-linha"><%= certidao_antiga.municipio_cartorio %> </div>
+                            <div class="texto-linha"></div>
                         </div>
                     </div>
                 </div>
