@@ -108,21 +108,7 @@
                     </div>
                 </div>
             </div>
-            <div class="title-header">Lista de dependentes</div>
-            <div class="block">
-                <% lista_dependentes.forEach(dependente => { %>
-                    <table>
-                        <tr>
-                            <td>ID da InfoEduc</td>
-                            <td><%= dependente.id_infoeduc %></td>
-                        </tr>
-                        <tr>
-                            <td>Nome do dependente:</td>
-                            <td>><%= dependente.nome_completo %></td>
-                        </tr>
-                    </table>
-                <% }) %>
-            </div>
+
             <div class="title-header">Endereço</div>
             <div class="block">
                 <div class="multicoluna">
@@ -159,7 +145,7 @@
                         <b>Município:</b>
                         <div class="texto-linha"><%= endereco.municipio %></div>
                     </div>
-                    <div class="inline">
+                    <div class="inline" style="float: right;">
                         <b>UF:</b>
                         <div class="texto-linha"><%= endereco.uf %> </div>
                     </div>
@@ -203,6 +189,10 @@
                         <div class="texto-linha"><%= contato.youtube %> </div>
                     </div>
                 </div>
+
+            </div>
+            <div class="title-header">Lista de dependentes</div>
+
             </div>
         </div>
     </div>
