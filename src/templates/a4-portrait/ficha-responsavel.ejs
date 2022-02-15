@@ -88,53 +88,7 @@
                     <b>Especificação da NEE:</b>
                     <div class="texto-linha"><%= especificacao_nee %></div>
                 </div>
-                <div class="title-header">Modelo Antigo de Certidão Civil</div>
-                <div class="block">
-                    <div class="multicoluna">
-                        <div class="inline">
-                            <b>N° do termo:</b>
-                            <div class="texto-linha"></div>
-                        </div>
-                        <div class="inline">
-                            <b>Folha:</b>
-                            <div class="texto-linha"></div>
-                        </div>
-                        <div class="inline">
-                            <b>Livro:</b>
-                            <div class="texto-linha"></div>
-                        </div>
-                        <div class="inline">
-                            <b>Data de emissão da certidão</b>
-                            <div class="texto-linha text-center">
-
-                            </div>
-                            /
-                            <div class="texto-linha text-center">
-                            </div>
-                            /
-                            <div class="texto-linha text-center">
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="multicoluna">
-                        <div class="inline">
-                            <b>Município do Cartório:</b>
-                            <div class="texto-linha"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="title-header">Modelo Novo do Certidão Civil</div>
-                <div class="block">
-                    <div class="multicoluna">
-                        <div class="inline">
-                            <b>N° da matricula (reg. civil)</b>
-                            <div class="texto-linha"><%= certidao_nova.numero_matricula %></div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
+            
             <div class="title-header">Outras informações</div>
             <div class="block">
                 <div class="multicoluna">
@@ -157,16 +111,16 @@
             <div class="title-header">Lista de dependentes</div>
             <div class="block">
                 <% lista_dependentes.forEach(dependente => { %>
-                    <div class="multicoluna">
-                        <div class="inline">
-                            <b>ID da InfoEduc:</b>
-                            <div class="texto-linha"><%= dependente.id_infoeduc %></div>
-                        </div>
-                        <div class="inline">
-                            <b>Nome do dependente:</b>
-                            <div class="texto-linha"><%= dependente.nome_completo %></div>
-                        </div>
-                    </div>
+                    <table>
+                        <tr>
+                            <td>ID da InfoEduc</td>
+                            <td><%= dependente.id_infoeduc %></td>
+                        </tr>
+                        <tr>
+                            <td>Nome do dependente:</td>
+                            <td>><%= dependente.nome_completo %></td>
+                        </tr>
+                    </table>
                 <% }) %>
             </div>
             <div class="title-header">Endereço</div>
