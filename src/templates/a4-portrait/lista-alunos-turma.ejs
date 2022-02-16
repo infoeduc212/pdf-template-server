@@ -17,15 +17,15 @@
     <div class="container">
         <img class="center" width="50%"  src="http://localhost:2000/assets/logomarca-infoeduc.png" alt="">
         
-        <div id="tabela" class="center" style="position: absolute; top: 30%; width: 100%;">
-            <div class="title-header text-center">Listagem de Dependentes</div>
+        <div id="tabela" class="center" style="position: absolute; top: 20%; width: 100%;">
+            <div class="title-header text-center" style="font-size: 22px;">Listagem de Dependentes</div>
             <table class="table center" style="width: 80%; margin-bottom: 0%; border-spacing: 0; border: 0px; margin-bottom: 0%;">                
                 <tr>
                     <td style="width: 60%;">Professor(a):<%= nome_professor %> </td>
                     <td style="width: 40%;">Turma:<%= nome_turma %> </td>
                 </tr>
             </table>
-            <table class="table center" style="margin-top:-11px;width: 80%; border-spacing: 0; border: 0px;" >
+            <table class="table center" style="position:relative; top: -22px; width: 80%; border-spacing: 0; border: 0px;" >
 
                 <thead style="display: table-row-group;" >
                     <tr >
@@ -36,10 +36,10 @@
                 <tbody>
                     <% lista_alunos.forEach(alunos=> { %>
                         <tr >
-                            <td style="width: 40%; height: 30px; padding-left: 10px;"> 
+                            <td style="width: 40%; height: 40px; padding-left: 10px;"> 
                                 <%= alunos.nome_completo %>
                             </td>   
-                            <td  style="width: 100%; height: 30px; padding-left: 10px;">
+                            <td  style="width: 100%; height: 40px; padding-left: 10px;">
                                 
                             </td>
                         </tr> 
