@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+        <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+        <%- include("../css/ficha.ejs") %>
+        <% include("../reusable/utils.ejs") %> 
+    </head>
+<body>
+    <div class="container">
+        <div class="title-header">Listagem de Dependentes</div>
+          <table class="table" style="width: 100%; border-spacing: 0; border: 0px;" >
+    <thead style="display: table-row-group;">
+   <tr >
+  <td style="width: 20%; padding-left: 10px;">ID da InfoEduc</td>
+  <td style="width: 100%; padding-left: 10px;">Nome Completo</td>
+   </tr>
+    </thead>
+    <tbody>
+   <% lista_dependentes.forEach(dependente  => { %>
+  <tr >
+ <td style="width: 20%; padding-left: 10px;"> 
+<%= dependente.id_infoeduc %>
+ </td>   
+ <td  style="width: 100%; padding-left: 10px;">
+<%= dependente.nome_completo %>
+ </td>
+  </tr> 
+   <% }) %>
+    </tbody>
+</table>
+    </div>
+</body>
+</html>
