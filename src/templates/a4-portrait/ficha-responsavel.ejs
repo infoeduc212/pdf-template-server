@@ -82,7 +82,7 @@
                 </div>
                 <div class="multicoluna inline">
                     <b>Necessidade Educativa Especial (NEE):</b>
-                    (<%= possui_nee ? "X" : "" %>) Não possui (<%= !possui_nee ? "X" : "" %>) Possui
+                    (<%= !possui_nee ? "X" : "" %>) Não possui (<%= possui_nee ? "X" : "" %>) Possui
                 </div>
                 <div class="multicoluna inline">
                     <b>Especificação da NEE:</b>
@@ -109,21 +109,7 @@
                     </div>
                 </div>
             </div>
-            <div class="title-header">Lista de dependentes</div>
-            <div class="block">
-                <% lista_dependentes.forEach(dependente => { %>
-                    <div class="multicoluna">
-                        <div class="inline">
-                            <b>ID da InfoEduc:</b>
-                            <div class="texto-linha"><%= dependente.id_infoeduc %></div>
-                        </div>
-                        <div class="inline">
-                            <b>Nome do dependente:</b>
-                            <div class="texto-linha"><%= dependente.nome_completo %></div>
-                        </div>
-                    </div>
-                <% }) %>
-            </div>
+
             <div class="title-header">Endereço</div>
             <div class="block">
                 <div class="multicoluna">
@@ -204,6 +190,10 @@
                         <div class="texto-linha"><%= contato.youtube %> </div>
                     </div>
                 </div>
+
+            </div>
+            <div class="title-header">Lista de dependentes</div>
+
             </div>
             <table class="table" style="width: 100%; border-spacing: 0; border: 0px;" >
                 <thead style="display: table-row-group;">
