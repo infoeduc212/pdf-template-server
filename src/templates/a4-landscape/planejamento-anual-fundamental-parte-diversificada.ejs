@@ -32,16 +32,16 @@
                     <div class="text-line"><%= ano_letivo %></div>
                 </div>
             </div>
-            <div class="flex" style="gap: 5px;">
-                <div class="multicolumn">
+            <div class="multicolumn">
+                <div class="inline">
                     <b class="pad-right">Área do Conhecimento:</b>
                     <div class="text-line"><%= area_conhecimento %></div>
                 </div>
-                <div class="multicolumn">
+                <div class="inline" >
                     <b class="pad-right">Componente Curricular:</b>
                     <div class="text-line"><%= componente_curricular %></div>
                 </div>
-                <div class="inline" style="max-width: 300px;">
+                <div class="inline" style="width: 190px;">
                     <b class="pad-right">Data:</b>
                     <div class="text-line small-text"><%= data %></div>
                 </div>
@@ -59,14 +59,14 @@
         <tbody>
             <tr>
                 <td>
-                    <% temas_conteudos.split("\n").forEach(text => { %>
-                        <%= text %><br>
-                    <% }) %>
+                    <%# temas_conteudos.split("\n").forEach(text => { %>
+                        <%#= text %><br>
+                    <%# }) %>
                 </td>
                 <td>
-                    <% objetivos_habilidades.split("\n").forEach(text => { %>
-                        <%= text %><br>
-                    <% }) %> 
+                    <%# objetivos_habilidades.split("\n").forEach(text => { %>
+                        <%#= text %><br>
+                    <%# }) %> 
                 </td>
             </tr>
         </tbody>
@@ -74,9 +74,9 @@
     <div class="page-break">
         <div class="flex flex-column">
             <div class="flex flex-column">
-                <div class="bg-color text-center item-border item-padding">PROCEDIMENTO DIDÁTICO/METODOLOGICAS</div>
+                <div class="bg-color text-center item-border item-padding">PROCEDIMENTO DIDÁTICO/METODOLÓGICOS</div>
                 <div class="item-border item-padding">
-                    <%= procedimento_didatico %>
+                    <%#= procedimento_didatico %>
                 </div>
             </div>  
             <div class="flex flex-column">
