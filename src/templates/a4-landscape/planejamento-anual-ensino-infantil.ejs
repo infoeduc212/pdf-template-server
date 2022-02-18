@@ -49,7 +49,12 @@
                     <div class="text-line">
                         <%= faixa_etaria %>
                     </div>
+                    <div class="inline" style="max-width: 260px; text-align: left; font-size: 14px;">
+                        <b >Data:</b>
+                        <div class="text-line "><%= data %></div>
+                    </div>
                 </div>
+                
             </div>
         </div>
         <style>
@@ -67,30 +72,30 @@
                 </tr>
             </thead>
             <tbody style="font-size: 13px; text-align: justify;">
-                <% planejamentos.forEach(item => { %>
+                <%# planejamentos.forEach(item => { %>
                     <tr>
                         <td class="item-padding">
-                            <%= item.eixo_tematico %>
+                            <%#= item.eixo_tematico %>
                         </td>
                         <td class="item-padding">
-                            <%= item.campo_experiencias %>
+                            <%#= item.campo_experiencias %>
                         </td>
                         <td class="item-padding">
-                            <% item.objetivos_aprendizagem.forEach(objetivo => { %>
-                                <%= objetivo %><br> 
-                            <% }) %>
+                            <%# item.objetivos_aprendizagem.forEach(objetivo => { %>
+                                <%#= objetivo %><br> 
+                            <%# }) %>
                         </td>
                     </tr>
-                <% }) %>
+                <%# }) %>
             </tbody>
         </table>
         <div class="bg-color item-padding text-center">
             PRODECIMENTOS/METODOLOGIAS
         </div>
         <div class="item-border item-padding" style="font-size: 13px;">
-            <% procedimentos_atividades.split("\n").forEach(text => { %>
-                <%= text %><br>
-            <% }) %> 
+            <%# procedimentos_atividades.split("\n").forEach(text => { %>
+                <%#= text %><br>
+            <%# }) %> 
         </div>
         <div class="page-break">
             <div class="flex flex-column">
