@@ -59,14 +59,14 @@
         <tbody>
             <tr>
                 <td>
-                    <%# temas_conteudos.split("\n").forEach(text => { %>
-                        <%#= text %><br>
-                    <%# }) %>
+                    <% temas_conteudos.split("\n").forEach(text => { %>
+                        <%= text %><br>
+                    <% }) %>
                 </td>
                 <td>
-                    <%# objetivos_habilidades.split("\n").forEach(text => { %>
-                        <%#= text %><br>
-                    <%# }) %> 
+                    <% objetivos_habilidades.split("\n").forEach(text => { %>
+                        <%= text %><br>
+                    <% }) %> 
                 </td>
             </tr>
         </tbody>
@@ -76,7 +76,7 @@
             <div class="flex flex-column">
                 <div class="bg-color text-center item-border item-padding">PROCEDIMENTO DIDÁTICO/METODOLÓGICOS</div>
                 <div class="item-border item-padding">
-                    <%#= procedimento_didatico %>
+                    <%= procedimento_didatico %>
                 </div>
             </div>  
             <div class="flex flex-column">
