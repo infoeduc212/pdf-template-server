@@ -87,15 +87,15 @@
             <% }) %> 
         <% } %>
     </div>
-    <div class="bg-color item-padding text-center">
-        RECURSOS/MATERIAIS
-    </div>
     <div class="flex flex-column">
         <div class="bg-color text-center item-border item-padding">PROCEDIMENTO DIDÁTICO/METODOLOGICAS</div>
         <div class="item-border item-padding">
             <%= procedimento_didatico %>
         </div>
     </div>  
+    <div class="bg-color item-padding text-center">
+        RECURSOS/MATERIAIS
+    </div>
     <div class="item-border item-padding">
         <% recursos_materiais.split("\n").forEach(texto => { %>
             <%= texto %><br> 
