@@ -84,14 +84,18 @@
                     <b>Necessidade Educativa Especial (NEE):</b>
                     (<%= !possui_nee ? "X" : "" %>) Não possui (<%= possui_nee ? "X" : "" %>) Possui
                 </div>
-                <% if (possui_nee == true) { %>
+                
                     <div class="multicoluna inline">
                         <b>Especificação da NEE:</b>
                         
-                        <div class="texto-linha"><%= especificacao_nee %></div>
+                        <div class="texto-linha">
+                            <% if (possui_nee == true) { %>
+                                <%= string(especificacao_nee) %>
+                            <% } %> 
+                        </div>
                         
                     </div>
-                <% } %> 
+                
                 
             </div>
             <div class="title-header">Outras informações</div>
