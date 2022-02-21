@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
 </head>
 <body>
-    <% include("../reusable/header-escola.ejs") %> 
+    <%- include("../reusable/header-escola.ejs") %> 
     <div class="campos">
         <div class="flex flex-column small-gap">
             <div class="multicolumn">
@@ -32,14 +32,18 @@
                     <div class="text-line"><%= ano_letivo %></div>
                 </div>
             </div>
-            <div class="flex" style="gap: 5px;">
-                <div class="multicolumn">
+            <div class="multicolumn">
+                <div class="inline">
                     <b class="pad-right">Área do Conhecimento:</b>
                     <div class="text-line"><%= area_conhecimento %></div>
                 </div>
-                <div class="multicolumn">
+                <div class="inline" >
                     <b class="pad-right">Componente Curricular:</b>
                     <div class="text-line"><%= componente_curricular %></div>
+                </div>
+                <div class="inline" style="width: 190px;">
+                    <b class="pad-right">Data:</b>
+                    <div class="text-line small-text"><%= data %></div>
                 </div>
             </div>
         </div>
@@ -48,21 +52,29 @@
     <table class="table">
         <thead>
             <tr>
-                <td class="bg-color item-padding">OBJETIVOS/HABILIDADES</td>
                 <td class="bg-color item-padding">TEMAS/CONTEÚDOS</td>
+                <td class="bg-color item-padding">OBJETIVOS/HABILIDADES</td>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><%= objetivos_habilidades %></td>
-                <td><%= temas_conteudos %></td>
+                <td>
+                    <% temas_conteudos.split("\n").forEach(text => { %>
+                        <%= text %><br>
+                    <% }) %>
+                </td>
+                <td>
+                    <% objetivos_habilidades.split("\n").forEach(text => { %>
+                        <%= text %><br>
+                    <% }) %> 
+                </td>
             </tr>
         </tbody>
     </table>
     <div class="page-break">
         <div class="flex flex-column">
             <div class="flex flex-column">
-                <div class="bg-color text-center item-border item-padding">PROCEDIMENTO DIDÁTICO/METODOLOGICAS</div>
+                <div class="bg-color text-center item-border item-padding">PROCEDIMENTO DIDÁTICO/METODOLÓGICOS</div>
                 <div class="item-border item-padding">
                     <%= procedimento_didatico %>
                 </div>
@@ -77,6 +89,16 @@
                 <div class="bg-color text-center item-border item-padding">AVALIAÇÃO</div>
                 <div class="item-border item-padding">
                     <%= avaliacao %>
+                </div>
+            </div>
+            <div class="flex flex-column">
+                <div class="bg-color item-padding item-border text-center">
+                    REFERÊNCIAS
+                </div>
+                <div class="item-border item-padding">
+                    <% referencias.split("\n").forEach(texto => { %>
+                        <%= texto %><br>
+                    <% }) %>
                 </div>
             </div>
         </div>

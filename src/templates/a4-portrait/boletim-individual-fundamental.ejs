@@ -95,10 +95,8 @@
                     <% let count = 0 %> 
                     <% while(true) { %>
                         <% const next = disciplinasKeys.next() %>
-                        <% console.log("next:", next) %> 
                         <% if (next.done) break %>
                         <% const nomeDisciplina = next.value %>
-                        <% console.log(disciplinas) %> 
                         <%# Prevenir margem desnecessária %> 
                         <% if (count !== 0) { %>
                         </tr>
@@ -114,14 +112,11 @@
                                 .filter(nota => nota.nome_periodo_letivo === periodo) %>
                             
                             <% const scope = {} %>
-                            <% console.log("notas:", notas) %>
                             <% notas.forEach(nota => { %>
                                 <% const alias = nota.alias_avaliacao %>
                                 <% scope[alias] = nota.nota_avaliacao %>
                             <% }) %>
-                            <% console.log("scope:", scope) %>
                             <% try { %>
-                                <% console.log("calculando média....") %> 
                                 <% const evaluated = math.evaluate(formula_media, scope) %>
                                 <% somaMedia += evaluated %>
                                 <td class="text-center"><%= evaluated %></td>
@@ -145,7 +140,6 @@
                             </td>
                         <% }) %>
                         <td class="text-center"><%= somaMedia %></td>
-                        <% console.log("totalFaltasDisciplina:", totalFaltasDisciplina) %> 
                         <td class="text-center"><%= totalFaltasDisciplina %></td>
                         
                         <% count++ %> 

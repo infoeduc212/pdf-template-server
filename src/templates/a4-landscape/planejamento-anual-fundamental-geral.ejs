@@ -43,6 +43,10 @@
                         <b>Componente Curricular:</b>
                         <div class="text-line"><%= componente_curricular %></div>
                     </div>
+                    <div class="inline" style="max-width: 200px;">
+                        <b class="pad-right">Data:</b>
+                        <div class="text-line small-text"><%= data %></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,22 +61,28 @@
                     <thead>
                         <tr>
                             <th class="bg-color">UNIDADE TEMÁTICA</th>
-                            <th class="bg-color">OBJETIVOS DE<br>CONHECIMENTO</th>
+                            <th class="bg-color">OBJETOS DE<br>CONHECIMENTO</th>
                             <th class="bg-color">HABILIDADES</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <%= unidade_tematica %>
-                            </td>
-                            <td>
-                                <%= objetivos_conhecimento %>
-                            </td>
-                            <td>
-                                <%= habilidades %>
-                            </td>
-                        </tr>
+                        <% planejamentos.forEach(item => { %>
+                            <tr>
+                                <td>
+                                    <%= item.unidade_tematica %>
+                                </td>
+                                <td>
+                                    <% item.objetivos_conhecimento.forEach(text => { %>
+                                        <%= text %> <br>
+                                    <% }) %> 
+                                </td>
+                                <td>
+                                    <% item.habilidades.forEach(text => { %>
+                                        <%= text %> <br>
+                                    <% }) %> 
+                                </td>
+                            </tr>
+                        <% }) %>
                     </tbody>
                 </table>
             </div>
@@ -106,8 +116,9 @@
                         outros, com autocrítica e capacidade para lidar com elas.
                         <br>
                         <b>9.</b> Exercitar a empatia, o diálogo, a resolução de conflitos e a cooperação, fazendo-se respeitar e promovendo o respeito ao outro e aos direitos humanos, com acolhimento
-                        e valorização da diversidade de indivíduos e de grupos sociais, seus saberes, suas identidades, suas culturas e suas potencialidades, sem preconceitos de qualquer natureza. 10. Agir pessoal e coletivamente com autonomia, responsabilidade,
-                        flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários.
+                        e valorização da diversidade de indivíduos e de grupos sociais, seus saberes, suas identidades, suas culturas e suas potencialidades, sem preconceitos de qualquer natureza.
+                        <br>
+                        <b>10.</b> Agir pessoal e coletivamente com autonomia, responsabilidade, flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários.
                     </div>
                 </div>
             </div>
@@ -116,34 +127,39 @@
                     COMPETÊNCIAS ESPECÍFICAS DA ÁREA DE CONHECIMENTO
                 </div>
                 <div class="item-padding item-border">
-                    <% if (area_conhecimento === "Linguagens") { %>
+                    <% if (area_conhecimento.trim().toLowerCase() === "linguagens") { %>
                         <b>1.</b> Compreender as linguagens como construção humana, histórica, social e cultural, de natureza dinâmica, reconhecendo-as e valorizando-as como formas de significação da realidade e expressão de subjetividades e identidades sociais e
                         culturais.
+                        <br>
                         <b>2.</b> Conhecer e explorar diversas práticas de linguagem (artísticas, corporais e
                         linguísticas) em diferentes campos da atividade humana para continuar
                         aprendendo, ampliar suas possibilidades de participação na vida social e
                         colaborar para a construção de uma sociedade mais justa, democrática e
                         inclusiva.
+                        <br>
                         <b>3.</b> Utilizar diferentes linguagens – verbal (oral ou visual-motora, como Libras, e
                         escrita), corporal, visual, sonora e digital –, para se expressar e partilhar
                         informações, experiências, ideias e sentimentos em diferentes contextos e produzir
                         sentidos que levem ao diálogo, à resolução de conflitos e à cooperação.
+                        <br>
                         <b>4.</b> Utilizar diferentes linguagens para defender pontos de vista que respeitem o outro
                         e promovam os direitos humanos, a consciência socioambiental e o consumo
                         responsável em âmbito local, regional e global, atuando criticamente frente a
                         questões do mundo contemporâneo.
+                        <br>
                         <b>5.</b> Desenvolver o senso estético para reconhecer, fruir e respeitar as diversas
                         manifestações artísticas e culturais, das locais às mundiais, inclusive aquelas
                         pertencentes ao patrimônio cultural da humanidade, bem como participar de
                         práticas diversificadas, individuais e coletivas, da produção artístico-cultural, com
                         respeito à diversidade de saberes, identidades e culturas.
+                        <br>
                         <b>6.</b> Compreender e utilizar tecnologias digitais de informação e comunicação de forma
                         crítica, significativa, reflexiva e ética nas diversas práticas sociais (incluindo as
                         escolares), para se comunicar por meio das diferentes linguagens e mídias,
                         produzir conhecimentos, resolver problemas e desenvolver projetos autorais e
                         coletivos.
                     <% } %>
-                    <% if (area_conhecimento === "Ciências Humanas") { %>
+                    <% if (area_conhecimento.trim().toLowerCase() === "ciências humanas") { %>
                         <b>1.</b> Compreender a si e ao outro como identidades diferentes, de forma a exercitar o respeito
                         à diferença em uma sociedade plural e promover os direitos humanos.
                         <br>
@@ -183,7 +199,7 @@
                     COMPETÊNCIAS ESPECÍFICAS DO COMPONENTE CURRICULAR
                 </div>
                 <div class="item-padding item-border">
-                    <% if (componente_curricular === "Arte") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "arte") { %>
                         <b>1.</b> Explorar, conhecer, fruir e analisar criticamente práticas e produções artísticas e
                         culturais do seu entorno social, dos povos indígenas, das comunidades tradicionais
                         brasileiras e de diversas sociedades, em distintos tempos e espaços, para reconhecer
@@ -219,7 +235,7 @@
                         <b>9.</b> Analisar e valorizar o patrimônio artístico nacional e internacional, material e imaterial,
                         com suas histórias e diferentes visões de mundo.
                     <% } %>
-                    <% if (componente_curricular === "Educação Física") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "educação física") { %>
                         <b>1.</b> Compreender a origem da cultura corporal de movimento e seus vínculos com a
                         organização da vida coletiva e individual.
                         <br>
@@ -254,7 +270,7 @@
                         ginásticas, esportes, lutas e práticas corporais de aventura, valorizando o trabalho coletivo
                         e o protagonismo.
                     <% } %>
-                    <% if (componente_curricular === "Matemática") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "matemática") { %>
                         <b>1.</b> Reconhecer que a Matemática é uma ciência humana, fruto das necessidades e
                         preocupações de diferentes culturas, em diferentes momentos históricos, e é uma ciência
                         viva, que contribui para solucionar problemas científicos e tecnológicos e para
@@ -295,7 +311,7 @@
                         não na discussão de uma determinada questão, respeitando o modo de pensar dos
                         colegas e aprendendo com eles.
                     <% } %>
-                    <% if (componente_curricular === "Ciências da Natureza") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "ciências da natureza") { %>
                         <b>1.</b> Compreender as Ciências da Natureza como empreendimento humano, e o
                         conhecimento científico como provisório, cultural e histórico.
                         <br>
@@ -335,23 +351,45 @@
                         sustentáveis e solidários.
                     <% } %>
                 </div>
-                <div class="bg-color text-center item-border">
+                <div class="bg-color text-center item-padding item-border">
                     METODOLOGIAS
                 </div>
                 <div class="item-padding item-border">
-                    <%= metodologias %> 
+                    <% if (metodologias) { %>
+                        <% metodologias.split("\n").forEach(text => { %>
+                            <%= text %>
+                        <% }) %> 
+                    <% } %>
                 </div>
-                <div class="bg-color text-center item-border">
+                <div class="bg-color text-center item-padding item-border">
                     RECURSOS MATERIAIS
                 </div>
                 <div class="item-padding item-border">
-                    <%= recursos_materiais %> 
+                    <% if (recursos_materiais) { %>
+                        <% recursos_materiais.split("\n").forEach(text => { %>
+                            <%= text %>
+                        <% }) %> 
+                    <% } %>
                 </div>
                 <div class="bg-color text-center item-padding item-border">
                     AVALIAÇÃO
                 </div>
                 <div class="item-padding item-border">
-                    <%= avaliacao %> 
+                    <% if (avaliacao) { %>
+                        <% avaliacao.split("\n").forEach(text => { %>
+                            <%= text %>
+                        <% }) %>  
+                    <% } %>
+                </div>
+                <div class="bg-color item-padding text-center item-border">
+                    REFERÊNCIAS
+                </div>
+                <div class="item-border item-padding">
+                    <% if (referencias) { %>
+                        <% referencias.split("\n").forEach(texto => { %>
+                            <%= texto %><br>
+                        <% }) %>
+                    <% } %>
                 </div>
             </div>
         </div>

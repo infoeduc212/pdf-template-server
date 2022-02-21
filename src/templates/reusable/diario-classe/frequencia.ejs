@@ -80,21 +80,18 @@
             let dateRange = null
 
             if (periodo_letivo != null) {
-                console.log("periodo_letivo:", periodo_letivo)
                 dateRange = {
                     start: parseDate(periodo_letivo.data_inicio),
                     end: parseDate(periodo_letivo.data_termino)
                 }
             } else {
                 if (ano_letivo != null) {
-                    console.log("ano_letivo:", ano_letivo)
                     dateRange = {
                         start: parseDate(ano_letivo.data_inicio),
                         end: parseDate(ano_letivo.data_termino)
                     }
                 }
             }
-            console.log("dateRange:", dateRange)
 
             const monthDict = {
                 1: "Janeiro",
@@ -131,7 +128,6 @@
                     }))
                 }
             }
-            console.log(years)
 
             listaDate.forEach(record => {
                 const date = parseDate(record.data_lancamento)
@@ -141,20 +137,17 @@
                 if (monthsFromYear.indexOf(date.month) === -1) {
                     years[year].push(date.month)
                 }
-                console.log(monthsFromYear)
             })
             %>
         <% for (year in years) { %>
         <% if (!years.hasOwnProperty(year)) continue %>
         <% years[year].forEach(month => { %>
         <tr>
-            <% console.log(monthDict[month], month) %> 
             <td><%= monthDict[month] %></td>
             <% const monthRange = listaDate.filter(record => {
                 const date = parseDate(record.data_lancamento)
                 return date.month === month && date.year === parseInt(year)
             }) %>
-            <% console.log(monthRange) %>
             <!-- Quantidade de presença no dia -->
             <% const maxDays = 32 %>
             <% for (let i = 1; i < maxDays; i++) { %>

@@ -274,11 +274,12 @@
                                         
                                         <b>Responsável pelo Transporte:</b>
                                         <div class="streched-text">
-                                            (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "Municipal" ? "X" : " " %>)
+                                            <% console.log(aluno.dados_variaveis.responsavel_transporte_escolar); %> 
+                                            (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "O Poder Municipal" ? "X" : " " %>)
                                             Municipal
-                                            (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "Estadual" ? "X" : " " %>)
-                                            Estadual
-                                            (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "Federal" ? "X" : " " %>)
+                                            (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "O Poder Estadual" ? "X" : " " %>)
+                                            Estadual                                                                            
+                                            (<%= usaTransporte && aluno.dados_variaveis.responsavel_transporte_escolar === "O Poder Federal" ? "X" : " " %>)
                                             Federal
                                         </div>
                                     </div>

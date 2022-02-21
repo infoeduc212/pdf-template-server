@@ -41,6 +41,10 @@
                     <b>Componente Curricular:</b>
                     <div class="text-line"><%= componente_curricular %></div>
                 </div>
+                <div class="inline" style="max-width: 200px;">
+                    <b class="pad-right">Data:</b>
+                    <div class="text-line small-text"><%= data %></div>
+                </div>
             </div>
         </div>
     </div>
@@ -59,14 +63,13 @@
         }
         return map
     }
-    const exiosGrupo = groupByProperty(planejamento_anual, "exios")
-    console.log("exiosGrupo:", exiosGrupo)
+    const eixosGrupo = groupByProperty(planejamento_anual, "eixos")
     %> 
     <div class="margin-top page-title">
         <b>PLANEJAMENTO ANUAL</b>
     </div>
     <div class="margin-top" style="width: 100%;">
-        <% const keys = exiosGrupo.keys() %>
+        <% const keys = eixosGrupo.keys() %>
         <% while(true) { %>
             <% const next = keys.next() %> 
             <% if (next.done) break %>
@@ -81,17 +84,25 @@
                 <thead>
                     <tr>
                         <th class="bg-color">UNIDADE TEMÁTICA</th>
-                        <th class="bg-color">OBJETIVOS DE<br>CONHECIMENTO</th>
+                        <th class="bg-color">OBJETOS DE<br>CONHECIMENTO</th>
                         <th class="bg-color">HABILIDADES</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% const array = exiosGrupo.get(key) %>
+                    <% const array = eixosGrupo.get(key) %>
                     <% array.forEach(item => { %>
                         <tr>
                             <td><%= item.unidade_tematica %></td>
-                            <td><%= item.objetivos_conhecimento %></td>
-                            <td><%= item.habilidades %> </td>
+                            <td>
+                                <% item.objetivos_conhecimento.forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            </td>
+                            <td>
+                                <% item.habilidades.forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            </td>
                         </tr>
                     <% }) %> 
                 </tbody>
@@ -130,11 +141,13 @@
                 <b>9.</b> Exercitar a empatia, o diálogo, a resolução de conflitos e a cooperação, fazendo-se respeitar e promovendo o respeito ao outro e aos direitos humanos, com acolhimento
                 e valorização da diversidade de indivíduos e de grupos sociais, seus saberes, suas identidades, suas culturas e suas potencialidades, sem preconceitos de qualquer natureza. 10. Agir pessoal e coletivamente com autonomia, responsabilidade,
                 flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários.
+                <br>
+                <b>10.</b> Agir pessoal e coletivamente com autonomia, responsabilidade, flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários.
             </div>
         </div>
     </div>
     <div class="page-break">
-        <div class="bg-color text-center item-padding">
+        <div class="bg-color text-center">
             COMPETÊNCIAS ESPECÍFICAS DA ÁREA DE CONHECIMENTO
         </div>
         <div class="item-padding item-border">
@@ -170,7 +183,7 @@
             escolares), para se comunicar por meio das diferentes linguagens e mídias,
             produzir conhecimentos, resolver problemas e desenvolver projetos autorais e coletivos.
         </div>
-        <div class="bg-color text-center item-padding">
+        <div class="bg-color text-center">
             COMPETÊNCIAS ESPECÍFICAS DO COMPONENTE CURRICULAR
         </div>
         <div class="item-padding item-border">
@@ -212,11 +225,19 @@
         <div class="item-padding item-border">
             <%= recursos_materiais %> 
         </div>
-        <div class="bg-color text-center item-padding item-border">
+        <div class="bg-color text-center item-border">
             AVALIAÇÃO
         </div>
         <div class="item-padding item-border">
             <%= avaliacao %> 
+        </div>
+        <div class="bg-color item-padding text-center">
+            REFERÊNCIAS
+        </div>
+        <div class="item-border item-padding">
+            <% referencias.split("\n").forEach(texto => { %>
+                <%= texto %><br>
+            <% }) %>
         </div>
     </div>
 </div>

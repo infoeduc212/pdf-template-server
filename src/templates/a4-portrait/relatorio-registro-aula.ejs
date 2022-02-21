@@ -6,6 +6,33 @@
 </head>
 <%- include("../css/common.ejs") %> 
 <body>
+    <%
+    const monthDict = {
+        0: "Janeiro",
+        1: "Fevereiro",
+        2: "Março",
+        3: "Abril",
+        4: "Maio",
+        5: "Junho",
+        6: "Julho",
+        7: "Agosto",
+        8: "Setembro",
+        9: "Outubro",
+        10: "Novembro",
+        11: "Dezembro"
+    }
+
+    function sortDateArray(dateArray) {
+        return registros_aulas.sort((a, b) => {
+            return new Date(a.data) - new Date(b.data)
+        })
+    }
+
+    function getFirstMonthFromDateArray(dateArray) {
+        const sortedDateArray = sortDateArray(dateArray)
+        return monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()]
+    }
+    %> 
     <div id="container">
         <%- include("../reusable/header-escola.ejs") %>
         <div class="flex flex-column small-gap" style="gap: 10px; margin-bottom: 20px;">
@@ -46,7 +73,22 @@
         </div>
         <br>
         <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
+        <div class="text-center">
+            <b>Mês:</b> <%= getFirstMonthFromDateArray(registros_aulas) %>
+            <br>
+            <br>
+        </div>
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
+        <% if (reposicoes_aulas.length > 0) { %>
+            <div style="break-before: page;">
+                <h3 class="text-center"><u>REGISTRO DE REPOSIÇÃO DE AULA</u></h3>
+                <div class="text-center">
+                    <b>Mês:</b> <%= getFirstMonthFromDateArray(reposicoes_aulas) %> 
+                </div>
+                <br>
+                <%- include("../reusable/diario-classe/lista-registro-aula.ejs", { registros_aulas: reposicoes_aulas }) %> 
+            </div>
+        <% } %>
     </div>
 </body>
 </html>

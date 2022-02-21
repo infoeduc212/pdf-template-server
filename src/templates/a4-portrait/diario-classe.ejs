@@ -168,161 +168,6 @@
                     <div style="max-width: 60px;" class="text-center text-line"><%= diario.ano_letivo %></div>
                 </div>
             </div>
-            <% if (aluno.frequencia) { %> 
-                <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia }) %>
-            <% } %>
-            <% if (aluno.notas) { %>
-            <% if (tipo_documento === "Fundamental" && aluno.possui_nee !== true) { %>
-            <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
-                Resultado Bimestral
-            </h3>
-                <div style="margin: 0 50px;">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <td class="text-center">
-                                    Média
-                                </td>
-                                <td class="text-center">
-                                    Rec.
-                                </td>
-                                <td class="text-center">
-                                    Méd.<br>Final
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <% notaResList.forEach(res => { %>
-                                <td class="text-center">
-                                    <%= res %>
-                                </td>
-                                <% }) %>
-                                <td class="text-center">
-                                    <%= resultadoMedia %>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <% } %>
-            <% if (tipo_documento === "Infantil") { %>
-            <div style="margin-top: 10px;">
-                <%# TODO: Relatório Descritivo %>
-                <% if (aluno.relatorio_experiencia) { %>
-                    <h3 class="text-center"><u>AVALIAÇÃO</u></h3>
-                    <%- include("../reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
-                <% } %>
-            </div>
-            <% } %>
-            <% if (tipo_documento === "Fundamental") { %>
-            <% if (aluno.possui_nee === true) { %>
-            <div style="margin-top: 15px;">
-                <div class="flex flex-column" style="margin: 0 70px;">
-                    <div class="text-center" style="border: 1px solid; font-weight: bold; font-size: 18px;">
-                        Avaliação Descritiva
-                    </div>
-                    <div class="text-center" style="border: 1px solid; font-size: 18px;">
-                        <%= periodo_letivo.nome_periodo %>
-                    </div>
-                    <div class="written-text" style="border: 1px solid;">
-                        <%= aluno.avaliacao_descritiva %>
-                    </div>
-                </div>
-            </div>
-            <% } %>
-            <% } %>
-            <br />
-            <div class="avoid-break" style="display: flex; gap: 50px">
-                <% if (tipo_documento !== "Infantil" && aluno.possui_nee !== true) { %>
-                <table style="border-spacing: 0;">
-                    <thead>
-                        <tr>
-                            <th style="border: 1px solid;" colspan="2" class="text-center">Resultado Final</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Média Anual</td>
-                            <td class="fixed-width text-center">
-                                <%= aluno.notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Total de Faltas</td>
-                            <td class="fixed-width text-center"><%= aluno.frequencia.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %></td>
-                        </tr>
-                        <tr>
-                            <%# TODO: ? %> 
-                            <td>Nota de Rec. Final</td>
-                            <td class="fixed-width text-center"></td>
-                        </tr>
-                        <tr>
-                            <%# TODO: ? %> 
-                            <td>Média Final</td>
-                            <td class="fixed-width text-center"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <% } %>
-                <div>
-                    <% if (tipo_documento !== "Infantil" && possui_nee !== true) { %>
-                    <input id="aprovado" <%= aluno.aprovado ? "checked" : "" %> type="checkbox" />
-                    <label for="aprovado">Aprovado</label>
-                    <br />
-                    <input id="reprovado" <%= aluno.reprovado ? "checked" : "" %> type="checkbox" />
-                    <label for="reprovado">Reprovado</label>
-                    <br />
-                    <% } %>
-                    <div class="flex" style="gap: 30px;">
-                        <div>
-                            <input id="transferido" <%= aluno.transferido ? "checked" : "" %> type="checkbox" />
-                            <label for="transferido">Transferido</label>
-                            <div style="margin-left: 5px; display: flex; float: right">
-                                <% 
-                                const transferido = aluno.status === "Transferido"
-                                let dataTransferido
-                                if (transferido === true)
-                                    dataTransferido = new Date(aluno.transferido_data) %>
-                                <div style="min-width: 30px" class="text-line text-center">
-                                    <%= transferido ? padWithZero(dataTransferido.getDate()) : "" %>
-                                </div>
-                                /
-                                <div style="min-width: 30px" class="text-line text-center">
-                                    <%= transferido ? padWithZero(dataTransferido.getMonth() + 1) : "" %>
-                                </div>
-                                /
-                                <div style="min-width: 50px" class="text-line text-center">
-                                    <%= transferido ? dataTransferido.getFullYear() : "" %>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <input id="transferido" <%= aluno.desistente ? "checked" : "" %> type="checkbox" />
-                            <label for="transferido">Desistente</label>
-                            <div style="margin-left: 5px; display: flex; float: right">
-                                <% 
-                                const desistente = aluno.status === "Desistente"
-                                let desistenteData
-                                if (desistente === true)
-                                desistenteData = new Date(aluno.desistente_data) %>
-                                <div style="min-width: 30px" class="text-line text-center">
-                                    <%= desistente ? padWithZero(desistenteData.getDate()) : "" %>
-                                </div>
-                                /
-                                <div style="min-width: 30px" class="text-line text-center">
-                                    <%= desistente ? padWithZero(desistenteData.getMonth() + 1) : "" %>
-                                </div>
-                                /
-                                <div style="min-width: 50px" class="text-line text-center">
-                                    <%= desistente ? desistenteData.getFullYear() : "" %>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <% } %>
         </div>
         <% if (aluno.frequencia) { %>
         <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia, ano_letivo }) %>
@@ -366,9 +211,7 @@
         <% if (tipo_documento === "Infantil") { %>
         <div style="margin-top: 10px;">
             <%# TODO: Relatório Descritivo %>
-            <% console.log("Tipo do documento é Infantil") %>
             <% if (aluno.relatorio_experiencia) { %>
-                <% console.log("Aluno tem relatório de experiência") %> 
             <h3 class="text-center"><u>AVALIAÇÃO</u></h3>
             <%- include("../reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
             <% } %>
@@ -507,9 +350,16 @@
             11: "Dezembro"
         }
         
-        const sortedDateArray = registros_aulas.sort((a, b) => {
-            return new Date(a.data) - new Date(b.data)
-        }) 
+        function sortDateArray(dateArray) {
+            return registros_aulas.sort((a, b) => {
+                return new Date(a.data) - new Date(b.data)
+            })
+        }
+
+        function getFirstMonthFromDateArray(dateArray) {
+            const sortedDateArray = sortDateArray(dateArray)
+            return monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()]
+        }
         %>
 
         <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
@@ -520,17 +370,23 @@
         <% } %>
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
     </div>
-    <div class="page-break">
-        <div>
-            <div style="margin-top: 1000px;" class="text-center">
-                <%= fundo.nome_escola %>
-                <br>
-                <%= fundo.escola_email %>
-                <br>
-                <%= fundo.municipio %> - <%= fundo.uf %>
+    <% if (reposicao_aulas.length > 0) { %>
+        <div class="page-break" style="margin: 10px;">
+            <h3 class="text-center"><u>REGISTRO DE REPOSIÇÃO DE AULA</u></h3>
+            <%- include("../reusable/diario-classe/lista-registro-aula.ejs", { registros_aulas: reposicao_aulas }) %>
+        </div>
+        <div class="page-break">
+            <div>
+                <div style="margin-top: 1000px;" class="text-center">
+                    <%= fundo.nome_escola %>
+                    <br>
+                    <%= fundo.escola_email %>
+                    <br>
+                    <%= fundo.municipio %> - <%= fundo.uf %>
+                </div>
             </div>
         </div>
-    </div>
+    <% } %>
 </body>
 
 </html>

@@ -1,0 +1,238 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/common.ejs") %>
+    <style>
+        .small-text {
+            font-size: 12px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <%- include("../reusable/header-escola.ejs") %>
+    <div class="campos">
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <b class="pad-right">Instituição do Ensino:</b>
+                <div class="text-line small-text"><%= nome_escola %></div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b class="pad-right">Prof (a):</b>
+                    <div class="text-line small-text"><%= nome_professor %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Ano/Turma:</b>
+                    <div class="text-line small-text"><%= ano_turma %></div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b class="pad-right">Área de Conhecimento:</b>
+                    <div class="text-line small-text"><%= area_conhecimento %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line small-text"><%= ano_letivo %></div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b class="pad-right">Componente Curricular:</b>
+                    <div class="text-line small-text"><%= componente_curricular %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Período Letivo:</b>
+                    <div class="text-line small-text"><%= periodo_letivo %></div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b class="pad-right">Nº de Aulas:</b>
+                    <div class="text-line small-text"><%= numero_aulas %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Carga Horária:</b>
+                    <div class="text-line small-text"><%= carga_horaria %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Data:</b>
+                    <div class="text-line small-text"><%= data %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="page-title">PLANEJAMENTO DE AULA</h3>
+    <div class="flex flex-column">
+        <% if (tipo_componente_curricular === "Português") { %>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="item-border bg-color text-center">
+                            CAMPO DE ATUAÇÃO
+                        </td>
+                        <td class="item-border bg-color text-center">
+                            PRÁTICAS DE LINGUAGEM
+                        </td>
+                        <td class="item-border bg-color text-center">
+                            OBJETOS DE CONHECIMENTO
+                        </td>
+                    </tr>
+                </thead>
+                <tbody class="small-text">
+                    <tr>
+                        <td>
+                            <% if (campo_atuacao) { %>
+                                <% campo_atuacao.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (praticas_linguagem) { %>
+                                <% praticas_linguagem.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %>
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (objetos_conhecimento) { %>
+                                <% objetos_conhecimento.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } %>
+        <% if (tipo_componente_curricular === "Inglês") { %>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="item-border bg-color text-center">EIXO</td>
+                        <td class="item-border bg-color text-center">UNIDADES TEMÁTICAS</td>
+                        <td class="item-border bg-color text-center">OBJETOS DE CONHECIMENTO</td>
+                    </tr>
+                </thead>
+                <tbody class="small-text">
+                    <tr>
+                        <td>
+                            <% if (eixo) { %>
+                                <% eixo.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (unidades_tematicas) { %>
+                                <% unidades_tematicas.split("\n").forEach(text => { %> 
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (objetos_conhecimento) { %>
+                                <% objetos_conhecimento.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } %>
+        <% if (tipo_componente_curricular === null) { %>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="item-border bg-color item-padding no-wrap">UNIDADES TEMÁTICAS</td>
+                        <td class="item-border bg-color item-padding">OBJETOS DE CONHECIMENTO</td>
+                    </tr>
+                </thead>
+                <tbody class="small-text">
+                    <tr>
+                        <td>
+                            <% if (unidades_tematicas) { %>
+                                <% unidades_tematicas.split("\n").forEach(text => { %> 
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (objetivos_conhecimento) { %>
+                                <% objetivos_conhecimento.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } %>
+        <div class="flex flex-column">
+            <div class="text-center bg-color item-padding">
+                HABILIDADES 
+            </div>
+            <div class="item-padding item-border small-text">
+                <% if (habilidades) { %>
+                    <% habilidades.split("\n").forEach(text => { %>
+                        <%= text %> <br>
+                    <% }) %> 
+                <% } %>
+            </div>
+        </div>
+        <div class="flex flex-column">
+            <div class="text-center bg-color item-padding">
+                PROCEDIMENTO DIDÁTICO/METODOLÓGICO
+            </div>
+            <div class="item-padding item-border small-text">
+                <% if (procedimento_didatico) { %>
+                    <% procedimento_didatico.split("\n").forEach(text => { %>
+                        <%= text %> <br> 
+                    <% }) %> 
+                <% } %>
+            </div>
+        </div>
+        <div class="flex flex-column">
+            <div class="text-center bg-color item-padding">
+                RECURSOS/MATERIAIS
+            </div>
+            <div class="item-padding item-border small-text">
+                <% if (recursos_materiais) { %>
+                    <% recursos_materiais.split("\n").forEach(text => { %> 
+                        <%= text %>;<br>
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
+        <div class="flex flex-column">
+            <div class="text-center bg-color item-padding">
+                AVALIAÇÃO
+            </div>
+            <div class="item-padding item-border small-text">
+                <% if (avaliacao) { %>
+                    <% avaliacao.split("\n").forEach(text => { %>
+                        <%= text %> <br>
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
+        <div class="flex flex-column">
+            <div class="text-center bg-color item-padding">
+                REFERÊNCIAS BIBLIOGRÁFICAS
+            </div>
+            <div class="item-padding item-border small-text">
+                <% if (referencias_bibliograficas) { %>
+                    <% referencias_bibliograficas.split("\n").forEach(text => { %>
+                        <%= text %> <br>
+                    <% }) %> 
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

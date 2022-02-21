@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/common.ejs") %>
+    <style>
+        .small-text {
+            font-size: 12px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <%- include("../reusable/header-escola.ejs") %>
+    <div class="campos">
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <b class="pad-right">Instituição de Ensino:</b>
+                <div class="text-line"><%= instituicao_ensino %></div>
+            </div>
+            <div class="flex" style="gap: 5px;">
+                <div class="multicolumn">
+                    <b class="pad-right">Prof. (a):</b>
+                    <div class="text-line"><%= nome_professor %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Ano/Turma:</b>
+                    <div class="text-line"><%= ano_turma %></div>
+                </div>
+            </div>
+            <div class="flex" style="gap: 5px;">
+                <div class="multicolumn">
+                    <b class="pad-right">Área do Conhecimento:</b>
+                    <div class="text-line"><%= area_conhecimento %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"><%= ano_letivo %></div>
+                </div>
+            </div>
+            <div class="flex" style="gap: 5px;">
+                <div class="multicolumn">
+                    <b class="pad-right">C. Curricular/disciplina:</b>
+                    <div class="text-line"><%= componente_curricular %> </div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Período Letivo:</b>
+                    <div class="text-line"><%= periodo_letivo %></div>
+                </div>
+            </div>
+            <div class="flex" style="gap: 5px;">
+                <div class="multicolumn">
+                    <b class="pad-right">N° de Aulas:</b>
+                    <div class="text-line"><%= numero_aulas %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Carga Horária:</b>
+                    <div class="text-line"><%= carga_horaria %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Data:</b>
+                    <div class="text-line"><%= data %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="page-title">PLANEJAMENTO DE AULA</h3>
+
+    <div class="bg-color item-padding text-center">
+        TEMA/CONTEÚDO
+    </div>
+    <div class="item-border item-padding">
+        <% if (tema_conteudo) { %>
+            <% tema_conteudo.split("\n").forEach(texto => { %>
+                <%= texto %><br>
+            <% }) %> 
+        <% } %>
+    </div>
+    <div class="bg-color item-padding text-center">
+        OBJETIVOS/HABILIDADES
+    </div>
+    <div class="item-border item-padding">
+        <% if (objetivos_habilidades) { %>
+            <% objetivos_habilidades.split("\n").forEach(texto => { %>
+                <%= texto %><br>
+            <% }) %> 
+        <% } %>
+    </div>
+    <div class="flex flex-column">
+        <div class="bg-color text-center item-border item-padding">PROCEDIMENTO DIDÁTICO/METODOLÓGICOS</div>
+        <div class="item-border item-padding">
+            <% if (procedimento_didatico) { %>
+                <%= procedimento_didatico %>
+            <% } %>
+        </div>
+    </div>  
+    <div class="bg-color item-padding text-center">
+        RECURSOS/MATERIAIS
+    </div>
+    <div class="item-border item-padding">
+        <% if (recursos_materiais) { %>
+            <% recursos_materiais.split("\n").forEach(texto => { %>
+                <%= texto %><br> 
+            <% }) %> 
+        <% } %>
+    </div>
+    <div class="bg-color item-padding text-center">
+        AVALIAÇÃO
+    </div>
+    <div class="item-border item-padding">
+        <% if (avaliacao) { %>
+            <% avaliacao.split("\n").forEach(texto => { %>
+                <%= texto %><br> 
+            <% }) %>
+        <% } %>
+    </div>
+    <div class="bg-color item-padding text-center">
+        REFERÊNCIAS
+    </div>
+    <div class="item-border item-padding">
+        <% if (referencias) { %>
+            <% referencias.split("\n").forEach(texto => { %>
+                <%= texto %><br>
+            <% }) %>
+        <% } %>
+    </div>
+</body>
+</html>

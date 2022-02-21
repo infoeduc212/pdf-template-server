@@ -43,6 +43,10 @@
                         <b>Componente Curricular:</b>
                         <div class="text-line"><%= componente_curricular %></div>
                     </div>
+                    <div class="inline" style="max-width: 200px;">
+                        <b class="pad-right">Data:</b>
+                        <div class="text-line small-text"><%= data %></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -65,7 +69,7 @@
         const campoAtuacaoGrupo = groupByProperty(planejamento_anual, "campo_atuacao")
 
         %> 
-        <div class="page-title">PLANEJAMENTO ANUAL</div>
+        <h3 class="page-title">PLANEJAMENTO ANUAL</h3>
         <div class="margin-top">
             <% const keys = campoAtuacaoGrupo.keys() %>
             <% while(true) { %>
@@ -81,8 +85,8 @@
                     </caption>
                     <thead>
                         <tr>
-                            <th class="bg-color">UNIDADE TÉMATICA</th>
-                            <th class="bg-color">OBJETIVOS DE<br>CONHECIMENTO</th>
+                            <th class="bg-color">PRÁTICAS DE LINGUAGEM</th>
+                            <th class="bg-color">OBJETOS DE<br>CONHECIMENTO</th>
                             <th class="bg-color">HABILIDADES</th>
                         </tr>
                     </thead>
@@ -90,9 +94,17 @@
                         <% const array = campoAtuacaoGrupo.get(key) %>
                         <% array.forEach(item => { %>
                             <tr>
-                                <td><%= item.unidade_tematica %></td>
-                                <td><%= item.objetivos_conhecimento %></td>
-                                <td><%= item.habilidades %></td>
+                                <td><%= item.praticas_linguagem %></td>
+                                <td>
+                                    <% item.objetivos_conhecimento.forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </td>
+                                <td>
+                                    <% item.habilidades.forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </td>
                             </tr>
                         <% }) %>
                     </tbody>
@@ -131,6 +143,8 @@
                     <b>9.</b> Exercitar a empatia, o diálogo, a resolução de conflitos e a cooperação, fazendo-se respeitar e promovendo o respeito ao outro e aos direitos humanos, com acolhimento
                     e valorização da diversidade de indivíduos e de grupos sociais, seus saberes, suas identidades, suas culturas e suas potencialidades, sem preconceitos de qualquer natureza. 10. Agir pessoal e coletivamente com autonomia, responsabilidade,
                     flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários.
+                    <br>
+                    <b>10.</b> Agir pessoal e coletivamente com autonomia, responsabilidade, flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários.
                 </div>
             </div>
         </div>
@@ -198,6 +212,14 @@
             </div>
             <div class="item-padding item-border">
                 <%= avaliacao %> 
+            </div>
+            <div class="bg-color item-padding text-center">
+                REFERÊNCIAS
+            </div>
+            <div class="item-border item-padding">
+                <% referencias.split("\n").forEach(texto => { %>
+                    <%= texto %><br>
+                <% }) %>
             </div>
         </div>
 </body>

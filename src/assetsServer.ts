@@ -6,7 +6,6 @@ import path from "path";
 
 export function createAssetsServer() {
     app.use(cors());
-    app.use(morgan("combined"));
     app.use("/assets", express.static(path.join(__dirname, "..", "assets")));
     return app;
 }
