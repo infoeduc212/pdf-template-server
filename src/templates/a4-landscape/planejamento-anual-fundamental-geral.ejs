@@ -355,33 +355,41 @@
                     METODOLOGIAS
                 </div>
                 <div class="item-padding item-border">
-                    <% metodologias.split("\n").forEach(text => { %>
-                        <%= text %>
-                    <% }) %> 
+                    <% if (metodologias) { %>
+                        <% metodologias.split("\n").forEach(text => { %>
+                            <%= text %>
+                        <% }) %> 
+                    <% } %>
                 </div>
                 <div class="bg-color text-center item-padding item-border">
                     RECURSOS MATERIAIS
                 </div>
                 <div class="item-padding item-border">
-                    <% recursos_materiais.split("\n").forEach(text => { %>
-                        <%= text %>
-                    <% }) %> 
+                    <% if (recursos_materiais) { %>
+                        <% recursos_materiais.split("\n").forEach(text => { %>
+                            <%= text %>
+                        <% }) %> 
+                    <% } %>
                 </div>
                 <div class="bg-color text-center item-padding item-border">
                     AVALIAÇÃO
                 </div>
                 <div class="item-padding item-border">
-                    <% avaliacao.split("\n").forEach(text => { %>
-                        <%= text %>
-                    <% }) %>  
+                    <% if (avaliacao) { %>
+                        <% avaliacao.split("\n").forEach(text => { %>
+                            <%= text %>
+                        <% }) %>  
+                    <% } %>
                 </div>
                 <div class="bg-color item-padding text-center item-border">
                     REFERÊNCIAS
                 </div>
                 <div class="item-border item-padding">
-                    <% referencias.split("\n").forEach(texto => { %>
-                        <%= texto %><br>
-                    <% }) %>
+                    <% if (referencias) { %>
+                        <% referencias.split("\n").forEach(texto => { %>
+                            <%= texto %><br>
+                        <% }) %>
+                    <% } %>
                 </div>
             </div>
         </div>

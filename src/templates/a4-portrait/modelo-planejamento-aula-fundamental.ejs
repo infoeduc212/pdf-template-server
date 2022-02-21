@@ -121,30 +121,32 @@
                         <% } %>
                     </div>
                 </div>
-                <div class="flex flex-column">
-                    <div class="text-center bg-color item-padding">
-                        UNIDADES TEMÁTICAS
-                    </div>
-                    <div class="item-padding item-border small-text">
-                        <% if (unidades_tematicas) { %>
-                            <% unidades_tematicas.split("\n").forEach(text => { %> 
-                                <%= text %><br>
-                            <% }) %> 
-                        <% } %>
-                    </div>
-                </div>
-                <div class="flex flex-column">
-                    <div class="text-center bg-color item-padding">
-                        OBJETOS DE CONHECIMENTO
-                    </div>
-                    <div class="item-padding item-border small-text">
-                        <% if (objetos_conhecimento) { %>
-                            <% objetos_conhecimento.split("\n").forEach(text => { %>
-                                <%= text %><br>
-                            <% }) %> 
-                        <% } %>
-                    </div>
-                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td class="bg-color item-padding no-wrap">UNIDADES TEMÁTICAS</td>
+                            <td class="bg-color item-padding">OBJETOS DE CONHECIMENTO</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <% if (unidades_tematicas) { %>
+                                    <% unidades_tematicas.split("\n").forEach(text => { %> 
+                                        <%= text %><br>
+                                    <% }) %> 
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if (objetos_conhecimento) { %>
+                                    <% objetos_conhecimento.split("\n").forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                <% } %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         <% } %>
         <% if (tipo_componente_curricular === null) { %>
