@@ -68,84 +68,82 @@
     <h3 class="page-title">PLANEJAMENTO DE AULA</h3>
     <div class="flex flex-column">
         <% if (tipo_componente_curricular === "Português") { %>
-            <div class="flex">
-                <div class="flex flex-column">
-                    <div class="text-center bg-color item-padding">
-                        CAMPO DE ATUAÇÃO
-                    </div>
-                    <div class="item-padding item-border small-text">
-                        <% if (campo_atuacao) { %>
-                            <% campo_atuacao.split("\n").forEach(text => { %>
-                                <%= text %><br>
-                            <% }) %> 
-                        <% } %>
-                    </div>
-                </div>
-                <div class="flex flex-column">
-                    <div class="text-center bg-color item-padding">
-                        PRÁTICAS DE LINGUAGEM
-                    </div>
-                    <div class="item-padding item-border small-text">
-                        <% if (praticas_linguagem) { %>
-                            <% praticas_linguagem.split("\n").forEach(text => { %>
-                                <%= text %><br>
-                            <% }) %>
-                        <% } %>
-                    </div>
-                </div>
-                <div class="flex flex-column">
-                    <div class="text-center bg-color item-padding">
-                        OBJETOS DE CONHECIMENTO
-                    </div>
-                    <div class="item-padding item-border small-text">
-                        <% if (objetos_conhecimento) { %>
-                            <% objetos_conhecimento.split("\n").forEach(text => { %>
-                                <%= text %><br>
-                            <% }) %> 
-                        <% } %>
-                    </div>
-                </div>
-            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>
+                            CAMPO DE ATUAÇÃO
+                        </td>
+                        <td>
+                            PRÁTICAS DE LINGUAGEM
+                        </td>
+                        <td>
+                            OBJETOS DE CONHECIMENTO
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <% if (campo_atuacao) { %>
+                                <% campo_atuacao.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (praticas_linguagem) { %>
+                                <% praticas_linguagem.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %>
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (objetos_conhecimento) { %>
+                                <% objetos_conhecimento.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         <% } %>
         <% if (tipo_componente_curricular === "Inglês") { %>
-            <div class="flex">
-                <div class="flex flex-column">
-                    <div class="text-center bg-color item-padding">
-                        EIXO
-                    </div>
-                    <div class="item-padding item-border small-text">
-                        <% if (eixo) { %>
-                            <% eixo.split("\n").forEach(text => { %>
-                                <%= text %><br>
-                            <% }) %> 
-                        <% } %>
-                    </div>
-                </div>
-                <div class="flex flex-column">
-                    <div class="text-center bg-color item-padding">
-                        UNIDADES TEMÁTICAS
-                    </div>
-                    <div class="item-padding item-border small-text">
-                        <% if (unidades_tematicas) { %>
-                            <% unidades_tematicas.split("\n").forEach(text => { %> 
-                                <%= text %><br>
-                            <% }) %> 
-                        <% } %>
-                    </div>
-                </div>
-                <div class="flex flex-column">
-                    <div class="text-center bg-color item-padding">
-                        OBJETOS DE CONHECIMENTO
-                    </div>
-                    <div class="item-padding item-border small-text">
-                        <% if (objetos_conhecimento) { %>
-                            <% objetos_conhecimento.split("\n").forEach(text => { %>
-                                <%= text %><br>
-                            <% }) %> 
-                        <% } %>
-                    </div>
-                </div>
-            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td class="bg-color text-center">EIXO</td>
+                        <td class="bg-color text-center">UNIDADES TEMÁTICAS</td>
+                        <td class="bg-color text-center"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <% if (eixo) { %>
+                                <% eixo.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (unidades_tematicas) { %>
+                                <% unidades_tematicas.split("\n").forEach(text => { %> 
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (objetos_conhecimento) { %>
+                                <% objetos_conhecimento.split("\n").forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            <% } %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         <% } %>
         <% if (tipo_componente_curricular === null) { %>
             <table class="table">
