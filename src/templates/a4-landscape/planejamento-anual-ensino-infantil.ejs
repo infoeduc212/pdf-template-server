@@ -50,11 +50,10 @@
                         <%= faixa_etaria %>
                     </div>
                     <div class="inline" style="max-width: 260px; text-align: left; font-size: 14px;">
-                        <b >Data:</b>
+                        <b>Data:</b>
                         <div class="text-line "><%= data %></div>
                     </div>
                 </div>
-                
             </div>
         </div>
         <style>
@@ -72,30 +71,32 @@
                 </tr>
             </thead>
             <tbody style="font-size: 13px; text-align: justify;">
-                <%# planejamentos.forEach(item => { %>
+                <% planejamentos.forEach(item => { %>
                     <tr>
                         <td class="item-padding">
-                            <%#= item.eixo_tematico %>
+                            <%= item.eixo_tematico %>
                         </td>
                         <td class="item-padding">
-                            <%#= item.campo_experiencias %>
+                            <%= item.campo_experiencias %>
                         </td>
                         <td class="item-padding">
-                            <%# item.objetivos_aprendizagem.forEach(objetivo => { %>
-                                <%#= objetivo %><br> 
-                            <%# }) %>
+                            <% item.objetivos_aprendizagem.forEach(objetivo => { %>
+                                <%= objetivo %><br> 
+                            <% }) %>
                         </td>
                     </tr>
-                <%# }) %>
+                <% }) %>
             </tbody>
         </table>
         <div class="bg-color item-padding text-center">
             PRODECIMENTOS/METODOLOGIAS
         </div>
         <div class="item-border item-padding" style="font-size: 13px;">
-            <%# procedimentos_atividades.split("\n").forEach(text => { %>
-                <%#= text %><br>
-            <%# }) %> 
+            <% if (procedimentos_atividades) { %>
+                <% procedimentos_atividades.split("\n").forEach(text => { %>
+                    <%= text %><br>
+                <% }) %> 
+            <% } %>
         </div>
         <div class="page-break">
             <div class="flex flex-column">
@@ -165,21 +166,27 @@
                 RECURSOS MATERIAIS
             </div>
             <div class="item-padding item-border">
-                <%= recursos_materiais %>
+                <% if (recursos_materiais) { %>
+                    <%= recursos_materiais %>
+                <% } %>
             </div>
             <div class="bg-color item-padding text-center">
                 AVALIAÇÃO
             </div>
             <div class="item-padding item-border">
-                <%= avaliacao %>
+                <% if (avaliacao) { %>
+                    <%= avaliacao %>
+                <% } %>
             </div>
             <div class="bg-color item-padding text-center">
                 REFERÊNCIAS
             </div>
             <div class="item-padding item-border">
-                <% referencias.split("\n").forEach(texto => { %>
-                    <%= texto %> 
-                <% }) %> 
+                <% if (referencias) { %>
+                    <% referencias.split("\n").forEach(texto => { %>
+                        <%= texto %> <br>
+                    <% }) %> 
+                <% } %>
             </div>
         </div>
 </body>
