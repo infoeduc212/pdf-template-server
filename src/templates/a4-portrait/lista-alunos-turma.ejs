@@ -5,30 +5,54 @@
         <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
         <%- include("../css/ficha.ejs") %>
         <% include("../reusable/utils.ejs") %> 
+        <style>
+            .center{
+                position: relative;
+                left: 50%;
+                transform: translate(-50%,50%);
+            }
+            #tabela{
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                left: 5%;
+            }
+        </style>
     </head>
 <body>
     <div class="container">
-        <div class="title-header">Listagem de Dependentes</div>
-          <table class="table" style="width: 100%; border-spacing: 0; border: 0px;" >
-    <thead style="display: table-row-group;">
-   <tr >
-  <td style="width: 20%; padding-left: 10px;">ID da InfoEduc</td>
-  <td style="width: 100%; padding-left: 10px;">Nome Completo</td>
-   </tr>
-    </thead>
-    <tbody>
-   <% lista_dependentes.forEach(dependente  => { %>
-  <tr >
- <td style="width: 20%; padding-left: 10px;"> 
-<%= dependente.id_infoeduc %>
- </td>   
- <td  style="width: 100%; padding-left: 10px;">
-<%= dependente.nome_completo %>
- </td>
-  </tr> 
-   <% }) %>
-    </tbody>
-</table>
+        <img class="center" width="50%"  src="http://localhost:2000/assets/logomarca-infoeduc.png" alt="">
+        
+        <div  class="center" style="position: absolute; top: 120px; display: inline-flexbox; width: 100%;">
+            <div class="title-header text-center" style="font-size: 22px; position: relative; top: -10px;">Lista de Alunos</div>
+            <table id="tabela" class="table " style="width: 90%; margin-bottom: 0%; border-spacing: 0; border: 0px; margin-bottom: 0%;">                
+                <tr>
+                    <td style="width: 65%;">Professor(a):<%= nome_professor %> </td>
+                    <td style="width: 35%;">Turma:<%= nome_turma %> </td>
+                </tr>
+            </table>
+            <table id="tabela" class="table" style="position:relative;  width: 90%; border-spacing: 0; border: 0px;" >
+
+                <thead style="display: table-row-group;" >
+                    <tr >
+                        <td style="width: 35%;" class="text-center">Alunos</td>
+                        <td style="width: 100%;" class="text-center">Rascunho/Observações</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% lista_alunos.forEach(alunos=> { %>
+                        <tr> 
+                            <td style="width: 35%; height: 40px; padding-left: 10px;"> 
+                                <%= alunos.nome %> <%= alunos.sobrenome %> 
+                            </td>   
+                            <td  style="width: 100%; height: 40px; padding-left: 10px;">
+                                
+                            </td>
+                        </tr> 
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

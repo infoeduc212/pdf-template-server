@@ -231,7 +231,7 @@ export default function createServer(): Promise<any> {
                                     printBackground: true,
                                     footerTemplate: `
                                 <div style="width: 100%; margin-right: 10px; text-align: right; font-size: 8px;">
-                                PDF gerado pela a Plataforma InfoEduc na data ${dateNow.toFormat(
+                                PDF gerado pela Plataforma InfoEduc na data ${dateNow.toFormat(
                                     "dd/MM/yyyy"
                                 )} às ${dateNow.toFormat("HH:mm:ss")}
                                 </div>
