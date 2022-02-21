@@ -118,7 +118,9 @@
                         OBJETOS DE CONHECIMENTO
                     </div>
                     <div class="item-padding item-border small-text">
-                        <%= objetos_conhecimento %> 
+                        <% objetos_conhecimento.split("\n").forEach(text => { %>
+                            <%= text %>
+                        <% }) %> 
                     </div>
                 </div>
             </div>
@@ -153,7 +155,7 @@
         </div>
         <div class="flex flex-column">
             <div class="text-center bg-color item-padding">
-                PROCEDIMENTO DIDÁTICO
+                PROCEDIMENTO DIDÁTICO/METODOLÓGICO
             </div>
             <div class="item-padding item-border small-text">
                 <%= procedimento_didatico %>
