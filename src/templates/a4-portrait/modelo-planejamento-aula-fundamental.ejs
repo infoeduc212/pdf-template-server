@@ -74,7 +74,11 @@
                         CAMPO DE ATUAÇÃO
                     </div>
                     <div class="item-padding item-border small-text">
-                        <%= campo_atuacao %> 
+                        <% if (campo_atuacao) { %>
+                            <% campo_atuacao.split("\n").forEach(text => { %>
+                                <%= text %><br>
+                            <% }) %> 
+                        <% } %>
                     </div>
                 </div>
                 <div class="flex flex-column">
@@ -82,7 +86,11 @@
                         PRÁTICAS DE LINGUAGEM
                     </div>
                     <div class="item-padding item-border small-text">
-                        <%= praticas_linguagem %> 
+                        <% if (praticas_linguagem) { %>
+                            <% praticas_linguagem.split("\n").forEach(text => { %>
+                                <%= text %><br>
+                            <% }) %>
+                        <% } %>
                     </div>
                 </div>
                 <div class="flex flex-column">
@@ -90,7 +98,11 @@
                         OBJETOS DE CONHECIMENTO
                     </div>
                     <div class="item-padding item-border small-text">
-                        <%= objetos_conhecimento %> 
+                        <% if (objetos_conhecimento) { %>
+                            <% objetos_conhecimento.split("\n").forEach(text => { %>
+                                <%= text %><br>
+                            <% }) %> 
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -102,7 +114,11 @@
                         EIXO
                     </div>
                     <div class="item-padding item-border small-text">
-                        <%= eixo %> 
+                        <% if (eixo) { %>
+                            <% eixo.split("\n").forEach(text => { %>
+                                <%= text %><br>
+                            <% }) %> 
+                        <% } %>
                     </div>
                 </div>
                 <div class="flex flex-column">
@@ -110,7 +126,11 @@
                         UNIDADES TEMÁTICAS
                     </div>
                     <div class="item-padding item-border small-text">
-                        <%= unidades_tematicas %> 
+                        <% if (unidades_tematicas) { %>
+                            <% unidades_tematicas.split("\n").forEach(text => { %> 
+                                <%= text %><br>
+                            <% }) %> 
+                        <% } %>
                     </div>
                 </div>
                 <div class="flex flex-column">
@@ -118,9 +138,11 @@
                         OBJETOS DE CONHECIMENTO
                     </div>
                     <div class="item-padding item-border small-text">
-                        <% objetos_conhecimento.split("\n").forEach(text => { %>
-                            <%= text %>
-                        <% }) %> 
+                        <% if (objetos_conhecimento) { %>
+                            <% objetos_conhecimento.split("\n").forEach(text => { %>
+                                <%= text %><br>
+                            <% }) %> 
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -132,7 +154,11 @@
                         UNIDADES TÉMATICAS
                     </div>
                     <div class="item-padding item-border small-text">
-                        <%= unidades_tematicas %>
+                        <% if (unidades_tematicas) { %>
+                            <% unidades_tematicas.split("\n").forEach(text => { %>
+                                <%= text %><br>
+                            <% }) %> 
+                        <% } %>
                     </div>
                 </div>
                 <div class="flex flex-column">
@@ -140,7 +166,11 @@
                         OBJETOS DE CONHECIMENTO
                     </div>
                     <div class="item-padding item-border small-text">
-                        <%= objetivos_conhecimento %>
+                        <% if (objetivos_conhecimento) { %>
+                            <% objetivos_conhecimento.split("\n").forEach(text => { %>
+                                <%= text %><br>
+                            <% }) %> 
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -150,7 +180,11 @@
                 HABILIDADES 
             </div>
             <div class="item-padding item-border small-text">
-                <%= habilidades %>
+                <% if (habilidades) { %>
+                    <% habilidades.split("\n").forEach(text => { %>
+                        <%= text %> <br>
+                    <% }) %> 
+                <% } %>
             </div>
         </div>
         <div class="flex flex-column">
@@ -158,7 +192,11 @@
                 PROCEDIMENTO DIDÁTICO/METODOLÓGICO
             </div>
             <div class="item-padding item-border small-text">
-                <%= procedimento_didatico %>
+                <% if (procedimento_didatico) { %>
+                    <% procedimento_didatico.split("\n").forEach(text => { %>
+                        <%= text %> <br> 
+                    <% }) %> 
+                <% } %>
             </div>
         </div>
         <div class="flex flex-column">
@@ -166,7 +204,11 @@
                 RECURSOS/MATERIAIS
             </div>
             <div class="item-padding item-border small-text">
-                <%= recursos_materiais %> 
+                <% if (recursos_materiais) { %>
+                    <% recursos_materiais.split("\n").forEach(text => { %> 
+                        <%= text %>;<br>
+                    <% }) %>
+                <% } %>
             </div>
         </div>
         <div class="flex flex-column">
@@ -174,7 +216,11 @@
                 AVALIAÇÃO
             </div>
             <div class="item-padding item-border small-text">
-                <%= avaliacao %> 
+                <% if (avaliacao) { %>
+                    <% avaliacao.split("\n").forEach(text => { %>
+                        <%= text %> <br>
+                    <% }) %>
+                <% } %>
             </div>
         </div>
         <div class="flex flex-column">
@@ -182,7 +228,11 @@
                 REFERÊNCIAS BIBLIOGRÁFICAS
             </div>
             <div class="item-padding item-border small-text">
-                <%= referencias_bibliograficas %> 
+                <% if (referencias_bibliograficas) { %>
+                    <% referencias_bibliograficas.split("\n").forEach(text => { %>
+                        <%= text %> <br>
+                    <% }) %> 
+                <% } %>
             </div>
         </div>
     </div>

@@ -67,9 +67,11 @@
                     EIXO TÉMATICO
                 </div>
                 <div class="item-padding item-border small-text">
-                    <% eixo_tematico_conteudo.split("\n").forEach(texto => { %>
-                        <%= texto %><br>
-                    <% }) %>
+                    <% if (eixo_tematico_conteudo) { %>
+                        <% eixo_tematico_conteudo.split("\n").forEach(texto => { %>
+                            <%= texto %><br>
+                        <% }) %>
+                    <% } %>
                 </div>
             </div>
             <div class="flex flex-column">
@@ -77,9 +79,11 @@
                     CAMPOS DE EXPERIÊNCIA
                 </div>
                 <div class="item-padding item-border small-text">
-                    <% campos_experiencia.split("\n").forEach(texto => { %>
-                        <%= texto %><br> 
-                    <% }) %>
+                    <% if (campos_experiencia) { %>
+                        <% campos_experiencia.split("\n").forEach(texto => { %>
+                            <%= texto %><br> 
+                        <% }) %>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -88,9 +92,11 @@
                 OBJETOS DE APRENDIZAGEM E DESENVOLVIMENTO
             </div>
             <div class="item-padding item-border small-text">
-                <% objetivos_aprendizagem_desenvolvimento.split("\n").forEach(texto => { %>
-                    <%= texto %><br>
-                <% }) %>
+                <% if (objetivos_aprendizagem_desenvolvimento) { %>
+                    <% objetivos_aprendizagem_desenvolvimento.split("\n").forEach(texto => { %>
+                        <%= texto %><br>
+                    <% }) %>
+                <% } %>
             </div>
         </div>
         <div class="flex flex-column">
@@ -98,9 +104,11 @@
                 PROCEDIMENTO DIDÁTICO/METODOLOGIA
             </div>
             <div class="item-padding item-border small-text">
-                <% procedimento_didatico.split("\n").forEach(texto => { %>
-                    <%= texto %><br> 
-                <% }) %> 
+                <% if (procedimento_didatico) { %>
+                    <% procedimento_didatico.split("\n").forEach(texto => { %>
+                        <%= texto %><br> 
+                    <% }) %> 
+                <% } %>
             </div>
         </div>
         <div class="flex flex-column">
@@ -108,9 +116,11 @@
                 RECURSOS/MATERIAIS
             </div>
             <div class="item-padding item-border small-text">
-                <% recursos_materiais.split("\n").forEach(texto => { %>
-                    <%= texto %><br> 
-                <% }) %> 
+                <% if (recursos_materiais) { %>
+                    <% recursos_materiais.split("\n").forEach(texto => { %>
+                        <%= texto %><br> 
+                    <% }) %> 
+                <% } %>
             </div>
         </div>
         <div class="flex flex-column">
@@ -118,9 +128,11 @@
                 AVALIAÇÃO
             </div>
             <div class="item-padding item-border small-text">
-                <% avaliacao.split("\n").forEach(texto => { %>
-                    <%= texto %><br>
-                <% }) %>
+                <% if (avaliacao) { %>
+                    <% avaliacao.split("\n").forEach(texto => { %>
+                        <%= texto %><br>
+                    <% }) %>
+                <% } %>
             </div>
         </div>
         <div class="flex flex-column">
@@ -128,9 +140,11 @@
                 REFERÊNCIAS BIBLIOGRÁFICAS
             </div>
             <div class="item-padding item-border small-text">
-                <% referencias_bibliograficas.split("\n").forEach(texto => { %>
-                    <%= texto %> 
-                <% }) %>
+                <% if (referencias_bibliograficas) { %>
+                    <% referencias_bibliograficas.split("\n").forEach(texto => { %>
+                        <%= texto %> 
+                    <% }) %>
+                <% } %>
             </div>
         </div>
     </div>
