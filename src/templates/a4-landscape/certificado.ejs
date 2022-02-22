@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <% include("../reusable/utils.ejs") %>
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %>
+    <style>
+        #moldura{
+            width: 90%;
+        }
+        .center{
+            position: relative;
+            left: 60px;
+        }
+        #content{
+            text-align: center;
+            max-width: 830px;
+        }
+        #container{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        #cabecalho{
+            position: absolute;
+            top: 2%;
+            left: 43%;
+        }
+        #title{
+            position: relative;
+            top: 140px;
+            left: 100px;
+            font-size: 50px;
+        }
+        #paragrafo{
+            position: relative;
+            top: 180px;
+            left: 100px;
+            font-size: 16px;
+            letter-spacing: 2px;
+            word-spacing: 2px;
+            line-height: 30px;
+            word-break: break-word;
+            text-align: left;
+        }
+        .linha{
+            border-bottom: 2px solid rgb(0, 0, 0);
+        }
+        #assinatura{
+            position: relative;
+            top: 160px;
+            left: 80px;
+        }
+        #logo_escola{
+            position: relative;
+            width: 250px;
+            top: 50px;
+            left: 40px;
+        }
+        #logomarca_infoeduc{
+            width: 220px;
+            opacity: 50%;
+            position: relative;
+            left: 320px;
+            top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <img id="moldura" src="http://localhost:2000/assets/moldura.png" alt="">
+        <div id="container">
+            <div id="cabecalho">
+                <img id="logo_escola" src="<%= logo_escola %> " alt="">
+
+            </div>
+            <div id="content">
+                <h1 id="title" >Certificado</h1>
+                <p id="paragrafo">O (a) Diretor (a) da Instituição de Ensino <%= escola %>,CNPJ: <%= cnpj_escola %>,  no uso de suas atribuições legais, confere o presente Certificado de Conclusão da <%= serie %> série do Ensino Fundamental do (a) Aluno (a) <span class="linha"><%= nome_aluno %></span>, filho (a) de <br><span class="linha"><%= mae_nome %></span> e <br><span class="linha"><%= pai_nome %></span>, nascido no dia <span class="linha"><%= dia_nascimento %></span> de <span class="linha"><%= mes_nascimento %></span> de <span class="linha"><%= ano_nascimento %></span>, natural de <span class="linha"><%= naturalidade %></span> - Estado do (a) <%= estado %> </p>
+                <p id="paragrafo" style="text-align: right;"><%= cidade %>-<%= UF %>,<span class="linha"> <%= dia_emisao %></span> de <span class="linha"><%= mes_emisao %></span> de <span class="linha"><%= ano_emisao %></span></p>
+            </div>
+            <div id="assinatura">
+                <%- include("../reusable/campo-assinatura-direcao.ejs") %>
+                <img id="logomarca_infoeduc" src="http://localhost:2000/assets/logomarca-infoeduc.png" alt="">
+            </div>
+            
+        </div>
+        
+    </div>
+</body>
+</html>
