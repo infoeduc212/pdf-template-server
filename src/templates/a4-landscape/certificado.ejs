@@ -8,11 +8,12 @@
     <%- include("../css/common.ejs") %>
     <style>
         #moldura{
-            width: 90%;
+            width: 100%;
+            height: 745px;
         }
         .center{
             position: relative;
-            left: 60px;
+            left: 0px;
         }
         #content{
             text-align: center;
@@ -55,13 +56,15 @@
         }
         #logo_escola{
             position: relative;
-            width: 250px;
-            top: 50px;
-            left: 40px;
+            max-width: 120px;
+            width: 100%;
+            max-height: 120px;
+            top: 20px;
+            left: 85px;
         }
         #logomarca_infoeduc{
             width: 220px;
-            opacity: 50%;
+            opacity: 20%;
             position: relative;
             left: 320px;
             top: 40px;
@@ -78,7 +81,7 @@
             </div>
             <div id="content">
                 <h1 id="title" >Certificado</h1>
-                <p id="paragrafo">O (a) Diretor (a) da Instituição de Ensino <%= escola %>,CNPJ: <%= cnpj_escola %>,  no uso de suas atribuições legais, confere o presente Certificado de Conclusão da <%= serie %> série do Ensino Fundamental do (a) Aluno (a) <span class="linha"><%= nome_aluno %></span>, filho (a) de <br><span class="linha"><%= mae_nome %></span> e <br><span class="linha"><%= pai_nome %></span>, nascido no dia <span class="linha"><%= dia_nascimento %></span> de <span class="linha"><%= mes_nascimento %></span> de <span class="linha"><%= ano_nascimento %></span>, natural de <span class="linha"><%= naturalidade %></span> - Estado do (a) <%= estado %> </p>
+                <p id="paragrafo">O (a) Diretor (a) da Instituição de Ensino <%= escola %>,CNPJ: <%= cnpj_escola %>,  no uso de suas atribuições legais, confere o presente Certificado de Conclusão da <%= serie %> série do Ensino Fundamental do (a) Aluno (a) <span class="linha"><%= nome_aluno %></span>, filho (a) de <span class="linha"><%= mae_nome %></span> e <span class="linha"><%= pai_nome %></span>, nascido no dia <span class="linha"><%= dia_nascimento %></span> de <span class="linha"><%= mes_nascimento %></span> de <span class="linha"><%= ano_nascimento %></span>, natural de <span class="linha"><%= naturalidade %></span> - Estado do (a) <%= estado %> </p>
                 <p id="paragrafo" style="text-align: right;"><%= cidade %>-<%= UF %>,<span class="linha"> <%= dia_emisao %></span> de <span class="linha"><%= mes_emisao %></span> de <span class="linha"><%= ano_emisao %></span></p>
             </div>
             <div id="assinatura">
