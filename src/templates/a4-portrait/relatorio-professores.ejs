@@ -24,43 +24,17 @@
                         <td>Turma</td>
                         <td>Celular</td>
                     </tr>
-                    <%function groupByProperty(array, property) {
-                        const map = new Map()
-                        for (let i = 0; i < lista_professores.length; i++) {
-                            const element = lista_professores[i];
-                            const propValue = element[property]
-                            if (!map.has(propValue)) {
-                                map.set(propValue, [])
-                            }
-                            const arrayItem = map.get(propValue)
-                            arrayItem.push(element)
-                            map.set(propValue, arrayItem)
-                        }
-                        return map 
-                    }
-                     %> 
-                    <% var lista = groupByProperty(lista_professores,"nome_professor" ) %>
-                    <% console.log(lista); %> 
-                    <% const keys = lista.keys()   %> 
-                    <%  while(true){ %>
-                        <% 
-                        const it = keys.next()  
-                        if (it.done) break
-                        const key = it.value
-                        const value = lista.get(key)
-                
-                        %>
-                        <% value.map(item => item.nome_turma) %> 
-                        <tr>
-                            <td><%= value[0].nome_professor %> <%= value[0].sobrenome_professor %> </td>
-                            <td><% value.forEach(element => { %>
-                                <%= element.nome_turma %> <br>
-
-                                <% }) %></td>
-
-                            <td><%= value[0].celular %> </td>
-                        </tr>
-                    <% } %>
+                    <% lista_professor.forEach(element => { %>
+                        <td><%= nome_professor %> <%= sobrenome_professor %> </td>
+                        <td>
+                            <% lista_turmas.forEach(turmas => { %>
+                                <% if (turmas.id_professor == element.id_professor) { %>
+                                    <%= nome_turma %> 
+                                <% } %>
+                            <% }) %>
+                        </td>
+                        <td><%= celular %> </td>
+                    <% }) %>
                 </table>
             </div>
         </div>
