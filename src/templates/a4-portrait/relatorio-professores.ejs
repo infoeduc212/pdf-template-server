@@ -30,11 +30,11 @@
                             <td style="max-width: 100px;">
                                 <% lista_turmas.forEach(turmas => { %>
                                     <% if (turmas.id_professor == element.id_professor) { %>
-                                        <%= turmas.nome_turma %> <br>
+                                        <%= turmas.nome_turma %>;
                                     <% } %>
                                 <% }) %>
                             </td>
-                            <td style="max-width: 100px;"><%= element.celular %> </td>
+                            <td style="max-width: 80px;"><%= element.celular %> </td>
                         </tr>
                     <% }) %>
                 </table>
