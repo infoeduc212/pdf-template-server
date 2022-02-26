@@ -27,7 +27,7 @@
                     <% lista_professor.forEach(element => { %>
                         <tr>
                             <td><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
-                            <td>
+                            <td style="max-width: 80px;">
                                 <% lista_turmas.forEach(turmas => { %>
                                     <% if (turmas.id_professor == element.id_professor) { %>
                                         <%= turmas.nome_turma %> 
