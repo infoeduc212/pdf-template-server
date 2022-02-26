@@ -25,7 +25,7 @@
                         <td>Celular</td>
                     </tr>
                     <% lista_professor.forEach(element => { %>
-                        <td><%= nome_professor %> <%= sobrenome_professor %> </td>
+                        <td><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
                         <td>
                             <% lista_turmas.forEach(turmas => { %>
                                 <% if (turmas.id_professor == element.id_professor) { %>
@@ -33,7 +33,7 @@
                                 <% } %>
                             <% }) %>
                         </td>
-                        <td><%= celular %> </td>
+                        <td><%= element.celular %> </td>
                     <% }) %>
                 </table>
             </div>
