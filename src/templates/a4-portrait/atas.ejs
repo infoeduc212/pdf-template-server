@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <% include("../reusable/utils.ejs") %> 
+    <style>
+        #content{
+            margin-top: 30px;
+            margin-left: 40px;
+        }
+        #assinatura{
+            text-align: center;
+            position: relative;
+            top: 90px;
+        }
+        #linha{
+            display: inline-block;
+            flex: 1;
+            border-bottom: 2px solid rgb(0, 0, 0);
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <%- include("../reusable/header.ejs") %>
+        <h2 style="text-align: center; margin-top: 30px;"><%= titulo_ata %></h2>
+        <div id="content">
+            <div>
+                <h2>1. Data, horário, local, objetivo: </h2>
+                <p><b>Data</b>: <%= data %></p>
+                <p><b>Horário</b>: <%= horario %></p>
+                <p><b>Local</b>: <%= local %></p>
+                <p><b>Objetivo</b>: <%= objetivo %></p>
+            </div>
+            <div style="margin-top: 25px;">
+                <h2>2. Responsável pela reunião e as pessoas presentes: </h2>
+                <p><b>Responsável:</b><%= responsavel %></p>
+                <p><b>Pesssoas presentes:</b><% lista_pessosa_presentes.forEach(pessoas_presentes => { %>
+                    <%= pessoas_presentes.nome %> <%= pessoas_presentes.sobrenome %>,
+                    <% }) %></p>
+            </div>
+            <div style="margin-top: 25px; width: 70%; " >
+                <h2>3. Relato da reunião</h2>
+                <p style="word-break: break-word;"><%= relato %></p>
+            </div>
+            <div style="margin-top: 25px; width: 70%; " >
+                <h2>Encerramento:</h2>
+                <p style="word-break: break-word;"><%= encerramento %></p>
+            </div>
+            <div id="assinatura">
+                <div id="linha"></div>
+                <div id="text">Assinatura do (a) responsável</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
