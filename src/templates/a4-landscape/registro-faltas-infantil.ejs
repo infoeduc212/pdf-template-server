@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %> 
+    <style>
+        #titulo{
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <%- include("../reusable/header.ejs") %>
+        <div class="flex" style="margin-top: 30px;">
+            <div style="flex: 1; margin-left: 10px;">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Instituição de ensino:</b>
+                        <div class="texto-linha"><%= instituicao %></div>
+                    </div>
+                    <div class="inline" style="max-width: 130px; text-align: center;">
+                        <b>Ano letivo:</b>
+                        <div class="texto-linha"><%= ano_letivo %></div>
+                    </div>
+                </div>
+                <br>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Etapa de Escolaridade:</b>
+                        <div class="texto-linha"><%= etapa_escolaridade %></div>
+                    </div>
+                    <div class="inline">
+                        <b>ID InfoEduc</b>
+                        <div class="texto-linha"><%= id_infoeduc%></div>
+                    </div>
+                    <div class="inline">
+                        <b>Turma:</b>
+                        <div class="texto-linha"><%= turma %></div>
+                    </div>
+                    <div class="inline">
+                        <b>Período Letivo</b>
+                        <div class="texto-linha"><%= periodo_letivo %></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div style="margin-top: 40px;">
+            <div id="titulo" ><b>REGISTRO DE FALTAS DA TURMA</b></div>
+            <table class="table" style="width: 100%; border-spacing: 0; border: 0px;" >
+                <thead style="display: table-row-group;">
+                    <tr >
+                        <td style="width: 400px; padding-left: 10px;">Nome dos Alunos</td>
+                        <td style="width: 50px; padding-left: 10px;">Nº Faltas do periodo</td>
+                        <td style="width: 50px; padding-left: 10px;">Frequencia % dos Periodos</td>
+                        <td style="width: 50px; padding-left: 10px;">Total de Faltas Anual</td>
+                        <td style="width: 50px; padding-left: 10px;">Frequencia % Anual</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% lista_faltas.forEach(lista  => { %>
+                         <tr >
+                            <td> 
+                                <%= lista.nome_aluno %> <%= lista.sobrenome_aluno %>
+                            </td>   
+                            <td>
+                                <%= lista.faltas_periodo %> 
+                            </td>
+                            <td>
+                                <%= lista.frequencia_periodos %> 
+                            </td>
+                            <td>
+                                <%= lista.faltas_anual %> 
+                            </td>
+                            <td>
+                                <%= lista.frequencia_anual %> 
+                            </td>
+
+                        </tr>  
+                    <% }) %>
+                    <tr>
+                        <td>Total de dias letivos</td>
+                        <td colspan="4"><%= dias_letivos %> </td>
+                    </tr>
+                        
+                </tbody>
+            </table> 
+        </div>
+        <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
+    </div>
+</body>
+</html>

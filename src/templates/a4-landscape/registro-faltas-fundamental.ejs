@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %> 
+    <style>
+        #titulo{
+            font-size: 20px;
+            text-align: center;
+        }
+        .base_comum{
+            max-width: 20px;
+            height: 150px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .text{
+            position: relative;
+            left: -70px;
+        }
+        .text2{
+            position: relative;
+            left: -90px;
+        }
+        .parte_diversificada{
+            height: 170px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .tex-vertical{
+            max-width: 20px;
+            height: 150px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .center{
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <%- include("../reusable/header.ejs") %>
+        <div class="flex" style="margin-top: 30px;">
+            <div style="flex: 1; margin-left: 10px;">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Instituição de ensino:</b>
+                        <div class="texto-linha"><%= instituicao %></div>
+                    </div>
+                    <div class="inline" style="max-width: 130px; text-align: center;">
+                        <b>Ano letivo:</b>
+                        <div class="texto-linha"><%= ano_letivo %></div>
+                    </div>
+                </div>
+                <br>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Etapa de Escolaridade:</b>
+                        <div class="texto-linha"><%= etapa_escolaridade %></div>
+                    </div>
+                    <div class="inline">
+                        <b>ID InfoEduc</b>
+                        <div class="texto-linha"><%= id_infoeduc%></div>
+                    </div>
+                    <div class="inline">
+                        <b>Turma:</b>
+                        <div class="texto-linha"><%= turma %></div>
+                    </div>
+                    <div class="inline">
+                        <b>Período Letivo</b>
+                        <div class="texto-linha"><%= periodo_letivo %></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px;">
+            <div id="titulo" ><b>REGISTRO DE FALTAS DA TURMA</b></div>
+            <div style="display: flex;">
+                <table class="table" style="width: 100%; border-spacing: 0;" >
+                        <tr >
+                            <th style="width: 100%; text-align: left; font-size: 20px;" rowspan="2">Nome dos Alunos</th>
+                            <th colspan="9">BASE COMUM CURRICULAR</th>
+                            <th colspan="<%= lista_parte_diversificada.length %> ">PARTE DIVERSIFICADA</th>
+                            <th class="tex-vertical" rowspan="2"><span class="text2">Nº de Faltas do Período</span></th>
+                            <th class="tex-vertical" rowspan="2"><span class="text2">Frequência % dos Períodos</span></th>
+                            <th class="tex-vertical" rowspan="2"><span class="text2">Total de Faltas Anual</span></th>
+                            <th class="tex-vertical" rowspan="2"><span class="text2">Frequencia % Anual</span></th>
+                        </tr>
+                        <tr>
+                            <!-- Materias base comum -->
+                            <td class="base_comum"><span class="text">matematica</span></td>
+                            <td class="base_comum"><span class="text">Língua Portuguesa</span></td>
+                            <td class="base_comum"><span class="text">História</span></td>
+                            <td class="base_comum"><span class="text">Geografia</span></td>
+                            <td class="base_comum"><span class="text">Ciências</span></td>
+                            <td class="base_comum"><span class="text">Educação Física</span></td>
+                            <td class="base_comum"><span class="text">Artes</span></td>
+                            <td class="base_comum"><span class="text">Religião</span></td>
+                            <td class="base_comum"><span class="text">Inglês</span></td>
+                            <!-- materias parte diversificada -->
+                            <% for( let index = 0; index < lista_parte_diversificada.length; index++ ) { %>
+                                <td class="parte_diversificada"><span style="position: relative; left: -50px;"><%= lista_parte_diversificada[index] %> </span></td>
+                            <% } %>
+                            
+                        </tr>
+                        <% lista_alunos.forEach(lista  => { %>
+
+                            <tr>
+                                <td style="width: 100%;">
+                                    <%= lista.nome_aluno %> <%= lista.sobrenome_aluno %> 
+                                </td>
+                                <td class="center">
+                                    <%= lista.faltas_mat %> 
+                                </td>
+                                <td class="center">
+                                    <%= lista.faltas_pt %> 
+                                </td >
+                                <td class="center">
+                                    <%= lista.faltas_his %> 
+                                </td>
+                                <td class="center">
+                                    <%= lista.faltas_geo %> 
+                                </td>
+                                <td class="center">
+                                    <%= lista.faltas_cien %> 
+                                </td>
+                                <td class="center">
+                                    <%= lista.faltas_ed %> 
+                                </td>
+                                <td class="center">
+                                    <%= lista.faltas_artes %> 
+                                </td>
+                                <td class="center">
+                                    <%= lista.faltas_religiao %> 
+                                </td>
+                                <td class="center">
+                                    <%= lista.faltas_ingles %> 
+                                </td>
+                                
+                                <td>
+                                    <%= lista.faltas_periodo %> 
+                                </td>
+                                <td>
+                                    <%= lista.frequencia_periodos %> 
+                                </td>
+                                <td>
+                                    <%= lista.falas_anual %> 
+                                </td>
+                                <td>
+                                    <%= lista.frequencia_anual %> 
+                                </td>
+
+                            </tr>
+                            
+                        <% }) %>
+                        <tr>
+                            <th style="text-align: left;">Total de dias letivos:</th>
+                            <td colspan="17"><%= dias_letivos %> </td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+        <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
+    </div>
+    
+</body>
+</html>

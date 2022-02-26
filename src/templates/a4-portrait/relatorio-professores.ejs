@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %> 
+    <style>
+         #titulo{
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <%- include("../reusable/header.ejs") %>
+        <div style="margin-top: 40px;">
+            <div id="titulo" ><b>RELATÓRIO DE PROFESSORES</b></div>
+            <div style="display: flex;">
+                <table class="table" style="width: 100%; border-spacing: 0;">
+                    <tr>
+                        <td>Nome do professor</td>
+                        <td>Turma</td>
+                        <td>Celular</td>
+                    </tr>
+                    <%function groupByProperty(array, property) {
+                        const map = new Map()
+                        for (let i = 0; i < lista_professores.length; i++) {
+                            const element = lista_professores[i];
+                            const propValue = element[property]
+                            if (!map.has(propValue)) {
+                                map.set(propValue, [])
+                            }
+                            const arrayItem = map.get(propValue)
+                            arrayItem.push(element)
+                            map.set(propValue, arrayItem)
+                        }
+                        return map 
+                    }
+                     %> 
+                    <% var lista = groupByProperty(lista_professores,"nome_professor" ) %>
+                    <% console.log(lista); %> 
+                    <% const keys = lista.keys()   %> 
+                    <%  while(true){ %>
+                        <% 
+                        const it = keys.next()  
+                        if (it.done) break
+                        const key = it.value
+                        const value = lista.get(key)
+                
+                        %>
+                        <% value.map(item => item.nome_turma) %> 
+                        <tr>
+                            <td><%= value[0].nome_professor %> <%= value[0].sobrenome_professor %> </td>
+                            <td><% value.forEach(element => { %>
+                                <%= element.nome_turma %> <br>
+
+                                <% }) %></td>
+
+                            <td><%= value[0].celular %> </td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
