@@ -25,15 +25,17 @@
                         <td>Celular</td>
                     </tr>
                     <% lista_professor.forEach(element => { %>
-                        <td><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
-                        <td>
-                            <% lista_turmas.forEach(turmas => { %>
-                                <% if (turmas.id_professor == element.id_professor) { %>
-                                    <%= turmas.nome_turma %> 
-                                <% } %>
-                            <% }) %>
-                        </td>
-                        <td><%= element.celular %> </td>
+                        <tr>
+                            <td><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
+                            <td>
+                                <% lista_turmas.forEach(turmas => { %>
+                                    <% if (turmas.id_professor == element.id_professor) { %>
+                                        <%= turmas.nome_turma %> 
+                                    <% } %>
+                                <% }) %>
+                            </td>
+                            <td><%= element.celular %> </td>
+                        </tr>
                     <% }) %>
                 </table>
             </div>
