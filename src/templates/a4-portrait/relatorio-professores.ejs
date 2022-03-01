@@ -30,7 +30,7 @@
                         <tr>
                             <td style="width: 15%;"><%= element.id_infoeduc %></td>
                             <td style="width: 40%;"><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
-                            <td style="width: 25%; font-size: 16px;">
+                            <td style="width: 27%; font-size: 14px;">
                                 <% lista_turmas.forEach(turmas => { %>
                                     <% if (turmas.id_professor == element.id_professor) { %>
                                         <%= turmas.nome_turma %> <%=turmas.nome_diciplina == null ? '- Edução Infantil;' : ' - ' + turmas.nome_diciplina+';'%><br>
