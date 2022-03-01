@@ -33,7 +33,7 @@
                             <td style="width: 20%;">
                                 <% lista_turmas.forEach(turmas => { %>
                                     <% if (turmas.id_professor == element.id_professor) { %>
-                                        <%= turmas.nome_turma %> - <%= turmas.nome_diciplina %>;
+                                        <%= turmas.nome_turma %> <% if (nome_diciplina == null || nome_diciplina == ''){ - 'Edução Infantil'; }else{ - <%= turmas.nome_diciplina %>;} %>
                                     <% } %>
                                      
                                 <% }) %>
