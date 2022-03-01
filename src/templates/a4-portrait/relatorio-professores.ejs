@@ -21,23 +21,23 @@
             <div style="display: flex;">
                 <table class="table" style="width: 100%; border-spacing: 0;">
                     <tr>
-                        <td style="font-weight: bold; text-align: center; font-size: 15px;">ID da InfoEduc</td>
+                        <td style="font-weight: bold; text-align: center; font-size: 14px;">ID da InfoEduc</td>
                         <th>Nome do professor</th>
                         <th>Turma</td>
                         <th>Celular</td>
                     </tr>
                     <% lista_professor.forEach(element => { %>
                         <tr>
-                            <td style="width: 15%;"><%= element.id_infoeduc %></td>
-                            <td style="width: 40%;"><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
-                            <td style="width: 27%; font-size: 14px;">
+                            <td style="width: 50px; "><%= element.id_infoeduc %></td>
+                            <td style="width: 200px;"><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
+                            <td style="width: 150px; font-size: 14px;">
                                 <% lista_turmas.forEach(turmas => { %>
                                     <% if (turmas.id_professor == element.id_professor) { %>
                                         <%= turmas.nome_turma %> <%=turmas.nome_diciplina == null ? '- Edução Infantil;' : ' - ' + turmas.nome_diciplina+';'%><br>
                                     <% } %>
                                 <% }) %>
                             </td>
-                            <td style="width: 15%;"><%= element.celular %> </td>
+                            <td style="width:75px;"><%= element.celular %> </td>
                         </tr>
                     <% }) %>
                 </table>
