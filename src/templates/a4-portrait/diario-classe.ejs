@@ -219,7 +219,7 @@
         <% } %>
         <br />
         <div class="avoid-break" style="display: flex; gap: 50px">
-            <% if (tipo_documento !== "Infantil" && aluno.possui_nee !== true) { %>
+            <% if (tipo_documento !== "Infantil") { %>
             <table style="border-spacing: 0;">
                 <thead>
                     <tr>
@@ -257,7 +257,7 @@
             </table>
             <% } %>
             <div>
-                <% if (tipo_documento !== "Infantil" && aluno.possui_nee !== true) { %>
+                <% if (tipo_documento !== "Infantil") { %>
                 <input id="aprovado" <%= aluno.aprovado ? "checked" : "" %> type="checkbox" />
                 <label for="aprovado">Aprovado</label>
                 <br />
