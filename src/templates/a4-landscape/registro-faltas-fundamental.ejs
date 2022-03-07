@@ -88,7 +88,7 @@
                         <tr >
                             <th style="width: 100%; text-align: left; font-size: 20px;" rowspan="2">Nome dos Alunos</th>
                             <th colspan="9">BASE COMUM CURRICULAR</th>
-                            <th colspan="<%= lista_parte_diversificada.length %> ">PARTE DIVERSIFICADA</th>
+                            <th colspan="3">PARTE DIVERSIFICADA</th>
                             <th class="tex-vertical" rowspan="2"><span class="text2">Nº de Faltas do Período</span></th>
                             <th class="tex-vertical" rowspan="2"><span class="text2">Frequência % dos Períodos</span></th>
                             <th class="tex-vertical" rowspan="2"><span class="text2">Total de Faltas Anual</span></th>
@@ -106,10 +106,10 @@
                             <td class="base_comum"><span class="text">Religião</span></td>
                             <td class="base_comum"><span class="text">Inglês</span></td>
                             <!-- materias parte diversificada -->
-                            <% for( let index = 0; index < lista_parte_diversificada.length; index++ ) { %>
-                                <td class="parte_diversificada"><span style="position: relative; left: -50px;"><%= lista_parte_diversificada[index] %> </span></td>
-                            <% } %>
-                            
+                            <td></td>
+                            <td></td>
+                            <td></td>
+ 
                         </tr>
                         <% lista_alunos.forEach(lista  => { %>
 
@@ -144,7 +144,9 @@
                                 <td class="center">
                                     <%= lista.faltas_ingles %> 
                                 </td>
-                                
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <%= lista.faltas_periodo %> 
                                 </td>

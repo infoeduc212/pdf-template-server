@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %> 
+    <style>
+        #titulo{
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+        .base_comum{
+            max-width: 20px;
+            height: 150px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .text{
+            position: relative;
+            left: -70px;
+        }
+        .text2{
+            position: relative;
+            left: -60px;
+        }
+        .text3{
+            position: relative;
+            left: -30px;
+        }
+        .text4{
+            position: relative;
+            left: -280px;
+            font-size: 14px;
+        }
+        .parte_diversificada{
+            height: 170px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .tex-vertical{
+            max-width: 20px;
+            height: 150px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .tex-vertical2{
+            max-width: 20px;
+            height: 300px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .center{
+            text-align: center;
+
+        }
+        .celulaTitle{
+            text-align: left;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <%- include("../reusable/header.ejs") %>
+        <div class="flex" style="margin-top: 40px;">
+            <div style="flex: 1; margin-left: 10px;">
+                <div id="titulo" ><u><b>GUIA DE TRANSFERÊNCIA</b></u></div> 
+                <div class="block" style="border-radius:8px 8px 0px 0px ;">
+                    <div class="title-header" style="text-align: center; border-radius: 6px; font-size: 20; background-color: rgb(202, 202, 202);">DADOS DA ESCOLA</div>
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Instituição de ensino:</b>
+                            <div class="texto-linha"><%= instituicao %></div>
+                        </div>
+                    </div>
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>ID do INEP:</b>
+                            <div class="texto-linha"><%= id_inep %> </div>
+                        </div>
+                        <div class="inline">
+                            <b>ID InfoEduc:</b>
+                            <div class="texto-linha"><%= id_infoeduc %> </div>
+                        </div>
+                    </div>
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Endereço:</b>
+                            <div class="texto-linha"><%= endereco %> </div>
+                        </div>
+                        <div class="inline" style="max-width: 70px; text-align: center;">
+                            <b>Nº:</b>
+                            <div class="texto-linha"><%= endereco_numero %> </div>
+                        </div>
+                    </div>
+                    <div class="multicoluna">
+                        <div class="inline">
+                            <b>Entidade Mantenedora:</b>
+                            <div class="texto-linha"><%= entidade_mantenedora %> </div>
+                        </div>
+                        <div class="inline" style="max-width: 170px; text-align: center;">
+                            <b>Cidade:</b>
+                            <div class="texto-linha"><%= cidade %> </div>
+                        </div>
+                        <div class="inline" style="max-width: 60px; text-align: center;">
+                            <b>UF:</b>
+                            <div class="texto-linha"><%= uf %> </div>
+                        </div>
+                        <div class="inline" style="max-width: 120px; text-align: center;">
+                            <b>CEP:</b>
+                            <div class="texto-linha" ><%= cep %> </div>
+                        </div>
+                    </div>
+                    <div class="multicoluna" style="padding-bottom: 6px;">
+                        <div class="inline">
+                            <b>Ato de criação:</b>
+                            <div class="texto-linha"><%= ato_criacao %> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block" style="margin-top: -10px; border-radius: 0px 0px 8px 8px;">
+                    <p>Concedemos a presente Guia de Transferência ao aluno (a) <b><%= nome_aluno %> <%= sobrenome_aluno %></b>  filho (a) de <b><%= nome_pai %> <%= sobrenome_pai %></b> e de <b><%= nome_mae %> <%= sobrenome_mae %></b>, nascido (a) em <b><%= data_nascimento_aluno %></b>, na cidade de <b><%= cidade_aluno %></b>, estado de <b><%= estado_aluno %></b>, nacionalidade <b><%= nacionalidade_aluno %></b>.</p>
+                    <p>Matriculado (a) em <b><%= data_matricula %></b>, no <b><%= serie_aluno %></b>, deste Estabelecimento de Ensino conforme rendimento obtido abaixo e/ou no verso desta guia.</p>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <div id="titulo" ><b>RENDIMENTO ESCOLAR</b></div>
+            <div style="display: flex;">
+                <table class="table" style="width: 100%; border-spacing: 0;" >
+                    <tr>
+                        <td colspan="2" class="celulaTitle">ANO LETIVO: <%= ano_letivo %></td>
+                        <th colspan="13">BASE NACIONAL COMUM</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="celulaTitle">PARTE DO CURRÍCULO</td>
+                        <th colspan="9">ÁREAS DE CONHECIMENTO</th>
+                        <td colspan="3" rowspan="2">PARTE DIVERSIFICADA</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"  class="tex-vertical">UNIDADE</td>
+                        <td rowspan="2"><span style="position: relative; top: -70px;  left: 130px;">COMPONENTES CURRICULARES</span><span style="position: relative; top: 70px; left: -130px; ">RENDIMENTO <span style="position: relative; left: 140px;">ESCOLAR</span></span></td>
+                        <td colspan="4" class="celulaTitle center"> Linguagem</td>
+                        <td class="celulaTitle center"> MATEMÁTICA</td>
+                        <td class="celulaTitle center"> CIÊCIAS DA NATUREZA</td>
+                        <td colspan="2" class="celulaTitle center"> CIÊCIAS HUMANAS</td>
+                        <td class="celulaTitle center"> ENSINO RELIGIOSO</td>
+                    </tr>
+                    <tr>
+                        <th class="tex-vertical"><span class="text">LÍNGUA <br> PORTUGUESA</span></th>
+                        <th class="tex-vertical"><span class="text">ARTE</span></th>
+                        <th class="tex-vertical"><span class="text">EDUCAÇÃO <br> FÍSICA</span></th>
+                        <th class="tex-vertical"><span class="text">LÍNGUA INGLESA</span></th>
+                        <th class="tex-vertical"><span >MATEMÁTICA</span></th>
+                        <th class="tex-vertical"><span>CIÊCIAS</span></th>
+                        <th class="tex-vertical"><span class="text2">HISTÓRIA</span></th>
+                        <th class="tex-vertical"><span class="text2">GEOGRAFICA</span></th>
+                        <th class="tex-vertical"><span class="text3">ENSINO <br> RELIGIOSO</span></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">1º</td>
+                        <th>MÉDIA</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>RECUPERAÇÃO PARALELA</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>NOTA FINAL</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">2º</td>
+                        <th>MÉDIA</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>RECUPERAÇÃO PARALELA</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>NOTA FINAL</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <% if (numero_preriodos == 3) { %>
+                        <tr>
+                            <td rowspan="3">3º</td>
+                            <th>MÉDIA</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>RECUPERAÇÃO PARALELA</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>NOTA FINAL</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    <% } %>
+                    <% if (numero_preriodos == 4) { %>
+                        <tr>
+                            <td rowspan="3">3º</td>
+                            <th>MÉDIA</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>RECUPERAÇÃO PARALELA</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>NOTA FINAL</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">4º</td>
+                            <th>MÉDIA</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>RECUPERAÇÃO PARALELA</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>NOTA FINAL</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    <% } %>
+                    <tr>
+                        <th colspan="2">MÉDIA ANUAL</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">NOTA DE RECUPERAÇÃO FINAL</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">MÉDIA FINAL</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">TOTAL DE DIAS LETIVOS: ( <%= dias_letivos %>  )</th>
+                        <th colspan="6">TOTAL DE FALTAS: ( <%= total_faltas %>  )</th>
+                        <th colspan="6">FREQUÊNCIA %: ( <%= frequencia %>  )</th>
+                    </tr>
+                    <tr>
+                        <th colspan="14">RESULTADO FINAL: ( <%= resultado_final == "aprovado" ? "X" : "" %> ) APROVADO     ( <%= resultado_final == "reprovado" ? "X" : "" %>  ) REPROVADO </th>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="margin-top: 80px;">
+            <div id="titulo" ><u><b>HISTÓRICO ESCOLAR</b></u></div>
+            <div style="display: flex;">
+                <table class="table" style="width: 100%; border-spacing: 0;" >
+                    <tr>
+                        <th colspan="2" rowspan="2">COMPONENTES CURRICULARES</th>
+                        <th colspan="3" style="background-color: rgb(202, 202, 202);">1ª SÉRIE</th>
+                        <th  colspan="3" style="background-color: rgb(202, 202, 202);">2ª SÉRIE</th>
+                        <th  colspan="3" style="background-color: rgb(202, 202, 202);">3ª SÉRIE</th>
+                        <th  colspan="3" style="background-color: rgb(202, 202, 202);">4ª SÉRIE</th>
+                        <th  colspan="3" style="background-color: rgb(202, 202, 202);">5ª SÉRIE</th>
+                        <th rowspan="2" class="tex-vertical"><span class="text" style="font-size: 14px;">CARGA HORÁRIA TOTAL</span></th>
+                    </tr>
+                    <tr>
+                        <th class="tex-vertical"><span class="text2">Ano</span></th>
+                        <th class="tex-vertical"><span class="text2">Nota</span></th>
+                        <th class="tex-vertical"><span class="text2">CARGA HORÁRIA</span></th>
+                        <th class="tex-vertical"><span class="text2">Ano</span></th>
+                        <th class="tex-vertical"><span class="text2">Nota</span></th>
+                        <th class="tex-vertical"><span class="text2">CARGA HORÁRIA</span></th>
+                        <th class="tex-vertical"><span class="text2">Ano</span></th>
+                        <th class="tex-vertical"><span class="text2">Nota</span></th>
+                        <th class="tex-vertical"><span class="text2">CARGA HORÁRIA</span></th>
+                        <th class="tex-vertical"><span class="text2">Ano</span></th>
+                        <th class="tex-vertical"><span class="text2">Nota</span></th>
+                        <th class="tex-vertical"><span class="text2">CARGA HORÁRIA</span></th>
+                        <th class="tex-vertical"><span class="text2">Ano</span></th>
+                        <th class="tex-vertical"><span class="text2">Nota</span></th>
+                        <th class="tex-vertical"><span class="text2">CARGA HORÁRIA</span></th>
+                    </tr>
+                    <tr>
+                        <th rowspan="8" class="tex-vertical2"><span class="text">BASE NACIONAL COMUM</span></th>
+                        <th>LÍNGUA PORTUGUESA</th>
+                        <td rowspan="13" class="tex-vertical2"><span class="text4">Instituição de Ensino: <b><%= instituicao %></b> Local: <b><%= cidade %></b> UF: <b><%= uf %></b></span></td>
+                        <td></td>
+                        <td></td>
+                        <td rowspan="13" class="tex-vertical2"><span class="text4"><span style="text-align: left;">Instituição de Ensino: <b><%= instituicao %></b></span>  <span style="text-align: center;">Local: <b><%= cidade %></b> </span> <span style="text-align: right;">UF: <b><%= uf %></b></span></span></td>
+                        <td></td>
+                        <td></td>
+                        <td rowspan="13" class="tex-vertical2"><span class="text4">Instituição de Ensino: <b><%= instituicao %></b> Local: <b><%= cidade %></b> UF: <b><%= uf %></b></span></td>
+                        <td></td>
+                        <td></td>
+                        <td rowspan="13" class="tex-vertical2"><span class="text4">Instituição de Ensino: <b><%= instituicao %></b> Local: <b><%= cidade %></b> UF: <b><%= uf %></b></span></td>
+                        <td></td>
+                        <td></td>
+                        <td rowspan="13" class="tex-vertical2"><span class="text4">Instituição de Ensino: <b><%= instituicao %></b> Local: <b><%= cidade %></b> UF: <b><%= uf %></b></span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>MATEMÁTICA</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>CIÊNCIAS</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>GEOGRAFIA</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>HISTÓRIA</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>ARTES</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>EDUCAÇÃO FISICA</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>RELIGIÃO</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th rowspan="4" class="tex-vertical2"><span class="text">PARTE DIVERSIFICADA</span></th>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">TOTAL GERAL</th>
+                        <td colspan="2"></td>
+                        <td colspan="2"></td>
+                        <td colspan="2"></td>
+                        <td colspan="2"></td>
+                        <td colspan="2"></td>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">FREQUENCIA %</th>
+                        <td colspan="3"></td>
+                        <td colspan="3"></td>
+                        <td colspan="3"></td>
+                        <td colspan="3"></td>
+                        <td colspan="3"></td>
+                        <td colspan="3"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
+    </div>  
+</body>
+</html>
