@@ -17,44 +17,47 @@
         <div class="flex flex-column small-gap">
             <div class="multicolumn">
                 <b class="pad-right">Instituição do Ensino:</b>
-                <div class="text-line small-text"><%= nome_escola %></div>
+                <div class="text-line small-text"><span style="font-size: 24 ;"><%= nome_escola %></span></div>
             </div>
             <div class="flex">
                 <div class="multicolumn">
                     <b class="pad-right">Prof (a):</b>
-                    <div class="text-line small-text"><%= nome_professor %></div>
+                    <div class="text-line small-text"><span style="font-size: 24 ;"><%= nome_professor %></span></div>
                 </div>
-                <div class="multicolumn">
-                    <b class="pad-right">Ano/Turma:</b>
-                    <div class="text-line small-text"><%= ano_turma %></div>
+                <div class="multicolumn" style="max-width: 170px;">
+                    <b class="pad-right">Turma:</b>
+                    <div class="text-line small-text"><span style="font-size: 24 ;"><%= turma %></span></div>
                 </div>
             </div>
             <div class="flex">
                 <div class="multicolumn">
                     <b class="pad-right">Faixa Etária:</b>
-                    <div class="text-line small-text"><%= faixa_etaria %></div>
+                    <div class="text-line small-text"><span style="font-size: 24 ;"><%= faixa_etaria %></span></div>
                 </div>
-                <div class="multicolumn" style="width: 250px;">
-                    <b class="pad-right">Ano Letivo:</b>
-                    <div class="text-line small-text"><%= ano_letivo %></div>
-                </div>
-                <div class="multicolumn" style="width: 350px;">
-                    <b class="pad-right">Período Letivo:</b>
-                    <div class="text-line small-text"><%= periodo_letivo %></div>
-                </div>
+                <div class="multicolumn" style="max-width: 60px;">
+                    <b class="pad-right">C.H:</b>
+                    <div class="text-line small-text"><%= carga_horaria %></div>
+                </div> 
+                
             </div>
             <div class="flex">
-                <div class="multicolumn">
-                    <b class="pad-right">Nº de Aulas:</b>
-                    <div class="text-line small-text"><%= numero_aulas %></div>
-                </div>
-                <div class="multicolumn">
-                    <b class="pad-right">Carga Horária:</b>
-                    <div class="text-line small-text"><%= carga_horaria %></div>
-                </div>
+
+
                 <div class="multicolumn">
                     <b class="pad-right">Data:</b>
-                    <div class="text-line small-text"><%= data %></div>
+                    <div class="text-line small-text"><span style="font-size: 24 ;"><%= data %></span></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Nº de Aulas:</b>
+                    <div class="text-line small-text"><span style="font-size: 24 ;"><%= numero_aulas %></span></div>
+                </div>
+                <div class="multicolumn" >
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line small-text"><span style="font-size: 24 ;"><%= ano_letivo %></span></div>
+                </div>
+                <div class="multicolumn" >
+                    <b class="pad-right">Período Letivo:</b>
+                    <div class="text-line small-text"><span style="font-size: 24 ;"><%= periodo_letivo %></span></div>
                 </div>
             </div>
         </div>
