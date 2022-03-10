@@ -68,14 +68,12 @@
             <tbody>
                 <% list.forEach(arr => { %>
                 <tr>
+                    
                     <% arr.forEach((item, index) => { %>
-                        <% if (item == null) { %>
-                            <td></td>
-                          <% }else{%>
-                              <td class="<%= widths[index] === "auto" ? "star-spacing" : " " %>">
-                                  <%= item %>
-                              </td>
-                          <%} %>
+                        <td><%= index %> </td>
+                        <td class="<%= widths[index] === "auto" ? "star-spacing" : " " %>">
+                            <%= item %>
+                        </td>
                     <% }) %>
                 </tr>
                 <% }) %>
