@@ -55,6 +55,7 @@
         <br>
         <h1 class="center"><%= page_title %></h1>
         <br>
+        <h1 class="center"><%= page_title %></h1>
         <table style="width: 100%; font-size: 18px;">
             <thead>
                 <tr>
@@ -70,7 +71,6 @@
                 <tr>
                     
                     <% arr.forEach((item, index) => { %>
-                        <td><%= index %> </td>
                         <td class="<%= widths[index] === "auto" ? "star-spacing" : " " %>">
                             <%= item %>
                         </td>
