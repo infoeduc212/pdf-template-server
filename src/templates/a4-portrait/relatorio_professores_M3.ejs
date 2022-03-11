@@ -30,7 +30,7 @@
                         <tr>
                             <td style="width: 120px;"><%= element.id_infoeduc %></td>
                             <td ><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
-                            <td style="width: 230px; font-size: 14px;">
+                            <td style="width: 100px; font-size: 14px;">
                                 <% lista_escola.forEach(escola => { %>
                                     <% if (escola.id_professor == element.id_professor) { %>
                                         <%= escola.sigla_escola %> <br>
