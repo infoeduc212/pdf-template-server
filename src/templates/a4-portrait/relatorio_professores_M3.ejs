@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %> 
+    <style>
+         #titulo{
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <%- include("../reusable/header-escola.ejs") %>
+        <div style="margin-top: 40px;">
+            <div id="titulo" ><b>Relatório de Professores</b></div>
+            <div style="display: flex;">
+                <table class="table" style="width: 100%; border-spacing: 0;">
+                    <tr>
+                        <td style="font-weight: bold; text-align: center; font-size: 14px;">ID da InfoEduc</td>
+                        <th>Nome do professor</th>
+                        <th>Escola</td>
+                        <th>Celular</td>
+                    </tr>
+                    <% lista_professor.forEach(element => { %>
+                        <tr>
+                            <td style="width: 120px;"><%= element.id_infoeduc %></td>
+                            <td ><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
+                            <td style="width: 230px; font-size: 14px;">
+                                <% lista_escola.forEach(escola => { %>
+                                    <% if (escola.id_professor == element.id_professor) { %>
+                                        <%= escola.sigla_escola %> <br>
+                                    <% } %>
+                                <% }) %>
+                            </td>
+                            <td style="width: 140px;"><%= element.celular %> </td>
+                        </tr>
+                    <% }) %>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
