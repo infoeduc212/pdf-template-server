@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/common.ejs") %> 
+</head>
+<body>
+    <%- include("../reusable/header-escola.ejs") %>
+    <div class="campos">
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <b class="pad-right">Instituição do Ensino:</b>
+                <div class="text-line"><%= nome_escola %></div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b class="pad-right">Prof (a):</b>
+                    <div class="text-line"><%= nome_professor %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Ano/Turma:</b>
+                    <div class="text-line"><%= ano_turma %></div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b class="pad-right">Faixa Etária:</b>
+                    <div class="text-line"><%= faixa_etaria %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"><%= ano_letivo %></div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b>Tema de aula:</b>
+                    <div class="text-line"><%= tema_aula %></div>
+                </div>
+                <div class="multicolumn">
+                    <b>Período Letivo:</b>
+                    <div class="text-line"><%= periodo_letivo %></div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="multicolumn">
+                    <b>Nº de Aulas:</b>
+                    <div class="text-line"><%= numero_aulas %></div>
+                </div>
+                <div class="multicolumn">
+                    <b>Carga Horária:</b>
+                    <div class="text-line"><%= carga_horaria %></div>
+                </div>
+                <div class="multicolumn">
+                    <b>Data:</b>
+                    <div class="text-line"><%= data %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="flex flex-column" style="gap: 20px;">
+        <div class="flex">
+            <div class="flex flex-column">
+                <div class="text-center bg-color item-padding">
+                    EIXO TÉMATICO/CONTEÚDO
+                </div>
+                <div class="item-padding item-border">
+                    <%= eixo_tematico_conteudo %>
+                </div>
+            </div>
+            <div class="flex flex-column">
+                <div class="text-center bg-color item-padding">
+                    CAMPOS DE EXPERIÊNCIA
+                </div>
+                <div class="item-padding item-border">
+                    <%= campos_experiencia %>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-column">
+            <div class="text-center bg-color item-padding">
+                OBJETIVOS DE APRENDIZAGEM E DESENVOLVIMENTO
+            </div>
+            <div class="item-padding item-border">
+                <%= objetivos_aprendizagem_desenvolvimento %>
+            </div>
+        </div>
+        <div class="flex flex-column">
+            <div class="text-center bg-color item-padding">
+                PROCEDIMENTO DIDÁTICO
+            </div>
+            <div class="item-padding item-border">
+                <%= procedimento_didatico %> 
+            </div>
+        </div>
+        <div class="flex flex-column">
+            <div class="text-center bg-color item-padding">
+                RECURSOS/MATERIAIS
+            </div>
+            <div class="item-padding item-border">
+                <%= recursos_materiais %> 
+            </div>
+        </div>
+        <div class="flex flex-column">
+            <div class="text-center bg-color item-padding">
+                AVALIAÇÃO
+            </div>
+            <div class="item-padding item-border">
+                <%= avaliacao %>
+            </div>
+        </div>
+        <div class="flex flex-column">
+            <div class="text-center bg-color item-padding">
+                REFERÊNCIAS BIBLIOGRÁFICAS
+            </div>
+            <div class="item-padding item-border">
+                <%= referencias_bibliograficas %> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

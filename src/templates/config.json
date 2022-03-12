@@ -2,7 +2,8 @@
     {
         "path": "a4-landscape",
         "format": "A4",
-        "landscape": true
+        "landscape": true,
+        "watermark_exceptions": ["certificado"]
     },
     {
         "path": "a4-portrait",

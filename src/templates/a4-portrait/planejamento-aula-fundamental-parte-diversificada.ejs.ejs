@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <%- include("../reusable/header-escola.ejs") %>
+    <div class="campos">
+        <div class="flex flex-column">
+            <div class="multicolumn">
+                <b class="pad-right">Instituição de Ensino:</b>
+                <div class="text-line"><%= instituicao_ensino %></div>
+            </div>
+            <div class="flex" style="gap: 5px;">
+                <div class="multicolumn">
+                    <b class="pad-right">Prof. (a):</b>
+                    <div class="text-line"><%= nome_professor %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Ano/Turma:</b>
+                    <div class="text-line"><%= ano_turma %></div>
+                </div>
+            </div>
+            <div class="flex" style="gap: 5px;">
+                <div class="multicolumn">
+                    <b class="pad-right">Área do Conhecimento:</b>
+                    <div class="text-line"><%= area_conhecimento %></div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"><%= ano_letivo %></div>
+                </div>
+            </div>
+            <div class="flex" style="gap: 5px;">
+                <div class="multicolumn">
+                    <b class="pad-right">C. Curricular/disciplina:</b>
+                    <div class="text-line"><%= componente_curricular %> </div>
+                </div>
+                <div class="multicolumn">
+                    <b class="pad-right">Período Letivo:</b>
+                    <div class="text-line"><%= periodo_letivo %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+</body>
+</html>
