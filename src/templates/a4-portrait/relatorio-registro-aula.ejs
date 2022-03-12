@@ -32,6 +32,17 @@
         const sortedDateArray = sortDateArray(dateArray)
         return monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()]
     }
+
+    function sortDateArray2(dateArray2) {
+        return registros_aulas.sort((a, b) => {
+            return new Date(a.data) - new Date(b.data)
+        })
+    }
+
+    function getFirstMonthFromDateArray2(dateArray2) {
+        const sortedDateArray2 = sortDateArray2(dateArray2)
+        return monthDict[new Date(sortedDateArray2[sortedDateArray2.length - 1].dataTermino).getMonth()]
+    }
     %> 
     <div id="container">
         <%- include("../reusable/header-escola.ejs") %>
@@ -74,7 +85,7 @@
         <br>
         <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
         <div class="text-center">
-            <b>Mês:</b> <%= getFirstMonthFromDateArray(registros_aulas) %>
+            <b>Mês:</b>De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %>
             <br>
             <br>
         </div>
