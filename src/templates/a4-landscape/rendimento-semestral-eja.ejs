@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %> 
+    <style>
+        #titulo{
+            font-size: 20px;
+            text-align: center;
+        }
+        .base_comum{
+            max-width: 20px;
+            height: 150px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .text{
+            position: relative;
+            left: -70px;
+        }
+        .text2{
+            position: relative;
+            left: -90px;
+        }
+        .parte_diversificada{
+            height: 170px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .tex-vertical{
+            max-width: 30px;
+            height: 140px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        
+        }
+        .center{
+            text-align: center;
+
+        }
+        .linha{
+            border-bottom: 1px solid rgb(0, 0, 0);
+        }
+        .th{
+            font-weight: bold;
+        }
+        .text{
+            position: relative;
+            left: -50px;
+        }
+        .text2{
+            position: relative;
+            left: -50px;
+        }
+        .text3{
+            position: relative;
+            left: -20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <%- include("../reusable/header.ejs") %>
+        <div class="flex" style="margin-top: 60px;">
+            <div style="flex: 1; margin-left: 10px;">
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Instituição de ensino:</b>
+                        <div class="texto-linha"><%= instituicao %></div>
+                    </div>
+                </div>
+                <br>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Aluno(a):</b>
+                        <div class="texto-linha"><%= aluno_nome %> <%= aluno_sobrenome %></div>
+                    </div>
+                </div>
+                <br>
+                <div class="multicoluna">
+                    <div class="inline">
+                        <b>Etapa de Escolaridade:</b>
+                        <div class="texto-linha"><%= etapa_escolaridade %></div>
+                    </div>
+                </div>
+                <br>
+                <div class="multicoluna">
+
+                    <div class="inline">
+                        <b>ID InfoEduc</b>
+                        <div class="texto-linha"><%= id_infoeduc%></div>
+                    </div>
+                    <div class="inline">
+                        <b>Turma:</b>
+                        <div class="texto-linha"><%= turma %></div>
+                    </div>
+                    <div class="inline">
+                        <b>Turno</b>
+                        <div class="texto-linha"><%= turno %></div>
+                    </div>
+                    <div class="inline">
+                        <b>Semestre</b>
+                        <div class="texto-linha"><%= semestre %></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 380px;">
+            <div id="titulo" style="margin-bottom: 10px;"><b>RENDIMENTO ESCOLAR</b></div>
+            <div style="display: flex;">
+                <table class="table" style="width: 100%; border-spacing: 0;" >
+                    <tr>
+                        <th colspan="15">REGISTRO DA 1ª ETAPA (ENSINO FUNDAMENTAL 1º AO 9º ANO)</th>
+                    </tr>
+                    <tr>
+                        <td colspan="15" style="text-align: center;"><span class="th">SEMESTRE:</span><span class="linha"> <%= semestre %></span>&ensp;<span class="th">TURNO:</span><span class="linha"> <%= turno %></span>&ensp;<span class="th">TURMA:</span><span class="linha"> <%= turma %></span></td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2">PARTE DO CURRÍCULO</th>
+                        <th colspan="12">BASE BACIONAL COMUM</th>
+                        <td colspan="2" rowspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="9" style="text-align: center;">ÁREAS DO CONHECIMENTO</td>
+                        <td colspan="3" rowspan="2" style="text-align: center;">PARTE DIVERSIFICADA</td>
+                    </tr>
+                    <tr style="height: 20px; font-size: 14px;">
+                        <td rowspan="2"><span style="position: relative; top: -70px; left: 160px;">COMPONENTES CURRICULARES</span><span style="position: relative; top: 70px; left: -110px;">RENDIMENTO ESCOLAR</span></td>
+                        <th colspan="4">LINGUAGENS</th>
+                        <th>MATEMÁTICA</th>
+                        <th>CIÊCIAS DA NATUREZA</th>
+                        <th colspan="2">CIÊCIAS HUMANAS</th>
+                        <th>ENSINO RELIGIOSO</th>
+                    </tr>
+                    <tr>
+                        <th class="tex-vertical"><span class="text">LÍNGUA <br> PORTUGUESA</span></th>
+                        <th class="tex-vertical"><span class="text">ARTE</span></th>
+                        <th class="tex-vertical"><span class="text">EDUCAÇÃO <br> FÍSICA</span></th>
+                        <th class="tex-vertical"><span class="text">LÍNGUA INGLESA</span></th>
+                        <th class="tex-vertical"><span >MATEMÁTICA</span></th>
+                        <th class="tex-vertical"><span>CIÊCIAS</span></th>
+                        <th class="tex-vertical"><span class="text2">HISTÓRIA</span></th>
+                        <th class="tex-vertical"><span class="text2">GEOGRAFICA</span></th>
+                        <th class="tex-vertical"><span class="text3">ENSINO <br> RELIGIOSO</span></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th class="tex-vertical"><span class="text">DIAS LETIVOS</span></th>
+                        <th class="tex-vertical"><span class="text">Nº DE FALTAS</span></th>
+                    </tr>
+                    <tr>
+                        <th>1º BIMESTRE</th>
+                        <td><%#= faltas_1bimestre_PT %> </td>
+                        <td><%#= faltas_1bimestre_Arte %></td>
+                        <td><%#= faltas_1bimestre_ED %></td>
+                        <td><%#= faltas_1bimestre_LI %></td>
+                        <td><%#= faltas_1bimestre_MAT %></td>
+                        <td><%#= faltas_1bimestre_CIENC %></td>
+                        <td><%#= faltas_1bimestre_HIS %></td>
+                        <td><%#= faltas_1bimestre_GEO %></td>
+                        <td><%#= faltas_1bimestre_ER %></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>2º BIMESTRE</th>
+                        <td><%#= faltas_2bimestre_PT %> </td>
+                        <td><%#= faltas_2bimestre_Arte %></td>
+                        <td><%#= faltas_2bimestre_ED %></td>
+                        <td><%#= faltas_2bimestre_LI %></td>
+                        <td><%#= faltas_2bimestre_MAT %></td>
+                        <td><%#= faltas_2bimestre_CIENC %></td>
+                        <td><%#= faltas_2bimestre_HIS %></td>
+                        <td><%#= faltas_2bimestre_GEO %></td>
+                        <td><%#= faltas_2bimestre_ER %></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>3º BIMESTRE</th>
+                        <td><%#= faltas_3bimestre_PT %> </td>
+                        <td><%#= faltas_3bimestre_Arte %></td>
+                        <td><%#= faltas_3bimestre_ED %></td>
+                        <td><%#= faltas_3bimestre_LI %></td>
+                        <td><%#= faltas_3bimestre_MAT %></td>
+                        <td><%#= faltas_3bimestre_CIENC %></td>
+                        <td><%#= faltas_3bimestre_HIS %></td>
+                        <td><%#= faltas_3bimestre_GEO %></td>
+                        <td><%#= faltas_3bimestre_ER %></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>MÉDIA ANUAL</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <th>NOTA DE RECUPERAÇÃO FINAL</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <th>MÉDIA FINAL</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">TOTAL DE DIAS LETIVOS: ( <%= total_dias_letivos %>  )</th>
+                        <th colspan="5">TOTAL DE FALTAS: ( <%= total_faltas %>  )</th>
+                        <th colspan="5">FREQUENCIA %: ( <%= frequencia %>  )</th>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;" colspan="13">RESULTADO FINAL: ( <%= resultado_final == "aprovado" ? "X" : "" %> ) APROVADO &ensp; ( <%= resultado_final == "reprovado" ? "X" : "" %> ) REPROVADO</td>
+                        <td colspan="2"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
+    </div>
+    
+</body>
+</html>

@@ -20,32 +20,28 @@
                     <b class="pad-right" style="margin-right: 5px">Instituição de Ensino:</b>
                     <div class="text-line"><%= nome_escola %></div>
                 </div>
-                <div style="max-width: 160px;" class="flex grow">
-                    <b class="pad-right">Ano Letivo:</b>
-                    <div class="text-line text-center"><%= nome_ano_letivo %></div>
-                </div>
+
             </div>
             <div class="flex grow">
                 <div class="flex grow">
                     <b class="pad-right">Prof (a):</b>
                     <div class="text-line"><%= nome_professor %></div>
                 </div>
+
                 <% if (periodo_letivo) { %>
                     <div style="max-width: 280px;" class="flex grow">
                         <b class="pad-right">Período Letivo:</b>
                         <div class="text-line text-center"><%= periodo_letivo.nome_periodo_letivo %></div>
                     </div>
                 <% } %>
+
             </div>
             <div class="flex grow">
                 <div class="flex grow">
                     <b class="pad-right">Aluno(a):</b>
                     <div class="text-line"><%= aluno.nome %></div>
                 </div>
-                <div style="max-width: 190px;" class="flex grow">
-                    <b class="pad-right">Turma:</b>
-                    <div class="grow text-line"><%= nome_turma %></div>
-                </div>
+
             </div>
             <% if (tipo_documento !== "Infantil") { %>
                 <div class="flex grow">
@@ -61,7 +57,8 @@
             <u>Frequência Individual</u>
         </h3>
         <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia, periodo_letivo, ano_letivo }) %>
-        <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
+        <%- include("../reusable/campo-assinatura-3.ejs") %> 
+
     </div>
 </body>
 </html>

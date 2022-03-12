@@ -22,7 +22,9 @@
         #container{
             position: absolute;
             top: 0px;
-            left: 0px;
+
+            left: 35px;
+
         }
         #cabecalho{
             position: absolute;
@@ -32,7 +34,8 @@
         #title{
             position: relative;
             top: 140px;
-            left: 100px;
+
+            left: 105px;
             font-size: 50px;
         }
         #paragrafo{
@@ -44,15 +47,18 @@
             word-spacing: 2px;
             line-height: 30px;
             word-break: break-word;
-            text-align: left;
+
+
         }
         .linha{
             border-bottom: 2px solid rgb(0, 0, 0);
         }
-        #assinatura{
+
+        #footer{
             position: relative;
             top: 160px;
-            left: 80px;
+            left: 100px;
+
         }
         #logo_escola{
             position: relative;
@@ -60,15 +66,26 @@
             width: 100%;
             max-height: 120px;
             top: 20px;
-            left: 85px;
+
+            left: 20px;
+
         }
         #logomarca_infoeduc{
             width: 220px;
             opacity: 20%;
             position: relative;
-            left: 320px;
+
+            left: 300px;
             top: 40px;
         }
+        #nome-aluno{
+            font-weight: bold;
+            text-decoration: underline;
+            text-transform: uppercase;
+            font-size: 18px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -81,11 +98,25 @@
             </div>
             <div id="content">
                 <h1 id="title" >Certificado</h1>
-                <p id="paragrafo">O (a) Diretor (a) da Instituição de Ensino <%= escola %>,CNPJ: <%= cnpj_escola %>,  no uso de suas atribuições legais, confere o presente Certificado de Conclusão da <%= serie %> série do Ensino Fundamental do (a) Aluno (a) <span class="linha"><%= nome_aluno %></span>, filho (a) de <span class="linha"><%= mae_nome %></span> e <span class="linha"><%= pai_nome %></span>, nascido no dia <span class="linha"><%= dia_nascimento %></span> de <span class="linha"><%= mes_nascimento %></span> de <span class="linha"><%= ano_nascimento %></span>, natural de <span class="linha"><%= naturalidade %></span> - Estado do (a) <%= estado %> </p>
+
+                <p id="paragrafo" style="text-align: center;">Certificamos que <br> 
+                    <span id="nome-aluno"><%= nome_aluno %> <%= sobrenome_aluno %></span><br> 
+                    Concluiu devidamente a <%= serie %>  do Ensino Fundamental na Insttituição de Ensino: <br> 
+                    <%= escola %> , CNPJ: <%= cnpj_escola %> </p>
                 <p id="paragrafo" style="text-align: right;"><%= cidade %>-<%= UF %>,<span class="linha"> <%= dia_emisao %></span> de <span class="linha"><%= mes_emisao %></span> de <span class="linha"><%= ano_emisao %></span></p>
             </div>
-            <div id="assinatura">
-                <%- include("../reusable/campo-assinatura-direcao.ejs") %>
+            <div id="footer">
+                <div class="flex small-gap" style=" position: relative; left: -60px; top: 10px; padding-top: 80px; break-inside: avoid;">
+                    <div class="flex flex-column">
+                        <div class="text-line" style="width: 500px;"></div>
+                        <div class="small text-center">Assinatura do Diretor(a)</div>
+                    </div>
+                    <div class="flex flex-column">
+                        <div class="text-line" style="width: 500px;"></div>
+                        <div class="small text-center">Assinatura da Coordenação Pedagógica</div>
+                    </div>
+                </div>
+
                 <img id="logomarca_infoeduc" src="http://localhost:2000/assets/logomarca-infoeduc.png" alt="">
             </div>
             

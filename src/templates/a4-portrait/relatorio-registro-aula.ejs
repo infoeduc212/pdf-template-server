@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +33,20 @@
         const sortedDateArray = sortDateArray(dateArray)
         return monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()]
     }
+
+    function sortDateArray2(dateArray2) {
+        return registros_aulas.sort((a, b) => {
+            return new Date(a.data) - new Date(b.data)
+        })
+    }
+
+    function getFirstMonthFromDateArray2(dateArray2) {
+        const sortedDateArray2 = sortDateArray2(dateArray2)
+        return monthDict[new Date(sortedDateArray2[sortedDateArray2.length - 1].dataTermino).getMonth()]
+    }
+
+
+    
     %> 
     <div id="container">
         <%- include("../reusable/header-escola.ejs") %>
@@ -41,15 +56,18 @@
                     <b>Estabelecimento de Ensino:</b>
                     <div class="text-line"><%= escola_nome %> </div>
                 </div>
-                <div class="inline pad-right">
-                    <b>Turma:</b>
-                    <div class="text-line"><%= nome_turma %></div>
-                </div>
+
             </div>
             <div class="multicolumn">
                 <div class="inline pad-right">
                     <b>Prof (a):</b>
                     <div class="text-line"><%= nome_professor %></div>
+                </div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Turma:</b>
+                    <div class="text-line"><%= nome_turma %></div>
                 </div>
                 <% if (periodo_letivo !== null) { %>
                     <div style="max-width: 220px;" class="inline">
@@ -74,7 +92,7 @@
         <br>
         <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
         <div class="text-center">
-            <b>Mês:</b> <%= getFirstMonthFromDateArray(registros_aulas) %>
+            <b>Mês:</b>De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %>
             <br>
             <br>
         </div>
@@ -83,7 +101,7 @@
             <div style="break-before: page;">
                 <h3 class="text-center"><u>REGISTRO DE REPOSIÇÃO DE AULA</u></h3>
                 <div class="text-center">
-                    <b>Mês:</b> <%= getFirstMonthFromDateArray(reposicoes_aulas) %> 
+                    <b>Mês:</b>De <%= getFirstMonthFromDateArray2(reposicoes_aulas) %> a <%= getFirstMonthFromDateArray(reposicoes_aulas) %> 
                 </div>
                 <br>
                 <%- include("../reusable/diario-classe/lista-registro-aula.ejs", { registros_aulas: reposicoes_aulas }) %> 
@@ -91,4 +109,5 @@
         <% } %>
     </div>
 </body>
+
 </html>
