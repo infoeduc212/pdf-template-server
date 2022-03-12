@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %> 
+    <style>
+        .text{
+            position: relative;
+            left: -60px;
+            top: 60px;
+            text-decoration: underline;
+        }
+        .tex-vertical{
+            max-width: 20px;
+            height: 150px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <%- include("../reusable/header.ejs") %>
+        <div class="flex" style="margin-top: 40px;">
+            <div style="flex: 1; margin-left: 10px;">
+                <%- include("../reusable/cabecalho-dados-escola.ejs") %>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div style="margin-left: 10px;">
+                <img width="170" height="208" src="<%= foto_aluno %> " alt="">
+            </div>
+            <div style="margin-left: 20px; border-radius: 0px;"  class="block">
+                <h4 class="tex-vertical"><span class="text">REQUERIMENTO</span></h4>
+            </div>
+            <div style=" border-radius: 0px;" class="block">
+                <b style=" font-size: 14px;">O INDICADO ABAIXO, INDENTIFICADO, REPRESENTADO, QUANTO MENOR, REQUER SUA MATRÍCULA NO (a) <span style="border-bottom: 1px solid black;"> <%= proxima_turma %> </span>, DESTA UNIDADE DE ENSINO, NESTES TERMOS.</b><br>
+                <b>DATA: <span style="border-bottom: 1px solid black; letter-spacing: 2px; word-spacing: 4px;">12/23/42</span></b>
+                <b style="margin-left: 60px;">SEMESTRE LETIVO:</b> <span class="block"><%= semestre_letivo %> </span>
+                <div style=" margin-top: 50px; text-align: center; border-top: 1px solid black; font-weight: bold;">RESPONSÁVEL</div>
+            </div>
+        </div>
+        <div>
+            <p style="word-wrap: break-word;"><b>Observações:</b> <span style="border-bottom: 1px solid black;"><%= observacoes %></span> </p>
+        </div>
+        <%- include("../reusable/campo-assinatura-direcao.ejs") %>
+    </div>
+</body>
+</html>

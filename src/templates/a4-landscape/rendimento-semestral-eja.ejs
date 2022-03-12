@@ -111,8 +111,8 @@
                 </div>
             </div>
         </div>
-        <div style="margin-top: 430px;">
-            <div id="titulo" ><b>RENDIMENTO ESCOLAR</b></div>
+        <div style="margin-top: 380px;">
+            <div id="titulo" style="margin-bottom: 10px;"><b>RENDIMENTO ESCOLAR</b></div>
             <div style="display: flex;">
                 <table class="table" style="width: 100%; border-spacing: 0;" >
                     <tr>
@@ -219,8 +219,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="2"></td>
                     </tr>
                     <tr>
                         <th>NOTA DE RECUPERAÇÃO FINAL</th>
@@ -236,8 +235,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="2"></td>
                     </tr>
                     <tr>
                         <th>MÉDIA FINAL</th>
@@ -253,16 +251,17 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="2"></td>
                     </tr>
                     <tr>
                         <th colspan="3">TOTAL DE DIAS LETIVOS: ( <%= total_dias_letivos %>  )</th>
-                        <th colspan="6">TOTAL DE FALTAS: ( <%= total_faltas %>  )</th>
-                        <th colspan="6">FREQUENCIA %: ( <%= frequencia %>  )</th>
+                        <th colspan="5">TOTAL DE FALTAS: ( <%= total_faltas %>  )</th>
+                        <th colspan="5">FREQUENCIA %: ( <%= frequencia %>  )</th>
+                        <td colspan="2"></td>
                     </tr>
                     <tr>
-                        <td style="font-weight: bold;" colspan="15">RESULTADO FINAL: (  ) APROVADO &ensp; (  ) REPROVADO</td>
+                        <td style="font-weight: bold;" colspan="13">RESULTADO FINAL: ( <%= resultado_final == "aprovado" ? "X" : "" %> ) APROVADO &ensp; ( <%= resultado_final == "reprovado" ? "X" : "" %> ) REPROVADO</td>
+                        <td colspan="2"></td>
                     </tr>
                 </table>
             </div>

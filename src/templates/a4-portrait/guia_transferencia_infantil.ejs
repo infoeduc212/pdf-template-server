@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %> 
+    <style>
+    #titulo{
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 6px;
+    }
+    .center{
+        text-align: center;
+
+    }
+    .celulaTitle{
+        text-align: left;
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <span style="position: relative; top: -20px;"><%- include("../reusable/header.ejs") %></span>
+        <div class="flex" style="margin-top: 5px;">
+            <div style="flex: 1; margin-left: 10px;">
+                <%- include("../reusable/cabecalho-dados-escola.ejs") %>
+                <div class="block" style="margin-top: -10px; border-radius: 0">
+                    <p>Concedemos a presente Guia de Transferência ao aluno (a) <b style="text-transform: uppercase;"><%= nome_aluno %> <%= sobrenome_aluno %></b>  filho (a) de <b style="text-transform: uppercase;"><%= nome_pai %> <%= sobrenome_pai %></b> e de <b style="text-transform: uppercase;"><%= nome_mae %> <%= sobrenome_mae %></b>, nascido (a) em <b style="text-transform: uppercase;"><%= data_nascimento_aluno %></b>, na cidade de <b style="text-transform: uppercase;"><%= cidade_aluno %></b>, estado de <b style="text-transform: uppercase;"><%= estado_aluno %></b>, nacionalidade <b style="text-transform: uppercase;"><%= nacionalidade_aluno %></b>.</p>
+                    <p>Matriculado (a) em <b ><%= data_matricula %></b>, no <b style="text-transform: uppercase;"><%= serie_aluno %>(EDUCAÇÃO INFANTIL).</b>, deste Estabelecimento de Ensino conforme rendimento obtido abaixo e/ou no verso desta guia.</p>
+                </div>
+                <table class="table" style="width: 100%; position: relative; top: -10px; border-spacing: 0;" >
+                    <tr>
+                        <th colspan="2">REGISTRO DE FREQUÊNCIA</th>
+                        <td class="center"><b>Ano Letivo:</b> <%= ano_letivo %> </td>
+                    </tr>
+                    <tr>
+                        <th>TOTAL DE DIAS LETIVOS</th>
+                        <th>TOTAL DE FALTAS</th>
+                        <th>FREQUÊNCIA %</th>
+                    </tr>
+                    <tr>
+                        <td class="center"><%= total_dias_letivos %></td>
+                        <td class="center"><%= total_faltas %></td>
+                        <td class="center"><%= frequencia %></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <%- include("../reusable/ficha-acompanhamento/ficha-acompanhamento-descritiva-completa.ejs", { ficha_acompanhamento: ficha_acompanhamento }) %>
+        <%- include("../reusable/campo-assinatura-2.ejs") %>
+    </div>
+</body>
+</html>

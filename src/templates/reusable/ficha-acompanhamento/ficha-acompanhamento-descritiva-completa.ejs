@@ -1,0 +1,31 @@
+<%- include("../../css/ficha.ejs") %>
+<%- include("../../css/common.ejs") %> 
+<div>
+    <div id="titulo" style="position: relative; top: 20px;"><b><u>FICHA DE ACOMPANHAMENTO</u></b></div>
+    <div >
+        <% ficha_acompanhamento.forEach(element => { %>
+            <table class="table" style="width: 100%; margin-top: 30px; border-spacing: 0;" >
+                
+                    <tr">
+                        <td colspan="2"><b>CAMPOS DE EXPERIÊNCIA:</b> <%= element.campos_experiencia %></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><b>Faixa Etária:</b> <%= element.faixa_etaria %> </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Objetivo de Aprendizagem e Desenvolvimento</th>
+                    </tr>
+                    <tr>
+                        <td><%= element.objetivo %> </td>
+                        <td style="max-width: 1px;" class="center"><b>Alcançado</b><br><%= element.alcancado === true ? "Sim" : "Não" %></td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Avaliação descritiva</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><%= element.descricao_avaliativa %> </td>
+                    </tr>
+            </table>
+        <% }) %>
+    </div>
+</div>  
