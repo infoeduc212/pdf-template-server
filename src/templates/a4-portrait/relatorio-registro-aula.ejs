@@ -55,15 +55,18 @@
                     <b>Estabelecimento de Ensino:</b>
                     <div class="text-line"><%= escola_nome %> </div>
                 </div>
-                <div class="inline pad-right">
-                    <b>Turma:</b>
-                    <div class="text-line"><%= nome_turma %></div>
-                </div>
+
             </div>
             <div class="multicolumn">
                 <div class="inline pad-right">
                     <b>Prof (a):</b>
                     <div class="text-line"><%= nome_professor %></div>
+                </div>
+            </div>
+            <div class="multicolumn">
+                <div class="inline">
+                    <b>Turma:</b>
+                    <div class="text-line"><%= nome_turma %></div>
                 </div>
                 <% if (periodo_letivo !== null) { %>
                     <div style="max-width: 220px;" class="inline">
