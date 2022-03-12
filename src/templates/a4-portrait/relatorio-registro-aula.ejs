@@ -85,7 +85,7 @@
         <br>
         <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
         <div class="text-center">
-            <b>Mês:</b>De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %>
+            <b>Mês:</b>De <%= getFirstMonthFromDateArray2(registros_aulas) %> A <%= getFirstMonthFromDateArray(registros_aulas) %>
             <br>
             <br>
         </div>
@@ -94,7 +94,7 @@
             <div style="break-before: page;">
                 <h3 class="text-center"><u>REGISTRO DE REPOSIÇÃO DE AULA</u></h3>
                 <div class="text-center">
-                    <b>Mês:</b> <%= getFirstMonthFromDateArray(reposicoes_aulas) %> 
+                    <b>Mês:</b>De <%= getFirstMonthFromDateArray2(reposicoes_aulas) %> A <%= getFirstMonthFromDateArray(reposicoes_aulas) %> 
                 </div>
                 <br>
                 <%- include("../reusable/diario-classe/lista-registro-aula.ejs", { registros_aulas: reposicoes_aulas }) %> 
