@@ -748,7 +748,7 @@
         <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
         <% if (sortedDateArray.length > 0) { %>
             <div style="text-align: center; margin: 20px;">
-                <b>Mês: <%= monthDict2[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b>
+                <b>Mês: <%= getFirstMonthFromDateArray(registros_aulas) %>
             </div>
         <% } %>
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
