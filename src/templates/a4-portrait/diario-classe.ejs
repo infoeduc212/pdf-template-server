@@ -354,7 +354,7 @@
         <% const dateArray = sortDateArray(registros_aulas) %> 
         <% if (dateArray.length > 0) { %>
             <div style="text-align: center; margin: 20px;">
-                <b>Mês:</b> De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
+                <b>Mês:</b> De <%#= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
             </div>
         <% } %>
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
@@ -363,7 +363,7 @@
         <div class="page-break" style="margin: 10px;">
             <h3 class="text-center"><u>REGISTRO DE REPOSIÇÃO DE AULA</u></h3>
             <div style="text-align: center; margin: 20px;">
-                <b>Mês:</b> De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
+                <b>Mês:</b> De <%#= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
             </div>
             <%- include("../reusable/diario-classe/lista-registro-aula.ejs", { registros_aulas: reposicao_aulas }) %>
         </div>
@@ -718,20 +718,20 @@
     
     <div class="page-break" style="margin: 10px;">
         <%
-        const monthDict = {
-            0: "Janeiro",
-            1: "Fevereiro",
-            2: "Março",
-            3: "Abril",
-            4: "Maio",
-            5: "Junho",
-            6: "Julho",
-            7: "Agosto",
-            8: "Setembro",
-            9: "Outubro",
-            10: "Novembro",
-            11: "Dezembro"
-        }
+        // const monthDict = {
+        //     0: "Janeiro",
+        //     1: "Fevereiro",
+        //     2: "Março",
+        //     3: "Abril",
+        //     4: "Maio",
+        //     5: "Junho",
+        //     6: "Julho",
+        //     7: "Agosto",
+        //     8: "Setembro",
+        //     9: "Outubro",
+        //     10: "Novembro",
+        //     11: "Dezembro"
+        // }
         
         function sortDateArray(dateArray) {
             return registros_aulas.sort((a, b) => {
