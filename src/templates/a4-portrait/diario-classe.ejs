@@ -347,16 +347,7 @@
             const sortedDateArray = sortDateArray(dateArray)
             return monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()]
         }
-        function sortDateArray2(dateArray2) {
-            return registros_aulas.sort((a, b) => {
-                return new Date(a.data) - new Date(b.data)
-            })
-        }
 
-        function getFirstMonthFromDateArray2(dateArray2) {
-            const sortedDateArray2 = sortDateArray2(dateArray2)
-            return monthDict[new Date(sortedDateArray2[sortedDateArray2.length - 1].dataTermino).getMonth()]
-        }
 
         %>
 
