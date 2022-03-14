@@ -718,7 +718,7 @@
     
     <div class="page-break" style="margin: 10px;">
         <%
-        const monthDict = {
+        const monthDict2 = {
             0: "Janeiro",
             1: "Fevereiro",
             2: "Março",
@@ -741,14 +741,14 @@
 
         function getFirstMonthFromDateArray(dateArray) {
             const sortedDateArray = sortDateArray(dateArray)
-            return monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()]
+            return monthDict2[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()]
         }
         %>
 
         <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
         <% if (sortedDateArray.length > 0) { %>
             <div style="text-align: center; margin: 20px;">
-                <b>Mês: <%= monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b>
+                <b>Mês: <%= monthDict2[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()] %> </b>
             </div>
         <% } %>
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
