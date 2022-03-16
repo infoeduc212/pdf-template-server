@@ -18,57 +18,57 @@
     </style>
 </head>
 <body>
-    <div id="titulo" ><u><b><%= titulo %> </b></u></div>
+    <div id="titulo" ><u><b><%= cabecalho.titulo %> </b></u></div>
     <div class="block" style="border-radius:8px ">
         <div class="title-header" style="text-align: center; border-radius: 6px; font-size: 20; background-color: rgb(202, 202, 202);">DADOS DA ESCOLA</div>
         <div class="multicoluna">
             <div class="inline">
                 <b>Instituição de ensino:</b>
-                <div class="texto-linha"><%= instituicao %></div>
+                <div class="texto-linha"><%= cabecalho.instituicao %></div>
             </div>
         </div>
         <div class="multicoluna">
             <div class="inline">
                 <b>ID do INEP:</b>
-                <div class="texto-linha"><%= id_inep %> </div>
+                <div class="texto-linha"><%= cabecalho.id_inep %> </div>
             </div>
             <div class="inline">
                 <b>ID InfoEduc:</b>
-                <div class="texto-linha"><%= id_infoeduc %> </div>
+                <div class="texto-linha"><%= cabecalho.id_infoeduc %> </div>
             </div>
         </div>
         <div class="multicoluna">
             <div class="inline">
                 <b>Endereço:</b>
-                <div class="texto-linha"><%= endereco %> </div>
+                <div class="texto-linha"><%= cabecalho.endereco %> </div>
             </div>
             <div class="inline" style="max-width: 70px; text-align: center;">
                 <b>Nº:</b>
-                <div class="texto-linha"><%= endereco_numero %> </div>
+                <div class="texto-linha"><%= cabecalho.endereco_numero %> </div>
             </div>
         </div>
         <div class="multicoluna">
             <div class="inline">
                 <b>Entidade Mantenedora:</b>
-                <div class="texto-linha"><%= entidade_mantenedora %> </div>
+                <div class="texto-linha"><%= cabecalho.entidade_mantenedora %> </div>
             </div>
             <div class="inline" style="max-width: 170px; text-align: center;">
                 <b>Cidade:</b>
-                <div class="texto-linha"><%= cidade %> </div>
+                <div class="texto-linha"><%= cabecalho.cidade %> </div>
             </div>
             <div class="inline" style="max-width: 60px; text-align: center;">
                 <b>UF:</b>
-                <div class="texto-linha"><%= uf %> </div>
+                <div class="texto-linha"><%= cabecalho.uf %> </div>
             </div>
             <div class="inline" style="max-width: 120px; text-align: center;">
                 <b>CEP:</b>
-                <div class="texto-linha" ><%= cep %> </div>
+                <div class="texto-linha" ><%= cabecalho.cep %> </div>
             </div>
         </div>
         <div class="multicoluna" style="padding-bottom: 6px;">
             <div class="inline">
                 <b>Ato de criação:</b>
-                <div class="texto-linha"><%= ato_criacao %> </div>
+                <div class="texto-linha"><%= cabecalho.ato_criacao %> </div>
             </div>
         </div>
     </div>
