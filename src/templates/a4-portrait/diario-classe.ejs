@@ -175,6 +175,7 @@
         <% } %>
         <% if (aluno.notas) { %>
         <% if (tipo_documento === "Fundamental") { %>
+        <% if (notaResList) { %>
         <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
             Resultado Bimestral
         </h3>
@@ -207,6 +208,7 @@
                 </tbody>
             </table>
         </div>
+        <% } %>
         <% } %>
         <% } %>
         <% if (tipo_documento === "Infantil") { %>
