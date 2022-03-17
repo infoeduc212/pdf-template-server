@@ -131,7 +131,7 @@
     </div>
     <div class="page-break" style="margin-top: 70px;">
         <div style="margin: 0 80px;">
-            <h1 class="text-center">Orientações</h1>
+            <h1 class="text-center">Orientações </h1>
             <p style="font-weight: bold; text-indent: 50px; text-align: justify;">Prezado professor(a), o senhor (a) é
                 responsável pelo seu
                 diário de classe, portanto observe as orientações a
@@ -355,7 +355,7 @@
         <% const dateArray = sortDateArray(registros_aulas) %> 
         <% if (dateArray.length > 0) { %>
             <div style="text-align: center; margin: 20px;">
-                <b>Mês:</b> De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
+                <b>Mês:</b> De <%#= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
             </div>
         <% } %>
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
@@ -364,7 +364,7 @@
         <div class="page-break" style="margin: 10px;">
             <h3 class="text-center"><u>REGISTRO DE REPOSIÇÃO DE AULA</u></h3>
             <div style="text-align: center; margin: 20px;">
-                <b>Mês:</b> De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
+                <b>Mês:</b> De <%#= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
             </div>
             <%- include("../reusable/diario-classe/lista-registro-aula.ejs", { registros_aulas: reposicao_aulas }) %>
         </div>
