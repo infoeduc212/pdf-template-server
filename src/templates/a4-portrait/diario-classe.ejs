@@ -175,8 +175,10 @@
         <% } %>
         <% if (aluno.notas) { %>
         <% if (tipo_documento === "Fundamental") { %>
+
         <% if (notaResList) { %>
         <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
+
             Resultado Bimestral
         </h3>
         <div style="margin: 0 50px;">
@@ -196,18 +198,19 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <% notaResList.forEach(res => { %>
+                        <%# notaResList.forEach(res => { %>
                         <td class="text-center">
-                            <%= res %>
+                            <%#= res %>
                         </td>
-                        <% }) %>
+                        <%# }) %>
                         <td class="text-center">
-                            <%= resultadoMedia %>
+                            <%#= resultadoMedia %>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> -->
+        <%# } %>
         <% } %>
         <% } %>
         <% } %>
