@@ -174,46 +174,46 @@
         <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia, ano_letivo }) %>
         <% } %>
         <% if (aluno.notas) { %>
-        <% if (tipo_documento === "Fundamental") { %>
-
-        <%# if (notaResList) { %>
-        <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
-
-            Resultado Bimestral
-        </h3>
-        <div style="margin: 0 50px;">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td class="text-center">
-                            Média
-                        </td>
-                        <td class="text-center">
-                            Rec.
-                        </td>
-                        <td class="text-center">
-                            Méd.<br>Final
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <%# notaResList.forEach(res => { %>
-                        <td class="text-center">
-                            <%#= res %>
-                        </td>
-                        <%# }) %>
-                        <td class="text-center">
-                            <%#= resultadoMedia %>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> 
-        <%# } %>
-        <% } %>
-        <% } %>
-        <% } %>
+            <% if (tipo_documento === "Fundamental") { %>
+    
+            <% if (notaResList) { %>
+            <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
+    
+                Resultado Bimestral
+            </h3>
+            <div style="margin: 0 50px;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td class="text-center">
+                                Média
+                            </td>
+                            <td class="text-center">
+                                Rec.
+                            </td>
+                            <td class="text-center">
+                                Méd.<br>Final
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <% notaResList.forEach(res => { %>
+                            <td class="text-center">
+                                <%= res %>
+                            </td>
+                            <% }) %>
+                            <td class="text-center">
+                                <%= resultadoMedia %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+            
+            <% } %>
+            <% } %>
+            <% } %>
         <% if (tipo_documento === "Infantil") { %>
         <div style="margin-top: 10px;">
             <%# TODO: Relatório Descritivo %>
