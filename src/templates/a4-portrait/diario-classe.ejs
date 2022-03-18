@@ -235,13 +235,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% if (aluno.notas) { %>
+                    <% if (!aluno.notas == null) { %>
+                        
                         <tr>
                             <td>Média Anual</td>
                             <td class="fixed-width text-center">
                                 <%= aluno.notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length %>
                             </td>
                         </tr>
+                        
                     <% } %>
                     <% if (aluno.frequencia) { %>
                         <tr>
