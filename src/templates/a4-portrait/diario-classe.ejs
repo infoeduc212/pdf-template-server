@@ -175,7 +175,9 @@
         <% } %>
         <% if (aluno.notas) { %>
             <% if (tipo_documento === "Fundamental") { %>
-    
+            <% if (aluno.notas == null) { %>
+             <% notaResList = null %> 
+            <% } %>
             <% if (notaResList) { %>
             <h3 style="text-align: center; font-weight: bold; text-transform: uppercase; text-decoration: underline;">
     
