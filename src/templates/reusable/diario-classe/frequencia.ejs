@@ -158,7 +158,7 @@
             <% if (day.length > 0) { %>
             <td class="text-center">
                 <% if (day.qtd_presenca > 0) { %>
-                    <% if (falta_justificada == true) { %>
+                    <% if (frequencia.falta_justificada == true) { %>
                         falta 1
                         <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0)+ "*" %>
                     <% }else{%>
@@ -167,7 +167,7 @@
                     <%} %>
                 
                 <% } else { %>
-                    <% if (falta_justificada == true) { %>
+                    <% if (frequencia.falta_justificada == true) { %>
                         falta 1
                         <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %> * 
                     <% }else{%>
