@@ -158,20 +158,20 @@
             <% if (day.length > 0) { %>
             <td class="text-center">
                 <% if (day.qtd_presenca > 0) { %>
-                    <% if (frequencia.falta_justificada == true) { %>
-                        falta justificada
+                    <% if (falta_justificada == true) { %>
+                        falta 1
                         <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0)+ "*" %>
                     <% }else{%>
-                        falta justificada2
+                        falta 2
                         <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
                     <%} %>
                 
                 <% } else { %>
-                    <% if (frequencia.falta_justificada == true) { %>
-                        falta justificada
+                    <% if (falta_justificada == true) { %>
+                        falta 1
                         <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %> * 
                     <% }else{%>
-                        falta justificada2
+                        falta 2
                         <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
                     <%} %>
     
