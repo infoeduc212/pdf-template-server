@@ -167,7 +167,7 @@
                 <% } else { %>
                     <%# if (frequencia.falta_justificada == true) { %>
                         
-                        <%#= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %> * 
+                        <%#= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>  
                     <%# }else{%>
                         <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
                     <%#} %>
