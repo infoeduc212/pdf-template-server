@@ -355,6 +355,19 @@
             const sortedDateArray = sortDateArray(dateArray)
             return monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data).getMonth()]
         }
+        sortDateArray2 = function(dateArray2) {
+            if (dateArray2.length > 0) {
+                return dateArray2.sort((a, b) => {
+                    return new Date(a.data) - new Date(b.data)
+                })
+            }
+            return []
+        }
+
+        getFirstMonthFromDateArray2 = function(dateArray2) {
+            const sortedDateArray2 = sortDateArray(dateArray2)
+            return monthDict[new Date(sortedDateArray2[sortedDateArray2.length - 1].data).getMonth()]
+        }
 
 
         %>
@@ -363,7 +376,7 @@
         <% const dateArray = sortDateArray(registros_aulas) %> 
         <% if (dateArray.length > 0) { %>
             <div style="text-align: center; margin: 20px;">
-                <b>Mês:</b> De <%#= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
+                <b>Mês:</b> De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
             </div>
         <% } %>
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
@@ -372,7 +385,7 @@
         <div class="page-break" style="margin: 10px;">
             <h3 class="text-center"><u>REGISTRO DE REPOSIÇÃO DE AULA</u></h3>
             <div style="text-align: center; margin: 20px;">
-                <b>Mês:</b> De <%#= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
+                <b>Mês:</b> De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %> 
             </div>
             <%- include("../reusable/diario-classe/lista-registro-aula.ejs", { registros_aulas: reposicao_aulas }) %>
         </div>

@@ -158,9 +158,20 @@
             <% if (day.length > 0) { %>
             <td class="text-center">
                 <% if (day.qtd_presenca > 0) { %>
-                <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
+                    <%# if (frequencia.falta_justificada == true) { %>
+                        <%#= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0)+ "*" %>
+                    <%# }else{%>
+                        <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
+                    <%#} %>
+                
                 <% } else { %>
-                <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
+                    <%# if (frequencia.falta_justificada == true) { %>
+                        
+                        <%#= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>  
+                    <%# }else{%>
+                        <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
+                    <%#} %>
+    
                 <% } %>
             </td>
             <% } else { %>
@@ -169,14 +180,18 @@
             <% } %>
             <% } %>
             <!-- Faltas -->
+            
             <td class="text-center">
                 <% const existiuFalta = monthRange.some(({ qtd_faltas }) => qtd_faltas !== null) %>
                 <% if (existiuFalta) { %>
-                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %>
+                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %> 
                 <% } %>
             </td>
         </tr>
         <% }) %>
         <% } %>
     </tbody>
+
 </table>
+<p style="font-size: 12px;">Legenda</p>
+<p style="font-size: 12px;">(*) Falta Justificada</p>
