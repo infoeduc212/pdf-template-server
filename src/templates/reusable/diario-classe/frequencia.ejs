@@ -187,7 +187,7 @@
             <td class="text-center">
                 <% const existiuFalta = monthRange.some(({ qtd_faltas }) => qtd_faltas !== null) %>
                 <% if (existiuFalta) { %>
-                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %> / <%= monthRange.length > 0 ? monthRange.reduce((prev, { faltas_justificas }) => prev + faltas_justificas, 0) : 0 %>
+                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %> 
                 <% } %>
             </td>
         </tr>
