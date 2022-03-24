@@ -169,10 +169,17 @@
             <% } %>
             <% } %>
             <!-- Faltas -->
+            
             <td class="text-center">
                 <% const existiuFalta = monthRange.some(({ qtd_faltas }) => qtd_faltas !== null) %>
+                <% const faltajustificada = monthRange.some(({ falta_justificada }) => falta_justificada == true) %>
                 <% if (existiuFalta) { %>
-                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %>
+                    <% if (faltajustificada)%>
+                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) + "*" : 0 + "*" %>
+                    <% }else{ %>
+                        <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %>
+                    <% } %>
+                    
                 <% } %>
             </td>
         </tr>
