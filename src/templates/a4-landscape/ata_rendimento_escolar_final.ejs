@@ -59,9 +59,9 @@
                         </td>
                         <th colspan="<%= lista_diciplinas.length %> ">BASE NACAIONAL COMUM</th>
                         <% if (lista_diciplinas_diversificada.length > 0) { %>
-                            <th style="max-width: 80px;" colspan="3">PARTE DIVERSIFICADA</th>
+                            <th style="max-width: 80px;" colspan="<%= lista_diciplinas_diversificada.length %> ">PARTE DIVERSIFICADA</th>
                         <% } %>
-                        <td rowspan="2" class="tex-vertical"><span>% FREQUÊNCIA</span></td>
+                        <td rowspan="2" class="tex-vertical"><span class="text3">% FREQUÊNCIA</span></td>
                         <td></td>
                     </tr>
                     <tr style="height: 100px;">
@@ -80,7 +80,7 @@
                                 </span> 
                             </td>
                         <% }) %>
-                        <th style="max-width: 30px ;">OBSERVAÇÃO</th>
+                        <th style="max-width: 40px ;">OBSERVAÇÃO</th>
                     </tr>
                     <% lista_rendimento.forEach(item => { %>
                         <tr>
