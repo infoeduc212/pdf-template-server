@@ -68,7 +68,13 @@
         <h3 class="text-center">
             <u>Frequência Individual</u>
         </h3>
-        <%= frequencia[1].qtd_faltas %> 
+        <%= frequencia[1].falta_justificada %> 
+        <% if (frequencia[1].falta_justificada == true) { %>
+         <p>test</p>
+        <% } %>
+        <% if (frequencia[1].falta_justificada == false) { %>
+            <p>rerr</p>
+           <% } %>
         <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia, periodo_letivo, ano_letivo }) %>
         <%- include("../reusable/campo-assinatura-3.ejs") %> 
 
