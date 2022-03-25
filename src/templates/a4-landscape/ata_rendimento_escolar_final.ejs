@@ -5,10 +5,107 @@
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
     <%- include("../css/ficha.ejs") %>
     <%- include("../css/common.ejs") %>
+    <style>
+        #titulo{
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            
+        }
+        .text{
+            position: relative;
+            left: -70px;
+        }
+        .text2{
+            position: relative;
+            left: -50px;
+        }
+        .text3{
+            position: relative;
+            left: -30px;
+        }
+        .text4{
+            position: relative;
+            left: -280px;
+            font-size: 14px;
+        }
+        .parte_diversificada{
+            height: 170px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .tex-vertical{
+            max-width: 20px;
+            
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <%- include("../reusable/header.ejs") %>
+        <div style="margin-top: 20px;">
+            <div id="titulo" ><b style="border-bottom: 1px solid black;">ATA DE RENDIMENTO ESCOLA FINAL <%= ano_letivo %> - <%= etapa_escolaricade %></b></div>
+            <div style="display: flex;">
+                <table class="table" style="width: 100%; border-spacing: 0;" >
+                    <tr style="height: 10px;">
+                        <td>
+                            <b>TURMA: </b><%= turma %> <br>
+                            <b>TURNO: </b><%= turno %> 
+                        </td>
+                        <th colspan="<%= lista_diciplinas.length %> ">BASE NACAIONAL COMUM</th>
+                        <% if (lista_diciplinas_diversificada.length > 0) { %>
+                            <th style="max-width: 80px;" colspan="3">PARTE DIVERSIFICADA</th>
+                        <% } %>
+                        <td rowspan="2" class="tex-vertical"><span>% FREQUÊNCIA</span></td>
+                        <td></td>
+                    </tr>
+                    <tr style="height: 100px;">
+                        <th>NOME</th>
+                        <% lista_diciplinas.forEach(element => { %>
+                            <td style="width: 30px;" class="tex-vertical">
+                                <span class="text3">
+                                    <%= element %>
+                                </span> 
+                            </td>
+                        <% }) %>
+                        <% lista_diciplinas_diversificada.forEach(element => { %>
+                            <td class="tex-vertical">
+                                <span class="text3">
+                                    <%= element %>
+                                </span> 
+                            </td>
+                        <% }) %>
+                        <th style="max-width: 30px ;">OBSERVAÇÃO</th>
+                    </tr>
+                    <% lista_rendimento.forEach(item => { %>
+                        <tr>
+                            <td><%= item.nome %> <%= item.sobrenome %></td>
+                            
+                            <% item.media.forEach(element => { %>
+                                <td style="text-align: center;"><%= element %> </td>
+                                
+                            <% }) %>
+                            <% var lista_todas_diciplinas = lista_diciplinas.length + lista_diciplinas_diversificada.length %> 
+                            <% if (lista_todas_diciplinas > item.media.length) { %>
+                                <% var diferenca = lista_todas_diciplinas - item.media.length %> 
+                                <% for( let index = 0; index < diferenca; index++ ) { %>
+                                    <th>*</th>
+                                <% } %>
+                            <% } %>
+                            <td><%= item.frequencia %> </td>
+                            <td><%= item.observacao %> </td>
+                        </tr>
+                    <% }) %>
+                </table>
+
+            </div>
+        </div>
+        <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
     </div>
 </body>
 </html>
