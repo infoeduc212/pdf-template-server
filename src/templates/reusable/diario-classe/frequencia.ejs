@@ -158,19 +158,19 @@
             <% if (day.length > 0) { %>
             <td class="text-center">
                 <% if (day.qtd_presenca > 0) { %>
-                    <%# if (frequencia.falta_justificada == true) { %>
-                        <%#= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0)+ "*" %>
-                    <%# }else{%>
+                    <% if (frequencia.falta_justificada == true) { %>
+                        <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0)+ "*" %>
+                    <% }else{%>
                         <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
-                    <%#} %>
+                    <%} %>
                 
                 <% } else { %>
-                    <%# if (frequencia.falta_justificada == true) { %>
+                    <% if (frequencia.falta_justificada == true) { %>
                         
-                        <%#= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>  
-                    <%# }else{%>
+                        <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0)+ "*" %>  
+                    <% }else{%>
                         <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
-                    <%#} %>
+                    <%} %>
     
                 <% } %>
             </td>
