@@ -182,7 +182,16 @@
         <% } %>
     </tbody>
 </table>
-<p><b>Legenda: (F.J.)</b> Nº de Faltas Justificadas - Data da Falta Justificada</p><br><br><br>
+<p style="font-size: 14;"><b>Legenda: (F.J.)</b> Nº de Faltas Justificadas - Data da Falta Justificada</p><br><br><br>
 
 <b>Observação</b>
 <p style="border-bottom: 1px solid black;">F.J. () - (): </p>
+<% lista_falta_justificada.forEach(element => {%>
+    <% lista_id_frequencia.forEach(item => {%>
+        <% console.log(item);%>
+    <% if (element.id_frequencia) {%>
+    
+    <% } %>
+        
+<% });%>
+<% });%>
