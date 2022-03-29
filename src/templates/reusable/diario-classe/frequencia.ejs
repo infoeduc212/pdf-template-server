@@ -159,21 +159,9 @@
             <td class="text-center">
                 <%var index = i - 1%>
                 <% if (day.qtd_presenca > 0) { %>
-                    
-                    <%# if (frequencia[1].falta_justificada == true) { %>
-                        <%#= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0)+ "*" %>
-                    <%# }else{%>
                         <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
-                    <%#} %>
-                
                 <% } else { %>
-                    <%# if (frequencia[1].falta_justificada == true) { %>
-                        
-                        <%#= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0)+ "*" %>  
-                    <%# }else{%>
                         <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
-                    <%#} %>
-    
                 <% } %>
             </td>
             <% } else { %>
@@ -193,7 +181,8 @@
         <% }) %>
         <% } %>
     </tbody>
-
 </table>
-<p style="font-size: 12px;">Legenda</p>
-<p style="font-size: 12px;">(*) Falta Justificada</p>
+<p><b>Legenda: (F.J.)</b> Nº de Faltas Justificadas - Data da Falta Justificada</p><br><br><br>
+
+<b>Observação</b>
+<p style="border-bottom: 1px solid black;">F.J. () - (): </p>
