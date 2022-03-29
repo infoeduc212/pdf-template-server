@@ -157,20 +157,22 @@
             }) %>
             <% if (day.length > 0) { %>
             <td class="text-center">
+                <%var index = i - 1%>
                 <% if (day.qtd_presenca > 0) { %>
-                    <% if (frequencia.falta_justificada == true) { %>
-                        <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0)+ "*" %>
-                    <% }else{%>
+                    <% console.log(index);%>
+                    <%# if (frequencia[1].falta_justificada == true) { %>
+                        <%#= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0)+ "*" %>
+                    <%# }else{%>
                         <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
-                    <%} %>
+                    <%#} %>
                 
                 <% } else { %>
-                    <% if (frequencia.falta_justificada == true) { %>
+                    <%# if (frequencia[1].falta_justificada == true) { %>
                         
-                        <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0)+ "*" %>  
-                    <% }else{%>
+                        <%#= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0)+ "*" %>  
+                    <%# }else{%>
                         <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
-                    <%} %>
+                    <%#} %>
     
                 <% } %>
             </td>
