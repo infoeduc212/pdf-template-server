@@ -140,58 +140,50 @@
             })
             %>
         <% for (year in years) { %>
-        <% if (!years.hasOwnProperty(year)) continue %>
-        <% years[year].forEach(month => { %>
-        <tr>
-            <td><%= monthDict[month] %></td>
-            <% const monthRange = listaDate.filter(record => {
-                const date = parseDate(record.data_lancamento)
-                return date.month === month && date.year === parseInt(year)
-            }) %>
-            <!-- Quantidade de presença no dia -->
-            <% const maxDays = 32 %>
-            <% for (let i = 1; i < maxDays; i++) { %>
-            <% const day = monthRange.filter(record => {
-                const date = parseDate(record.data_lancamento)
-                return date.day === i
-            }) %>
-            <% if (day.length > 0) { %>
-            <td class="text-center">
-                <%var index = i - 1%>
-                <% if (day.qtd_presenca > 0) { %>
-                        <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
-                <% } else { %>
-                        <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
+            <% if (!years.hasOwnProperty(year)) continue %>
+                <% years[year].forEach(month => { %>
+                    <tr>
+                        <td><%= monthDict[month] %></td>
+                        <% const monthRange = listaDate.filter(record => {
+                            const date = parseDate(record.data_lancamento)
+                            return date.month === month && date.year === parseInt(year)
+                        }) %>
+                        <!-- Quantidade de presença no dia -->
+                        <% const maxDays = 32 %>
+                        <% for (let i = 1; i < maxDays; i++) { %>
+                            <% const day = monthRange.filter(record => {
+                                const date = parseDate(record.data_lancamento)
+                                return date.day === i
+                            }) %>
+                            <% if (day.length > 0) { %>
+                                <td class="text-center">
+                                    <%var index = i - 1%>
+                                    <% if (day.qtd_presenca > 0) { %>
+                                            <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
+                                    <% } else { %>
+                                            <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
+                                    <% } %>
+                                </td>
+                            <% } else { %>
+                                <!-- Vazio, sem falta ou frequencia -->
+                                <td class="text-center"></td>
+                            <% } %>
+                        <% } %>
+                        <!-- Faltas -->
+                        
+                        <td class="text-center">
+                            <% const existiuFalta = monthRange.some(({ qtd_faltas }) => qtd_faltas !== null) %>
+                            <% if (existiuFalta) { %>
+                                <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %> 
+                            <% } %>
+                        </td>
+                    </tr>
                 <% } %>
-            </td>
-            <% } else { %>
-            <!-- Vazio, sem falta ou frequencia -->
-            <td class="text-center"></td>
-            <% } %>
-            <% } %>
-            <!-- Faltas -->
             
-            <td class="text-center">
-                <% const existiuFalta = monthRange.some(({ qtd_faltas }) => qtd_faltas !== null) %>
-                <% if (existiuFalta) { %>
-                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %> 
-                <% } %>
-            </td>
-        </tr>
-        <% }) %>
         <% } %>
     </tbody>
 </table>
 <p style="font-size: 14;"><b>Legenda: (F.J.)</b> Nº de Faltas Justificadas - Data da Falta Justificada</p><br><br><br>
-
+<% console.log('test');%>
 <b>Observação</b>
 <p style="border-bottom: 1px solid black;">F.J. () - (): </p>
-<% lista_falta_justificada.forEach(element => {%>
-    <% lista_id_frequencia.forEach(item => {%>
-        <% console.log(item);%>
-    <% if (element.id_frequencia) {%>
-    
-    <% } %>
-        
-<% });%>
-<% });%>
