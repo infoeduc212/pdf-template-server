@@ -199,11 +199,7 @@
     
     <b>Observação</b>
     <% lista_falta_justificada.forEach(item => {%>
-        <%for (let index = 0; index < lista_id_frequencia.length; index++) {%>
-            <% if (item.id_frequencia == lista_id_frequencia[index]) {%>
-                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (<%= item.qtd_faltas%>) - (<%=  %>): <%= item.descricao%></p>
-            <% }%>
-        <%}%>
+            <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (<%= item.qtd_faltas%>) - (<%=  %>): <%= item.descricao%></p>
     <% });%>
         
     
