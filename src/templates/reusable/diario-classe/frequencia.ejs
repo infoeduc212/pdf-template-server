@@ -210,9 +210,9 @@
     <% lista_falta_justificada.forEach(item => {%>
         <%frequencia.forEach(element => {%>
             <%if (element.falta_justificada == true) {%>
-                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (<%= item.qtd_faltas%>) - (<%=  %>): <%= item.descricao%></p>
-                <%}%>
-            <%});%>
+                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (<%= item.qtd_faltas%>) - (<%= element.data_lancamento %>): <%= item.descricao%></p>
+            <%}%>
+        <%});%>
             
     <% });%>
         
