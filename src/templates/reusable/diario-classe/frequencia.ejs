@@ -1,193 +1,204 @@
-<style>
-    #frequencia {
-        table-layout: fixed;
-        font-size: 12px;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
-    #frequencia>tbody>tr>td:first-child {
-        font-stretch: 50%;
-    }
-
-    #frequencia>thead>tr>td {
-        font-stretch: condensed;
-        text-align: center;
-    }
-
-    .table {
-        width: 100%;
-        border-spacing: 0;
-    }
-
-    .table>thead>tr>td,
-    .table>tbody>tr>td {
-        border: 1px solid;
-    }
-
-    .text-line {
-        border-bottom: 1px solid;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-</style>
-<table id="frequencia" class="table">
-    <thead>
-        <tr>
-            <td style="width: 60px">Meses/<br />Data</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-            <td>11</td>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
-            <td>17</td>
-            <td>18</td>
-            <td>19</td>
-            <td>20</td>
-            <td>21</td>
-            <td>22</td>
-            <td>23</td>
-            <td>24</td>
-            <td>25</td>
-            <td>26</td>
-            <td>27</td>
-            <td>28</td>
-            <td>29</td>
-            <td>30</td>
-            <td>31</td>
-            <td class="text-center" style="width: 50px">Faltas</td>
-        </tr>
-    </thead>
-    <tbody>
-        <% 
-            const parseDate = (date) => {
-                return DateTime.fromJSDate(new Date(date), { zone: "America/Sao_Paulo" })
-            }
-
-            const listaDate = frequencia.sort((a, b) => new Date(b.date) - new Date(a.date))
-
-            let dateRange = null
-
-            if (periodo_letivo != null) {
-                dateRange = {
-                    start: parseDate(periodo_letivo.data_inicio),
-                    end: parseDate(periodo_letivo.data_termino)
-                }
-            } else {
-                if (ano_letivo != null) {
-                    dateRange = {
-                        start: parseDate(ano_letivo.data_inicio),
-                        end: parseDate(ano_letivo.data_termino)
-                    }
-                }
-            }
-
-            const monthDict = {
-                1: "Janeiro",
-                2: "Fevereiro",
-                3: "Março",
-                4: "Abril",
-                5: "Maio",
-                6: "Junho",
-                7: "Julho",
-                8: "Agosto",
-                9: "Setembro",
-                10: "Outubro",
-                11: "Novembro",
-                12: "Dezembro"
-            }
-
-            const years = {}
-
-            if (dateRange) {
-                const startDate = dateRange.start
-                const endDate = dateRange.end
-
-                let currentDate = startDate
-                
-                while (endDate.toMillis() > currentDate.toMillis()) {
-                    if (!years[currentDate.year]) {
-                        years[currentDate.year] = []
-                    }
-                    if (years[currentDate.year].indexOf(currentDate.month) === -1) {
-                        years[currentDate.year].push(currentDate.month)
-                    }
-                    currentDate = currentDate.plus(Duration.fromObject({
-                        months: 1
-                    }))
-                }
-            }
-
-            listaDate.forEach(record => {
-                const date = parseDate(record.data_lancamento)
-                const year = date.year
-                if (!years.hasOwnProperty(year)) years[year] = []
-                const monthsFromYear = years[year]
-                if (monthsFromYear.indexOf(date.month) === -1) {
-                    years[year].push(date.month)
-                }
-            })
-            %>
-        <% for (year in years) { %>
-            <% if (!years.hasOwnProperty(year)) continue %>
-                <% years[year].forEach(month => { %>
-                    <tr>
-                        <td><%= monthDict[month] %></td>
-                        <% const monthRange = listaDate.filter(record => {
-                            const date = parseDate(record.data_lancamento)
-                            return date.month === month && date.year === parseInt(year)
-                        }) %>
-                        <!-- Quantidade de presença no dia -->
-                        <% const maxDays = 32 %>
-                        <% for (let i = 1; i < maxDays; i++) { %>
-                            <% const day = monthRange.filter(record => {
-                                const date = parseDate(record.data_lancamento)
-                                return date.day === i
-                            }) %>
-                            <% if (day.length > 0) { %>
-                                <td class="text-center">
-
-                                    <% if (day.qtd_presenca > 0) { %>
-                                            <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
-                                    <% } else { %>
-                                            <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
-                                    <% } %>
-                                </td>
-                            <% } else { %>
-                                <!-- Vazio, sem falta ou frequencia -->
-                                <td class="text-center"></td>
-                            <% } %>
-                        <% } %>
-                        <!-- Faltas -->
-                        
-                        <td class="text-center">
-                            <% const existiuFalta = monthRange.some(({ qtd_faltas }) => qtd_faltas !== null) %>
-                            <% if (existiuFalta) { %>
-                                <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %> 
-                            <% } %>
-                        </td>
-                    </tr>
-                <% }) %>
-            
-        <% } %>
-    </tbody>
-</table>
-<p style="font-size: 12px;"><b>Legenda: (F.J.)</b> Nº de Faltas Justificadas - Data da Falta Justificada</p><br><br><br>
-
-<b>Observação</b>
-<% lista_falta_justificada.forEach(item => {%>
-    <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. () - (): <% item.descricao%></p>
-<% });%>
+    <style>
+        #frequencia {
+            table-layout: fixed;
+            font-size: 12px;
+        }
     
+        #frequencia>tbody>tr>td:first-child {
+            font-stretch: 50%;
+        }
+    
+        #frequencia>thead>tr>td {
+            font-stretch: condensed;
+            text-align: center;
+        }
+    
+        .table {
+            width: 100%;
+            border-spacing: 0;
+        }
+    
+        .table>thead>tr>td,
+        .table>tbody>tr>td {
+            border: 1px solid;
+        }
+    
+        .text-line {
+            border-bottom: 1px solid;
+        }
+    
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
 
+    <table id="frequencia" class="table">
+        <thead>
+            <tr>
+                <td style="width: 60px">Meses/<br />Data</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+                <td>15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>19</td>
+                <td>20</td>
+                <td>21</td>
+                <td>22</td>
+                <td>23</td>
+                <td>24</td>
+                <td>25</td>
+                <td>26</td>
+                <td>27</td>
+                <td>28</td>
+                <td>29</td>
+                <td>30</td>
+                <td>31</td>
+                <td class="text-center" style="width: 50px">Faltas</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+                const parseDate = (date) => {
+                    return DateTime.fromJSDate(new Date(date), { zone: "America/Sao_Paulo" })
+                }
+    
+                const listaDate = frequencia.sort((a, b) => new Date(b.date) - new Date(a.date))
+    
+                let dateRange = null
+    
+                if (periodo_letivo != null) {
+                    dateRange = {
+                        start: parseDate(periodo_letivo.data_inicio),
+                        end: parseDate(periodo_letivo.data_termino)
+                    }
+                } else {
+                    if (ano_letivo != null) {
+                        dateRange = {
+                            start: parseDate(ano_letivo.data_inicio),
+                            end: parseDate(ano_letivo.data_termino)
+                        }
+                    }
+                }
+    
+                const monthDict = {
+                    1: "Janeiro",
+                    2: "Fevereiro",
+                    3: "Março",
+                    4: "Abril",
+                    5: "Maio",
+                    6: "Junho",
+                    7: "Julho",
+                    8: "Agosto",
+                    9: "Setembro",
+                    10: "Outubro",
+                    11: "Novembro",
+                    12: "Dezembro"
+                }
+    
+                const years = {}
+    
+                if (dateRange) {
+                    const startDate = dateRange.start
+                    const endDate = dateRange.end
+    
+                    let currentDate = startDate
+                    
+                    while (endDate.toMillis() > currentDate.toMillis()) {
+                        if (!years[currentDate.year]) {
+                            years[currentDate.year] = []
+                        }
+                        if (years[currentDate.year].indexOf(currentDate.month) === -1) {
+                            years[currentDate.year].push(currentDate.month)
+                        }
+                        currentDate = currentDate.plus(Duration.fromObject({
+                            months: 1
+                        }))
+                    }
+                }
+    
+                listaDate.forEach(record => {
+                    const date = parseDate(record.data_lancamento)
+                    const year = date.year
+                    if (!years.hasOwnProperty(year)) years[year] = []
+                    const monthsFromYear = years[year]
+                    if (monthsFromYear.indexOf(date.month) === -1) {
+                        years[year].push(date.month)
+                    }
+                })
+            %>
+            <% for (year in years) { %>
+                <% if (!years.hasOwnProperty(year)) continue %>
+                    <% years[year].forEach(month => { %>
+                        <tr>
+                            <td><%= monthDict[month] %></td>
+                            <% const monthRange = listaDate.filter(record => {
+                                const date = parseDate(record.data_lancamento)
+                                return date.month === month && date.year === parseInt(year)
+                            }) %>
+                            <!-- Quantidade de presença no dia -->
+                            <% const maxDays = 32 %>
+                            <% for (let i = 1; i < maxDays; i++) { %>
+                                <% const day = monthRange.filter(record => {
+                                    const date = parseDate(record.data_lancamento)
+                                    return date.day === i
+                                }) %>
+                                <% if (day.length > 0) { %>
+                                    <td class="text-center">
+    
+                                        <% if (day.qtd_presenca > 0) { %>
+                                                <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
+                                        <% } else { %>
+                                                <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
+                                        <% } %>
+                                    </td>
+                                <% } else { %>
+                                    <!-- Vazio, sem falta ou frequencia -->
+                                    <td class="text-center"></td>
+                                <% } %>
+                            <% } %>
+                            <!-- Faltas -->
+                            
+                            <td class="text-center">
+                                <% const existiuFalta = monthRange.some(({ qtd_faltas }) => qtd_faltas !== null) %>
+                                <% if (existiuFalta) { %>
+                                    <%= monthRange.length > 0 ? monthRange.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) : 0 %> 
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }) %>
+                
+            <% } %>
+        </tbody>
+    </table>
+    <p style="font-size: 12px;"><b>Legenda: (F.J.)</b> Nº de Faltas Justificadas - Data da Falta Justificada</p><br><br><br>
+    
+    <b>Observação</b>
+    <% lista_falta_justificada.forEach(item => {%>
+        <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. () - (): <% item.descricao%></p>
+    <% });%>
+        
+    
+    
+</body>
+</html>
