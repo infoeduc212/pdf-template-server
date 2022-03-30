@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
 
@@ -209,7 +209,7 @@
     <b>Observação</b>
     <% const dataLancamento = [] %>
     <% lista_falta_justificada.forEach(item => {%>
-        <%frequencia.forEach((element,index )=> {%>
+        <%frequencia.forEach(element=> {%>
             <%if (element.falta_justificada == true) {%>
                 
                 <%# dataLancamento.push(new Date(element.frequencia.data_lancamento)) %> 
