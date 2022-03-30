@@ -213,7 +213,7 @@
             <%if (element.falta_justificada == true) {%>
                 <% const dataLancamento = new Date(element.data_lancamento) %>
                 
-                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= number(dataLancamento.getDate().toString().padStart(2, "0")) %> / <%= number((dataLancamento.getMonth() + 1).toString().padStart(2, "0")) %> / <%= number(dataLancamento.getFullYear()) %>): <%= item.descricao%></p>
+                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= dataLancamento.getDate().toString().padStart(2, "0") %> / <%= (dataLancamento.getMonth() + 1).toString().padStart(2, "0") %> / <%= dataLancamento.getFullYear() %>): <%= item.descricao%></p>
             <%}%>
         <%});%>
     <% });%>
