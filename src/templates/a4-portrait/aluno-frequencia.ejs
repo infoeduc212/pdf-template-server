@@ -71,8 +71,7 @@
         <% lista_falta_justificada.forEach(element => { %>
             <% console.log(element.descricao); %> 
         <% }) %>
-        
-        <% console.log(lista_id_frequencia[1]); %> 
+
         <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia, periodo_letivo, ano_letivo }) %>
         <%- include("../reusable/campo-assinatura-3.ejs") %> 
     </div>
