@@ -210,7 +210,8 @@
     <% lista_falta_justificada.forEach(item => {%>
         <%frequencia.forEach(element => {%>
             <%if (element.falta_justificada == true) {%>
-                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (<%= item.qtd_faltas%>) - (<%= number(element.frequencia.data_lancamento.getDate().toString().padStart(2, "0")) %> / <%= number((element.frequencia.data_lancamento.getMonth() + 1).toString().padStart(2, "0")) %> / <%= number(element.frequencia.data_lancamento.getFullYear()) %>): <%= item.descricao%></p>
+                <% const dataLancamento = new Date(element.frequencia.data_lancamento) %>
+                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (<%= item.qtd_faltas%>) - (<%= number(dataLancamento.getDate().toString().padStart(2, "0")) %> / <%= number((dataLancamento.getMonth() + 1).toString().padStart(2, "0")) %> / <%= number(dataLancamento.getFullYear()) %>): <%= item.descricao%></p>
             <%}%>
         <%});%>
             
