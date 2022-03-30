@@ -157,10 +157,14 @@
                             }) %>
                             <% if (day.length > 0) { %>
                                 <td class="text-center">
-                                    <%var index = i - 1%>
 
                                     <% if (day.qtd_presenca > 0) { %>
-                                        <% console.log(frequencia[index].falta_justificada); %>
+                                        <% for (let index = 0; index < frequencia.length; index++) {%>
+                                            <%if (frequencia[index].falta_justificada) {%>
+                                                
+                                            <%}%>
+                                            <% console.log(frequencia[index].falta_justificada);%>
+                                        <%}%>
                                             <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
                                     <% } else { %>
                                             <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
