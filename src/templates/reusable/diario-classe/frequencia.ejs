@@ -209,7 +209,7 @@
     <% lista_falta_justificada.forEach(item => {%>
         <%#lista_id_frequencia.forEach(element => {%>
             <%# if (item.id_frequencia == element.id_frequencia) {%>
-                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (<%= item.qtd_faltas%>) - (<%= getFirstMonthFromDateArray2(frequencia) %>): <%= item.descricao%></p>
+                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (<%= item.qtd_faltas%>) - (<%= getFirstMonthFromDateArray(frequencia) %>): <%= item.descricao%></p>
             <%# }%>
         <%#});%>
     <% });%>
