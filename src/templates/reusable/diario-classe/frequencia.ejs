@@ -167,6 +167,7 @@
                                     <td class="text-center">
     
                                         <% if (day.qtd_presenca > 0) { %>
+                                            <% console.log(day.falta_justificada);%>
                                                 <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
                                         <% } else { %>
                                                 <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
