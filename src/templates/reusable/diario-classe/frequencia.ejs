@@ -115,19 +115,11 @@
                     11: "Novembro",
                     12: "Dezembro"
                 }
-                sortDateArray = function(dateArray) {
-                    if (dateArray.length > 0) {
-                        return dateArray.sort((a, b) => {
-                            return new Date(a.data_lancamento) - new Date(b.data_lancamento)
-                        })
-                    }
-                    return []
-                }
 
-                getFirstMonthFromDateArray = function(dateArray) {
-                    const sortedDateArray = sortDateArray(dateArray)
-                    return monthDict[new Date(sortedDateArray[sortedDateArray.length - 1].data_lancamento).getMonth()]
-                }
+
+
+
+
                 const years = {}
     
                 if (dateRange) {
@@ -207,11 +199,11 @@
     
     <b>Observação</b>
     <% lista_falta_justificada.forEach(item => {%>
-        <%#lista_id_frequencia.forEach(element => {%>
-            <%# if (item.id_frequencia == element.id_frequencia) {%>
-                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (<%= item.qtd_faltas%>) - (<%= getFirstMonthFromDateArray(frequencia) %>): <%= item.descricao%></p>
-            <%# }%>
-        <%#});%>
+        <%lista_id_frequencia.forEach(element => {%>
+            <% if (item.id_frequencia == element) {%>
+                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (<%= item.qtd_faltas%>) - (<%=  %>): <%= item.descricao%></p>
+            <% }%>
+        <%});%>
     <% });%>
         
     
