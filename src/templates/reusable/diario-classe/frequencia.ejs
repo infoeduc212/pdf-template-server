@@ -159,12 +159,6 @@
                                 <td class="text-center">
 
                                     <% if (day.qtd_presenca > 0) { %>
-                                        <% for (let index = 0; index < frequencia.length; index++) {%>
-                                            <%if (frequencia[index].falta_justificada) {%>
-                                                
-                                            <%}%>
-                                            <% console.log(frequencia[index].falta_justificada);%>
-                                        <%}%>
                                             <%= day.reduce((prev, { qtd_presenca }) => prev + qtd_presenca, 0) %>
                                     <% } else { %>
                                             <%= day.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
@@ -189,8 +183,11 @@
         <% } %>
     </tbody>
 </table>
-<p style="font-size: 14;"><b>Legenda: (F.J.)</b> Nº de Faltas Justificadas - Data da Falta Justificada</p><br><br><br>
+<p style="font-size: 12px;"><b>Legenda: (F.J.)</b> Nº de Faltas Justificadas - Data da Falta Justificada</p><br><br><br>
 
 <b>Observação</b>
-    <p style="border-bottom: 1px solid black;">F.J. () - (): </p>
+<% lista_falta_justificada.forEach(item => {%>
+    <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. () - (): <% item.descricao%></p>
+<% });%>
+    
 
