@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <%- include("../css/common.ejs") %>
+    <%- include("../reusable/utils.ejs") %>
+    <style>
+        .center {
+            margin: auto;
+            width: 50%;
+            text-align: center;
+        }
+
+        thead,
+        tbody,
+        td,
+        tr {
+            break-inside: avoid;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        td,
+        tr {
+            border: 1px solid;
+        }
+
+        thead {
+            font-weight: bold;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        .star-spacing {
+            width: 1%;
+            white-space: nowrap;
+        }
+    </style>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+</head>
+
+<body>
+    <div id="container">
+        <div class="center">
+            <img src="<%= header.logomarca_url %> " width="100" height="100">
+        </div>
+        <div style="text-align: center; font-size: 18px;">
+            <div style="font-weight: bold; font-size: 25px; line-height: 2.5;"><%= header.titulo %></div>
+            <%= header.nome_prefeitura %>
+            <br>
+            CNPJ: <%= header.cnpj %>
+        </div>
+        <br>
+        <br>
+        <h1 class="center"><%= title %></h1>
+        <br>
+        <table style="width: 100%; font-size: 18px;">
+            <thead>
+                <tr>
+                    <% table_header.forEach((item, index) => { %>
+                    <td style="white-space: nowrap;">
+                        <%= item %>
+                    </td>
+                    <% }) %>
+                </tr>
+            </thead>
+            <tbody>
+                <% list.forEach(arr => { %>
+                <tr>
+                    <% arr.forEach((item, index) => { %>
+                        <td class="<%= widths[index] === "auto" ? "star-spacing" : " " %>">
+                            <%= item %>
+                        </td>
+                    <% }) %>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        
+        <% const dateNow = DateTime.now().setZone("America/Sao_Paulo") %>
+        <p style="font-size: 13px; ">Relatório gerado pela Plataforma InfoEduc na data
+            <%= dateNow.toFormat("dd/MM/yyyy") %> às <%= dateNow.toFormat("HH:mm:ss") %> por <%= user.name %> 
+        </p>
+    </div>
+</body>
+
+</html>
