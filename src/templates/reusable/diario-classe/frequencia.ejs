@@ -225,7 +225,7 @@
     <% var index = 0%>
     <p style="border-bottom: 1px solid black; font-size: 12px;">
     <% lista_falta_justificada.forEach(item => {%>
-        F.J = (<%= item.qtd_faltas%>) - (<%= datas[index] %>): <%= item.descricao%>
+        F.J = (<%= item.qtd_faltas%>) - (<%= datas[index] %>): <%= item.descricao%>;
         <%index++%>
     <% });%>
     </p>
