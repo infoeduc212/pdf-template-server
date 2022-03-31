@@ -219,7 +219,7 @@
                 <%# console.log(dataLancamento[index]);%>
                 <%# console.log(dataLancamento);%>
                 <%#if (element.length == dataLancamento.length) {%>
-                    <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= element.data_lancamento.getDate().toString().padStart(2, "0") %> / <%= (element.data_lancamento.getMonth() + 1).toString().padStart(2, "0") %> / <%= element.data_lancamento.getFullYear() %>): <%= item.descricao%></p>
+                    <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= new Date(element.data_lancamento).getDate().toString().padStart(2, "0") %> / <%= new Date((element.data_lancamento).getMonth() + 1).toString().padStart(2, "0") %> / <%= new Date(element.data_lancamento).getFullYear() %>): <%= item.descricao%></p>
                 <%#}%>
                 
             <%}%>
