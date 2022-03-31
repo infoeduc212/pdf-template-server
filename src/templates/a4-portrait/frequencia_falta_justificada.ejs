@@ -204,32 +204,5 @@
             <% } %>
         </tbody>
     </table>
-    <% if(falta_justificada_diario == true ){%>
-        <p style="font-size: 12px;"><b>Legenda: (F.J.)</b> Nº de Faltas Justificadas - Data da Falta Justificada</p><br>
-        <%
-        function adicionaZero(numero){
-            if (numero <= 9) 
-                return "0" + numero;
-            else
-                return numero; 
-        }
-        %>
-        <%var datas = []%>
-        <%frequencia.forEach(element=> {%>
-            <%if (element.falta_justificada == true) {%>
-                <% var data = new Date(element.data_lancamento) %>
-                <%datas.push((adicionaZero(data.getDate().toString()) + "/" + (adicionaZero(data.getMonth()+1).toString()) + "/" + data.getFullYear()))%>
-            <%}%>
-        <%});%>
-        <%console.log(datas);%>
-        <b style="font-size: 14px;">Observação</b>
-        <% var index = 0%>
-        <p style="border-bottom: 1px solid black; font-size: 12px;">
-        <% lista_falta_justificada.forEach(item => {%>
-            F.J = (<%= item.qtd_faltas%>) - (<%= datas[index] %>): <%= item.descricao%>;
-            <%index++%>
-        <% });%>
-        </p>
-    <%}%>
 </body>
 </html>
