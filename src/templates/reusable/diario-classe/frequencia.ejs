@@ -206,7 +206,11 @@
     </table>
     <p style="font-size: 12px;"><b>Legenda: (F.J.)</b> Nº de Faltas Justificadas - Data da Falta Justificada</p><br>
 
-
+    <%var datas = []%>
+    <%frequencia.forEach(element=> {%>
+        <% var data = new Date(element.data_lancamento) %>
+        datas.push(((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear())
+    <%});%>
     
     <b>Observação</b>
     <% lista_falta_justificada.forEach(item => {%>
