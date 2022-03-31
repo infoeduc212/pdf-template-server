@@ -209,11 +209,16 @@
 
     
     <b>Observação</b>
+    <% var arrayDatas = [] %>
     <% lista_falta_justificada.forEach(item => {%>
         <%frequencia.forEach(element=> {%>
             <%if (element.falta_justificada == true) {%>
+                
+                <%for (let index = 0; index < lista_falta_justificada.length; index++) {%>
+                    <% var data = new Date(element.data_lancamento)%>
+                    <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= toString(((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear()) %>): <%= item.descricao%></p>
+                <%}%>
 
-                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= toString(((element.data_lancamento.getDate() )) + "/" + ((element.data_lancamento.getMonth() + 1)) + "/" + element.data_lancamento.getFullYear()) %>): <%= item.descricao%></p>
                 
             <%}%>
         <%});%>
