@@ -210,10 +210,12 @@
     
     <b>Observação</b>
     <% var dataLancamento = [] %>
+    <% var index = 0%>
     <% lista_falta_justificada.forEach(item => {%>
-        <%frequencia.forEach((element,index)=> {%>
+        <%frequencia.forEach(element=> {%>
             <%if (element.falta_justificada == true) {%>
                 <% dataLancamento.push(new Date(element.data_lancamento)) %>
+                <%index++%>
                 
                 <% console.log(dataLancamento[index]);%>
                 <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= dataLancamento[index].getDate().toString().padStart(2, "0") %> / <%= (dataLancamento[index].getMonth() + 1).toString().padStart(2, "0") %> / <%= dataLancamento[index].getFullYear() %>): <%= item.descricao%></p>
