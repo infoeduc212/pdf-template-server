@@ -216,7 +216,7 @@
             <%if (element.falta_justificada == true) {%>
                 <% dataLancamento.push(new Date(element.data_lancamento)) %>
                 <% index++ %>
-                <% var dataFormatada = toString(((dataLancamento[index].getDate() )) + "/" + ((dataLancamento.getMonth() + 1)) + "/" + dataLancamento.getFullYear())%>
+                <% var dataFormatada = toString(((dataLancamento[index].getDate() )) + "/" + ((dataLancamento[index].getMonth() + 1)) + "/" + dataLancamento[index].getFullYear())%>
                 <%# console.log(dataLancamento[index]);%>
                 <%# console.log(dataLancamento);%>
                 <%#if (element.length == dataLancamento.length) {%>
