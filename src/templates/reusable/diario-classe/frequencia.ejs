@@ -217,13 +217,8 @@
     <b>Observação</b>
     <% var index = 0%>
     <% lista_falta_justificada.forEach(item => {%>
-        <%frequencia.forEach(element=> {%>
-            <%if (element.falta_justificada == true) {%>
-                <% var data = new Date(element.data_lancamento) %>
-                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= datas[index] %>): <%= item.descricao%></p>
-                <%index++%>
-            <%}%>
-        <%});%>
+        <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= datas[index] %>): <%= item.descricao%></p>
+        <%index++%>
     <% });%>
     
     
