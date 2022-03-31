@@ -171,8 +171,7 @@
             </div>
         </div>
         <% if (aluno.frequencia) { %>
-            
-        <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia, ano_letivo, falta_justificada_diario }) %>
+        <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: aluno.frequencia, ano_letivo }) %>
         <% } %>
         <% if (aluno.notas) { %>
 
