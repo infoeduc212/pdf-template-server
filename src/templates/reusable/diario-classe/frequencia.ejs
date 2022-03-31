@@ -218,7 +218,10 @@
                 <% index++ %>
                 <% console.log(dataLancamento[index]);%>
                 <% console.log(dataLancamento);%>
-                <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= dataLancamento[index].getDate().toString().padStart(2, "0") %> / <%= (dataLancamento[index].getMonth() + 1).toString().padStart(2, "0") %> / <%= dataLancamento[index].getFullYear() %>): <%= item.descricao%></p>
+                <%if (element.length == dataLancamento.length) {%>
+                    <p style="border-bottom: 1px solid black; font-size: 16px;">F.J. (  <%= item.qtd_faltas%>) - (<%= dataLancamento[index].getDate().toString().padStart(2, "0") %> / <%= (dataLancamento[index].getMonth() + 1).toString().padStart(2, "0") %> / <%= dataLancamento[index].getFullYear() %>): <%= item.descricao%></p>
+                <%}%>
+                
             <%}%>
         <%});%>
     <% });%>
