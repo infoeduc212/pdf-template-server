@@ -221,13 +221,14 @@
         <%}%>
     <%});%>
     <%console.log(datas);%>
-    <b>Observação</b>
+    <b style="font-size: 14px;">Observação</b>
     <% var index = 0%>
+    <p style="border-bottom: 1px solid black; font-size: 12px;">
     <% lista_falta_justificada.forEach(item => {%>
-        <p style="border-bottom: 1px solid black; font-size: 16px;">F.J = (<%= item.qtd_faltas%>) - (<%= datas[index] %>): <%= item.descricao%></p>
+        F.J = (<%= item.qtd_faltas%>) - (<%= datas[index] %>): <%= item.descricao%>
         <%index++%>
     <% });%>
-    
+    </p>
     
 </body>
 </html>
