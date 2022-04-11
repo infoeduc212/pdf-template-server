@@ -9,6 +9,6 @@
         "path": "a4-portrait",
         "format": "A4",
         "landscape": false,
-        "watermark_exceptions": ["diario-classe", "tabela"]
+        "watermark_exceptions": ["diario-classe", "tabela","relatorio-alunos-etapa"]
     }
 ]
