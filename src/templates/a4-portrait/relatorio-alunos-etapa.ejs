@@ -2,45 +2,99 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %> 
+    <style>
+      .barra{
+        background-color: blue;
+        width: 60px;
+        margin-left: 20px;
+        text-align: right;
+        color: white;
+        text-align: right;
+
+      }
+      .celula{
+        margin-top: 25px;
+        display: flex;
+      }
+      #total{
+        position: relative;
+        left: 97%;
+        margin-top: 25px;
+      }
+      #grafico{
+        width: 560px;
+        position: absolute;
+        top: 50%;
+        left: 14%;
+      }
+      .text{
+        font-size: 28px;
+      }
+      .total_barra{
+        text-align: center;
+        font-size: 22px;
+        position: relative;
+        top: 5px;
+        margin-left: 5px;
+        
+      }
+      #legenda{
+        font-size: 22px;
+        margin-left: 140px;
+      }
+      #zero{
+        position: relative;
+      }
+      ul{
+        list-style: none;
+        display: flex;
+        
+      }
+      li{
+        margin-left: 25px;
+      }
+
+    </style>
 </head>
 <body>
+  <div id="container">
+    <%- include("../reusable/header.ejs") %>
+    <div style="text-align: center; position: relative; top: 150px;font-size: 22px; font-weight: bold;">Relatorio de Alunos por Etapa de Escolaridade</div>
+    <div id="grafico">
+      <div class="celula">
+        <div class="text">Fundamental</div>
+        <div class="barra" style="position: relative; left: -2px; background-color: #0088ff; width: <%= alunos_fundamental/total_aluno *100%>%;"></div><span class="total_barra">12</span>
+      </div>
+      <hr>
+      <div class="celula">
+        <div class="text" >Infantil</div>
+        <div class="barra" style="background-color: #399DF5; width: <%= alunos_infantil/total_aluno *100%>%; margin-left: 100px;"></div><span class="total_barra">12</span>
+      </div>
+      <hr>
+      <div class="celula">
+        <div class="text">EJA</div> 
+        <div class="barra" style="background-color: #6AB6F7; width: <%= alunos_eja/total_aluno *100%>%; margin-left: 130px;"></div><span class="total_barra">12</span>
+      </div>
+      <hr color="black">
+      <div id="legenda">
+          <ul>
+            <li style="margin-left: 0px; position: relative; left: -5px;">0</li><div style=" position: relative; left: -12px; top: -240px; height: 240px; border-left: 1px solid black;"></div>
+            <li><%= (total_aluno / 5).toFixed() %> </li><div style="z-index: -1; position: relative; left: -20px; top: -240px; height: 240px; border-left: 1px solid rgba(0, 0, 0, 0.438);"></div>
+            <li><%= (total_aluno / 4).toFixed() %> </li><div style="z-index: -1; position: relative; left: -20px; top: -240px; height: 240px; border-left: 1px solid rgba(0, 0, 0, 0.438);"></div>
+            <li><%= (total_aluno / 3).toFixed() %> </li><div style="z-index: -1; position: relative; left: -20px; top: -240px; height: 240px; border-left: 1px solid rgba(0, 0, 0, 0.438);"></div>
+            <li><%= (total_aluno / 2).toFixed() %> </li><div style="z-index: -1; position: relative; left: -20px; top: -240px; height: 240px; border-left: 1px solid rgba(0, 0, 0, 0.438);"></div>
+            <li style="position: relative; left: 25px;"><%= total_aluno %> </li><div style="z-index: -1; position: relative; top: -240px; height: 240px; border-left: 1px solid rgba(0, 0, 0, 0.438);"></div>
+          </ul>
+      </div>
+    </div> 
+    <% const dateNow = DateTime.now().setZone("America/Sao_Paulo"); %> 
 
-    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ["Element", "Density", { role: "style" } ],
-          ["Copper", 8.94, "#b87333"],
-          ["Silver", 10.49, "silver"],
-          ["Gold", 19.30, "gold"],
-          ["Platinum", 21.45, "color: #e5e4e2"]
-        ]);
-  
-        var view = new google.visualization.DataView(data);
-        view.setColumns([0, 1,
-                         { calc: "stringify",
-                           sourceColumn: 1,
-                           type: "string",
-                           role: "annotation" },
-                         2]);
-  
-        var options = {
-          title: "Density of Precious Metals, in g/cm^3",
-          width: 600,
-          height: 400,
-          bar: {groupWidth: "95%"},
-          legend: { position: "none" },
-        };
-        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-        chart.draw(view, options);
-    }
-    </script>
-  
+  </div>
+  <div style="position: absolute; top: 95%; width: 100%; text-align: center; font-size: 14px;">
+    PDF gerado pela Plataforma InfoEduc na data <%= dateNow.toFormat("dd/MM/yyyy")%>  às <%= dateNow.toFormat("HH:mm:ss") %> 
+    </div>
 </body>
 </html>
