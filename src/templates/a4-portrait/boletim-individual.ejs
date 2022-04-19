@@ -222,7 +222,7 @@
             <%
             var materias = []
             notas_diversificada.forEach(element => {
-                materias.push(element.diciplina)
+                materias.push(element.diciplina_diversificada)
             });
             
             var materias_diversificada = materias.filter(function(este, i) {
@@ -238,8 +238,8 @@
                         <% } %>
                         <td><%= diciplina %> </td>
                         <% notas_diversificada.forEach(notas => { %>
-                            <% if (remover_acentos_espaco(notas.diciplina).toLowerCase() == remover_acentos_espaco(diciplina).toLowerCase()) { %>
-                                <td class="text_center"><%= notas.nota %> </td>
+                            <% if (remover_acentos_espaco(notas.diciplina_diversificada).toLowerCase() == remover_acentos_espaco(diciplina).toLowerCase()) { %>
+                                <td class="text_center"><%= notas.nota_diversificada %> </td>
                             <% } %>
                         <% }) %>
 
