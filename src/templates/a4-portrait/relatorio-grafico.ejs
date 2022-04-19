@@ -372,13 +372,14 @@ BAR-CHART
   right: 5%;
   box-shadow: 3px 0 rgba(0,0,0,.1), 3px -3px rgba(0,0,0,.1);
 }
+
 .bar-chart .eje-x li:nth-child(1):before {
   background: #E64C65;  
-  height: 325%;
+  height:<%= alunos_fundamental == (total_aluno / 4).toFixed() ? "275" : Math.abs(275 - (alunos_fundamental - 50)) %>%;
 }
 .bar-chart .eje-x li:nth-child(2):before {
   background: #11A8AB;  
-  height: 300%;
+  height: 325%;
 }
 .bar-chart .eje-x li:nth-child(3):before {
   background: #FCB150;  
@@ -400,17 +401,10 @@ BAR-CHART
   background: #15BFCC;  
   height: 520%;
 }
-/*****************************
-USO NÚMEROS MÁGICOS EN ALGUNOS VALORES
-POR NO PARARME A ESTUDIAR A FONDO
-EL CSS DEL PEN ORIGINAL
-*****************************/
-    </style>
+</style>
 </head>
 <body>
-    <%
-
-    %>
+  <p><%= alunos_fundamental == (total_aluno / 4).toFixed() ? "275" :  %></p>
     <div class="bar-chart-block block">
       <h2 class='titular'>test <span>*1000</span></h2>
       <div class='grafico bar-chart'>
@@ -422,13 +416,9 @@ EL CSS DEL PEN ORIGINAL
            <li data-ejeY='<%= 0 %> '></li>
          </ul>
          <ul class='eje-x' style="margin-bottom: 8px;">
-           <li data-ejeX='37'><i style="margin-left: 15px;">España</i></li>
-           <li data-ejeX='56'><i  style="margin-left: 15px;">Portugal</i></li>
-           <li data-ejeX='25'><i style="margin-left: 15px;">Italia</i></li>
-           <li data-ejeX='18'><i style="margin-left: 15px;">Grecia</i></li>
-           <li data-ejeX='45'><i style="margin-left: 15px;">EE.UU</i></li>
-           <li data-ejeX='55'><i style="margin-left: 15px;">México</i></li>
-           <li data-ejeX='33'><i style="margin-left: 15px;">Chile</i></li>
+           <li data-ejeX='500'><i style="margin-left: 12px; margin-top: 4px;">Fundamental</i></li>
+           <li data-ejeX='56'><i  style="margin-left: 15px;">Infantil</i></li>
+           <li data-ejeX='25'><i style="margin-left: 15px;">EJA</i></li>
          </ul>
       </div>
     </div>
