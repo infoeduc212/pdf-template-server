@@ -79,10 +79,11 @@
             </tr>
             <tr>
                 <% unidade.forEach(element => { %>
-                    <th><%= element %> </th>
+                    <th><%= element.unidade_sigla %> </th>
                 <% }) %>
             </tr>
             <!-- base comum -->
+
             <tr>
                 <th rowspan="9" style="width: 5px; height: 300px;" class="text-vertical"><span class="text">BASE NACIONAL COMUM</span></th>
                 <td>Língua Portuguesa</td>
@@ -144,7 +145,12 @@
                 <td>Matemática</td>
                 <% notas.forEach(element => { %>
                     <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "matematica") { %>
-                        <td class="text_center"><%= element.nota %> </td>
+                        <% unidade.forEach(unidade => { %>
+                            <% if (unidade.unidade == element.unidade) { %>
+                                <td class="text_center"><%= element.nota %> </td>
+                            <% } %>
+                        <% }) %>
+                        
                     <% } %>
                 <% }) %>
                 <% totais.forEach(element => { %>
@@ -213,18 +219,40 @@
                 <% }) %>
             </tr>
             <!-- parte diversificada -->
-            <% materias_diversificada.forEach((element, index)=> { %>
-                <% if (index == 0) { %>
+            <%
+            var materias = []
+            notas_diversificada.forEach(element => {
+                materias.push(element.diciplina)
+            });
+            
+            var materias_diversificada = materias.filter(function(este, i) {
+                return materias.indexOf(este) === i;
+            });
+             %> 
+            
+                <% materias_diversificada.forEach((diciplina, index)=> { %>
+                
                     <tr>
-                        <th rowspan="<%= materias_diversificada.length %> " style="width: 5px; height: 180px;" class="text-vertical"><span class="text" style="position: relative; left: -80px;">PARTE DIVERSIFICADA</span></th>
-                        <td><%= element %> </td>
+                        <% if (index == 0) { %>
+                            <th rowspan="<%= materias_diversificada.length %> " style=" width: 5px; height: 190px;" class="text-vertical"><span style="position: relative; left: -80px;">PARTE DIVERSIFICADA</span></th>
+                        <% } %>
+                        <td><%= diciplina %> </td>
+                        <% notas_diversificada.forEach(notas => { %>
+                            <% if (remover_acentos_espaco(notas.diciplina).toLowerCase() == remover_acentos_espaco(diciplina).toLowerCase()) { %>
+                                <td class="text_center"><%= notas.nota %> </td>
+                            <% } %>
+                        <% }) %>
+
+                        <% totais.forEach(element => { %>
+
+                            <% if (remover_acentos_espaco(element.diciplina).toLowerCase() ==remover_acentos_espaco(diciplina).toLowerCase() ) { %>
+                                <td  class="backCinza text_center"><%= element.media %> </td>
+                                <td  class="backCinza text_center"><%= element.total_faltas %> </td>
+                            <% } %>
+                        <% }) %>
                     </tr>
-                <% }else{%>
-                    <tr>
-                        <td><%= element %> </td>
-                    </tr>
-                <%} %>
-            <% }) %>
+                <% }) %>
+            
         </table>
     </div>
 </body>
