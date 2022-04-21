@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %>
+    <style>
+        .text{
+            position: relative;
+            left: -30px;
+        }
+        .text2{
+            position: relative;
+            left: -45px;
+            max-height:50px;
+        }
+        .text-vertical{
+            max-width: 15px;
+            
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .center{
+            text-align: center;
+        }
+        .backCinza{
+            background-color: rgb(224, 224, 224);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <%- include("../reusable/header.ejs") %>
+        <h2 class="page-title">ATA DE RENDIMENTO ESCOLAR DO ALUNO</h2>
+        <div class="flex flex-column small-gap">
+            <div class="flex" style="gap: 10px;">
+
+                <div class="multicolumn" >
+                    <b class="pad-right">Aluno:</b>
+                    <div class="text-line"><%= nome_aluno %> <%= sobrenome_aluno %></div>
+                </div> 
+                <div class="multicolumn" style="max-width: 220px;">
+                    <b class="pad-right">Turma:</b>
+                    <div class="text-line"><%= nome_turma %></div>
+                </div>  
+                <div class="multicolumn" style="max-width: 140px;">
+                    <b class="pad-right">Turno:</b>
+                    <div class="text-line"><%= nome_turno %></div>
+                </div>
+                <div class="multicolumn" style="max-width: 130px;">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"><%= nome_ano_letivo %> </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 15px;">
+            <table class="table" >
+                <% 
+                var campos = 5
+                    if (recuperacoes.recuperacao_atv == true && recuperacoes.recuperacao_periodo == true && recuperacoes.recuperacao_final == true) {
+                        campos = 8
+                    }
+                    if (recuperacoes.recuperacao_atv == true && recuperacoes.recuperacao_periodo == true && recuperacoes.recuperacao_final == false || recuperacoes.recuperacao_atv == true && recuperacoes.recuperacao_periodo == false && recuperacoes.recuperacao_final == true || recuperacoes.recuperacao_atv == false && recuperacoes.recuperacao_periodo == true && recuperacoes.recuperacao_final == true) {
+                        campos = 7
+                    }
+                    if (recuperacoes.recuperacao_atv == false && recuperacoes.recuperacao_periodo == false && recuperacoes.recuperacao_final == true || recuperacoes.recuperacao_atv == false && recuperacoes.recuperacao_periodo == true && recuperacoes.recuperacao_final == false || recuperacoes.recuperacao_atv == true && recuperacoes.recuperacao_periodo == false && recuperacoes.recuperacao_final == false) {
+                        campos = 6
+                    }
+                %> 
+                <tr>
+                    <th class="backCinza" style="height: 160px; min-width: 180px;" rowspan="2" colspan="2"><span style="position: relative; left: 35px; top: -40px;">RENDIMENTO <br> ESCOLAR</span> <br> <span style="position: relative; left: -25px; top: 40px;">COMPONENTES <br> CURRICULARES</span></th>
+                    <th class="backCinza" style="height: 20px;" colspan="<%= campos%> ">I UNIDADE</th>
+                    <th class="backCinza" colspan="<%=campos%>">II UNIDADE</th>
+                    <th class="backCinza" colspan="<%=campos%>">III UNIDADE</th>
+                    <th class="backCinza" colspan="<%=campos%>">IV UNIDADE</th>
+                    <th class="backCinza" colspan="<%=campos%>">RESULTADO FINAL</th>
+                </tr>
+                <tr style="font-size: 14px;">
+                    <!-- unidade 1 -->
+                    <td class="text-vertical"><span class="text2">AVALIAÇÃO</span></td>
+                    <td class="text-vertical"><span class="text2">ATIVIDADE</span></td>
+                    <% if (recuperacoes.recuperacao_atv == true) { %>
+                        <td class="text-vertical"><span class="text2">RECUPERAÇÃO</span></td>
+                    <% } %>
+                    <td class="text-vertical"><span class="text2">AVALIAÇÃO</span></td>
+                    <td class="text-vertical"><span class="text2">MÉDIA DO <br> PERÍODO</span></td>   
+                    <% if (recuperacoes.recuperacao_periodo == true) { %>
+                        <td class="text-vertical"><span class="text2">RECUPERAÇÃO</span></td>
+                    <% } %>
+                    <td class="text-vertical"><span class="text2">MEDIA FINAL DO <br> PERÍDODO</span></td> 
+
+                    <!-- unidade 2 -->
+                    <td class="text-vertical"><span class="text2">AVALIAÇÃO</span></td>
+                    <td class="text-vertical"><span class="text2">ATIVIDADE</span></td>
+                    <% if (recuperacoes.recuperacao_atv == true) { %>
+                        <td class="text-vertical"><span class="text2">RECUPERAÇÃO</span></td>
+                    <% } %>
+                    <td class="text-vertical"><span class="text2">AVALIAÇÃO</span></td>
+                    <td class="text-vertical"><span class="text2">MÉDIA DO <br> PERÍODO</span></td>
+                    <% if (recuperacoes.recuperacao_periodo == true) { %>
+                        <td class="text-vertical"><span class="text2">RECUPERAÇÃO</span></td>
+                    <% } %>
+                    <td class="text-vertical"><span class="text2">MEDIA FINAL DO <br> PERÍDODO</span></td> 
+
+                    <!-- unidade 3 -->
+                    <td class="text-vertical"><span class="text2">AVALIAÇÃO</span></td>
+                    <td class="text-vertical"><span class="text2">ATIVIDADE</span></td>
+                    <% if (recuperacoes.recuperacao_atv == true) { %>
+                        <td class="text-vertical"><span class="text2">RECUPERAÇÃO</span></td>
+                    <% } %>
+                    <td class="text-vertical"><span class="text2">AVALIAÇÃO</span></td>
+                    <td class="text-vertical"><span class="text2">MÉDIA DO <br> PERÍODO</span></td>
+                    <% if (recuperacoes.recuperacao_periodo == true) { %>
+                        <td class="text-vertical"><span class="text2">RECUPERAÇÃO</span></td>
+                    <% } %>
+                    <td class="text-vertical"><span class="text2">MEDIA FINAL DO <br> PERÍDODO</span></td> 
+
+                    <!-- unidade 4 -->
+                    <td class="text-vertical"><span class="text2">AVALIAÇÃO</span></td>
+                    <td class="text-vertical"><span class="text2">ATIVIDADE</span></td>
+                    <% if (recuperacoes.recuperacao_atv == true) { %>
+                        <td class="text-vertical"><span class="text2">RECUPERAÇÃO</span></td>
+                    <% } %>
+                    <td class="text-vertical"><span class="text2">AVALIAÇÃO</span></td>
+                    <td class="text-vertical"><span class="text2">MÉDIA DO <br> PERÍODO</span></td>
+                    <% if (recuperacoes.recuperacao_periodo == true) { %>
+                        <td class="text-vertical"><span class="text2">RECUPERAÇÃO</span></td>
+                    <% } %>
+                    <td class="text-vertical"><span class="text2">MEDIA FINAL DO <br> PERÍODO</span></td> 
+                    
+                    <!-- resultado final -->
+                    <td class="text-vertical"><span class="text">Total de pontos <br> Anuais</span></td>
+                    <td class="text-vertical"><span class="text">Média Anual</span></td>
+                    <td class="text-vertical"><span class="text2">Recuperação <br> Final</span></td>
+                    <td class="text-vertical"><span class="text">Média final</span></td>
+                    <th class="text-vertical"><span style="left: 0px;" class="text">SITUAÇÃO</span></th> 
+                </tr>
+                <% diciplinas_base_comum.forEach((element,index) => { %>
+                    <tr>
+                        <% if (index == 0) { %>
+                            <% var diciplinas = diciplinas_base_comum.length + diciplinas_parte_diversificada.length %> 
+                            <th class="text-vertical" style="height: 200px;" rowspan="<%= diciplinas_base_comum.length %> "><span style="left: -80px;" class="text">BASE NACIONAL COMUM</span></th>
+                        <% } %>
+                        <td><%= element.nome %></td>
+
+                        <!-- unidade 1 -->
+
+                        <!-- avaliacao 1 -->
+                        <% if (element.unidade1.avaliacao1 == null || element.unidade1.avaliacao1 == undefined) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade1.avaliacao1 %> </td>
+                        <%} %>
+
+                        <!-- atividade -->
+                        <% if (element.unidade1.atv == null || element.unidade1.atv == undefined) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade1.atv %> </td>
+                        <%} %>
+                        <!-- recuperacao atividade -->
+                        <% if (element.unidade1.rec_atv == null || element.unidade1.rec_atv == undefined) { %>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <td class="center"><%= element.unidade1.rec_atv %> </td>
+                            <% } %>
+                        <%} %>                        
+
+                        <!-- avaliacao 2 -->
+                        <% if (element.unidade1.avaliacao2 == null || element.unidade1.avaliacao2 == undefined) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade1.avaliacao2 %> </td>
+                        <%} %>
+                        
+
+                        <!-- media do periodo -->
+                        <% if (element.unidade1.media_periodo == null || element.unidade1.media_periodo == undefined) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade1.media_periodo %> </td>
+                        <%} %>
+
+                        <!-- recuperacao -->
+                        <% if (element.unidade1.rec == null || element.unidade1.rec == undefined) { %>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <td class="center"><%= element.unidade1.rec %> </td>
+                            <%} %> 
+                        <%} %> 
+
+
+                        
+                         
+                        <!-- media final do periodo -->
+                        <% if (element.unidade1.media_final_periodo == null || element.unidade1.media_final_periodo == undefined) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if (parseInt(media.media_final_periodo) <= parseInt(element.unidade1.media_final_periodo)) { %>
+                                <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.unidade1.media_final_periodo  %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.unidade1.media_final_periodo %> </td>
+                            <%} %>
+                        <%} %>
+
+
+
+
+
+                        <!-- unidade 2 -->
+
+                        <!-- avaliacao 1 -->
+                        <% if (element.unidade2.avaliacao1 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade2.avaliacao1 %> </td>
+                        <%} %>
+
+                        <!-- atividade -->
+                        <% if (element.unidade2.atv == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade2.atv %> </td>
+                        <%} %>
+
+                        <!-- recuperacao atividade -->
+                        <% if (element.unidade2.rec_atv == null) { %>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <td class="center"><%= element.unidade2.rec_atv %> </td>
+                            <%} %> 
+                        <%} %>   
+
+
+
+                        <!-- avaliacao 2 -->
+                        <% if (element.unidade2.avaliacao2 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade2.avaliacao2 %> </td>
+                        <%} %>
+
+
+                        <!-- media do periodo -->
+                        <% if (element.unidade2.media_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade2.media_periodo %> </td>
+                        <%} %>
+                        
+                        <!-- recuperacao -->
+                        <% if (element.unidade2.rec == null) { %>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <td class="center"><%= element.unidade2.rec %> </td>
+                            <%} %> 
+                        <%} %>   
+    
+                         
+                        <!-- media final do periodo -->
+                        <% if (element.unidade2.media_final_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if (parseInt(media.media_final_periodo) <= parseInt(element.unidade2.media_final_periodo)) { %>
+                                <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.unidade2.media_final_periodo  %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.unidade2.media_final_periodo %> </td>
+                            <%} %>
+                        <%} %>
+
+                            
+
+
+                        <!-- unidade 3 -->
+
+                        <!-- avaliacao 1 -->
+                        <% if (element.unidade3.avaliacao1 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade3.avaliacao1 %> </td>
+                        <%} %>
+
+                            <!-- atividade -->
+                        <% if (element.unidade3.atv == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade3.atv %> </td>
+                        <%} %>
+
+                        <!-- recuperacao atividade -->
+                        <% if (element.unidade3.rec_atv == null) { %>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <td class="center"><%= element.unidade3.rec_atv %> </td>
+                            <%} %> 
+                        <%} %>   
+
+                            <!-- avaliacao 2 -->
+                        <% if (element.unidade3.avaliacao2 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade3.avaliacao2 %> </td>
+                        <%} %>
+
+                            <!-- media do periodo -->
+                        <% if (element.unidade3.media_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade3.media_periodo %> </td>
+                        <%} %>
+
+                        <!-- recuperacao -->
+                        <% if (element.unidade3.rec == null) { %>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <td class="center"><%= element.unidade3.rec %> </td>
+                            <%} %> 
+                        <%} %> 
+                         
+                        <!-- media final do periodo -->
+                        <% if (element.unidade3.media_final_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if (parseInt(media.media_final_periodo) <= parseInt(element.unidade3.media_final_periodo)) { %>
+                            <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.unidade3.media_final_periodo  %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.unidade3.media_final_periodo %> </td>
+                            <%} %>
+                        <%} %>
+
+                            
+
+                        <!-- unidade 4 -->
+
+                        <!-- avaliacao 1 -->
+                        <% if (element.unidade4.avaliacao1 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade4.avaliacao1 %> </td>
+                        <%} %>
+
+                            <!-- atividade -->
+                        <% if (element.unidade4.atv == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade4.atv %> </td>
+                        <%} %>
+
+                        <!-- recuperacao atividade -->
+                        <% if (element.unidade4.rec_atv == null) { %>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <td class="center"><%= element.unidade4.rec_atv %> </td>
+                            <%} %> 
+                        <%} %>   
+
+
+                            <!-- avaliacao 2 -->
+                        <% if (element.unidade4.avaliacao2 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade4.avaliacao2 %> </td>
+                        <%} %>
+
+                            <!-- media do periodo -->
+                        <% if (element.unidade4.media_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade4.media_periodo %> </td>
+                        <%} %>
+
+                        <!-- recuperacao -->
+                        <% if (element.unidade4.rec == null) { %>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <td class="center"><%= element.unidade4.rec %> </td>
+                            <%} %> 
+                        <%} %> 
+                         
+                        <!-- media final do periodo -->
+                        <% if (element.unidade4.media_final_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if (parseInt(media.media_final_periodo) <= parseInt(element.unidade4.media_final_periodo)) { %>
+                                <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.unidade4.media_final_periodo  %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.unidade4.media_final_periodo %> </td>
+                            <%} %>
+                        <%} %>
+
+                            
+
+                        <!-- resultado final -->
+
+                        <!-- total de pontos -->
+                        <% if (element.resultado_final.total_pontos_anual == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.resultado_final.total_pontos_anual %> </td>
+                        <%} %>
+
+
+                        <!-- media anual -->
+                        <% if (element.resultado_final.media_anual == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.resultado_final.media_anual %> </td>
+                        <%} %>
+
+
+                        <!-- recuperacao final -->
+                        <% if (element.resultado_final.recuperacao_final == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                                <td class="center"><%= element.resultado_final.recuperacao_final %> </td>
+                        <%} %>
+
+                        <!-- media final -->
+                        <% if (element.resultado_final.media_final == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if (parseInt(media.media_final) <= parseInt(element.resultado_final.media_final)) { %>
+                                <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.resultado_final.media_final  %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.resultado_final.media_final %> </td>
+                            <%} %>
+                        <%} %>
+
+                        <!-- situacao -->
+                        <% if (element.resultado_final.situacao == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if ((element.resultado_final.situacao).toLowerCase() == "aprovado") { %>
+                                <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.resultado_final.situacao %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.resultado_final.situacao %> </td>
+                            <%} %>      
+                        <%} %>
+                    </tr>
+                <% }) %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- parte diversificada -->
+                <% diciplinas_parte_diversificada.forEach((element,index) => { %>
+                    <tr >
+                        <% if (index == 0) { %>> 
+                            <th class="text-vertical" style="height: 200px;" rowspan="<%= diciplinas_parte_diversificada.length %> "><span style="left: -80px;" class="text">PARTE DIVERSIFICADA</span></th>
+                        <% } %>
+                        <td><%= element.nome %></td>
+
+                        <!-- unidade 1 -->
+
+                        <!-- avaliacao 1 -->
+                        <% if (element.unidade1.avaliacao1 == null || element.unidade1.avaliacao1 == undefined) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade1.avaliacao1 %> </td>
+                        <%} %>
+
+                        <!-- atividade -->
+                        <% if (element.unidade1.atv == null || element.unidade1.atv == undefined) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade1.atv %> </td>
+                        <%} %>
+                        <!-- recuperacao atividade -->
+                        <% if (element.unidade1.rec_atv == null || element.unidade1.rec_atv == undefined) { %>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <td class="center"><%= element.unidade1.rec_atv %> </td>
+                            <% } %>
+                        <%} %>                        
+
+                        <!-- avaliacao 2 -->
+                        <% if (element.unidade1.avaliacao2 == null || element.unidade1.avaliacao2 == undefined) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade1.avaliacao2 %> </td>
+                        <%} %>
+                        
+
+                        <!-- media do periodo -->
+                        <% if (element.unidade1.media_periodo == null || element.unidade1.media_periodo == undefined) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade1.media_periodo %> </td>
+                        <%} %>
+
+                        <!-- recuperacao -->
+                        <% if (element.unidade1.rec == null || element.unidade1.rec == undefined) { %>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <td class="center"><%= element.unidade1.rec %> </td>
+                            <%} %> 
+                        <%} %> 
+
+
+                        
+                         
+                        <!-- media final do periodo -->
+                        <% if (element.unidade1.media_final_periodo == null || element.unidade1.media_final_periodo == undefined) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if (parseInt(media.media_final_periodo) <= parseInt(element.unidade1.media_final_periodo)) { %>
+                                <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.unidade1.media_final_periodo  %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.unidade1.media_final_periodo %> </td>
+                            <%} %>
+                        <%} %>
+
+
+
+
+
+                        <!-- unidade 2 -->
+
+                        <!-- avaliacao 1 -->
+                        <% if (element.unidade2.avaliacao1 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade2.avaliacao1 %> </td>
+                        <%} %>
+
+                        <!-- atividade -->
+                        <% if (element.unidade2.atv == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade2.atv %> </td>
+                        <%} %>
+
+                        <!-- recuperacao atividade -->
+                        <% if (element.unidade2.rec_atv == null) { %>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <td class="center"><%= element.unidade2.rec_atv %> </td>
+                            <%} %> 
+                        <%} %>   
+
+
+
+                        <!-- avaliacao 2 -->
+                        <% if (element.unidade2.avaliacao2 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade2.avaliacao2 %> </td>
+                        <%} %>
+
+
+                        <!-- media do periodo -->
+                        <% if (element.unidade2.media_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade2.media_periodo %> </td>
+                        <%} %>
+                        
+                        <!-- recuperacao -->
+                        <% if (element.unidade2.rec == null) { %>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <td class="center"><%= element.unidade2.rec %> </td>
+                            <%} %> 
+                        <%} %>   
+    
+                         
+                        <!-- media final do periodo -->
+                        <% if (element.unidade2.media_final_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if (parseInt(media.media_final_periodo) <= parseInt(element.unidade2.media_final_periodo)) { %>
+                                <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.unidade2.media_final_periodo  %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.unidade2.media_final_periodo %> </td>
+                            <%} %>
+                        <%} %>
+
+                            
+
+
+                        <!-- unidade 3 -->
+
+                        <!-- avaliacao 1 -->
+                        <% if (element.unidade3.avaliacao1 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade3.avaliacao1 %> </td>
+                        <%} %>
+
+                            <!-- atividade -->
+                        <% if (element.unidade3.atv == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade3.atv %> </td>
+                        <%} %>
+
+                        <!-- recuperacao atividade -->
+                        <% if (element.unidade3.rec_atv == null) { %>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <td class="center"><%= element.unidade3.rec_atv %> </td>
+                            <%} %> 
+                        <%} %>   
+
+                            <!-- avaliacao 2 -->
+                        <% if (element.unidade3.avaliacao2 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade3.avaliacao2 %> </td>
+                        <%} %>
+
+                            <!-- media do periodo -->
+                        <% if (element.unidade3.media_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade3.media_periodo %> </td>
+                        <%} %>
+
+                        <!-- recuperacao -->
+                        <% if (element.unidade3.rec == null) { %>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <td class="center"><%= element.unidade3.rec %> </td>
+                            <%} %> 
+                        <%} %> 
+                         
+                        <!-- media final do periodo -->
+                        <% if (element.unidade3.media_final_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if (parseInt(media.media_final_periodo) <= parseInt(element.unidade3.media_final_periodo)) { %>
+                            <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.unidade3.media_final_periodo  %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.unidade3.media_final_periodo %> </td>
+                            <%} %>
+                        <%} %>
+
+                            
+
+                        <!-- unidade 4 -->
+
+                        <!-- avaliacao 1 -->
+                        <% if (element.unidade4.avaliacao1 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade4.avaliacao1 %> </td>
+                        <%} %>
+
+                            <!-- atividade -->
+                        <% if (element.unidade4.atv == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade4.atv %> </td>
+                        <%} %>
+
+                        <!-- recuperacao atividade -->
+                        <% if (element.unidade4.rec_atv == null) { %>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_atv == true) { %>
+                                <td class="center"><%= element.unidade4.rec_atv %> </td>
+                            <%} %> 
+                        <%} %>   
+
+
+                            <!-- avaliacao 2 -->
+                        <% if (element.unidade4.avaliacao2 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade4.avaliacao2 %> </td>
+                        <%} %>
+
+                            <!-- media do periodo -->
+                        <% if (element.unidade4.media_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.unidade4.media_periodo %> </td>
+                        <%} %>
+
+                        <!-- recuperacao -->
+                        <% if (element.unidade4.rec == null) { %>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <th>*</th>
+                            <% } %>
+                        <% }else{%>
+                            <% if (recuperacoes.recuperacao_periodo == true) { %>
+                                <td class="center"><%= element.unidade4.rec %> </td>
+                            <%} %> 
+                        <%} %> 
+                         
+                        <!-- media final do periodo -->
+                        <% if (element.unidade4.media_final_periodo == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if (parseInt(media.media_final_periodo) <= parseInt(element.unidade4.media_final_periodo)) { %>
+                                <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.unidade4.media_final_periodo  %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.unidade4.media_final_periodo %> </td>
+                            <%} %>
+                        <%} %>
+
+                            
+
+                        <!-- resultado final -->
+
+                        <!-- total de pontos -->
+                        <% if (element.resultado_final.total_pontos_anual == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.resultado_final.total_pontos_anual %> </td>
+                        <%} %>
+
+
+                        <!-- media anual -->
+                        <% if (element.resultado_final.media_anual == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="center"><%= element.resultado_final.media_anual %> </td>
+                        <%} %>
+
+
+                        <!-- recuperacao final -->
+                        <% if (element.resultado_final.recuperacao_final == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                                <td class="center"><%= element.resultado_final.recuperacao_final %> </td>
+                        <%} %>
+
+                        <!-- media final -->
+                        <% if (element.resultado_final.media_final == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if (parseInt(media.media_final) <= parseInt(element.resultado_final.media_final)) { %>
+                                <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.resultado_final.media_final  %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.resultado_final.media_final %> </td>
+                            <%} %>
+                        <%} %>
+
+                        <!-- situacao -->
+                        <% if (element.resultado_final.situacao == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <% if ((element.resultado_final.situacao).toLowerCase() == "aprovado") { %>
+                                <td style="text-align: center; background-color: rgb(6, 226, 6);"><%= element.resultado_final.situacao %> </td>
+                            <% }else{%>
+                                <td style=" text-align: center; background-color: red;"><%= element.resultado_final.situacao %> </td>
+                            <%} %>      
+                        <%} %>
+                    </tr>
+                <% }) %>
+            </table>
+            
+        </div>
+    </div>
+</body>
+</html>
