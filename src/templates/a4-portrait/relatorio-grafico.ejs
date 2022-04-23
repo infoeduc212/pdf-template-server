@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /************************
-Css orignal https://codepen.io/jlalovi/details/bIyAr
-************************/
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
 * {
   -webkit-box-sizing: border-box;
@@ -75,7 +72,7 @@ border-top-right-radius: 5px;
       width: 400px;
       overflow: hidden;
 		}
-		/******************************************** LEFT CONTAINER *****************************************/
+	
 		.left-container {}
 			.menu-box {
 				height: 360px;
@@ -160,14 +157,6 @@ border-top-right-radius: 5px;
 						.increment {
 							color: #e64c65;
 						}
-
-/******************************************
-↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
-ESTILOS PROPIOS DE LOS GRÄFICOS
-↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ 
-GRAFICO LINEAL
-******************************************/
-
 .grafico {
   padding: 2rem 1rem 1rem;
   width: 100%;
@@ -229,6 +218,7 @@ GRAFICO LINEAL
 }
 .eje-y li {
   height: 25%;
+  margin-left: 20px;
   border-top: 1px solid #777;
 }
 [data-ejeY]:before {
@@ -243,13 +233,11 @@ GRAFICO LINEAL
 } 
 .eje-x li {
   width: 33%;
+  margin-left: 30px;
   float: left;
   text-align: center;
 }
 
-/******************************************
-GRAFICO CIRCULAR PIE CHART
-******************************************/
 .donut-chart {
   position: relative;
 	width: 200px;
@@ -331,9 +319,7 @@ p.center-date {
   color: #FCB150;
   font-size: inherit;
 }
-/**************************
-BAR-CHART
-**************************/
+
 .grafico.bar-chart {
   background: #3468AF;
   padding: 0 1rem 2rem 1rem;
@@ -375,54 +361,36 @@ BAR-CHART
 
 .bar-chart .eje-x li:nth-child(1):before {
   background: #E64C65;  
-  height:<%= alunos_fundamental == (total_aluno / 4).toFixed() ? "275" : Math.abs(275 - (alunos_fundamental - 50)) %>%;
+  height:<%= alunos_fundamental == 500 ? "50px" : ""%> <%= alunos_fundamental == 1500 ? "97px" : alunos_fundamental < 1500 && alunos_fundamental > 500 ?   1500 - alunos_fundamental + "px" : "" %> <%= alunos_fundamental == 2000 ? "145px" : ""%> <%= alunos_fundamental == 2500 ? "195px" : ""%>;
 }
 .bar-chart .eje-x li:nth-child(2):before {
   background: #11A8AB;  
-  height: 325%;
+  height: 55px;
 }
 .bar-chart .eje-x li:nth-child(3):before {
   background: #FCB150;  
   height: 450%;
 }
-.bar-chart .eje-x li:nth-child(4):before {
-  background: #4FC4F6;  
-  height: 290%;
-}
-.bar-chart .eje-x li:nth-child(5):before {
-  background: #FFED0D;  
-  height: 720%;
-}
-.bar-chart .eje-x li:nth-child(6):before {
-  background: #F46FDA;  
-  height: 820%;
-}
-.bar-chart .eje-x li:nth-child(7):before {
-  background: #15BFCC;  
-  height: 520%;
-}
 </style>
 </head>
 <body>
-  <p><%= alunos_fundamental == (total_aluno / 4).toFixed() ? "275" :  %></p>
     <div class="bar-chart-block block">
-      <h2 class='titular'>test <span>*1000</span></h2>
+      <h2 class='titular'>test</h2>
       <div class='grafico bar-chart'>
          <ul class='eje-y'>
-           <li data-ejeY='<%= total_aluno %> '></li>
-           <li data-ejeY='<%= (total_aluno / 2).toFixed() %> '></li>
-           <li data-ejeY='<%= (total_aluno / 3).toFixed() %> '></li>
-           <li data-ejeY='<%= (total_aluno / 4).toFixed() %> '></li>
-           <li data-ejeY='<%= 0 %> '></li>
+          <li data-ejeY='2.500'></li>
+           <li data-ejeY='2.000'></li>
+           <li data-ejeY='1.500'></li>
+           <li data-ejeY='500'></li>
+           <li data-ejeY='0'></li>
          </ul>
          <ul class='eje-x' style="margin-bottom: 8px;">
-           <li data-ejeX='500'><i style="margin-left: 12px; margin-top: 4px;">Fundamental</i></li>
+           <li data-ejeX='64'><i style="margin-left: 12px;">Fundamental</i></li>
            <li data-ejeX='56'><i  style="margin-left: 15px;">Infantil</i></li>
            <li data-ejeX='25'><i style="margin-left: 15px;">EJA</i></li>
          </ul>
       </div>
     </div>
 </div>
-
 </body>
 </html>

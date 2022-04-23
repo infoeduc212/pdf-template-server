@@ -37,12 +37,12 @@
             </div>
             <div class="multicolumn">
                 <b class="pad-right">Aluno (a):</b>
-                <div class="text-line"><%= aluno.nome %> <%= aluno.sobrenome %></div>
+                <div class="text-line"><%= aluno%></div>
             </div>
             <div class="flex" style="gap: 10px;">
                 <div class="multicolumn">
                     <b class="pad-right">ID da InfoEduc:</b>
-                    <div class="text-line"><%= aluno.id_infoeduc %></div>
+                    <div class="text-line"><%= id_infoeduc %></div>
                 </div>
                 <div class="multicolumn" style="max-width: 220px;">
                     <b class="pad-right">Turma:</b>
@@ -83,213 +83,176 @@
                 <% }) %>
             </tr>
             <!-- base comum -->
-
-            <tr>
-                <th rowspan="9" style="width: 5px; height: 300px;" class="text-vertical"><span class="text">BASE NACIONAL COMUM</span></th>
-                <td>Língua Portuguesa</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "linguaportuguesa") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "linguaportuguesa") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Arte</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "arte") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "arte") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Educação Física</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "educacaofisica") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "educacaofisica") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Língua Inglesa</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "linguainglesa") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "linguainglesa") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Matemática</td>
-                <% notas.forEach((element,index,array) => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "matematica") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "matematica") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
                 
-            </tr>
-            <tr>
-                <td>Ciências</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "ciencias") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "ciencias") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-                
-            </tr>
-            <tr>
-                <td>História</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "historia") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "historia") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Geografia</td>
-                <% notas.forEach((element,index,array) => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "geografia") { %>
-                        
-                        <% if (element.nota == null) { %>
-                         <th>*</th>
-                        <% }else{%>
-                            <td class="text_center"><%= element.nota %> </td>
-                        <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "geografia") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Ensino Religioso</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "ensinoreligioso") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "ensinoreligioso") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <!-- parte diversificada -->
-            <%
-            var materias = []
-            notas_diversificada.forEach(element => {
-                materias.push(element.diciplina_diversificada)
-            });
-            
-            var materias_diversificada = materias.filter(function(este, i) {
-                return materias.indexOf(este) === i;
-            });
-             %> 
-            
-                <% materias_diversificada.forEach((diciplina, index)=> { %>
-                
+            <% notas.forEach((element,index) => { %>
+                <% if (index == 0) { %>
                     <tr>
-                        <% if (index == 0) { %>
-                            <th rowspan="<%= materias_diversificada.length %> " style=" width: 5px; height: 190px;" class="text-vertical"><span style="position: relative; left: -80px;">PARTE DIVERSIFICADA</span></th>
+                        <th rowspan="<%= notas.length %> " style="width: 5px; height: 300px;" class="text-vertical"><span class="text">BASE NACIONAL COMUM</span></th>
+                        <td><%= element.diciplina %> </td>
+                        <% if (element.nota_1 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_1 %></td>
                         <% } %>
-                        <td><%= diciplina %> </td>
-                        <% notas_diversificada.forEach((notas, index,array) => { %>
-                            <% if (remover_acentos_espaco(notas.diciplina_diversificada).toLowerCase() == remover_acentos_espaco(diciplina).toLowerCase()) { %>
-                                
-                                <% if (notas.nota_diversificada == null) { %>
-                                    <th>*</th>
-                                   <% }else{%>
-                                    <td class="text_center"><%= notas.nota_diversificada %> </td>
-                                   <%} %>
-                            <% } %>
-                        <% }) %>
-
-                        <% totais.forEach(element => { %>
-
-                            <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() ==remover_acentos_espaco(diciplina).toLowerCase() ) { %>
-                                <td  class="backCinza text_center"><%= element.media %> </td>
-                                <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                            <% } %>
-                        <% }) %>
+                        
+                        <% if (element.nota_2 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_2 %></td>
+                        <% } %>
+                        
+                        <% if (element.nota_3 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_3 %></td>
+                        <% } %>
+                        
+                        <% if (element.nota_4 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_4 %></td>
+                        <% } %>
+                        
+                        <% if (element.media_anual == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center backCinza"><%= element.media_anual %></td>
+                        <% } %>
+                        
+                        <% if (element.total_faltas == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center backCinza"><%= element.total_faltas %></td>
+                        <% } %>
+                       
                     </tr>
-                <% }) %>
+                <% }else{%>
+                    <tr>
+                        <td ><%= element.diciplina %> </td>
+                        <% if (element.nota_1 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_1 %></td>
+                        <% } %>
+                        
+                        <% if (element.nota_2 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_2 %></td>
+                        <% } %>
+                        
+                        <% if (element.nota_3 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_3 %></td>
+                        <% } %>
+                        
+                        <% if (element.nota_4 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_4 %></td>
+                        <% } %>
+                        
+                        <% if (element.media_anual == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center backCinza"><%= element.media_anual %></td>
+                        <% } %>
+                        
+                        <% if (element.total_faltas == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center backCinza"><%= element.total_faltas %></td>
+                        <% } %>
+                       
+
+                    </tr>
+                <%}%>
+
+            <% }) %>
             
+
+            <!-- parte diversificada  -->
+           
+            <% notas_diversificada.forEach((element,index) => { %>
+                <% if (index == 0) { %>
+                    <tr>
+                        <th rowspan="<%= notas_diversificada.length %>" style="width: 5px; height: 200px;" class="text-vertical"><span class="text">PARTE DIVERSIFICADA</span></th>
+                        <td><%= element.diciplina_diversificada %> </td>
+                        <% if (element.nota_diversificada_1 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_diversificada_1 %></td>
+                        <%} %>
+                        <% if (element.nota_diversificada_2 == null) { %>
+                            <th>*</th>
+                            
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_diversificada_2 %></td>
+                        <% } %>
+                        <% if (element.nota_diversificada_3 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_diversificada_3 %></td>
+                        <% } %>
+                        <% if (element.nota_diversificada_4 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_diversificada_4 %></td>
+                        <% } %>
+                        
+                        <% if (element.media_anual_diversificada == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center backCinza"><%= element.media_anual_diversificada %></td>
+                        <% } %>
+                        
+                        <% if (element.total_faltas_diversificada == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center backCinza"><%= element.total_faltas_diversificada %></td>
+                        <% } %>
+                    </tr>
+                <% }else{%>
+                    <tr>
+                        <td ><%= element.diciplina_diversificada %> </td>
+                        <% if (element.nota_diversificada_1 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_diversificada_1 %></td>
+                        <%} %>
+                        <% if (element.nota_diversificada_2 == null) { %>
+                            <th>*</th>
+                            
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_diversificada_2 %></td>
+                        <% } %>
+                        <% if (element.nota_diversificada_3 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_diversificada_3 %></td>
+                        <% } %>
+                        <% if (element.nota_diversificada_4 == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center"><%= element.nota_diversificada_4 %></td>
+                        <% } %>
+                        
+                        <% if (element.media_anual_diversificada == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center backCinza"><%= element.media_anual_diversificada %></td>
+                        <% } %>
+                        
+                        <% if (element.total_faltas_diversificada == null) { %>
+                            <th>*</th>
+                        <% }else{%>
+                            <td class="text_center backCinza"><%= element.total_faltas_diversificada %></td>
+                        <% } %>
+                    </tr>
+                <%}%>
+
+            <% }) %>
         </table>
     </div>
 </body>
