@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <%- include("../css/common.ejs") %>
+</head>
+<body>
+    <div>
+        <%- include("../reusable/header.ejs") %>
+        <h2 class="page-title">RENDIMENTO ESCOLAR</h2>
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <b class="pad-right">Aluno (a):</b>
+                <div class="text-line"><%= aluno_nome %> <%= aluno_sobrenome %></div>
+            </div>
+            <div class="flex" style="gap: 10px;">
+
+                <div class="multicolumn" style="max-width: 220px;">
+                    <b class="pad-right">Turma:</b>
+                    <div class="text-line"><%= nome_turma %></div>
+                </div>  
+                <div class="multicolumn">
+                    <b class="pad-right">ID da Turma:</b>
+                    <div class="text-line"><%= id_turma %></div>
+                </div>
+                <div class="multicolumn" style="max-width: 140px;">
+                    <b class="pad-right">Turno:</b>
+                    <div class="text-line"><%= nome_turno %></div>
+                </div>
+                <div class="multicolumn" style="max-width: 130px;">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"><%= nome_ano_letivo %> </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>

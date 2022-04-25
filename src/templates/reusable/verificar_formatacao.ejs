@@ -1,0 +1,194 @@
+
+<% 
+var negrito = false
+var italico = false 
+var sublinhado = false
+var center = false
+var justify = false
+var left = false
+var right = false
+%> 
+
+<% if (text.includes("[u]") || text.includes("[i]") || text.includes("[b]")) { %>
+    <% if (text.includes("[u]") && text.includes("[i]") && text.includes("[b]")) { %>
+        <% var text_transform = text.replace(/\[b]/gi, "") %> 
+        <% var text_transform2 = text_transform.replace(/[/b]/gi,"") %> 
+        <% var text_transform3 = text_transform2.replace(/\[u]/gi, "") %> 
+        <% var text_transform4 = text_transform3.replace(/[/u]/gi,"") %> 
+        <% var text_transform5 = text_transform4.replace(/\[i]/gi, "") %> 
+        <% var text_transform6 = text_transform5.replace(/[/i]/gi,"") %> 
+        <% var text_transform7 = text_transform6.replace(/\[]/g,"")%> 
+        <% italico = true %> 
+        <%sublinhado = true %> 
+        <% negrito = true %>
+    <% } %>
+    <% if (text.includes("[u]") && text.includes("[i]") && !text.includes("[b]")) { %>
+        <% var text_transform3 = text.replace(/\[u]/gi, "") %> 
+        <% var text_transform4 = text_transform3.replace(/[/u]/gi,"") %> 
+        <% var text_transform5 = text_transform4.replace(/\[i]/gi, "") %> 
+        <% var text_transform6 = text_transform5.replace(/[/i]/gi,"") %> 
+        <% var text_transform7 = text_transform6.replace(/\[]/g,"")%> 
+        <% italico = true %> 
+        <%sublinhado = true %> 
+    <% } %>
+    <% if (text.includes("[u]") && !text.includes("[i]") && text.includes("[b]")) { %>
+        <% var text_transform = text.replace(/\[b]/gi, "") %> 
+        <% var text_transform2 = text_transform.replace(/[/b]/gi,"") %> 
+        <% var text_transform3 = text_transform2.replace(/\[u]/gi, "") %> 
+        <% var text_transform4 = text_transform3.replace(/[/u]/gi,"") %> 
+        <% var text_transform7 = text_transform4.replace(/\[]/g,"")%> 
+        <% negrito = true %>
+        <%sublinhado = true %> 
+    <% } %>
+    <% if (!text.includes("[u]") && text.includes("[i]") && text.includes("[b]")) { %>
+        <% var text_transform = text.replace(/\[b]/gi, "") %> 
+        <% var text_transform2 = text_transform.replace(/[/b]/gi,"") %> 
+        <% var text_transform5 = text_transform2.replace(/\[i]/gi, "") %> 
+        <% var text_transform6 = text_transform5.replace(/[/i]/gi,"") %> 
+        <% var text_transform7 = text_transform6.replace(/\[]/g,"")%> 
+        <% negrito = true %>
+        <% italico = true %> 
+    <% } %>
+    <% if (!text.includes("[u]") && !text.includes("[i]") && text.includes("[b]")) { %>
+        <% var text_transform = text.replace(/\[b]/gi, "") %> 
+        <% var text_transform2 = text_transform.replace(/[/b]/gi,"") %> 
+        <% var text_transform7 = text_transform2.replace(/\[]/g,"")%> 
+        <% negrito = true %> 
+    <% } %>
+    <% if (text.includes("[i]") && !text.includes("[u]") && !text.includes("[b]")) { %>
+        <% var text_transform = text.replace(/\[i]/gi, "") %> 
+        <% var text_transform2 = text_transform.replace(/[/i]/gi,"") %> 
+        <% var text_transform7 = text_transform2.replace(/\[]/g,"")%> 
+        <% italico = true %> 
+    <% } %>
+    <% if (text.includes("[u]") && !text.includes("[i]") && !text.includes("[b]")) { %>
+        <% var text_transform = text.replace(/\[u]/gi, "") %> 
+        <% var text_transform2 = text_transform.replace(/[/u]/gi,"") %> 
+        <% var text_transform7 = text_transform2.replace(/\[]/g,"")%> 
+        <%sublinhado = true %> 
+        
+    <% } %>
+<% } %>
+<% if (text_transform7.includes("[center]")) { %>
+    <% var text_transform = text_transform7.replace(/\[center]/gi, "") %> 
+    <% var text_transform2 = text_transform.replace(/[/center]/gi,"") %> 
+    <% var text_transform8 = text_transform2.replace(/\[]/g,"")%> 
+    <% var center = true%> 
+    <% if (sublinhado == true && negrito == false && italico == false) { %>
+     <u style="text-align: center;"><%= text_transform8 %> </u>
+    <% } %>
+    <% if (sublinhado == false && negrito == true && italico == false) { %>
+        <b style="text-align: center;"><%= text_transform8 %> </b>
+    <% } %>
+    <% if (sublinhado == false && negrito == false && italico == true) { %>
+        <i style="text-align: center;"><%= text_transform8 %> </i>
+    <% } %>
+    <% if (sublinhado == true && negrito == true && italico == false) { %>
+        <b style="text-align: center;"><u style="text-align: center;"><%= text_transform8 %> </u></b>
+    <% } %>
+    <% if (sublinhado == false && negrito == true && italico == true) { %>
+        <b style="text-align: center;"><i style="text-align: center;"><%= text_transform8 %> </i></b>
+    <% } %>
+    <% if (sublinhado == true && negrito == false && italico == true) { %>
+        <i style="text-align: center;"><u style="text-align: center;"><%= text_transform8 %> </u></i>
+    <% } %>
+    <% if (sublinhado == true && negrito == true && italico == true) { %>
+        <i style="text-align: center;"><b style="text-align: center;"><u style="text-align: center;"><%= text_transform8 %> </u></b></i>
+    <% } %>
+    <% if (sublinhado == false && negrito == false && italico == false) { %>
+        <span style="text-align: center;"><%= text_transform8 %> </span>
+    <% } %>
+<% } %>
+
+<% if (text_transform7.includes("[justify]")) { %>
+    <% var text_transform = text_transform7.replace(/\[justify]/gi, "") %> 
+    <% var text_transform2 = text_transform.replace(/[/justify]/gi,"") %> 
+    <% var text_transform8 = text_transform2.replace(/\[]/g,"")%> 
+    <% var justify = true%> 
+    <% if (sublinhado == true && negrito == false && italico == false) { %>
+     <u style="text-align: justify;"><%= text_transform8 %> </u>
+    <% } %>
+    <% if (sublinhado == false && negrito == true && italico == false) { %>
+        <b style="text-align: justify;"><%= text_transform8 %> </b>
+    <% } %>
+    <% if (sublinhado == false && negrito == false && italico == true) { %>
+        <i style="text-align: justify;"><%= text_transform8 %> </i>
+    <% } %>
+    <% if (sublinhado == true && negrito == true && italico == false) { %>
+        <b style="text-align: justify;"><u style="text-align: justify;"><%= text_transform8 %> </u></b>
+    <% } %>
+    <% if (sublinhado == false && negrito == true && italico == true) { %>
+        <b style="text-align: justify;"><i style="text-align: justify;"><%= text_transform8 %> </i></b>
+    <% } %>
+    <% if (sublinhado == true && negrito == false && italico == true) { %>
+        <i style="text-align: justify;"><u style="text-align: justify;"><%= text_transform8 %> </u></i>
+    <% } %>
+    <% if (sublinhado == true && negrito == true && italico == true) { %>
+        <i style="text-align: justify;"><b style="text-align: justify;"><u style="text-align: justify;"><%= text_transform8 %> </u></b></i>
+    <% } %>
+    <% if (sublinhado == false && negrito == false && italico == false) { %>
+        <span style="text-align: justify;"><%= text_transform8 %> </span>
+    <% } %>
+<% } %>
+
+<% if (text_transform7.includes("[left]")) { %>
+    <% var text_transform = text_transform7.replace(/\[left]/gi, "") %> 
+    <% var text_transform2 = text_transform.replace(/[/left]/gi,"") %> 
+    <% var text_transform8 = text_transform2.replace(/\[]/g,"")%> 
+    <% var left = true%> 
+    <% if (sublinhado == true && negrito == false && italico == false) { %>
+     <u style="text-align: left;"><%= text_transform8 %> </u>
+    <% } %>
+    <% if (sublinhado == false && negrito == true && italico == false) { %>
+        <b style="text-align: left;"><%= text_transform8 %> </b>
+    <% } %>
+    <% if (sublinhado == false && negrito == false && italico == true) { %>
+        <i style="text-align: left;"><%= text_transform8 %> </i>
+    <% } %>
+    <% if (sublinhado == true && negrito == true && italico == false) { %>
+        <b style="text-align: left;"><u style="text-align: left;"><%= text_transform8 %> </u></b>
+    <% } %>
+    <% if (sublinhado == false && negrito == true && italico == true) { %>
+        <b style="text-align: left;"><i style="text-align: left;"><%= text_transform8 %> </i></b>
+    <% } %>
+    <% if (sublinhado == true && negrito == false && italico == true) { %>
+        <i style="text-align: left;"><u style="text-align: left;"><%= text_transform8 %> </u></i>
+    <% } %>
+    <% if (sublinhado == true && negrito == true && italico == true) { %>
+        <i style="text-align: left;"><b style="text-align: left;"><u style="text-align: left;"><%= text_transform8 %> </u></b></i>
+    <% } %>
+    <% if (sublinhado == false && negrito == false && italico == false) { %>
+        <span style="text-align: left;"><%= text_transform8 %> </span>
+    <% } %>
+<% } %>
+
+<% if (text_transform7.includes("[right]")) { %>
+    <% var text_transform = text_transform7.replace(/\[right]/gi, "") %> 
+    <% var text_transform2 = text_transform.replace(/[/right]/gi,"") %> 
+    <% var text_transform8 = text_transform2.replace(/\[]/g,"")%> 
+    <% var right = true%> 
+    <% if (sublinhado == true && negrito == false && italico == false) { %>
+     <u style="text-align: right;"><%= text_transform8 %> </u>
+    <% } %>
+    <% if (sublinhado == false && negrito == true && italico == false) { %>
+        <b style="text-align: right;"><%= text_transform8 %> </b>
+    <% } %>
+    <% if (sublinhado == false && negrito == false && italico == true) { %>
+        <i style="text-align: right;"><%= text_transform8 %> </i>
+    <% } %>
+    <% if (sublinhado == true && negrito == true && italico == false) { %>
+        <b style="text-align: right;"><u style="text-align: right;"><%= text_transform8 %> </u></b>
+    <% } %>
+    <% if (sublinhado == false && negrito == true && italico == true) { %>
+        <b style="text-align: right;"><i style="text-align: right;"><%= text_transform8 %> </i></b>
+    <% } %>
+    <% if (sublinhado == true && negrito == false && italico == true) { %>
+        <i style="text-align: right;"><u style="text-align: right;"><%= text_transform8 %> </u></i>
+    <% } %>
+    <% if (sublinhado == true && negrito == true && italico == true) { %>
+        <i style="text-align: right;"><b style="text-align: right;"><u style="text-align: right;"><%= text_transform8 %> </u></b></i>
+    <% } %>
+    <% if (sublinhado == false && negrito == false && italico == false) { %>
+        <span style="text-align: right;"><%= text_transform8 %> </span>
+    <% } %>
+<% } %>

@@ -192,7 +192,28 @@
             <div class="item-padding item-border small-text">
                 <% if (procedimento_didatico) { %>
                     <% procedimento_didatico.split("\n").forEach(text => { %>
-                        <%= text %> <br> 
+                        <% if (text.includes("[b]")) { %>
+                            <% var text_transform = text.replace(/\[b]/gi, "") %> 
+                            <% var text_transform2 = text_transform.replace(/[/b]/gi,"") %> 
+                            <% var text_transform3 = text_transform2.replace(/\[]/g,"")%> 
+                            <b><%= text_transform3 %> </b>
+                        <% } %>
+                        <% if (text.includes("[i]")) { %>
+                            <% var text_transform = text.replace(/\[i]/gi, "") %> 
+                            <% var text_transform2 = text_transform.replace(/[/i]/gi,"") %> 
+                            <% var text_transform3 = text_transform2.replace(/\[]/g,"")%> 
+                            <i><%= text_transform3 %> </i>
+                        <% } %>
+                        <% if (text.includes("[u]")) { %>
+                            <% var text_transform = text.replace(/\[u]/gi, "") %> 
+                            <% var text_transform2 = text_transform.replace(/[/u]/gi,"") %> 
+                            <% var text_transform3 = text_transform2.replace(/\[]/g,"")%> 
+                            <u><%= text_transform3 %> </u>
+                        <% } %>
+                        
+                        <% if (!text.includes("[u]") && !text.includes("[i]") && !text.includes("[b]")) { %>
+                            <p><%= text %> </p>
+                        <% } %> <br> 
                     <% }) %> 
                 <% } %>
             </div>
