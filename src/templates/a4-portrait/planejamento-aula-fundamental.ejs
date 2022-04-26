@@ -1,5 +1,5 @@
-    <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
@@ -11,7 +11,7 @@
         }
     </style>
 </head>
-<body>
+<body >
     <%- include("../reusable/header-escola.ejs") %>
     <div class="campos">
         <div class="flex flex-column small-gap">
@@ -177,43 +177,24 @@
             <div class="text-center bg-color item-padding">
                 HABILIDADES 
             </div>
-            <div class="item-padding item-border small-text">
+            <div class="item-padding item-border small-text" style="word-break: break-all;">
                 <% if (habilidades) { %>
-                    <% habilidades.split("\n").forEach(text => { %>
+                    <% habilidades.forEach(text => { %>
                         <%= text %> <br>
+
                     <% }) %> 
                 <% } %>
             </div>
         </div>
-        <div class="flex flex-column">
+        <div class="flex flex-column" style="word-break: break-all; ">
             <div class="text-center bg-color item-padding">
                 PROCEDIMENTO DIDÁTICO/METODOLÓGICO
             </div>
-            <div class="item-padding item-border small-text">
+            <div class="item-padding item-border small-text" >
                 <% if (procedimento_didatico) { %>
                     <% procedimento_didatico.split("\n").forEach(text => { %>
-                        <% if (text.includes("[b]")) { %>
-                            <% var text_transform = text.replace(/\[b]/gi, "") %> 
-                            <% var text_transform2 = text_transform.replace(/[/b]/gi,"") %> 
-                            <% var text_transform3 = text_transform2.replace(/\[]/g,"")%> 
-                            <b><%= text_transform3 %> </b>
-                        <% } %>
-                        <% if (text.includes("[i]")) { %>
-                            <% var text_transform = text.replace(/\[i]/gi, "") %> 
-                            <% var text_transform2 = text_transform.replace(/[/i]/gi,"") %> 
-                            <% var text_transform3 = text_transform2.replace(/\[]/g,"")%> 
-                            <i><%= text_transform3 %> </i>
-                        <% } %>
-                        <% if (text.includes("[u]")) { %>
-                            <% var text_transform = text.replace(/\[u]/gi, "") %> 
-                            <% var text_transform2 = text_transform.replace(/[/u]/gi,"") %> 
-                            <% var text_transform3 = text_transform2.replace(/\[]/g,"")%> 
-                            <u><%= text_transform3 %> </u>
-                        <% } %>
                         
-                        <% if (!text.includes("[u]") && !text.includes("[i]") && !text.includes("[b]")) { %>
-                            <p><%= text %> </p>
-                        <% } %> <br> 
+                        <%-include("../reusable/verificar_formatacao.ejs")  %> <br> 
                     <% }) %> 
                 <% } %>
             </div>
