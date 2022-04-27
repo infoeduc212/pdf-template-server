@@ -179,7 +179,7 @@
             </div>
             <div class="item-padding item-border small-text" style="word-break: break-all;">
                 <% if (habilidades) { %>
-                    <% habilidades.split("\n").forEach(text => { %>
+                    <% habilidades.forEach(text => { %>
                         <%= text %> <br>
 
                     <% }) %> 
@@ -190,7 +190,7 @@
             <div class="text-center bg-color item-padding">
                 PROCEDIMENTO DIDÁTICO/METODOLÓGICO
             </div>
-            <div class="item-padding item-border small-text" >
+            <div class=" item-border small-text" >
                 <% if (procedimento_didatico) { %>
                     <% procedimento_didatico.split("\n").forEach(text => { %>
                         <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
