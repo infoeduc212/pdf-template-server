@@ -101,7 +101,8 @@
                 PRODECIMENTO DIDÁTICO
             </div>
             <div class="item-padding item-border">
-                <%= prodecimento_didatico %>
+                <%var text = prodecimento_didatico %>
+                <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
             </div>
         </div>
         <div class="flex flex-column">
