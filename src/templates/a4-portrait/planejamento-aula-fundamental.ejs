@@ -179,7 +179,7 @@
             </div>
             <div class="item-padding item-border small-text" style="word-break: break-all;">
                 <% if (habilidades) { %>
-                    <% habilidades.forEach(text => { %>
+                    <% habilidades.split("\n").forEach(text => { %>
                         <%= text %> <br>
 
                     <% }) %> 
