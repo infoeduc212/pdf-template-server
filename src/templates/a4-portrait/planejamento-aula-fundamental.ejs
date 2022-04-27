@@ -194,7 +194,7 @@
                 <% if (procedimento_didatico) { %>
                     <% procedimento_didatico.split("\n").forEach(text => { %>
                         
-                        <%-include("../reusable/verificar_formatacao.ejs")  %> <br> 
+                        <%-include("../reusable/verificar_formatacao.ejs",{text})  %> <br> 
                     <% }) %> 
                 <% } %>
             </div>
