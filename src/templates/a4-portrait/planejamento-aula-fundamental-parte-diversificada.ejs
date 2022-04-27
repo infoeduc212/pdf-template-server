@@ -91,8 +91,7 @@
         <div class="bg-color text-center item-border item-padding">PROCEDIMENTO DIDÁTICO/METODOLÓGICOS</div>
         <div class="item-border item-padding">
             <% if (procedimento_didatico) { %>
-                <%var text = procedimento_didatico %>
-                <%-include("../reusable/verificar_formatacao.ejs",{text})  %> 
+                <%= procedimento_didatico  %> <br> 
             <% } %>
         </div>
     </div>  
