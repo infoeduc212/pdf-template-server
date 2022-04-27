@@ -72,8 +72,8 @@
     </div>
     <div class="item-border item-padding">
         <% if (tema_conteudo) { %>
-            <% tema_conteudo.split("\n").forEach(texto => { %>
-                <%= texto %><br>
+            <% tema_conteudo.split("\n").forEach(text => { %>
+                <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
             <% }) %> 
         <% } %>
     </div>
@@ -82,8 +82,8 @@
     </div>
     <div class="item-border item-padding">
         <% if (objetivos_habilidades) { %>
-            <% objetivos_habilidades.split("\n").forEach(texto => { %>
-                <%= texto %><br>
+            <% objetivos_habilidades.split("\n").forEach(text => { %>
+                <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
             <% }) %> 
         <% } %>
     </div>
