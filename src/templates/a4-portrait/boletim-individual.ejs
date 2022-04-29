@@ -63,7 +63,7 @@
         <table class="table">
             <tr>
                 <th rowspan="3" style="max-width: 50px;" colspan="2">COMPONENTES CURRICULARES</th>
-                <th colspan="4" style="width: 170px;">NOTAS</th>
+                <th colspan="<%= unidade.length %> " style="width: 170px;">NOTAS</th>
                 <th rowspan="3" style="width: 70px;" class="backCinza">MÉDIA ANUAL</th>
                 <th rowspan="3"style="width: 70px;" class="backCinza">Total de faltas</th>
             </tr>
@@ -74,9 +74,9 @@
              %> 
             <tr>
                 <%# grupo_avaliativo.forEach(element => { %>
-                    <% console.log(grupo_avaliativo); %> 
-                    <th colspan="2"><%= grupo_avaliativo[0] %></th>
-                    <th colspan="2"><%= grupo_avaliativo[1] %></th>
+                    
+                    <th colspan="<%= unidade.length/2 %>"><%= grupo_avaliativo[0] %></th>
+                    <th colspan="<%= unidade.length/2 %>"><%= grupo_avaliativo[1] %></th>
                 <%# }) %>
             </tr>
             <tr>
@@ -160,7 +160,9 @@
             <tr>
                 <td>Matemática</td>
                 <% notas.forEach((element,index,array) => { %>
+                    <% var vazio = "*" %> 
                     <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "matematica") { %>
+
                         <% if (element.nota == null) { %>
                             <th>*</th>
                            <% }else{%>
