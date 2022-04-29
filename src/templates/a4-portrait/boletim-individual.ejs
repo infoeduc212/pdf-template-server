@@ -249,7 +249,7 @@
                 <% }) %>
             </tr>
             <!-- parte diversificada -->
-            <%
+            <%#
             var materias = []
             notas_diversificada.forEach(element => {
                 materias.push(element.diciplina_diversificada)
@@ -260,33 +260,33 @@
             });
              %> 
             
-                <% materias_diversificada.forEach((diciplina, index)=> { %>
+                <%# materias_diversificada.forEach((diciplina, index)=> { %>
                 
-                    <tr>
-                        <% if (index == 0) { %>
-                            <th rowspan="<%= materias_diversificada.length %> " style=" width: 5px; height: 190px;" class="text-vertical"><span style="position: relative; left: -80px;">PARTE DIVERSIFICADA</span></th>
-                        <% } %>
-                        <td><%= diciplina %> </td>
-                        <% notas_diversificada.forEach((notas, index,array) => { %>
-                            <% if (remover_acentos_espaco(notas.diciplina_diversificada).toLowerCase() == remover_acentos_espaco(diciplina).toLowerCase()) { %>
+                    <!-- <tr>
+                        <%# if (index == 0) { %>
+                            <th rowspan="<%#= materias_diversificada.length %> " style=" width: 5px; height: 190px;" class="text-vertical"><span style="position: relative; left: -80px;">PARTE DIVERSIFICADA</span></th>
+                        <%# } %>
+                        <td><%#= diciplina %> </td>
+                        <%# notas_diversificada.forEach((notas, index,array) => { %>
+                            <%# if (remover_acentos_espaco(notas.diciplina_diversificada).toLowerCase() == remover_acentos_espaco(diciplina).toLowerCase()) { %>
                                 
-                                <% if (notas.nota_diversificada == null) { %>
+                                <%# if (notas.nota_diversificada == null) { %>
                                     <th>*</th>
-                                   <% }else{%>
-                                    <td class="text_center"><%= notas.nota_diversificada %> </td>
-                                   <%} %>
-                            <% } %>
-                        <% }) %>
+                                   <%# }else{%>
+                                    <td class="text_center"><%#= notas.nota_diversificada %> </td>
+                                   <%#} %>
+                            <%# } %>
+                        <%# }) %>
 
-                        <% totais.forEach(element => { %>
+                        <%# totais.forEach(element => { %>
 
-                            <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() ==remover_acentos_espaco(diciplina).toLowerCase() ) { %>
-                                <td  class="backCinza text_center"><%= element.media %> </td>
-                                <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                            <% } %>
-                        <% }) %>
+                            <%# if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() ==remover_acentos_espaco(diciplina).toLowerCase() ) { %>
+                                <td  class="backCinza text_center"><%#= element.media %> </td>
+                                <td  class="backCinza text_center"><%#= element.total_faltas %> </td>
+                            <%# } %>
+                        <%# }) %>
                     </tr>
-                <% }) %>
+                <%# }) %> -->
         </table>
     </div>
 </body>
