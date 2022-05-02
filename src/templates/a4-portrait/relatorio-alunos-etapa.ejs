@@ -61,8 +61,19 @@
 </head>
 <body>
   <div id="container">
-    <%- include("../reusable/header.ejs") %>
-    <div style="text-align: center; position: relative; top: 150px;font-size: 20px; font-weight: bold;">Relatorio de Alunos por Etapa de Escolaridade</div>
+    <div style="display: block; text-align: center; margin-left: auto; margin-right: auto; width: 50%; margin-bottom: 10px">
+      <img width="100" height="100" src="<%= header.logomarca_url %> ">
+  </div>
+  <div style="text-align: center; line-height: 1;">
+      <div style="font-weight: bold; font-size: 20px; line-height: 0.8;"><%= header.nome %></div>
+      <br>
+      <%= header.municipio %> / <%= header.uf %> 
+      <br>
+      <br>
+      <b>CNPJ:</b> <%= header.endereco_cnpj %>
+  </div>
+  
+    <div style="text-align: center; position: relative; top: 150px;font-size: 28px; font-weight: bold;">Relatorio de Alunos(a) por Etapa de Escolaridade da <%= modulo == "rede" ? "Rede" : "Escola" %> </div>
     <div id="grafico">
       <div class="celula">
         <div class="text">Fundamental</div>
@@ -80,7 +91,7 @@
       </div>
       <hr color="black">
       <div id="legenda">
-<div style=" position: relative; left: 40px; top: -240px; height: 230px; border-left: 2px solid black;"></div>
+        <div style=" position: relative; left: 40px; top: -240px; height: 230px; border-left: 2px solid black;"></div>
       </div>
       <p style="position: relative; top: -250px;">Total de Alunos: <%= total_aluno %> </p>
     </div> 

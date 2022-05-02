@@ -157,16 +157,20 @@
                     <tr>
                         <td>
                             <% if (unidades_tematicas) { %>
-                                <% unidades_tematicas.split("\n").forEach(text => { %> 
-                                    <%= text %><br>
-                                <% }) %> 
+                                <p>
+                                    <% unidades_tematicas.split("\n").forEach(text => { %> 
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </p>
                             <% } %>
                         </td>
                         <td>
                             <% if (objetivos_conhecimento) { %>
-                                <% objetivos_conhecimento.split("\n").forEach(text => { %>
-                                    <%= text %><br>
-                                <% }) %> 
+                                <p>
+                                    <% objetivos_conhecimento.split("\n").forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </p>
                             <% } %>
                         </td>
                     </tr>
@@ -179,10 +183,11 @@
             </div>
             <div class="item-padding item-border small-text" style="word-break: break-all;">
                 <% if (habilidades) { %>
-                    <% habilidades.split("\n").forEach(text => { %>
-                        <%= text %> <br>
-
-                    <% }) %> 
+                    <p>
+                        <% habilidades.split("\n").forEach(text => { %>
+                            <%= text %> <br>
+                        <% }) %> 
+                    </p>
                 <% } %>
             </div>
         </div>
@@ -192,9 +197,11 @@
             </div>
             <div class=" item-border small-text" >
                 <% if (procedimento_didatico) { %>
-                    <% procedimento_didatico.split("\n").forEach(text => { %>
-                        <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
-                    <% }) %> 
+                    <p>
+                        <% procedimento_didatico.split("\n").forEach(text => { %>
+                            <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> </p>
+                        <% }) %> 
+                    </p>
                 <% } %>
             </div>
         </div>
