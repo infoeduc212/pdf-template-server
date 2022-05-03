@@ -76,11 +76,18 @@
                                     <div class="item-border flex flex-column grow">
                                         <% var objetivos = item.lista_objetivo_aprendizagem %>
                                         <% console.log(objetivos); %> 
-                                        <% objetivos.forEach(texto => { %>
+                                        <% if (objetivos.length > 1) { %>
+                                            <% objetivos.forEach(texto => { %>
+                                                <div class="flex pad">
+                                                    &bull; <%= texto %><br>
+                                                </div>
+                                            <% }) %> 
+                                        <% }else{%>
                                             <div class="flex pad">
-                                                &bull; <%= texto %><br>
-                                            </div>
-                                        <% }) %> 
+                                                    &bull; <%= objetivos %><br>
+                                             </div>
+                                        <%} %>
+
                                         </div>
                                         <div class="item-border flex flex-column" style="gap: 15px; flex-grow: 0; padding: 10px 5px;">
                                             <div class="text-center" style="font-size: 15px;">
