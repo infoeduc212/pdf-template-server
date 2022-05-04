@@ -75,12 +75,7 @@
                                    
                                     <div class="item-border flex flex-column grow">
                                         <% var objetivos = item.lista_objetivo_aprendizagem %>
-                                        <% if (objetivos.length <= 1) { %>
-                                            <div class="flex pad">
-                                                &bull; <%= objetivos %><br>
-                                            </div>
-                                        <% }else{ %>
-                                            <% objetivos.forEach(texto => { %>
+                                        <% objetivos.forEach(texto => { %>
                                             <div class="flex pad">
                                                 &bull; <%= texto %><br>
                                             </div>
