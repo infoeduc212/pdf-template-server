@@ -75,10 +75,12 @@
                                    
                                     <div class="item-border flex flex-column grow">
                                         <% var objetivos = item.lista_objetivo_aprendizagem %>
-                                        
+                                        <% item.lista_objetivo_aprendizagem.forEach(element => { %>
                                             <div class="flex pad">
-                                                &bull; <%= item.lista_objetivo_aprendizagem %><br>
+                                                &bull; <%= element %><br>
                                             </div>
+                                        <% }) %>
+                                            
                                         
                                     
                                         </div>
