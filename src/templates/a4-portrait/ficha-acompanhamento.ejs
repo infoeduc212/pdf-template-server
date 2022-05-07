@@ -16,22 +16,25 @@
             <div class="multicolumn inline">
                 <b>Instituição de Ensino:</b>
                 <div class="text-line"><%= acompanhamento.nome_escola %></div>
-                <b>Ano Letivo:</b>
-                <div style="max-width: 70px;" class="text-line"><%= acompanhamento.ano_letivo %></div>
             </div>
             <div class="multicolumn inline">
                 <b>Prof (a):</b>
                 <div class="text-line"><%= acompanhamento.professor %></div>
-                <b>Período Letivo:</b>
-                <div style="max-width: 70px;" class="text-line"><%= acompanhamento.periodo_letivo %></div>
+                
             </div>
             <div class="multicolumn inline">
                 <b>Aluno(a):</b>
                 <div class="text-line"><%= acompanhamento.nome_aluno %></div>
+            </div>
+            <div class="multicolumn inline">
                 <b>Turma:</b>
                 <div style="max-width: 120px;" class="text-line"><%= acompanhamento.turma %></div>
                 <b>Turno:</b>
                 <div style="max-width: 120px;" class="text-line"><%= acompanhamento.turno %></div>
+                <b>Ano Letivo:</b>
+                <div style="max-width: 70px;" class="text-line"><%= acompanhamento.ano_letivo %></div>
+                <b>Período Letivo:</b>
+                <div style="max-width: 70px;" class="text-line"><%= acompanhamento.periodo_letivo %></div>
             </div>
         </div>
         <br>
@@ -48,7 +51,7 @@
         <% if (tipo_relatorio_acompanhamento === "outros") { %>
             <%- include("../reusable/ficha-acompanhamento/ficha_acompanhaemnto_objetivo_2.ejs") %> 
         <% } %>
-        
+
         <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
     </div>
 </body>
