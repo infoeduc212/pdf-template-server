@@ -215,18 +215,7 @@
         <% } %>
         <% } %>
         <% } %>
-        <% if (tipo_documento === "Infantil") { %>
-        <div style="margin-top: 10px;">
-            <%# TODO: Relatório Descritivo %>
-            <% if (aluno.relatorio_experiencia) { %>
-            <h3 class="text-center"><u>AVALIAÇÃO</u></h3>
-            <%- include("../reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
-            <% } %>
-        </div>
-        <% } %>
-        <br />
         <div class="avoid-break" style="display: flex; gap: 50px">
-            <% if (tipo_documento !== "Infantil") { %>
             <table style="border-spacing: 0;">
                 <thead>
                     <tr>
@@ -264,15 +253,15 @@
                     </tr>
                 </tbody>
             </table>
-            <% } %>
+        
             <div>
                 <% if (tipo_documento !== "Infantil") { %>
-                <input id="aprovado" <%= aluno.aprovado ? "checked" : "" %> type="checkbox" />
-                <label for="aprovado">Aprovado</label>
-                <br />
-                <input id="reprovado" <%= aluno.reprovado ? "checked" : "" %> type="checkbox" />
-                <label for="reprovado">Reprovado</label>
-                <br />
+                    <input id="aprovado" <%= aluno.aprovado ? "checked" : "" %> type="checkbox" />
+                    <label for="aprovado">Aprovado</label>
+                    <br />
+                    <input id="reprovado" <%= aluno.reprovado ? "checked" : "" %> type="checkbox" />
+                    <label for="reprovado">Reprovado</label>
+                    <br />
                 <% } %>
                 <div class="flex" style="gap: 30px;">
                     <div>
@@ -319,9 +308,20 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                 </div>
             </div>
         </div>
+        <br>
+        <% if (tipo_documento === "Infantil") { %>
+        <div style="margin-top: 10px;">
+            <%# TODO: Relatório Descritivo %>
+            <% if (aluno.relatorio_experiencia) { %>
+            <h3 class="text-center"><u>AVALIAÇÃO</u></h3>
+            <%- include("../reusable/ficha-acompanhamento/lista-relatorio-objetivo.ejs", { relatorio_experiencia: aluno.relatorio_experiencia }) %>
+            <% } %>
+        </div>
+        <% } %>
+        <br/>
     </div>
     <% }) %>
     
