@@ -216,44 +216,79 @@
         <% } %>
         <% } %>
         <div class="avoid-break" style="display: flex; gap: 50px">
-            <table style="border-spacing: 0;">
-                <thead>
-                    <tr>
-                        <th style="border: 1px solid;" colspan="2" class="text-center">Resultado Final</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% if (!aluno.notas == null) { %>
-                        
+            <% if (tipo_documento !== "Infantil") { %>
+                <br>
+                <table style="border-spacing: 0;">
+                    <thead>
                         <tr>
-                            <td>Média Anual</td>
+                            <th style="border: 1px solid;" colspan="2" class="text-center">Resultado Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (!aluno.notas == null) { %>
+                            
+                            <tr>
+                                <td>Média Anual</td>
+                                <td class="fixed-width text-center">
+                                    <%= aluno.notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length %>
+                                </td>
+                            </tr>
+                            
+                        <% } %>
+                        <% if (aluno.frequencia) { %>
+                            <tr>
+                                <td>Total de Faltas</td>
+                                <td class="fixed-width text-center">
+                                    <%= aluno.frequencia.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
+                                </td>
+                            </tr>
+                        <% } %>
+                        <tr>
+                            <%# TODO: ? %>
+                            <td>Nota de Rec. Final</td>
+                            <td class="fixed-width text-center"></td>
+                        </tr>
+                        <tr>
+                            <%# TODO: ? %>
+                            <td>Média Final</td>
+                            <td class="fixed-width text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <% } %>
+            
+            <% if (tipo_documento == "Infantil") { %>
+                <table style="border-spacing: 0;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid;" colspan="2" class="text-center">Resultado Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% var dias_letivos = null %> 
+                        <tr>
+                            <td>Dias letivos</td>
                             <td class="fixed-width text-center">
-                                <%= aluno.notas.reduce((prev, { nota_avaliacao }) => prev + nota_avaliacao, 0) / notas.length %>
+                                <%= dias_letivos %>
                             </td>
                         </tr>
-                        
-                    <% } %>
-                    <% if (aluno.frequencia) { %>
+                        <% } %>
+                        <% if (aluno.frequencia) { %>
+                            <tr>
+                                <td>Total de Faltas</td>
+                                <td class="fixed-width text-center">
+                                    <%= aluno.frequencia.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
+                                </td>
+                            </tr>
+                        <% } %>
                         <tr>
-                            <td>Total de Faltas</td>
-                            <td class="fixed-width text-center">
-                                <%= aluno.frequencia.reduce((prev, { qtd_faltas }) => prev + qtd_faltas, 0) %>
-                            </td>
+                            <%var frequenciaPorcentagem = null %> 
+                            <td>Frequência %</td>
+                            <td class="fixed-width text-center"><%= frequenciaPorcentagem %> </td>
                         </tr>
-                    <% } %>
-                    <tr>
-                        <%# TODO: ? %>
-                        <td>Nota de Rec. Final</td>
-                        <td class="fixed-width text-center"></td>
-                    </tr>
-                    <tr>
-                        <%# TODO: ? %>
-                        <td>Média Final</td>
-                        <td class="fixed-width text-center"></td>
-                    </tr>
-                </tbody>
-            </table>
-        
+                    </tbody>
+                </table>
+            <% } %>
             <div>
                 <% if (tipo_documento !== "Infantil") { %>
                     <input id="aprovado" <%= aluno.aprovado ? "checked" : "" %> type="checkbox" />
@@ -311,7 +346,6 @@
                  </div>
             </div>
         </div>
-        <br>
         <% if (tipo_documento === "Infantil") { %>
         <div style="margin-top: 10px;">
             <%# TODO: Relatório Descritivo %>
@@ -321,7 +355,7 @@
             <% } %>
         </div>
         <% } %>
-        <br/>
+        <br />
     </div>
     <% }) %>
     
