@@ -10,7 +10,8 @@
 
 <body>
     <div id="container">
-        <h2 class="text-center">FICHA DE ACOMPANHAMENTO</h2>
+        <%- include("../reusable/header-escola.ejs") %>
+        
         <div style="line-height: 1.6;">
             <div class="multicolumn inline">
                 <b>Instituição de Ensino:</b>
@@ -34,6 +35,9 @@
             </div>
         </div>
         <br>
+        <h2 class="text-center">FICHA DE ACOMPANHAMENTO</h2>
+        <br>
+
         <br>
         <% if (tipo_relatorio_acompanhamento === "Descritiva") { %>
             <%- include("../reusable/ficha-acompanhamento/lista-relatorio-descritivo.ejs") %>
@@ -44,16 +48,7 @@
         <% if (tipo_relatorio_acompanhamento === "outros") { %>
             <%- include("../reusable/ficha-acompanhamento/ficha_acompanhaemnto_objetivo_2.ejs") %> 
         <% } %>
-        <div class="flex flex-column" style="margin-top: 10px;">
-                <% for (let i = 0; i < 5; i++) { %>
-                <div class="flex">
-                    <% if (i === 0) { %>
-                    <b>Descrição:</b>
-                    <% } %>
-                    <div style="flex-grow: 1;" class="text-line">&ensp;</div>
-                </div>
-                <% } %>
-        </div>
+        
         <%- include("../reusable/campo-assinatura-direcao.ejs") %> 
     </div>
 </body>
