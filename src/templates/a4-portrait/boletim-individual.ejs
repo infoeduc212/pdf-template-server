@@ -103,24 +103,28 @@
                                     <td class="text_center"><%= element.nota %> </td>
                                 <% } %>
                             <% } %>
-                            <% if (element.unidade == unidade[1].unidade_sigla) { %>
-                                <% if (element.diciplina == diciplinas) { %>
-                                    <td class="text_center"><%= element.nota %> </td>
+                            <% if (unidade.length >= 2) { %>
+                                <% if (element.unidade == unidade[1].unidade_sigla) { %>
+                                    <% if (element.diciplina == diciplinas) { %>
+                                        <td class="text_center"><%= element.nota %> </td>
+                                    <% } %>
                                 <% } %>
                             <% } %>
+                            <% if (unidade.length >= 3) { %>
                             <% if (element.unidade == unidade[2].unidade_sigla) { %>
                                 <% if (element.diciplina == diciplinas) { %>
                                     <td class="text_center"><%= element.nota %> </td>
                                 <% } %>
                             <% } %>
-                            <% if (element.unidade == unidade[3].unidade_sigla) { %>
-                                <% if (element.diciplina == diciplinas) { %>
-                                    <td class="text_center"><%= element.nota %> </td>
-                                <% }%>
-                                
                             <% }%>
-                        
-                            
+                            <% if (unidade.length >= 4) { %>
+                                <% if (element.unidade == unidade[3].unidade_sigla) { %>
+                                    <% if (element.diciplina == diciplinas) { %>
+                                        <td class="text_center"><%= element.nota %> </td>
+                                    <% }%>
+                                    
+                                <% }%>
+                            <% }%>
                         <% }) %>
                         <td class="backCinza">
                             <% if (finais.length > index) { %>
