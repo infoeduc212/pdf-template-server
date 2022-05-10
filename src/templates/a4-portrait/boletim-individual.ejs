@@ -60,238 +60,81 @@
         </div>
 
         <h3 class="page-title">BOLETIM ESCOLAR</h3>
-        <table class="table">
-            <tr>
-                <th rowspan="3" style="max-width: 50px;" colspan="2">COMPONENTES CURRICULARES</th>
-                <th colspan="<%= unidade.length %> " style="width: 170px;">NOTAS</th>
-                <th rowspan="3" style="width: 70px;" class="backCinza">MÉDIA ANUAL</th>
-                <th rowspan="3"style="width: 70px;" class="backCinza">Total de faltas</th>
-            </tr>
-            <% 
-            function remover_acentos_espaco(str) {
-                return str.normalize("NFD").replace(/[^a-zA-Zs]/g, "");
-            }
-             %> 
-            <tr>
-                <%# grupo_avaliativo.forEach(element => { %>
-                    
-                    <th colspan="<%= unidade.length/2 %>"><%= grupo_avaliativo[0] %></th>
-                    <th colspan="<%= unidade.length/2 %>"><%= grupo_avaliativo[1] %></th>
-                <%# }) %>
-            </tr>
-            <tr>
-                <% unidade.forEach(element => { %>
-                    <th><%= element.unidade_sigla %> </th>
-                <% }) %>
-            </tr>
-            <tr>
-                <th rowspan="9" style="width: 5px; height: 300px;" class="text-vertical"><span class="text">BASE NACIONAL COMUM</span></th>
-                <td>Língua Portuguesa</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "linguaportuguesa") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "linguaportuguesa") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Arte</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "arte") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "arte") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Educação Física</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "educacaofisica") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "educacaofisica") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Língua Inglesa</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "linguainglesa") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "linguainglesa") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Matemática</td>
-                <% notas.forEach((element,index,array) => { %>
-                    <% var vazio = "*" %> 
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "matematica") { %>
+        
 
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "matematica") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-                
-            </tr>
-            <tr>
-                <td>Ciências</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "ciencias") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "ciencias") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-                
-            </tr>
-            <tr>
-                <td>História</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "historia") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "historia") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Geografia</td>
-                <% notas.forEach((element,index,array) => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "geografia") { %>
+        <div style="display: flex;">
+            <table class="table">
+                <tr>
+                    <th rowspan="3" style="max-width: 50px;" colspan="2">COMPONENTES CURRICULARES</th>
+                    <th colspan="<%= unidade.length %> " style="width: 170px;">NOTAS</th>
+                    <th rowspan="3" style="width: 70px;" class="backCinza">MÉDIA ANUAL</th>
+                    <th rowspan="3"style="width: 70px;" class="backCinza">Total de faltas</th>
+                </tr>
+    
+                <tr>
+                    <%# grupo_avaliativo.forEach(element => { %>
                         
-                        <% if (element.nota == null) { %>
-                         <th>*</th>
-                        <% }else{%>
-                            <td class="text_center"><%= element.nota %> </td>
-                        <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "geografia") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <tr>
-                <td>Ensino Religioso</td>
-                <% notas.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina).toLowerCase() == "ensinoreligioso") { %>
-                        <% if (element.nota == null) { %>
-                            <th>*</th>
-                           <% }else{%>
-                               <td class="text_center"><%= element.nota %> </td>
-                           <%} %>
-                    <% } %>
-                <% }) %>
-                <% totais.forEach(element => { %>
-                    <% if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() == "ensinoreligioso") { %>
-                        <td  class="backCinza text_center"><%= element.media %> </td>
-                        <td  class="backCinza text_center"><%= element.total_faltas %> </td>
-                    <% } %>
-                <% }) %>
-            </tr>
-            <!-- parte diversificada -->
-            <%#
-            var materias = []
-            notas_diversificada.forEach(element => {
-                materias.push(element.diciplina_diversificada)
-            });
-            
-            var materias_diversificada = materias.filter(function(este, i) {
-                return materias.indexOf(este) === i;
-            });
-             %> 
-            
-                <%# materias_diversificada.forEach((diciplina, index)=> { %>
-                
-                    <!-- <tr>
-                        <%# if (index == 0) { %>
-                            <th rowspan="<%#= materias_diversificada.length %> " style=" width: 5px; height: 190px;" class="text-vertical"><span style="position: relative; left: -80px;">PARTE DIVERSIFICADA</span></th>
-                        <%# } %>
-                        <td><%#= diciplina %> </td>
-                        <%# notas_diversificada.forEach((notas, index,array) => { %>
-                            <%# if (remover_acentos_espaco(notas.diciplina_diversificada).toLowerCase() == remover_acentos_espaco(diciplina).toLowerCase()) { %>
+                        <th colspan="<%= unidade.length/2 %>"><%= grupo_avaliativo[0] %></th>
+                        <th colspan="<%= unidade.length/2 %>"><%= grupo_avaliativo[1] %></th>
+                    <%# }) %>
+                </tr>
+                <tr>
+                    <% unidade.forEach(element => { %>
+                        <th><%= element.unidade_sigla %> </th>
+                    <% }) %>
+                </tr>
+                <% 
+                var diciplinas = notas.filter(function (a) {
+                    return !this[JSON.stringify(a.diciplina)] && (this[JSON.stringify(a.diciplina)] = true);
+                }, Object.create(null))
+                diciplinas = diciplinas.map(el=> el.diciplina)
+                %> 
+                <% diciplinas.forEach((diciplinas,index) => { %>
+                    <tr>
+                        <% if (index == 0) { %>
+                            <th rowspan="9" style="width: 5px; height: 300px;" class="text-vertical"><span class="text">BASE NACIONAL COMUM</span></th>
+                        <% } %>
+                        <td><%= diciplinas%> </td>
+
+                        <% notas.forEach((element,index) => { %>
+                            
+                            <% if (element.unidade == unidade[0].unidade_sigla) { %>
+                                <% if (element.diciplina == diciplinas) { %>
+                                    <td class="text_center"><%= element.nota %> </td>
+                                <% } %>
+                            <% } %>
+                            <% if (element.unidade == unidade[1].unidade_sigla) { %>
+                                <% if (element.diciplina == diciplinas) { %>
+                                    <td class="text_center"><%= element.nota %> </td>
+                                <% } %>
+                            <% } %>
+                            <% if (element.unidade == unidade[2].unidade_sigla) { %>
+                                <% if (element.diciplina == diciplinas) { %>
+                                    <td class="text_center"><%= element.nota %> </td>
+                                <% } %>
+                            <% } %>
+                            <% if (element.unidade == unidade[3].unidade_sigla) { %>
+                                <% if (element.diciplina == diciplinas) { %>
+                                    <td class="text_center"><%= element.nota %> </td>
+                                <% }%>
                                 
-                                <%# if (notas.nota_diversificada == null) { %>
-                                    <th>*</th>
-                                   <%# }else{%>
-                                    <td class="text_center"><%#= notas.nota_diversificada %> </td>
-                                   <%#} %>
-                            <%# } %>
-                        <%# }) %>
-
-                        <%# totais.forEach(element => { %>
-
-                            <%# if (remover_acentos_espaco(element.diciplina_totais).toLowerCase() ==remover_acentos_espaco(diciplina).toLowerCase() ) { %>
-                                <td  class="backCinza text_center"><%#= element.media %> </td>
-                                <td  class="backCinza text_center"><%#= element.total_faltas %> </td>
-                            <%# } %>
-                        <%# }) %>
+                            <% }%>
+                        
+                            
+                        <% }) %>
+                        <td class="backCinza">
+                            <% if (finais.length > index) { %>
+                                <% if (finais[index].diciplina == diciplinas) { %>
+                                    <%= finais[index].media %> 
+                                <% } %>
+                            <% } %>
+                        </td>
                     </tr>
-                <%# }) %> -->
-        </table>
+                <% }) %>
+            </table>
+        </div>
+
+
     </div>
 </body>
 </html>
