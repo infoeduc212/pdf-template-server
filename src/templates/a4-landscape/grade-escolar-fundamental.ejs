@@ -32,30 +32,32 @@
                 </div>
             </div>
         </div>
-        <% horarios.forEach(element => { %>
-            <div class="item-border" style="background-color: rgb(211, 211, 211); height: 15px;">
+        <% if(Array.isArray(horarios)){ %>
+            <% horarios.forEach(element => { %>
+                <div class="item-border" style="background-color: rgb(211, 211, 211); height: 15px;">
 
-            </div>
-            <div class="flex">
-                <div class="vertical-text item-border">
-                    <%= element.turma %>
                 </div>
-                <table class="table">
-                    <thead>
+                <div class="flex">
+                    <div class="vertical-text item-border">
+                        <%= element.turma %>
+                    </div>
+                    <table class="table">
                         <thead>
-                            <tr>
-                                <td>2ª Feira</td>
-                                <td>3ª Feira</td>
-                                <td>4ª Feira</td>
-                                <td>5ª Feira</td>
-                                <td>6ª Feira</td>
-                                <td>Sábado</td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <td>2ª Feira</td>
+                                    <td>3ª Feira</td>
+                                    <td>4ª Feira</td>
+                                    <td>5ª Feira</td>
+                                    <td>6ª Feira</td>
+                                    <td>Sábado</td>
+                                </tr>
+                            </thead>
                         </thead>
-                    </thead>
-                </table>
-            </div>
-        <% }) %>
+                    </table>
+                </div>
+            <% }) %>
+        <% } %>
     </div>
     
 </body>

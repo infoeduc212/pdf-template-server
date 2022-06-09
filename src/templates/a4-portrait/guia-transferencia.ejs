@@ -187,23 +187,29 @@
                                             </div>
                                         </div>
                                         <div class="flex">
-                                            <% materias.forEach(materia => { %>
-                                            <div class="rotated-text">
-                                                <%= materia.nome %>
-                                            </div>
-                                            <% }) %>
-                                        </div>
-                                        <div class="flex">
-                                            <% materias.forEach(materia => { %>
-                                            <div class="flex flex-column" style="flex-grow: 1;">
-                                                <% materia.notas.forEach(nota => { %>
-                                                <div
-                                                    style="border: 1px solid; padding: 5px; text-align: center; font-size: 12px;">
-                                                    <%= nota %>
+                                            <% if(Array.isArray(materias)){ %>
+                                                <% materias.forEach(materia => { %>
+                                                <div class="rotated-text">
+                                                    <%= materia.nome %>
                                                 </div>
                                                 <% }) %>
-                                            </div>
-                                            <% }) %>
+                                            <% } %>
+                                        </div>
+                                        <div class="flex">
+                                            <% if(Array.isArray(materias)){ %>
+                                                <% materias.forEach(materia => { %>
+                                                <div class="flex flex-column" style="flex-grow: 1;">
+                                                    <% if(Array.isArray(materia.notas)){ %>
+                                                        <% materia.notas.forEach(nota => { %>
+                                                        <div
+                                                            style="border: 1px solid; padding: 5px; text-align: center; font-size: 12px;">
+                                                            <%= nota %>
+                                                        </div>
+                                                        <% }) %>
+                                                    <% } %>
+                                                </div>
+                                                <% }) %>
+                                            <% } %>
                                         </div>
                                     </div>
                                 </div>

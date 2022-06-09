@@ -114,67 +114,69 @@
                             <%# }) %>
                             
                         </tr>
-                        <% lista_alunos.forEach(lista  => { %>
+                        <% if(Array.isArray(lista_alunos)){ %>
+                            <% lista_alunos.forEach(lista  => { %>
 
-                            <tr>
-                                <td style="width: 100%;">
-                                    <%= lista.nome_aluno %> <%= lista.sobrenome_aluno %> 
-                                </td>
-                                <td class="center">
-                                    <%= lista.faltas_mat %> 
-                                </td>
-                                <td class="center">
-                                    <%= lista.faltas_pt %> 
-                                </td >
-                                <td class="center">
-                                    <%= lista.faltas_his %> 
-                                </td>
-                                <td class="center">
-                                    <%= lista.faltas_geo %> 
-                                </td>
-                                <td class="center">
-                                    <%= lista.faltas_cien %> 
-                                </td>
-                                <td class="center">
-                                    <%= lista.faltas_ed %> 
-                                </td>
-                                <td class="center">
-                                    <%= lista.faltas_artes %> 
-                                </td>
-                                <td class="center">
-                                    <%= lista.faltas_religiao %> 
-                                </td>
-                                <td class="center">
-                                    <%= lista.faltas_ingles %> 
-                                </td>
-                                <td>
+                                <tr>
+                                    <td style="width: 100%;">
+                                        <%= lista.nome_aluno %> <%= lista.sobrenome_aluno %> 
+                                    </td>
+                                    <td class="center">
+                                        <%= lista.faltas_mat %> 
+                                    </td>
+                                    <td class="center">
+                                        <%= lista.faltas_pt %> 
+                                    </td >
+                                    <td class="center">
+                                        <%= lista.faltas_his %> 
+                                    </td>
+                                    <td class="center">
+                                        <%= lista.faltas_geo %> 
+                                    </td>
+                                    <td class="center">
+                                        <%= lista.faltas_cien %> 
+                                    </td>
+                                    <td class="center">
+                                        <%= lista.faltas_ed %> 
+                                    </td>
+                                    <td class="center">
+                                        <%= lista.faltas_artes %> 
+                                    </td>
+                                    <td class="center">
+                                        <%= lista.faltas_religiao %> 
+                                    </td>
+                                    <td class="center">
+                                        <%= lista.faltas_ingles %> 
+                                    </td>
+                                    <td>
 
-                                </td>
-                                <td>
+                                    </td>
+                                    <td>
 
-                                </td>
-                                <td>
+                                    </td>
+                                    <td>
 
-                                </td>
-                                <td>
+                                    </td>
+                                    <td>
 
-                                </td>
-                                <td>
-                                    <%= lista.faltas_periodo %> 
-                                </td>
-                                <td>
-                                    <%= lista.frequencia_periodos %> 
-                                </td>
-                                <td>
-                                    <%= lista.falas_anual %> 
-                                </td>
-                                <td>
-                                    <%= lista.frequencia_anual %> 
-                                </td>
+                                    </td>
+                                    <td>
+                                        <%= lista.faltas_periodo %> 
+                                    </td>
+                                    <td>
+                                        <%= lista.frequencia_periodos %> 
+                                    </td>
+                                    <td>
+                                        <%= lista.falas_anual %> 
+                                    </td>
+                                    <td>
+                                        <%= lista.frequencia_anual %> 
+                                    </td>
 
-                            </tr>
-                            
-                        <% }) %>
+                                </tr>
+                                
+                            <% }) %>
+                        <% } %>
                         <tr>
                             <th style="text-align: left;">Total de dias letivos:</th>
                             <td colspan="17"><%= dias_letivos %> </td>

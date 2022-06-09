@@ -1,5 +1,4 @@
 <%- include("../../css/ficha.ejs") %>
-<<<<<<< Updated upstream
 <%- include("../../css/common.ejs") %>
 <style>
     .item-border {
@@ -77,11 +76,11 @@
                                     <div class="item-border flex flex-column grow">
                                         <% var objetivos = item.lista_objetivo_aprendizagem %>
                                         
-                                        <div class="flex pad">
-                                            &bull; <%= objetivos %><br>
-                                        </div>
-                            
-                                        <% } %>
+                                            <div class="flex pad">
+                                                &bull; <%= item.lista_objetivo_aprendizagem %><br>
+                                            </div>
+                                        
+                                    
                                         </div>
                                         <div class="item-border flex flex-column" style="gap: 15px; flex-grow: 0; padding: 10px 5px;">
                                             <div class="text-center" style="font-size: 15px;">
@@ -99,42 +98,12 @@
                                 <div class="item-border pad">
                                     <%= item.descricao_avaliativa %> 
                                 </div>
-                                <% }) %>
                             </div>
-                    <% } %>
+                        <% }) %>
+                    </div>
+                <% } %> 
             <% } %>
-        <% } %> 
-=======
-<%- include("../../css/common.ejs") %> 
-<div>
-    <div id="titulo" style="position: relative; top: 20px;"><b><u>FICHA DE ACOMPANHAMENTO</u></b></div>
-    <div >
-        <% if(Array.isArray(ficha_acompanhamento)){ %>
-            <% ficha_acompanhamento.forEach(element => { %>
-                <table class="table" style="width: 100%; margin-top: 30px; border-spacing: 0;" >
-                    
-                        <tr">
-                            <td colspan="2"><b>CAMPOS DE EXPERIÊNCIA:</b> <%= element.campos_experiencia %></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><b>Faixa Etária:</b> <%= element.faixa_etaria %> </td>
-                        </tr>
-                        <tr>
-                            <th colspan="2">Objetivo de Aprendizagem e Desenvolvimento</th>
-                        </tr>
-                        <tr>
-                            <td><%= element.objetivo %> </td>
-                            <td style="max-width: 1px;" class="center"><b>Alcançado</b><br><%= element.alcancado === true ? "Sim" : "Não" %></td>
-                        </tr>
-                        <tr>
-                            <th colspan="2">Avaliação descritiva</th>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><%= element.descricao_avaliativa %> </td>
-                        </tr>
-                </table>
-            <% }) %>
         <% } %>
->>>>>>> Stashed changes
+    </div>
     </div>
 </div>

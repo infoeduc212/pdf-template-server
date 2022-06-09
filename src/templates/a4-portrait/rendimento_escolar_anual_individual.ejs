@@ -146,7 +146,7 @@
                     <% media_final_periodo.forEach((element,index) => { %>
                         <% if ((element.unidade_media).toLowerCase() == unidade[0]) { %>
                             <% if (remover_acentos_espaco(element.diciplina_media).toLowerCase() == dici[index]) { %>
-                              <% if (element.nota_rec == null) { %>
+                              <% if (element.nota_media == null) { %>
                                <th>*</th>
                               <% }else{%>
                                   <td style="text-align: center;"><%= element.nota_media %> </td>
@@ -380,7 +380,7 @@
                     <td colspan="5" style="font-size: 12px;"><b>FREQUÊNCIA %:</b> ( <%= frequencia %>%  )</td>
                 </tr>
                 <tr>
-                    <td colspan="14" style="height: 10px; font-size: 12px;"><b>RESULTADO FINAL:</b> ( <%= resultado_final == "Aprovado" ? "X" : "" %> ) Aprovado    ( <%= resultado_final == "Reprovado" ? "X" : "" %> ) Reprovado</td>
+                    <td colspan="14" style="height: 10px; font-size: 12px;"><b>RESULTADO FINAL:</b> ( <%= resultado_final == true ? "X" : "" %> ) Aprovado    ( <%= resultado_final == false ? "X" : "" %> ) Reprovado</td>
                 </tr>
             </table>
         </div>

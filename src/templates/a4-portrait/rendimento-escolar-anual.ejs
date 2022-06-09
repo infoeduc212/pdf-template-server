@@ -33,21 +33,33 @@
             const unidades = [] 
             const notasComputadas = []
 
-            notas.forEach(item => {
-                const materia = item.materia
-                const unidade = item.unidade
-                if (materias.indexOf(materia) === -1) materias.push(materia)
-                if (unidades.indexOf(unidade) === -1) unidades.push(unidade)
-            });
+            if(Array.isArray(notas)){
+
+                notas.forEach(item => {
+                    const materia = item.materia
+                    const unidade = item.unidade
+                    if (materias.indexOf(materia) === -1) materias.push(materia)
+                    if (unidades.indexOf(unidade) === -1) unidades.push(unidade)
+                });
+
+            }
+
+            
             materias.forEach(materia => {
                 const arr = []
                 unidades.forEach(unidade => {
-                    notas.forEach(registro => {
-                        if (registro.unidade === unidade && registro.materia === materia) {
-                            arr.push(registro.nota)
-                            return
-                        }
-                    });
+                    
+                    if(Array.isArray(notas)){
+
+                        notas.forEach(registro => {
+                            if (registro.unidade === unidade && registro.materia === materia) {
+                                arr.push(registro.nota)
+                                return
+                            }
+                        });
+
+                    }
+                    
                 });
                 notasComputadas.push(arr)
             })

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <%- include("../reusable/header-escola.ejs") %>
+        <div class="flex flex-column small-gap">
+            <div class="flex" style="gap: 10px;">
+                <div class="multicolumn">
+                    <b class="pad-right">Instituição de ensino:</b>
+                    <div class="text-line"><%= instituicao %></div>
+                </div>
+                <div class="multicolumn" style="max-width: 130px;">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"><%= nome_ano_letivo %> </div>
+                </div>
+            </div>
+            <div class="multicolumn" >
+                <b class="pad-right">Prof (a):</b>
+                <div class="text-line"><%= nome_professor %> <%= sobrenome_professor %> </div>
+            </div>
+            <div class="multicolumn" >
+                <b class="pad-right">Aluno (a):</b>
+                <div class="text-line"><%= nome_aluno %> <%= sobrenome_aluno %> </div>
+            </div>
+            <div class="flex" style="gap: 10px;">
+                <div class="multicolumn">
+                    <b class="pad-right">ID da Turma:</b>
+                    <div class="text-line"><%= id_turma %></div>
+                </div>
+                <div class="multicolumn" style="max-width: 220px;">
+                    <b class="pad-right">Turma:</b>
+                    <div class="text-line"><%= nome_turma %></div>
+                </div>  
+
+                <div class="multicolumn" style="max-width: 140px;">
+                    <b class="pad-right">Turno:</b>
+                    <div class="text-line"><%= nome_turno %></div>
+                </div>
+                <div class="multicolumn" >
+                    <b class="pad-right">Período Letivo:</b>
+                    <div class="text-line"><%= nome_periodo_letivo %> </div>
+                </div>
+            </div>
+        </div>
+        <%- include("../reusable/ficha-acompanhamento/ficha-acompanhamento-descritiva-completa.ejs") %>
+        <div style="margin-top: 40px;">
+            <%- include("../reusable/campo-assinatura-3.ejs") %>
+        </div>
+    </div>
+</body>
+</html>

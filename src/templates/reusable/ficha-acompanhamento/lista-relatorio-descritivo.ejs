@@ -27,29 +27,31 @@
             </tr>
         </thead>
         <tbody>
-            <% objetivos_aprendizagem.forEach(exp => { %> 
-            <tr>
-                <td>
-                    <%= exp.descricao %> 
-                </td>
-                <td>
-                    <div>
-                        <div style="padding: 3px;" class="border">
-                            &ensp;
+            <% if(Array.isArray(objetivos_aprendizagem)){ %>
+                <% objetivos_aprendizagem.forEach(exp => { %> 
+                <tr>
+                    <td>
+                        <%= exp.descricao %> 
+                    </td>
+                    <td>
+                        <div>
+                            <div style="padding: 3px;" class="border">
+                                &ensp;
+                            </div>
+                            <div style="padding: 3px;" class="border">
+                                &ensp; 
+                            </div>
+                            <div style="padding: 3px;">
+                                &ensp;
+                            </div>
                         </div>
-                        <div style="padding: 3px;" class="border">
-                            &ensp; 
-                        </div>
-                        <div style="padding: 3px;">
-                            &ensp;
-                        </div>
-                    </div>
-                </td>
-                <td class="text-center">
-                    <%= exp.alcancado === true ? "Sim" : "Não" %>
-                </td>
-            </tr>
-            <% }) %> 
+                    </td>
+                    <td class="text-center">
+                        <%= exp.alcancado === true ? "Sim" : "Não" %>
+                    </td>
+                </tr>
+                <% }) %> 
+            <% } %>
         </tbody>
     </table>
 </div>

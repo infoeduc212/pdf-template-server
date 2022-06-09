@@ -57,50 +57,61 @@
                             <b>TURMA: </b><%= turma %> <br>
                             <b>TURNO: </b><%= turno %> 
                         </td>
-                        <th colspan="<%= lista_diciplinas.length %> ">BASE NACAIONAL COMUM</th>
-                        <% if (lista_diciplinas_diversificada.length > 0) { %>
-                            <th style="max-width: 80px;" colspan="<%= lista_diciplinas_diversificada.length %> ">PARTE DIVERSIFICADA</th>
+                        <% if(Array.isArray(lista_diciplinas) && Array.isArray(lista_diciplinas_diversificada)){ %>
+                            <th colspan="<%= lista_diciplinas.length %> ">BASE NACIONAL COMUM</th>
+                            <% if (lista_diciplinas_diversificada.length > 0) { %>
+                                <th style="max-width: 80px;" colspan="<%= lista_diciplinas_diversificada.length %> ">PARTE DIVERSIFICADA</th>
+                            <% } %>
                         <% } %>
                         <td rowspan="2" class="tex-vertical"><span class="text3">% FREQUÊNCIA</span></td>
                         <td></td>
                     </tr>
                     <tr style="height: 100px;">
                         <th>NOME</th>
-                        <% lista_diciplinas.forEach(element => { %>
-                            <td style="width: 30px;" class="tex-vertical">
-                                <span class="text3">
-                                    <%= element %>
-                                </span> 
-                            </td>
-                        <% }) %>
-                        <% lista_diciplinas_diversificada.forEach(element => { %>
-                            <td class="tex-vertical">
-                                <span class="text3">
-                                    <%= element %>
-                                </span> 
-                            </td>
-                        <% }) %>
+                        <% if(Array.isArray(lista_diciplinas)){ %>
+                            <% lista_diciplinas.forEach(element => { %>
+                                <td style="width: 30px;" class="tex-vertical">
+                                    <span class="text3">
+                                        <%= element %>
+                                    </span> 
+                                </td>
+                            <% }) %>
+                        <% } %>
+                        <% if(Array.isArray(lista_diciplinas_diversificada)){ %>
+                            <% lista_diciplinas_diversificada.forEach(element => { %>
+                                <td class="tex-vertical">
+                                    <span class="text3">
+                                        <%= element %>
+                                    </span> 
+                                </td>
+                            <% }) %>
+                        <% } %>
                         <th style="max-width: 40px ;">OBSERVAÇÃO</th>
                     </tr>
-                    <% lista_rendimento.forEach(item => { %>
-                        <tr>
-                            <td><%= item.nome %> <%= item.sobrenome %></td>
-                            
-                            <% item.media.forEach(element => { %>
-                                <td style="text-align: center;"><%= element %> </td>
+                    <% if(Array.isArray(lista_rendimento)){ %>
+                        <% lista_rendimento.forEach(item => { %>
+                            <tr>
+                                <td><%= item.nome %> <%= item.sobrenome %></td>
                                 
-                            <% }) %>
-                            <% var lista_todas_diciplinas = lista_diciplinas.length + lista_diciplinas_diversificada.length %> 
-                            <% if (lista_todas_diciplinas > item.media.length) { %>
-                                <% var diferenca = lista_todas_diciplinas - item.media.length %> 
-                                <% for( let index = 0; index < diferenca; index++ ) { %>
-                                    <th>*</th>
+                                <% if(Array.isArray(item.media)){ %>
+                                    <% item.media.forEach(element => { %>
+                                        <td style="text-align: center;"><%= element %> </td>
+                                    <% }) %>
                                 <% } %>
-                            <% } %>
-                            <td><%= item.frequencia %> </td>
-                            <td><%= item.observacao %> </td>
-                        </tr>
-                    <% }) %>
+                                <% if(Array.isArray(lista_diciplinas_diversificada) && Array.isArray(lista_diciplinas)){ %>
+                                    <% var lista_todas_diciplinas = lista_diciplinas.length + lista_diciplinas_diversificada.length %> 
+                                    <% if (lista_todas_diciplinas > item.media.length) { %>
+                                        <% var diferenca = lista_todas_diciplinas - item.media.length %> 
+                                        <% for( let index = 0; index < diferenca; index++ ) { %>
+                                            <th>*</th>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                                <td><%= item.frequencia %> </td>
+                                <td><%= item.observacao %> </td>
+                            </tr>
+                        <% }) %>
+                    <% } %>
                 </table>
 
             </div>

@@ -40,16 +40,16 @@
             return self.indexOf(value) === index
         }
         const disciplinaMedias = {}
-        const disciplinas = notas.map(nota => nota.disciplina_nome).filter(onlyUnique)
-        const avaliacoesAliases = notas.map(nota => nota.avaliacao_alias).filter(onlyUnique)
-
+        const disciplinas = (Array.isArray(notas)) ? notas.map(nota => nota.disciplina_nome).filter(onlyUnique) : [];
+        const avaliacoesAliases = (Array.isArray(notas)) ? notas.map(nota => nota.avaliacao_alias).filter(onlyUnique) : [];
+        
         avaliacoesAliases.forEach(alias => {
             const array = []
             const arrayRec = []
             
             disciplinas.forEach(disciplina => {
                 const scope = {}
-                const notasDisciplina = notas.filter(nota => nota.disciplina_nome === disciplina)
+                const notasDisciplina = (Array.isArray(notas)) ? notas.filter(nota => nota.disciplina_nome === disciplina) : [];
                 const notasAvaliacao = notasDisciplina.filter(nota => nota.avaliacao_alias === alias)
                 if (notasAvaliacao.length <= 0) {
                     // Preencher com zero caso não tenha notas
@@ -100,50 +100,60 @@
                         <div class="grow text-center item-border">
                             Avaliação/Componente Curricular
                         </div>
-                        <% disciplinas.forEach(disciplina => { %>
-                            <div class="grow item-border">
-                                <%= disciplina %> 
-                            </div>
-                        <% }) %>
+                        <% if(Array.isArray(disciplinas)){ %>
+                            <% disciplinas.forEach(disciplina => { %>
+                                <div class="grow item-border">
+                                    <%= disciplina %> 
+                                </div>
+                            <% }) %>
+                        <% } %>
                     </div>
                     <div class="flex grow">
-                        <% matriz.forEach(array => { %>
-                            <div class="flex flex-column">
-                                <% array.forEach(item => { %>
-                                    <div class="grow text-center item-border">
-                                        <%= item %> 
-                                    </div>
-                                <% }) %>
-                            </div>
-                        <% }) %>
+                        <% if(Array.isArray(matriz)){ %>
+                            <% matriz.forEach(array => { %>
+                                <div class="flex flex-column">
+                                    <% if(Array.isArray(array)){ %>
+                                        <% array.forEach(item => { %>
+                                            <div class="grow text-center item-border">
+                                                <%= item %> 
+                                            </div>
+                                        <% }) %>
+                                    <% } %>
+                                </div>
+                            <% }) %>
+                        <% } %>
                         <div class="grow flex flex-column">
                             <div class="grow text-center item-border">
                                 Média
                             </div>
-                            <% disciplinas.forEach(disciplina => { %>
-                                <div class="grow text-center item-border">
-                                    <%= disciplinaMedias[disciplina] %> 
-                                </div>
-                            <% }) %>
+                            <% if(Array.isArray(disciplinas)){ %>
+                                <% disciplinas.forEach(disciplina => { %>
+                                    <div class="grow text-center item-border">
+                                        <%= disciplinaMedias[disciplina] %> 
+                                    </div>
+                                <% }) %>
+                            <% } %>
                         </div>
                         <div class="grow flex flex-column">
                             <div class="grow text-center item-border">
                                 Situação
                             </div>
-                            <% disciplinas.forEach(disciplina => { %>
-                                <div class="grow text-center item-border">
-                                    <%= disciplinaMedias[disciplina] >= criterio_avaliacao.media_aprovacao ? "Aprovado" : "Reprovado" %> 
-                                </div>
-                            <% }) %>
+                            <% if(Array.isArray(disciplinas)){ %>
+                                <% disciplinas.forEach(disciplina => { %>
+                                    <div class="grow text-center item-border">
+                                        <%= disciplinaMedias[disciplina] >= criterio_avaliacao.media_aprovacao ? "Aprovado" : "Reprovado" %> 
+                                    </div>
+                                <% }) %>
+                            <% } %>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="flex">
                 <% 
-                    const totalFaltas = frequencia.map(registro => registro.total_faltas).reduce((prev, curr) => prev + curr, 0)
-                    const faltasPorDia = 4
-                    const totalFaltasDia = totalFaltas / faltasPorDia
+                    const totalFaltas = (Array.isArray(frequencia)) ? frequencia.map(registro => registro.total_faltas).reduce((prev, curr) => prev + curr, 0) : 0;
+                    const faltasPorDia = 4;
+                    const totalFaltasDia = (totalFaltas > 0) ? (totalFaltas / faltasPorDia) : 0;
 
                     %> 
                 <div class="grow item-border">

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <meta charset="UTF-8">
+    <style>
+        .text-line {
+            border-bottom: 1px solid;
+            flex: 1;
+        }
+    </style>
+</head>
+<body style="margin: 30px;">
+    <%- include("../reusable/header-escola.ejs") %>
+    <%- include("../css/common.ejs") %>
+    <div>
+        <div class="flex flex-column" style="gap: 10px;">
+            <div class="flex grow">
+                <div class="flex grow">
+                    <b class="pad-right" style="margin-right: 5px">Instituição de Ensino:</b>
+                    <div class="text-line"><%= nome_escola %></div>
+                </div>
+
+            </div>
+            <div class="flex grow">
+                <div class="flex grow">
+                    <b class="pad-right">Prof (a):</b>
+                    <div class="text-line"><%= nome_professor %></div>
+                </div>
+
+
+            </div>
+            <!-- <div class="flex grow">
+                <div class="flex grow">
+                    <b class="pad-right">Aluno(a):</b>
+                    <div class="text-line"><%#= aluno.nome %></div>
+                </div>
+
+            </div> -->
+            <div class="flex grow">
+
+                <div class="flex grow">
+                    <b class="pad-right">Turma:</b>
+                    <div class="text-line"><%= nome_turma %></div>
+                </div>
+
+                <!-- <%# if (periodo_letivo) { %>
+                    <div style="max-width: 280px;" class="flex grow">
+                        <b class="pad-right">Período Letivo:</b>
+                        <div class="text-line text-center"><%#= periodo_letivo.nome_periodo_letivo %></div>
+                    </div>
+                <%# } %> -->
+                <div class="flex grow">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"><%= nome_ano_letivo %></div>
+                </div>
+            </div>
+            <% if (tipo_documento !== "Infantil") { %>
+                <div class="flex grow">
+                    <div class="flex grow">
+                        <b class="pad-right">Componente Curricular:</b>
+                        <div class="text-line"><%= nome_disciplina %></div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        <br>
+        <h3 class="text-center">
+            <u>Frequência Individual</u>
+        </h3>
+
+
+        <% alunos.forEach(element => { %>
+            <%- include("../reusable/diario-classe/frequencia.ejs", { frequencia: element.frequencia, ano_letivo }) %>
+        <% }) %>
+        <%- include("../reusable/campo-assinatura-3.ejs") %> 
+    </div>
+</body>
+</html>

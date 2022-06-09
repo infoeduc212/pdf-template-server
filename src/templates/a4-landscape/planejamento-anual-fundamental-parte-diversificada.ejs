@@ -59,14 +59,29 @@
         <tbody>
             <tr>
                 <td>
+<<<<<<< Updated upstream
                     <% temas_conteudos.split("\n").forEach(text => { %>
-                        <%= text %><br>
+                        <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
                     <% }) %>
                 </td>
                 <td>
                     <% objetivos_habilidades.split("\n").forEach(text => { %>
-                        <%= text %><br>
+                        <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
                     <% }) %> 
+=======
+                    <% if(Array.isArray(temas_conteudos)){ %>
+                        <% temas_conteudos.split("\n").forEach(text => { %>
+                            <%= text %><br>
+                        <% }) %>
+                    <% } %>
+                </td>
+                <td>
+                    <% if(typeof objetivos_habilidades === 'string' || Array.isArray(objetivos_habilidades)){ %>
+                        <% objetivos_habilidades.split("\n").forEach(text => { %>
+                            <%= text %><br>
+                        <% }) %>
+                    <% } %>
+>>>>>>> Stashed changes
                 </td>
             </tr>
         </tbody>
@@ -76,7 +91,7 @@
             <div class="flex flex-column">
                 <div class="bg-color text-center item-border item-padding">PROCEDIMENTO DIDÁTICO/METODOLÓGICOS</div>
                 <div class="item-border item-padding">
-                    <%= procedimento_didatico %>
+                    <%-include("../reusable/verificar_formatacao_2.ejs",{text:procedimento_didatico})  %> <br> 
                 </div>
             </div>  
             <div class="flex flex-column">
@@ -96,9 +111,11 @@
                     REFERÊNCIAS
                 </div>
                 <div class="item-border item-padding">
-                    <% referencias.split("\n").forEach(texto => { %>
-                        <%= texto %><br>
-                    <% }) %>
+                    <% if(typeof referencias === 'string' || Array.isArray(referencias)){ %>
+                        <% referencias.split("\n").forEach(texto => { %>
+                            <%= texto %><br>
+                        <% }) %>
+                    <% } %>
                 </div>
             </div>
         </div>

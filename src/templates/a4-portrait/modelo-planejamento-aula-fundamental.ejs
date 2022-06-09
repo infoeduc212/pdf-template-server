@@ -85,24 +85,51 @@
                 <tbody class="small-text">
                     <tr>
                         <td>
+<<<<<<< Updated upstream
                             <% if (campo_atuacao) { %>
+                                <div class="small-text" style="word-break: break-all;">
+                                    <% campo_atuacao.split("\n").forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </div>
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (praticas_linguagem) { %>
+                                <div class="small-text" style="word-break: break-all;">
+                                    <% praticas_linguagem.split("\n").forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %>
+                                </div>
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (objetos_conhecimento) { %>
+                                <div class="small-text" style="word-break: break-all;">
+                                    <% objetos_conhecimento.split("\n").forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </div>
+=======
+                            <% if (typeof campo_atuacao === 'string') { %>
                                 <% campo_atuacao.split("\n").forEach(text => { %>
                                     <%= text %><br>
                                 <% }) %> 
                             <% } %>
                         </td>
                         <td>
-                            <% if (praticas_linguagem) { %>
+                            <% if (typeof praticas_linguagem === 'string') { %>
                                 <% praticas_linguagem.split("\n").forEach(text => { %>
                                     <%= text %><br>
                                 <% }) %>
                             <% } %>
                         </td>
                         <td>
-                            <% if (objetos_conhecimento) { %>
+                            <% if (typeof objetos_conhecimento === 'string') { %>
                                 <% objetos_conhecimento.split("\n").forEach(text => { %>
                                     <%= text %><br>
                                 <% }) %> 
+>>>>>>> Stashed changes
                             <% } %>
                         </td>
                     </tr>
@@ -121,24 +148,51 @@
                 <tbody class="small-text">
                     <tr>
                         <td>
+<<<<<<< Updated upstream
                             <% if (eixo) { %>
+                                <div class="small-text" style="word-break: break-all;"> 
+                                    <% eixo.split("\n").forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </div>
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (unidades_tematicas) { %>
+                                <div class="small-text" style="word-break: break-all;">
+                                    <% unidades_tematicas.split("\n").forEach(text => { %> 
+                                        <%= text %><br>
+                                    <% }) %>
+                                </div> 
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (objetos_conhecimento) { %>
+                                <div class="small-text" style="word-break: break-all;">
+                                    <% objetos_conhecimento.split("\n").forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </div>
+=======
+                            <% if (typeof eixo === 'string') { %>
                                 <% eixo.split("\n").forEach(text => { %>
                                     <%= text %><br>
                                 <% }) %> 
                             <% } %>
                         </td>
                         <td>
-                            <% if (unidades_tematicas) { %>
+                            <% if (typeof unidades_tematicas === 'string') { %>
                                 <% unidades_tematicas.split("\n").forEach(text => { %> 
                                     <%= text %><br>
                                 <% }) %> 
                             <% } %>
                         </td>
                         <td>
-                            <% if (objetos_conhecimento) { %>
+                            <% if (typeof objetos_conhecimento === 'string') { %>
                                 <% objetos_conhecimento.split("\n").forEach(text => { %>
                                     <%= text %><br>
                                 <% }) %> 
+>>>>>>> Stashed changes
                             <% } %>
                         </td>
                     </tr>
@@ -156,17 +210,35 @@
                 <tbody class="small-text">
                     <tr>
                         <td>
+<<<<<<< Updated upstream
                             <% if (unidades_tematicas) { %>
+                                <div class="small-text" style="word-break: break-all;">
+                                    <% unidades_tematicas.split("\n").forEach(text => { %> 
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </div>
+                            <% } %>
+                        </td>
+                        <td>
+                            <% if (objetivos_conhecimento) { %>
+                                <div class="small-text" style="word-break: break-all;">
+                                    <% objetivos_conhecimento.split("\n").forEach(text => { %>
+                                        <%= text %><br>
+                                    <% }) %> 
+                                </div>
+=======
+                            <% if (typeof unidades_tematicas === 'string') { %>
                                 <% unidades_tematicas.split("\n").forEach(text => { %> 
                                     <%= text %><br>
                                 <% }) %> 
                             <% } %>
                         </td>
                         <td>
-                            <% if (objetivos_conhecimento) { %>
+                            <% if (typeof objetivos_conhecimento === 'string') { %>
                                 <% objetivos_conhecimento.split("\n").forEach(text => { %>
                                     <%= text %><br>
                                 <% }) %> 
+>>>>>>> Stashed changes
                             <% } %>
                         </td>
                     </tr>
@@ -177,8 +249,13 @@
             <div class="text-center bg-color item-padding">
                 HABILIDADES 
             </div>
-            <div class="item-padding item-border small-text">
+<<<<<<< Updated upstream
+            <div class="item-padding item-border small-text" style="word-break: break-all;">
                 <% if (habilidades) { %>
+=======
+            <div class="item-padding item-border small-text">
+                <% if (typeof habilidades === 'string') { %>
+>>>>>>> Stashed changes
                     <% habilidades.split("\n").forEach(text => { %>
                         <%= text %> <br>
                     <% }) %> 
@@ -189,10 +266,15 @@
             <div class="text-center bg-color item-padding">
                 PROCEDIMENTO DIDÁTICO/METODOLÓGICO
             </div>
-            <div class="item-padding item-border small-text">
+<<<<<<< Updated upstream
+            <div class="item-padding item-border small-text" style="word-break: break-all;">
                 <% if (procedimento_didatico) { %>
+=======
+            <div class="item-padding item-border small-text">
+                <% if (typeof procedimento_didatico === 'string') { %>
+>>>>>>> Stashed changes
                     <% procedimento_didatico.split("\n").forEach(text => { %>
-                        <%= text %> <br> 
+                        <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
                     <% }) %> 
                 <% } %>
             </div>
@@ -201,8 +283,13 @@
             <div class="text-center bg-color item-padding">
                 RECURSOS/MATERIAIS
             </div>
-            <div class="item-padding item-border small-text">
+<<<<<<< Updated upstream
+            <div class="item-padding item-border small-text" style="word-break: break-all;">
                 <% if (recursos_materiais) { %>
+=======
+            <div class="item-padding item-border small-text">
+                <% if (typeof recursos_materiais === 'string') { %>
+>>>>>>> Stashed changes
                     <% recursos_materiais.split("\n").forEach(text => { %> 
                         <%= text %>;<br>
                     <% }) %>
@@ -213,8 +300,13 @@
             <div class="text-center bg-color item-padding">
                 AVALIAÇÃO
             </div>
-            <div class="item-padding item-border small-text">
+<<<<<<< Updated upstream
+            <div class="item-padding item-border small-text" style="word-break: break-all;">
                 <% if (avaliacao) { %>
+=======
+            <div class="item-padding item-border small-text">
+                <% if (typeof avaliacao === 'string') { %>
+>>>>>>> Stashed changes
                     <% avaliacao.split("\n").forEach(text => { %>
                         <%= text %> <br>
                     <% }) %>
@@ -225,8 +317,13 @@
             <div class="text-center bg-color item-padding">
                 REFERÊNCIAS BIBLIOGRÁFICAS
             </div>
-            <div class="item-padding item-border small-text">
+<<<<<<< Updated upstream
+            <div class="item-padding item-border small-text" style="word-break: break-all;">
                 <% if (referencias_bibliograficas) { %>
+=======
+            <div class="item-padding item-border small-text">
+                <% if (typeof referencias_bibliograficas === 'string') { %>
+>>>>>>> Stashed changes
                     <% referencias_bibliograficas.split("\n").forEach(text => { %>
                         <%= text %> <br>
                     <% }) %> 

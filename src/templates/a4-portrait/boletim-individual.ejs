@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://localhost:2000/assets/css/font.css">
+    <%- include("../css/ficha.ejs") %>
+    <% include("../reusable/utils.ejs") %>
+    <%- include("../css/common.ejs") %>
+    <style>
+        .backCinza{
+            background-color: rgb(224, 224, 224);
+        }
+        .text{
+            position: relative;
+            left: -70px;
+        }
+        .text-vertical{
+            max-width: 20px;
+            height: 150px;
+            transform: rotate(270deg);
+            position: relative;
+            white-space: nowrap;
+        }
+        .text_center{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <%- include("../reusable/header-escola.ejs") %>
+        <div class="flex flex-column small-gap">
+            <div class="multicolumn">
+                <b class="pad-right">Instituição de Ensino:</b>
+                <div class="text-line"><%= nome_escola %></div>
+            </div>
+            <div class="multicolumn">
+                <b class="pad-right">Aluno (a):</b>
+                <div class="text-line"><%= aluno%></div>
+            </div>
+            <div class="flex" style="gap: 10px;">
+                <div class="multicolumn">
+                    <b class="pad-right">ID da InfoEduc:</b>
+                    <div class="text-line"><%= id_infoeduc %></div>
+                </div>
+                <div class="multicolumn" style="max-width: 220px;">
+                    <b class="pad-right">Turma:</b>
+                    <div class="text-line"><%= nome_turma %></div>
+                </div>  
+                <div class="multicolumn" style="max-width: 140px;">
+                    <b class="pad-right">Turno:</b>
+                    <div class="text-line"><%= nome_turno %></div>
+                </div>
+                <div class="multicolumn" style="max-width: 130px;">
+                    <b class="pad-right">Ano Letivo:</b>
+                    <div class="text-line"><%= nome_ano_letivo %> </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="page-title">BOLETIM ESCOLAR</h3>
+        
+
+        <div style="display: flex;">
+            <table class="table">
+                <tr>
+                    <th rowspan="3" style="max-width: 50px;" colspan="2">COMPONENTES CURRICULARES</th>
+                    <th colspan="<%= unidade.length %> " style="width: 170px;">NOTAS</th>
+                    <th rowspan="3" style="width: 70px;" class="backCinza">MÉDIA ANUAL</th>
+                    <th rowspan="3"style="width: 70px;" class="backCinza">Total de faltas</th>
+                </tr>
+    
+                <tr>
+                    <th colspan="<%= unidade.length/2 %>"><%= grupo_avaliativo[0] %></th>
+                    <th colspan="<%= unidade.length/2 %>"><%= grupo_avaliativo[1] %></th>
+                    
+                </tr>
+                <tr>
+                    <% unidade.forEach(element => { %>
+                        <th><%= element.unidade_sigla %> </th>
+                    <% }) %>
+                </tr>
+                <% 
+                var diciplinas = notas.filter(function (a) {
+                    return !this[JSON.stringify(a.diciplina)] && (this[JSON.stringify(a.diciplina)] = true);
+                }, Object.create(null))
+                diciplinas = diciplinas.map(el=> el.diciplina)
+                %> 
+                <% diciplinas.forEach((diciplinas,index) => { %>
+                    <tr>
+                        <% if (index == 0) { %>
+                            <th rowspan="9" style="width: 5px; height: 300px;" class="text-vertical"><span class="text">BASE NACIONAL COMUM</span></th>
+                        <% } %>
+                        <td><%= diciplinas%> </td>
+
+                        <% notas.forEach((element,index) => { %>
+                            
+                            <% if (element.unidade == unidade[0].unidade_sigla) { %>
+                                <% if (element.diciplina == diciplinas) { %>
+                                    <td class="text_center"><%= element.nota %> </td>
+                                <% } %>
+                            <% } %>
+                            <% if (unidade.length >= 2) { %>
+                                <% if (element.unidade == unidade[1].unidade_sigla) { %>
+                                    <% if (element.diciplina == diciplinas) { %>
+                                        <td class="text_center"><%= element.nota %> </td>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
+                            <% if (unidade.length >= 3) { %>
+                            <% if (element.unidade == unidade[2].unidade_sigla) { %>
+                                <% if (element.diciplina == diciplinas) { %>
+                                    <td class="text_center"><%= element.nota %> </td>
+                                <% } %>
+                            <% } %>
+                            <% }%>
+                            <% if (unidade.length >= 4) { %>
+                                <% if (element.unidade == unidade[3].unidade_sigla) { %>
+                                    <% if (element.diciplina == diciplinas) { %>
+                                        <td class="text_center"><%= element.nota %> </td>
+                                    <% }%>
+                                    
+                                <% }%>
+                            <% }%>
+                        <% }) %>
+                        <td class="backCinza">
+                            <% if (finais.length > index) { %>
+                                <% if (finais[index].diciplina == diciplinas) { %>
+                                    <%= finais[index].media %> 
+                                <% } %>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </table>
+        </div>
+
+
+    </div>
+</body>
+</html>
