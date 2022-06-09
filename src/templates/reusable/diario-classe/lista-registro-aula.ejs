@@ -25,22 +25,20 @@
         </tr>
     </thead>
     <tbody>
-        <% if(Array.isArray(registros_aulas)){ %>
-            <% registros_aulas.forEach(atividade => { %>
-                <tr>
-                    <td class="text-center" style="width: 10%">
-                        <% const date = new Date(atividade.data) %>
-                        <%= padWithZero(date.getDate()) + "/" + padWithZero(date.getMonth() + 1) %>
-                    </td>
-                    <td>
-                        <%= atividade.resumo %>
-                    </td>
-                    <td class="text-center" style="width: 20%;">
-                        
-                    </td>
-                </tr> 
-            <% }) %>
-        <% } %>
+        <% registros_aulas.forEach(atividade => { %>
+            <tr>
+                <td class="text-center" style="width: 10%">
+                    <% const date = new Date(atividade.data) %>
+                    <%= padWithZero(date.getDate()) + "/" + padWithZero(date.getMonth() + 1) %>
+                </td>
+                <td>
+                    <%= atividade.resumo %>
+                </td>
+                <td class="text-center" style="width: 20%;">
+                    
+                </td>
+            </tr> 
+        <% }) %>
     </tbody>
 </table>
 <style>

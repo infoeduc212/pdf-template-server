@@ -67,7 +67,7 @@
                 <div class="text-center bg-color item-padding">
                     UNIDADES TÉMATICAS
                 </div>
-                <div >
+                <div class="item-padding item-border">
                     <%= unidades_tematicas %>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 <div class="text-center bg-color item-padding">
                     OBJETIVOS DE CONHECIMENTO
                 </div>
-                <div>
+                <div class="item-padding item-border">
                     <%= objetivos_conhecimento %>
                 </div>
             </div>
@@ -84,7 +84,7 @@
             <div class="text-center bg-color item-padding">
                 COMPETÊNCIAS ESPECÍFICAS
             </div>
-            <div >
+            <div class="item-padding item-border">
                 <%= competencias_especificas %>
             </div>
         </div>
@@ -100,9 +100,8 @@
             <div class="text-center bg-color item-padding">
                 PRODECIMENTO DIDÁTICO
             </div>
-            <div class="item-padding item-border" style="word-break: break-all;">
-                <%var text = prodecimento_didatico %>
-                <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
+            <div class="item-padding item-border">
+                <%= prodecimento_didatico %>
             </div>
         </div>
         <div class="flex flex-column">

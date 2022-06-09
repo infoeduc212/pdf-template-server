@@ -97,24 +97,20 @@
         <br>
         <h3 class="text-center"><u>REGISTRO DE AULA</u></h3>
         <div class="text-center">
-            <% if(Array.isArray(registros_aulas)){ %>
-                <b>Mês:</b> De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %>
-            <% } %>
+            <b>Mês:</b> De <%= getFirstMonthFromDateArray2(registros_aulas) %> a <%= getFirstMonthFromDateArray(registros_aulas) %>
             <br>
             <br>
         </div>
         <%- include("../reusable/diario-classe/lista-registro-aula.ejs") %>
-        <% if(Array.isArray(reposicoes_aulas)){ %>
-            <% if (reposicoes_aulas.length > 0) { %>
-                <div style="break-before: page;">
-                    <h3 class="text-center"><u>REGISTRO DE REPOSIÇÃO DE AULA</u></h3>
-                    <div class="text-center">
-                        <b>Mês:</b> De <%= getFirstMonthFromDateArray2(reposicoes_aulas) %> a <%= getFirstMonthFromDateArray(reposicoes_aulas) %> 
-                    </div>
-                    <br>
-                    <%- include("../reusable/diario-classe/lista-registro-aula.ejs", { registros_aulas: reposicoes_aulas }) %> 
+        <% if (reposicoes_aulas.length > 0) { %>
+            <div style="break-before: page;">
+                <h3 class="text-center"><u>REGISTRO DE REPOSIÇÃO DE AULA</u></h3>
+                <div class="text-center">
+                    <b>Mês:</b> De <%= getFirstMonthFromDateArray2(reposicoes_aulas) %> a <%= getFirstMonthFromDateArray(reposicoes_aulas) %> 
                 </div>
-            <% } %>
+                <br>
+                <%- include("../reusable/diario-classe/lista-registro-aula.ejs", { registros_aulas: reposicoes_aulas }) %> 
+            </div>
         <% } %>
     </div>
 </body>

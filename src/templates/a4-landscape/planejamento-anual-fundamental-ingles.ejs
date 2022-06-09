@@ -63,7 +63,7 @@
         }
         return map
     }
-    const eixosGrupo = (Array.isArray(planejamento_anual)) ? groupByProperty(planejamento_anual, "eixos") : [];
+    const eixosGrupo = groupByProperty(planejamento_anual, "eixos")
     %> 
     <div class="margin-top page-title">
         <b>PLANEJAMENTO ANUAL</b>
@@ -90,27 +90,21 @@
                 </thead>
                 <tbody>
                     <% const array = eixosGrupo.get(key) %>
-                    <% if(Array.isArray(array)){ %>
-                        <% array.forEach(item => { %>
-                            <tr>
-                                <td><%= item.unidade_tematica %></td>
-                                <td>
-                                    <% if(Array.isArray(item.objetivos_conhecimento)){ %>
-                                        <% item.objetivos_conhecimento.forEach(text => { %>
-                                            <%= text %><br>
-                                        <% }) %>
-                                    <% } %>
-                                </td>
-                                <td>
-                                    <% if(Array.isArray(item.habilidades)){ %>
-                                        <% item.habilidades.forEach(text => { %>
-                                            <%= text %><br>
-                                        <% }) %>
-                                    <% } %>
-                                </td>
-                            </tr>
-                        <% }) %>
-                    <% } %>
+                    <% array.forEach(item => { %>
+                        <tr>
+                            <td><%= item.unidade_tematica %></td>
+                            <td>
+                                <% item.objetivos_conhecimento.forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            </td>
+                            <td>
+                                <% item.habilidades.forEach(text => { %>
+                                    <%= text %><br>
+                                <% }) %> 
+                            </td>
+                        </tr>
+                    <% }) %> 
                 </tbody>
             </table>
         <% } %> 
@@ -241,11 +235,9 @@
             REFERÊNCIAS
         </div>
         <div class="item-border item-padding">
-            <% if(typeof referencias === 'string' || Array.isArray(referencias)){ %>
-                <% referencias.split("\n").forEach(texto => { %>
-                    <%= texto %><br>
-                <% }) %>
-            <% } %>
+            <% referencias.split("\n").forEach(texto => { %>
+                <%= texto %><br>
+            <% }) %>
         </div>
     </div>
 </div>

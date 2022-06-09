@@ -17,7 +17,7 @@
     <div id="container">
         <%- include("../reusable/header-escola.ejs") %>
         <div style="margin-top: 40px;">
-            <div id="titulo" ><b><%= tipo_relatorio = "normal" ? "Relatório de Professores" : "Relatório de Professores Efetivos" %> </b></div>
+            <div id="titulo" ><b>Relatório de Professores</b></div>
             <div style="display: flex;">
                 <table class="table" style="width: 100%; border-spacing: 0;">
                     <tr>
@@ -26,24 +26,20 @@
                         <th>Turma</td>
                         <th>Celular</td>
                     </tr>
-                    <% if(Array.isArray(lista_professor)){ %>
-                        <% lista_professor.forEach(element => { %>
-                            <tr>
-                                <td style="width: 120px;"><%= element.id_infoeduc %></td>
-                                <td ><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
-                                <td style="width: 230px; font-size: 14px;">
-                                    <% if(Array.isArray(lista_turmas)){ %>
-                                        <% lista_turmas.forEach(turmas => { %>
-                                            <% if (turmas.id_professor == element.id_professor) { %>
-                                                <%= turmas.nome_turma %> <%=turmas.nome_diciplina == null ? '- Educação Infantil;' : ' - ' + turmas.nome_diciplina+';'%><br>
-                                            <% } %>
-                                        <% }) %>
+                    <% lista_professor.forEach(element => { %>
+                        <tr>
+                            <td style="width: 120px;"><%= element.id_infoeduc %></td>
+                            <td ><%= element.nome_professor %> <%= element.sobrenome_professor %> </td>
+                            <td style="width: 230px; font-size: 14px;">
+                                <% lista_turmas.forEach(turmas => { %>
+                                    <% if (turmas.id_professor == element.id_professor) { %>
+                                        <%= turmas.nome_turma %> <%=turmas.nome_diciplina == null ? '- Educação Infantil;' : ' - ' + turmas.nome_diciplina+';'%><br>
                                     <% } %>
-                                </td>
-                                <td style="width: 140px;"><%= element.celular %> </td>
-                            </tr>
-                        <% }) %>
-                    <% } %>
+                                <% }) %>
+                            </td>
+                            <td style="width: 140px;"><%= element.celular %> </td>
+                        </tr>
+                    <% }) %>
                 </table>
             </div>
         </div>

@@ -83,7 +83,7 @@
                     return DateTime.fromJSDate(new Date(date), { zone: "America/Sao_Paulo" })
                 }
     
-                const listaDate = (Array.isArray(frequencia)) ? frequencia.sort((a, b) => new Date(b.date) - new Date(a.date)) : [];
+                const listaDate = frequencia.sort((a, b) => new Date(b.date) - new Date(a.date))
     
                 let dateRange = null
     
@@ -140,7 +140,7 @@
                         }))
                     }
                 }
-                
+    
                 listaDate.forEach(record => {
                     const date = parseDate(record.data_lancamento)
                     const year = date.year

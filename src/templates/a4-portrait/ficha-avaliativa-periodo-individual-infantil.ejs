@@ -42,22 +42,20 @@
         </div>
         <h1 class="page-title">FICHA AVALIATIVA</h1>
         <% const lines = 5 %>
-        <% if(Array.isArray(periodo_letivos)){ %>
-            <% periodo_letivos.forEach(nome_periodo => { %>
-            <div>
-                <h3 class="text-center"><%= nome_periodo %></h3>
-                <% for (let index = 0; index < lines; index++) { %>
-                <div class="flex" style="break-inside: avoid;">
-                    <div class="text-line">
+        <% periodo_letivos.forEach(nome_periodo => { %>
+        <div>
+            <h3 class="text-center"><%= nome_periodo %></h3>
+            <% for (let index = 0; index < lines; index++) { %>
+            <div class="flex" style="break-inside: avoid;">
+                <div class="text-line">
 
-                    </div>
                 </div>
-                <br>
-                <br>
-                <% } %>
             </div>
-            <% }) %>
-        <% } %>
+            <br>
+            <br>
+            <% } %>
+        </div>
+        <% }) %>
         <%- include("../reusable/campo-assinatura-direcao.ejs") %>
     </div>
 </body>

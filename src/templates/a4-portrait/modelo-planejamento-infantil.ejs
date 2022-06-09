@@ -67,7 +67,7 @@
                 <div class="text-center bg-color item-padding">
                     EIXO TÉMATICO/CONTEÚDO
                 </div>
-                <div >
+                <div class="item-padding item-border">
                     <%= eixo_tematico_conteudo %>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 <div class="text-center bg-color item-padding">
                     CAMPOS DE EXPERIÊNCIA
                 </div>
-                <div >
+                <div class="item-padding item-border">
                     <%= campos_experiencia %>
                 </div>
             </div>
@@ -84,7 +84,7 @@
             <div class="text-center bg-color item-padding">
                 OBJETIVOS DE APRENDIZAGEM E DESENVOLVIMENTO
             </div>
-            <div >
+            <div class="item-padding item-border">
                 <%= objetivos_aprendizagem_desenvolvimento %>
             </div>
         </div>
@@ -92,9 +92,8 @@
             <div class="text-center bg-color item-padding">
                 PROCEDIMENTO DIDÁTICO
             </div>
-            <div class="item-padding item-border" style="word-break: break-all;">
-                <%= var text = procedimento_didatico %> 
-                <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
+            <div class="item-padding item-border">
+                <%= procedimento_didatico %> 
             </div>
         </div>
         <div class="flex flex-column">

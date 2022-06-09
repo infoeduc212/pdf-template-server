@@ -58,29 +58,23 @@
         <table style="width: 100%; font-size: 18px;">
             <thead>
                 <tr>
-                    <% if(Array.isArray(table_header)){ %>
-                        <% table_header.forEach((item, index) => { %>
-                        <td style="white-space: nowrap;">
-                            <%= item %>
-                        </td>
-                        <% }) %>
-                    <% } %>
+                    <% table_header.forEach((item, index) => { %>
+                    <td style="white-space: nowrap;">
+                        <%= item %>
+                    </td>
+                    <% }) %>
                 </tr>
             </thead>
             <tbody>
-                <% if(Array.isArray(list)){ %>
-                    <% list.forEach(arr => { %>
-                    <tr>
-                        <% if(Array.isArray(arr)){ %>
-                            <% arr.forEach((item, index) => { %>
-                                <td class="<%= widths[index] === "auto" ? "star-spacing" : " " %>">
-                                    <%= item %>
-                                </td>
-                            <% }) %>
-                        <% } %>
-                    </tr>
+                <% list.forEach(arr => { %>
+                <tr>
+                    <% arr.forEach((item, index) => { %>
+                        <td class="<%= widths[index] === "auto" ? "star-spacing" : " " %>">
+                            <%= item %>
+                        </td>
                     <% }) %>
-                <% } %>
+                </tr>
+                <% }) %>
             </tbody>
         </table>
         <% const dateNow = DateTime.now().setZone("America/Sao_Paulo") %>

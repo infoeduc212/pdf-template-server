@@ -66,29 +66,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% if(Array.isArray(planejamentos)){ %>
-                            <% planejamentos.forEach(item => { %>
-                                <tr>
-                                    <td>
-                                        <%= item.unidade_tematica %>
-                                    </td>
-                                    <td>
-                                        <% if(Array.isArray(item.objetivos_conhecimento)){ %>
-                                            <% item.objetivos_conhecimento.forEach(text => { %>
-                                                <%= text %> <br>
-                                            <% }) %>
-                                        <% } %>
-                                    </td>
-                                    <td>
-                                        <% if(Array.isArray(item.habilidades)){ %>
-                                            <% item.habilidades.forEach(text => { %>
-                                                <%= text %> <br>
-                                            <% }) %>
-                                        <% } %>
-                                    </td>
-                                </tr>
-                            <% }) %>
-                        <% } %>
+                        <% planejamentos.forEach(item => { %>
+                            <tr>
+                                <td>
+                                    <%= item.unidade_tematica %>
+                                </td>
+                                <td>
+                                    <% item.objetivos_conhecimento.forEach(text => { %>
+                                        <%= text %> <br>
+                                    <% }) %> 
+                                </td>
+                                <td>
+                                    <% item.habilidades.forEach(text => { %>
+                                        <%= text %> <br>
+                                    <% }) %> 
+                                </td>
+                            </tr>
+                        <% }) %>
                     </tbody>
                 </table>
             </div>
@@ -205,7 +199,7 @@
                     COMPETÊNCIAS ESPECÍFICAS DO COMPONENTE CURRICULAR
                 </div>
                 <div class="item-padding item-border">
-                    <% if (typeof componente_curricular === 'string' && componente_curricular.trim().toLowerCase() === "arte") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "arte") { %>
                         <b>1.</b> Explorar, conhecer, fruir e analisar criticamente práticas e produções artísticas e
                         culturais do seu entorno social, dos povos indígenas, das comunidades tradicionais
                         brasileiras e de diversas sociedades, em distintos tempos e espaços, para reconhecer
@@ -241,7 +235,7 @@
                         <b>9.</b> Analisar e valorizar o patrimônio artístico nacional e internacional, material e imaterial,
                         com suas histórias e diferentes visões de mundo.
                     <% } %>
-                    <% if (typeof componente_curricular === 'string' && componente_curricular.trim().toLowerCase() === "educação física") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "educação física") { %>
                         <b>1.</b> Compreender a origem da cultura corporal de movimento e seus vínculos com a
                         organização da vida coletiva e individual.
                         <br>
@@ -276,7 +270,7 @@
                         ginásticas, esportes, lutas e práticas corporais de aventura, valorizando o trabalho coletivo
                         e o protagonismo.
                     <% } %>
-                    <% if (typeof componente_curricular === 'string' && componente_curricular.trim().toLowerCase() === "matemática") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "matemática") { %>
                         <b>1.</b> Reconhecer que a Matemática é uma ciência humana, fruto das necessidades e
                         preocupações de diferentes culturas, em diferentes momentos históricos, e é uma ciência
                         viva, que contribui para solucionar problemas científicos e tecnológicos e para
@@ -317,7 +311,7 @@
                         não na discussão de uma determinada questão, respeitando o modo de pensar dos
                         colegas e aprendendo com eles.
                     <% } %>
-                    <% if (typeof componente_curricular === 'string' && componente_curricular.trim().toLowerCase() === "ciências da natureza") { %>
+                    <% if (componente_curricular.trim().toLowerCase() === "ciências da natureza") { %>
                         <b>1.</b> Compreender as Ciências da Natureza como empreendimento humano, e o
                         conhecimento científico como provisório, cultural e histórico.
                         <br>
@@ -361,7 +355,7 @@
                     METODOLOGIAS
                 </div>
                 <div class="item-padding item-border">
-                    <% if (typeof metodologias === 'string' || Array.isArray(metodologias)) { %>
+                    <% if (metodologias) { %>
                         <% metodologias.split("\n").forEach(text => { %>
                             <%= text %>
                         <% }) %> 
@@ -371,7 +365,7 @@
                     RECURSOS MATERIAIS
                 </div>
                 <div class="item-padding item-border">
-                    <% if (typeof recursos_materiais === 'string' || Array.isArray(recursos_materiais)) { %>
+                    <% if (recursos_materiais) { %>
                         <% recursos_materiais.split("\n").forEach(text => { %>
                             <%= text %>
                         <% }) %> 
@@ -381,7 +375,7 @@
                     AVALIAÇÃO
                 </div>
                 <div class="item-padding item-border">
-                    <% if (typeof avaliacao === 'string' || Array.isArray(avaliacao)) { %>
+                    <% if (avaliacao) { %>
                         <% avaliacao.split("\n").forEach(text => { %>
                             <%= text %>
                         <% }) %>  
@@ -391,7 +385,7 @@
                     REFERÊNCIAS
                 </div>
                 <div class="item-border item-padding">
-                    <% if (typeof referencias === 'string' || Array.isArray(referencias)) { %>
+                    <% if (referencias) { %>
                         <% referencias.split("\n").forEach(texto => { %>
                             <%= texto %><br>
                         <% }) %>

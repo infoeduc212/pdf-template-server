@@ -63,33 +63,21 @@
             const unidades = []
             const notasComputadas = []
 
-            if(Array.isArray(notas)){
-
-                notas.forEach(item => {
-                    const materia = item.materia
-                    const unidade = item.unidade
-                    if (materias.indexOf(materia) === -1) materias.push(materia)
-                    if (unidades.indexOf(unidade) === -1) unidades.push(unidade)
-                });
-
-            }
-
-            
+            notas.forEach(item => {
+                const materia = item.materia
+                const unidade = item.unidade
+                if (materias.indexOf(materia) === -1) materias.push(materia)
+                if (unidades.indexOf(unidade) === -1) unidades.push(unidade)
+            });
             materias.forEach(materia => {
                 const arr = []
                 unidades.forEach(unidade => {
-
-                    if(Array.isArray(notas)){
-
-                        notas.forEach(registro => {
-                            if (registro.unidade === unidade && registro.materia === materia) {
-                                arr.push(registro.nota)
-                                return
-                            }
-                        });
-
-                    }
-                    
+                    notas.forEach(registro => {
+                        if (registro.unidade === unidade && registro.materia === materia) {
+                            arr.push(registro.nota)
+                            return
+                        }
+                    });
                 });
                 notasComputadas.push(arr)
             })
@@ -101,16 +89,14 @@
                             <th rowspan="0" colspan="2">
                                 Componentes<br>Curriculares
                             </th>
-                            <th colspan="<%= (Array.isArray(periodos_letivos)) ? periodos_letivos.length : 0 %>">
+                            <th colspan="<%= periodos_letivos.length %>">
                                 Resultado das Unidades
                             </th>
                         </tr>
                         <tr>
-                            <% if(Array.isArray(periodos_letivos)){ %>
-                                <% periodos_letivos.forEach(periodo => { %>
-                                <th><%= periodo %></th>
-                                <% }) %>
-                            <% } %>
+                            <% periodos_letivos.forEach(periodo => { %>
+                            <th><%= periodo %></th>
+                            <% }) %>
                         </tr>
                     </thead>
                     <% 
@@ -154,26 +140,16 @@
 
                                 <td><%= next.value %></td>
                                 <% const scope = {} %>
-                                <% if(Array.isArray(periodos_letivos)){ %>
-                                    <% periodos_letivos.forEach(periodo => { %>
-                                        <% if(Array.isArray(grupos_disciplina)){ %>
-                                            <% const grupoDisciplina = grupos_disciplina.find(grupo => grupo.nome_periodo_letivo === periodo) %>
-                                        <% } %>
-                                        <% if(Array.isArray(formulas)){ %>
-                                            <% const calculoFormula = formulas.find(item => item.grupo_disciplina === grupoDisciplina.nome_grupo) %>
-                                        <% } %>
-                                        <% if(Array.isArray(disciplina)){ %>
-                                            <% const notas = disciplina.filter(nota => nota.grupo_disciplina === grupoDisciplina.nome_grupo) %>
-                                        <% } %>
-                                        <% if(Array.isArray(notas)){ %>
-                                            <% notas.forEach(nota => { %>
-                                                <% scope[nota.avaliacao_alias] = nota.nota_prova + nota.nota_atividades %>
-                                            <% }) %>
-                                        <% } %>
-                                        <% const compiled = math.compile(calculoFormula.formula) %>
-                                        <td><%= compiled.evaluate(scope) %></td>
+                                <% periodos_letivos.forEach(periodo => { %>
+                                    <% const grupoDisciplina = grupos_disciplina.find(grupo => grupo.nome_periodo_letivo === periodo) %>
+                                    <% const calculoFormula = formulas.find(item => item.grupo_disciplina === grupoDisciplina.nome_grupo) %>
+                                    <% const notas = disciplina.filter(nota => nota.grupo_disciplina === grupoDisciplina.nome_grupo) %>
+                                    <% notas.forEach(nota => { %>
+                                        <% scope[nota.avaliacao_alias] = nota.nota_prova + nota.nota_atividades %>
                                     <% }) %>
-                                <% } %>
+                                    <% const compiled = math.compile(calculoFormula.formula) %>
+                                    <td><%= compiled.evaluate(scope) %></td>
+                                <% }) %>
                                 <% count++ %>
                             <% } %>
                         </tr>

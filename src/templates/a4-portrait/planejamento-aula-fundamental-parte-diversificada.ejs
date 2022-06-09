@@ -70,55 +70,36 @@
     <div class="bg-color item-padding text-center">
         TEMA/CONTEÚDO
     </div>
-<<<<<<< Updated upstream
-    <div style="word-break: break-all;">
-        <% if (tema_conteudo) { %>
-            <% tema_conteudo.split("\n").forEach(text => { %>
-                <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
-=======
     <div class="item-border item-padding">
-        <% if (typeof tema_conteudo === 'string') { %>
+        <% if (tema_conteudo) { %>
             <% tema_conteudo.split("\n").forEach(texto => { %>
                 <%= texto %><br>
->>>>>>> Stashed changes
             <% }) %> 
         <% } %>
     </div>
     <div class="bg-color item-padding text-center">
         OBJETIVOS/HABILIDADES
     </div>
-<<<<<<< Updated upstream
-    <div style="word-break: break-all;">
-        <% if (objetivos_habilidades) { %>
-            <% objetivos_habilidades.split("\n").forEach(text => { %>
-                <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
-=======
     <div class="item-border item-padding">
-        <% if (typeof objetivos_habilidades === 'string') { %>
+        <% if (objetivos_habilidades) { %>
             <% objetivos_habilidades.split("\n").forEach(texto => { %>
                 <%= texto %><br>
->>>>>>> Stashed changes
             <% }) %> 
         <% } %>
     </div>
     <div class="flex flex-column">
         <div class="bg-color text-center item-border item-padding">PROCEDIMENTO DIDÁTICO/METODOLÓGICOS</div>
-        <div style="word-break: break-all;">
+        <div class="item-border item-padding">
             <% if (procedimento_didatico) { %>
-                <%-include("../reusable/verificar_formatacao_2.ejs",{text:procedimento_didatico})  %> <br> 
+                <%= procedimento_didatico %>
             <% } %>
         </div>
     </div>  
     <div class="bg-color item-padding text-center">
         RECURSOS/MATERIAIS
     </div>
-<<<<<<< Updated upstream
-    <div class="item-border item-padding small-text" style="word-break: break-all;">
-        <% if (recursos_materiais) { %>
-=======
     <div class="item-border item-padding">
-        <% if (typeof recursos_materiais === 'string') { %>
->>>>>>> Stashed changes
+        <% if (recursos_materiais) { %>
             <% recursos_materiais.split("\n").forEach(texto => { %>
                 <%= texto %><br> 
             <% }) %> 
@@ -127,13 +108,8 @@
     <div class="bg-color item-padding text-center">
         AVALIAÇÃO
     </div>
-<<<<<<< Updated upstream
-    <div class="item-border item-padding small-text" style="word-break: break-all;">
-        <% if (avaliacao) { %>
-=======
     <div class="item-border item-padding">
-        <% if (typeof avaliacao === 'string') { %>
->>>>>>> Stashed changes
+        <% if (avaliacao) { %>
             <% avaliacao.split("\n").forEach(texto => { %>
                 <%= texto %><br> 
             <% }) %>
@@ -142,13 +118,8 @@
     <div class="bg-color item-padding text-center">
         REFERÊNCIAS
     </div>
-<<<<<<< Updated upstream
-    <div class="item-border item-padding small-text" style="word-break: break-all;">
-        <% if (referencias) { %>
-=======
     <div class="item-border item-padding">
-        <% if (typeof referencias === 'string') { %>
->>>>>>> Stashed changes
+        <% if (referencias) { %>
             <% referencias.split("\n").forEach(texto => { %>
                 <%= texto %><br>
             <% }) %>

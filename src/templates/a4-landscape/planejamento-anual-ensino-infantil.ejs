@@ -73,34 +73,30 @@
                 </tr>
             </thead>
             <tbody style="font-size: 13px; text-align: justify;">
-                <% if(Array.isArray(planejamentos)){ %>
-                    <% planejamentos.forEach(item => { %>
-                        <tr>
-                            <td class="item-padding">
-                                <%= item.eixo_tematico %>
-                            </td>
-                            <td class="item-padding">
-                                <%= item.campo_experiencias %>
-                            </td>
-                            <td class="item-padding">
-                                <% if(Array.isArray(item.objetivos_aprendizagem)){ %>
-                                    <% item.objetivos_aprendizagem.forEach(objetivo => { %>
-                                        <%= objetivo %><br> 
-                                    <% }) %>
-                                <% } %>
-                            </td>
-                        </tr>
-                    <% }) %>
-                <% } %>
+                <% planejamentos.forEach(item => { %>
+                    <tr>
+                        <td class="item-padding">
+                            <%= item.eixo_tematico %>
+                        </td>
+                        <td class="item-padding">
+                            <%= item.campo_experiencias %>
+                        </td>
+                        <td class="item-padding">
+                            <% item.objetivos_aprendizagem.forEach(objetivo => { %>
+                                <%= objetivo %><br> 
+                            <% }) %>
+                        </td>
+                    </tr>
+                <% }) %>
             </tbody>
         </table>
         <div class="bg-color item-padding text-center">
             PRODECIMENTOS/METODOLOGIAS
         </div>
         <div class="item-border item-padding" style="font-size: 13px;">
-            <% if (typeof procedimentos_atividades === 'string' || Array.isArray(procedimentos_atividades)) { %>
+            <% if (procedimentos_atividades) { %>
                 <% procedimentos_atividades.split("\n").forEach(text => { %>
-                    <%-include("../reusable/verificar_formatacao_2.ejs",{text})  %> <br> 
+                    <%= text %><br>
                 <% }) %> 
             <% } %>
         </div>
@@ -188,7 +184,7 @@
                 REFERÊNCIAS
             </div>
             <div class="item-padding item-border">
-                <% if (typeof referencias === 'string' || Array.isArray(referencias)) { %>
+                <% if (referencias) { %>
                     <% referencias.split("\n").forEach(texto => { %>
                         <%= texto %> <br>
                     <% }) %> 

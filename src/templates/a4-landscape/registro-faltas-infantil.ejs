@@ -62,28 +62,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% if(Array.isArray(lista_faltas)){ %>
-                        <% lista_faltas.forEach(lista  => { %>
-                            <tr >
-                                <td> 
-                                    <%= lista.nome_aluno %> <%= lista.sobrenome_aluno %>
-                                </td>   
-                                <td>
-                                    <%= lista.faltas_periodo %> 
-                                </td>
-                                <td>
-                                    <%= lista.frequencia_periodos %> 
-                                </td>
-                                <td>
-                                    <%= lista.faltas_anual %> 
-                                </td>
-                                <td>
-                                    <%= lista.frequencia_anual %> 
-                                </td>
+                    <% lista_faltas.forEach(lista  => { %>
+                         <tr >
+                            <td> 
+                                <%= lista.nome_aluno %> <%= lista.sobrenome_aluno %>
+                            </td>   
+                            <td>
+                                <%= lista.faltas_periodo %> 
+                            </td>
+                            <td>
+                                <%= lista.frequencia_periodos %> 
+                            </td>
+                            <td>
+                                <%= lista.faltas_anual %> 
+                            </td>
+                            <td>
+                                <%= lista.frequencia_anual %> 
+                            </td>
 
-                            </tr>  
-                        <% }) %>
-                    <% } %>
+                        </tr>  
+                    <% }) %>
                     <tr>
                         <td>Total de dias letivos</td>
                         <td colspan="4"><%= dias_letivos %> </td>
