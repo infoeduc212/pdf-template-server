@@ -5,7 +5,7 @@ import { createAssetsServer } from "../src/assetsServer";
 
 function generateHtml(templateName: string, data: object) {
     return ejs.renderFile(
-        join(__dirname, "..", "src", "templates", "a4-portrait", `${templateName}.ejs`),
+        join(__dirname, "..", "src", "ejs-templates", `${templateName}.ejs`),
         data
     );
 }
